@@ -27,3 +27,8 @@ Optional elements that you may want to include:
 * Animated explosions.
 * Moving background.
 * Scrollable or zoomable playing area.
+
+You *may* use the original 
+[Spacewar](http://runpython.com/?user=BrythonServer&repo=Spacewar&name=spacewar.py)
+as a reference while working on this project, but please cite it as a resource if you do. As always,
+you should understand any additional code that you borrow or include on this project.
