@@ -7,5 +7,5 @@ python:
 script: bash ./test.sh
 env:
   global:
-  - TESTMODULE: spacewar.py
+  - TESTMODULE: spaceshooter.py
   - GH_REPO: github.com/HHS-IntroProgramming/tests.git
