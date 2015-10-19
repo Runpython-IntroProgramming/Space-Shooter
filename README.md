@@ -1,4 +1,4 @@
-# Spacewar - Level III
+# Spacewar (Level III)
 
 This project will give you experience writing graphical applications. You will also learn how to use classes and 
 object-oriented programming to streamline your code.
