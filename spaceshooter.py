@@ -80,8 +80,8 @@ class SpaceGame(App):
         black = Color(0, 1)
         noline = LineStyle(0, black)
         bg_asset = ImageAsset("images/starfield.jpg")
-        bg = Sprite(bg_asset, (0,0,0))
-        bg.scale = 1.5
+        bg = Sprite(bg_asset, (0,0))
+        bg1 = Sprite(bg_asset, (540,540))
         SpaceShip((200,200))
         SpaceShip((250,250))
         SpaceShip((300,150))
