@@ -71,7 +71,12 @@ class SpaceGame(App):
         noline = LineStyle(0, black)
         bg_asset = ImageAsset("images/starfield.jpg")
         bg = Sprite(bg_asset, (0,0))
-        bg1 = Sprite(bg_asset, (540,540))
+        bg1 = Sprite(bg_asset, (512,512))
+        bg2 = Sprite(bg_asset, (0,512))
+        bg3 = Sprite(bg_asset, (512,0))
+        bg4 = Sprite(bg_asset, (1024,512))
+        bg5 = Sprite(bg_asset, (1024,0))
+        
         SpaceShip((200,200))
         SpaceShip((250,250))
         SpaceShip((300,150))
