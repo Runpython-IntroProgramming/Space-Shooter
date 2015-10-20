@@ -12,6 +12,23 @@ import math
 SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 960
 
+class Vector:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        
+    def conv(self):
+        return math.sqrt(self.x*self.x + self.y*self.y)
+    
+    def locationx(self):
+        r = self.conv()
+        self.x = math.sin(self.rotation)
+        return self.x/r
+    def locationy(self):
+        r = self.conv()
+        self.y = math.cos(self.rotation)
+        return self.y/r
+        
 class SpaceShip(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
         Frame(227,0,292-227,125), 4, 'vertical')
@@ -43,22 +60,6 @@ class SpaceShip(Sprite):
         else:
             self.setImage(0)
             
-class Vector:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-        
-    def conv(self):
-        return math.sqrt(self.x*self.x + self.y*self.y)
-    
-    def locationx(self):
-        r = self.conv()
-        self.x = math.sin(self.rotation)
-        return self.x/r
-    def locationy(self):
-        r = self.conv()
-        self.y = math.cos(self.rotation)
-        return self.y/r
     def thrustOn(self, event):
         self.thrust = 1
         self.vx = self.locationx()
