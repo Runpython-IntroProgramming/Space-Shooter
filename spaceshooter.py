@@ -48,7 +48,7 @@ class SpaceShip(Sprite):
         self.vx = self.locationx()
         self.vy = self.locationy()
         
-     def conv(self):
+    def conv(self):
         return math.sqrt(self.vx*self.vx + self.vy*self.vy) 
         
     def locationx(self):
