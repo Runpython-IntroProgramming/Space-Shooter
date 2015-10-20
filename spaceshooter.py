@@ -12,23 +12,6 @@ import math
 SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 960
 
-class Vector:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-        
-    def conv(self):
-        return math.sqrt(self.x*self.x + self.y*self.y)
-    
-    def locationx(self):
-        r = self.conv()
-        self.x = math.sin(self.rotation)
-        return self.x/r
-    def locationy(self):
-        r = self.conv()
-        self.y = math.cos(self.rotation)
-        return self.y/r
-        
 class SpaceShip(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
         Frame(227,0,292-227,125), 4, 'vertical')
@@ -48,6 +31,23 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keyup", "right arrow", self.rrOff)
         self.fxcenter = self.fycenter = 0.5
         
+    def conv(self):
+        return math.sqrt(self.x*self.x + self.y*self.y) 
+        
+    def locationx(self):
+        r = self.conv()
+        self.x = math.sin(self.rotation)
+        return self.x/r
+    
+    def locationy(self):
+        r = self.conv()
+        self.y = math.cos(self.rotation)
+        return self.y/r
+    
+    
+    
+    
+    
     def step(self):
         self.x -= self.vx
         self.y -= self.vy
@@ -59,8 +59,9 @@ class SpaceShip(Sprite):
                 self.thrustframe = 1
         else:
             self.setImage(0)
-            
+    
     def thrustOn(self, event):
+        super().__init__(Move)
         self.thrust = 1
         self.vx = self.locationx()
         self.vy = self.locationy()
@@ -81,6 +82,7 @@ class SpaceShip(Sprite):
         
     def rrOff(self,  event):
         self.vr = 0
+        
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
