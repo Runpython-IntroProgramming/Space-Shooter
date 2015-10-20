@@ -30,23 +30,6 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.rotateRight)
         SpaceGame.listenKeyEvent("keyup", "right arrow", self.rrOff)
         self.fxcenter = self.fycenter = 0.5
-        
-    def conv(self):
-        return math.sqrt(self.x*self.x + self.y*self.y) 
-        
-    def locationx(self):
-        r = self.conv()
-        self.x = math.sin(self.rotation)
-        return self.x/r
-    
-    def locationy(self):
-        r = self.conv()
-        self.y = math.cos(self.rotation)
-        return self.y/r
-    
-    
-    
-    
     
     def step(self):
         self.x -= self.vx
@@ -61,10 +44,22 @@ class SpaceShip(Sprite):
             self.setImage(0)
     
     def thrustOn(self, event):
-        super().__init__(Move)
         self.thrust = 1
         self.vx = self.locationx()
         self.vy = self.locationy()
+        
+     def conv(self):
+        return math.sqrt(self.vx*self.vx + self.vy*self.vy) 
+        
+    def locationx(self):
+        r = self.conv()
+        self.x = math.sin(self.rotation)
+        return self.x/r
+    
+    def locationy(self):
+        r = self.conv()
+        self.y = math.cos(self.rotation)
+        return self.y/r
 
     def thrustOff(self, event):
         self.thrust = 0
