@@ -60,7 +60,7 @@ class SpaceShip(Sprite):
         
     def rotateLeft(self, event):
         self.vr = 0.05
-        self.move
+        self.move()
         
     def lrOff(self,  event):
         self.vr = 0
