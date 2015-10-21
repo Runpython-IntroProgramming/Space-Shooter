@@ -9,8 +9,8 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 import math
-SCREEN_WIDTH = 1900
-SCREEN_HEIGHT = 800
+SCREEN_WIDTH = 1600
+SCREEN_HEIGHT = 900
 
 class SpaceShip(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
@@ -45,10 +45,10 @@ class SpaceShip(Sprite):
     
     def thrustOn(self, event):
         self.thrust = 1
-        self.x = math.sin(self.rotation)
-        self.y = math.cos(self.rotation)
-        self.vx = self.x/math.sqrt(self.x*self.x + self.y*self.y)
-        self.vy = self.x/math.sqrt(self.x*self.x + self.y*self.y)
+        self.X = math.sin(self.rotation)
+        self.Y = math.cos(self.rotation)
+        self.vx = self.X/math.sqrt(self.x*self.x + self.y*self.y)
+        self.vy = self.Y/math.sqrt(self.x*self.x + self.y*self.y)
         
     def thrustOff(self, event):
         self.thrust = 0
