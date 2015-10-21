@@ -9,8 +9,8 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 import math
-SCREEN_WIDTH = 1280
-SCREEN_HEIGHT = 960
+SCREEN_WIDTH = 1900
+SCREEN_HEIGHT = 800
 
 class SpaceShip(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
