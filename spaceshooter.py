@@ -1,6 +1,6 @@
 """
 spaceshooter.py
-Author: <your name here>
+Author: Suhan Gui
 Credit: <list sources used, if any>
 
 Assignment:
