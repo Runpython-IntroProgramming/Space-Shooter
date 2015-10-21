@@ -23,6 +23,7 @@ class SpaceShip(Sprite):
         self.thrustframe = 1
         self.vx = 0
         self.vy = 0
+        self.turn = 0
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.rotateLeft)
@@ -32,14 +33,15 @@ class SpaceShip(Sprite):
         self.fxcenter = self.fycenter = 0.5
     
     def step(self):
+        self.rotation += self.vr
         self.x -= 3.5*self.vx
         self.y -= 3.5*self.vy
-        self.rotation += self.vr
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
             if self.thrustframe == 4:
                 self.thrustframe = 1
+            self.move()
         else:
             self.setImage(0)
     
@@ -51,7 +53,6 @@ class SpaceShip(Sprite):
     
     def thrustOn(self, event):
         self.thrust = 1
-        self.move()
         
     def thrustOff(self, event):
         self.thrust = 0
@@ -60,14 +61,12 @@ class SpaceShip(Sprite):
         
     def rotateLeft(self, event):
         self.vr = 0.05
-        self.move()
         
     def lrOff(self,  event):
         self.vr = 0
         
     def rotateRight(self, event):
         self.vr = -0.05
-        self.move()
         
     def rrOff(self,  event):
         self.vr = 0
