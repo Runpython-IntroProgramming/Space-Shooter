@@ -43,12 +43,15 @@ class SpaceShip(Sprite):
         else:
             self.setImage(0)
     
-    def thrustOn(self, event):
-        self.thrust = 1
+    def move(self):
         self.X = math.sin(self.rotation)
         self.Y = math.cos(self.rotation)
         self.vx = self.X/math.sqrt(self.X*self.X + self.Y*self.Y)
         self.vy = self.Y/math.sqrt(self.X*self.X + self.Y*self.Y)
+    
+    def thrustOn(self, event):
+        self.thrust = 1
+        self.move()
         
     def thrustOff(self, event):
         self.thrust = 0
@@ -57,12 +60,14 @@ class SpaceShip(Sprite):
         
     def rotateLeft(self, event):
         self.vr = 0.05
+        self.move
         
     def lrOff(self,  event):
         self.vr = 0
         
     def rotateRight(self, event):
         self.vr = -0.05
+        self.move()
         
     def rrOff(self,  event):
         self.vr = 0
