@@ -11,11 +11,13 @@ from ggame import SoundAsset, Sound, TextAsset, Color
 import math
 from time import time
 
-black=Color(0,1)
-noline=
-#Screen dimensions
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
+
+class Galaxy(Sprite):
+    image=ImageAsset
+class Meteors(Sprite):
+    image=ImageAsset
 
 #Fin
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
