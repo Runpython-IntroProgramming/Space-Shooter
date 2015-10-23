@@ -13,6 +13,7 @@ SCREEN_WIDTH = 1600
 SCREEN_HEIGHT = 900
 
 class SpaceShip(Sprite):
+    
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
         Frame(227,0,292-227,125), 4, 'vertical')
 
@@ -68,7 +69,15 @@ class SpaceShip(Sprite):
         
     def rrOff(self,  event):
         self.vr = 0
-        
+
+class Bullet(Sprite):
+    
+    asset = ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
+    pewasset = SoundAsset("sounds/pew1.mp3")
+    
+    def __init__(self, position):
+        super().__init__(SpaceShip.asset, position)
+    
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
