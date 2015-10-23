@@ -7,7 +7,7 @@ Assignment:
 Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
 """
-from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
+from ggame import App, RectangleAsset, ImageAsset, SoundAsset, Sprite, LineStyle, Color, Frame
 import math
 SCREEN_WIDTH = 1600
 SCREEN_HEIGHT = 900
