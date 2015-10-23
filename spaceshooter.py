@@ -14,10 +14,11 @@ from time import time
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
 
-class Galaxy(Sprite):
-    image=ImageAsset
-class Meteors(Sprite):
-    image=ImageAsset
+class Ship(Sprite):
+    image=ImageAsset("images/four_spaceship_by_albertov.png")
+class Suns(Sprite):
+    image=ImageAsset("images/sun.png")
+class Moving(Sprite)
 
 #Fin
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
