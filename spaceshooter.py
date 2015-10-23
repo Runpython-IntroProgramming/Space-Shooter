@@ -39,8 +39,14 @@ class SpaceShip(Sprite):
         self.rotation += self.vr
         self.VX += self.vx
         self.VY += self.vy
-        self.x -= 5/(1+math.e**(-self.VX))-2.5                  
-        self.y -= 5/(1+math.e**(-self.VY))-2.5
+        if self.x <= SCREEN_WIDTH:
+            self.x -= 0.1*self.VX
+        else:
+            self.x -= (0.1*self.VX + SCREEN_WIDTH)
+        if self.y <= SCREEN_HEIGHT:    
+            self.y -= 0.1*self.VY
+        else:
+            self.y -= (0.1*self.VY + SCREEN_HEIGHT)
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
@@ -81,6 +87,8 @@ class Bullet(Sprite):
     
     def __init__(self, position):
         super().__init__(SpaceShip.asset, position)
+        
+       
     
 class SpaceGame(App):
     def __init__(self, width, height):
