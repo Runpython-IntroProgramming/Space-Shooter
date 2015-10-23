@@ -24,8 +24,8 @@ class SpaceShip(Sprite):
         self.vx = 0
         self.vy = 0
         self.turn = 0
-        SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
-        SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
+        SpaceGame.listenKeyEvent("keydown", "up arrow", self.thrustOn)
+        SpaceGame.listenKeyEvent("keyup", "up arrow", self.thrustOff)
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.rotateLeft)
         SpaceGame.listenKeyEvent("keyup", "left arrow", self.lrOff)
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.rotateRight)
