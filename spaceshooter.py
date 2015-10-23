@@ -18,27 +18,33 @@ class Ship(Sprite):
     image=ImageAsset("images/four_spaceship_by_albertov.png")
     width=100
     height=100
-    
+    def __init__(self, position):
+        super().__init__(Sun.asset, position)
 
 class Suns(Sprite):
     image=ImageAsset("images/sun.png")
     width=100
     height=100
 
+    def __init__(self, position):
+        super().__init__(Sun.asset, position)
+
 class Moving(Sprite):
     image=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png")
     width=100
     height=100
-    
-
+    def __init__(self, position):
+        super().__init__(Sun.asset, position)
 class Galaxy(Sprite):
     image=ImageAsset("images/starfield.jpg")
-    width=SCREEN_WIDTH
-    height=SCREEN_HEIGHT
+    width=1000
+    height=600
     
-class SpaceGame(App):
+    def __init__(self, position):
+        super().__init__(SpaceShip.asset, position)
     
 
+
 #Fin
-myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
+myapp = SpaceGame(0,0)
 myapp.run()
