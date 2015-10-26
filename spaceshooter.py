@@ -25,8 +25,8 @@ class Ship(Sprite):
         self.vr=0
         self.trust=0
         self.trustframe=0
-        SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
-        SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
+        SpaceGame.listenKeyEvent("keydown", self.thrustOff)
+        SpaceGame.listenKeyEvent("keyup", self.thrustOn)
         self.fxcenter = self.fycenter = 0.5
 
 class Sun(Sprite):
