@@ -42,13 +42,7 @@ class Galaxy(Sprite):
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
-    for x in range(self.width//Galaxy.width + 1):
-        for y in range(self.height//Galaxy.height + 1):
-            Stars((x*Galaxy.width, y*Galaxy.height))
-    self.sun = Sun((self.width/2, self.height/2))
-    self.ship1 = Ship1(self, (self.width/2-140,self.height/2), (0,-140), self.sun)
-    self.ship2 = Ship2(self, (self.width/2+140,self.height/2), (0,140), self.sun)
-    self.style = {k:Sprite(TextAsset(text=v, width=200, center='center',style='20px Arial', fill=Color(0,1)))
+
 
 #Fin
 myapp = SpaceGame(0,0)
