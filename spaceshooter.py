@@ -11,9 +11,6 @@ from ggame import TextAsset, Color
 import math
 from time import time
 
-SCREEN_WIDTH = 640
-SCREEN_HEIGHT = 480
-
 class Ship(Sprite):
     image=ImageAsset("images/four_spaceship_by_albertov.png", Frame(100,0,225,125), 4, 'vertical')
     def __init__(self, position):
@@ -30,7 +27,7 @@ class Galaxy(Sprite):
     image=ImageAsset("images/starfield.jpg", Frame(600,0,1000,125), 4, 'horizontal')
     def __init__(self, position):
         super().__init__(Galaxy.asset, position)
-    
+
 class SpaceGame(App):
     strings={'fail':'You fail :(',
     'win':'YOU WON!!'
@@ -42,3 +39,4 @@ class SpaceGame(App):
 
 #Fin
 myapp = SpaceGame(0,0)
+myapp.run
