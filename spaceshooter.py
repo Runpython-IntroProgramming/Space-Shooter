@@ -39,16 +39,16 @@ class SpaceShip(Sprite):
         self.rotation += 1.5*self.vr
         self.VX += self.vx
         self.VY += self.vy
-        if self.x <= SCREEN_WIDTH:
+        if 0 <= self.x <= SCREEN_WIDTH:
             self.x -= 0.1*self.VX
-        elif self.x == 0:
+        elif self.x < 0:
             self.x += SCREEN_WIDTH
             self.x -= 0.1*self.VX
         else:    
             self.x -= (0.1*self.VX + SCREEN_WIDTH)
-        if self.y <= SCREEN_HEIGHT:    
+        if 0 <= self.y <= SCREEN_HEIGHT:    
             self.y -= 0.1*self.VY
-        elif self.y == 0:
+        elif self.y < 0:
             self.y += SCREEN_HEIGHT
             self.y -= 0.1*self.VY
         else:
