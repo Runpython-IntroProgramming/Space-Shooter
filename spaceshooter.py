@@ -92,9 +92,11 @@ class Bullet(Sprite):
     pewasset = SoundAsset("sounds/pew1.mp3")
     
     def __init__(self, position):
-        super().__init__(SpaceShip.asset, position)
+        super().__init__(Bullet.asset, position)
+        SpaceGame.listenKeyEvent("keydown", "space", self.shoot)
         
-       
+    def shoot(self, event):
+        
     
 class SpaceGame(App):
     def __init__(self, width, height):
