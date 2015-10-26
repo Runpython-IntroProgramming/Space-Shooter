@@ -36,22 +36,23 @@ class SpaceShip(Sprite):
         self.fxcenter = self.fycenter = 0.5
     
     def step(self):
-        self.rotation += self.vr
+        self.rotation += 1.5*self.vr
         self.VX += self.vx
         self.VY += self.vy
-        if self.x <= SCREEN_WIDTH:
-            self.x -= 0.1*self.VX
-        elif self.x < 0:
-            self.x -= (0.1*self.VX - SCREEN_WIDTH)
-        else:    
-            self.x -= (0.1*self.VX + SCREEN_WIDTH)
-        if self.y <= SCREEN_HEIGHT:    
-            self.y -= 0.1*self.VY
-        elif self.y < 0:
-            self.y -= (0.1*self.VY - SCREEN_HEIGHT)
-        else:
-            self.y -= (0.1*self.VY + SCREEN_HEIGHT)
+        
         if self.thrust == 1:
+            if self.x <= SCREEN_WIDTH:
+                self.x -= 0.1*self.VX
+            elif self.x < 0:
+                self.x -= (0.1*self.VX - SCREEN_WIDTH)
+            else:    
+                self.x -= (0.1*self.VX + SCREEN_WIDTH)
+            if self.y <= SCREEN_HEIGHT:    
+                self.y -= 0.1*self.VY
+            elif self.y < 0:
+                self.y -= (0.1*self.VY - SCREEN_HEIGHT)
+            else:
+                self.y -= (0.1*self.VY + SCREEN_HEIGHT)
             self.setImage(self.thrustframe)
             self.thrustframe += 1
             if self.thrustframe == 4:
