@@ -46,6 +46,13 @@ class SpaceGame(App):
     Ship((100,100))
     Ship((150,150))
     Ship((200,50))
+    for x in range(self.width//Stars.width + 1):
+        for y in range(self.height//Stars.height + 1):
+            Stars((x*Stars.width, y*Stars.height))
+    self.sun = Sun((self.width/2, self.height/2))
+    self.ship1 = Ship1(self, (self.width/2-140,self.height/2), (0,-120), self.sun)
+    self.ship2 = Ship2(self, (self.width/2+140,self.height/2), (0,120), self.sun)
+    self.style = {k:Sprite(TextAsset(text=v, width=200, center='center',style='20px Arial', fill=Color(0,1)))
 
 #Fin
 myapp = SpaceGame(0,0)
