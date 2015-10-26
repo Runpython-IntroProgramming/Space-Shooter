@@ -42,7 +42,7 @@ class Galaxy(Sprite):
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
-    bg = Sprite(bg_asset, (0,0))
+    bg = Sprite(Galaxy, (0,0))
     Ship((100,100))
     Ship((150,150))
     Ship((200,50))
