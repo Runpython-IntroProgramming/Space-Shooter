@@ -88,14 +88,27 @@ class SpaceShip(Sprite):
 
 class Bullet(Sprite):
     
-    asset = ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
+    asset1 = ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
     pewasset = SoundAsset("sounds/pew1.mp3")
     
     def __init__(self, position):
-        super().__init__(Bullet.asset, position)
+        super().__init__(Bullet.asset1, position)
         SpaceGame.listenKeyEvent("keydown", "space", self.shoot)
+        self.exist = 0
+    
+    def step(self):
+        if self.exist == 1:
+            self.setImage(self.appear)
+            self.appear += 1
+            if self.appear == 8:
+                self.appear = 1
+            self.move()
+        else:
+            self.setImage(0)
         
     def shoot(self, event):
+        Bullet((200,200))
+        self.exist == 1
         
     
 class SpaceGame(App):
