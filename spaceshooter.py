@@ -29,6 +29,12 @@ class Ship(Sprite):
         SpaceGame.listenKeyEvent("keyup", self.thrustOn)
         self.fxcenter = self.fycenter = 0.5
 
+    def thrustOn(self, event):
+        self.thrust = 1
+
+    def thrustOff(self, event):
+        self.thrust = 0
+
 class Sun(Sprite):
     image=ImageAsset("images/sun.png", Frame(100,0,100,100), 1, 'vertical')
     def __init__(self, position):
