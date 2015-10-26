@@ -11,13 +11,8 @@ from ggame import TextAsset, Color
 import math
 from time import time
 
-class Move(Sprite):
-    image=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(100,0,225,125), 4,'vertical')
-    def __init__(self, position):
-        super().__init__(Move.asset, position)
-
 class Ship(Sprite):
-    image=ImageAsset("images/four_spaceship_by_albertov.png", Frame(100,0,225,125), 4, 'vertical')
+    image=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(100,0,225,125), 4, 'vertical')
     def __init__(self, position):
         super().__init__(Ship.image, position)
         self.vx=0
@@ -38,15 +33,15 @@ class Ship(Sprite):
         self.thrust = 0
 
     def turnLeft(self,event):
-        self.vr
+        self.vr=0.5
 
     def turnRight(self, event):
-        self.vr=
+        self.vr=0.5
 
 class Sun(Sprite):
     image=ImageAsset("images/sun.png", Frame(100,0,100,100), 1, 'vertical')
     def __init__(self, position):
-        super().__init__(Sun.asset, position)
+        super().__init__(Sun.image, position)
     self.fxcenter = 0
     self.fycenter = 0
     self.circularCollisionModel()
@@ -59,7 +54,7 @@ class Galaxy(Sprite):
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
-        back=Sprite(Ship(0,0))
+        back=Sprite(Galaxy(0,0))
         SpaceShip(500,600)
         SpaceShip(550,650)
         SpaceShip(600,700)
