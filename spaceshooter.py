@@ -41,7 +41,7 @@ class SpaceShip(Sprite):
         self.VY += self.vy
         if self.x <= SCREEN_WIDTH:
             self.x -= 0.1*self.VX
-        else if self.x < 0:
+        elif self.x < 0:
             self.x -= (0.1*self.VX - SCREEN_WIDTH)
         else:    
             self.x -= (0.1*self.VX + SCREEN_WIDTH)
