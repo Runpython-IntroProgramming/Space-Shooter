@@ -11,31 +11,38 @@ from ggame import TextAsset, Color
 import math
 from time import time
 
+class Move(Sprite):
+    image=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(100,0,225,125), 4,'vertical')
+    def __init__(self, position):
+        super().__init__(Move.asset, position)
+
 class Ship(Sprite):
     image=ImageAsset("images/four_spaceship_by_albertov.png", Frame(100,0,225,125), 4, 'vertical')
     def __init__(self, position):
-        super().__init__(Galaxy.asset, position)
-        self.vx
+        super().__init__(Ship.asset, position)
+        self.vx=0
+        self.vy=0
+        self.vr=0
+        self.trust=0
+        self.trustframe=0
+        SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
+        SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
+        self.fxcenter = self.fycenter = 0.5
 
-class Suns(Sprite):
-    image=ImageAsset("images/sun.png")
-    width=100
-    height=100
-    def
+class Sun(Sprite):
+    image=ImageAsset("images/sun.png", Frame(100,0,100,100), 1, 'vertical')
+    def __init__(self, position):
+        super().__init__(Sun.asset, position)
 
 class Galaxy(Sprite):
-    image=ImageAsset("images/starfield.jpg", Frame(600,0,1000,125), 4, 'horizontal')
+    image=ImageAsset("images/starfield.jpg", Frame(600,0,1000,125), 4, 'vertical')
     def __init__(self, position):
         super().__init__(Galaxy.asset, position)
 
 class SpaceGame(App):
-    strings={'fail':'You fail :(',
-    'win':'YOU WON!!'
-    'bottom':'Press ENTER to begin!',
-    'left':'Get the square without dying!"
-    'right':'Arrow keys to move',
-    }
-
+    def __init__(self, width, height):
+        super().__init__(width, height)
+        
 
 #Fin
 myapp = SpaceGame(0,0)
