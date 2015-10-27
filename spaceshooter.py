@@ -17,36 +17,36 @@ class Ship(Sprite):
         self.vr=0
         self.trust=0
         self.trustframe=0
-        SpaceGame.listenKeyEvent("keydown", self.thrustOff)
-        SpaceGame.listenKeyEvent("keyup", self.thrustOn)
+        SpaceGame.listenKeyEvent("keydown", self.moveForward)
+        SpaceGame.listenKeyEvent("keyup", self.moveBackward)
         SpaceGame.listenKeyEvent("keyleft",self.turnLeft)
-        Spacegame.listenKeyEvent("keyright", self.turnRight)
+        SpaceGame.listenKeyEvent("keyright", self.turnRight)
         self.fxcenter = 0.5
         self.fycenter = 0.5
 
     def step(self):
-            self.x += self.vx
-            self.y += self.vy
-            self.rotation += self.vr
-            if self.thrust == 1:
-                self.setImage(self.moving)
-                self.moving += 1
-                if self.moving == 4:
-                    self.moving = 1
-            else:
-                self.setImage(0)
+        self.x += self.vx
+        self.y += self.vy
+        self.rotation += self.vr
+        if self.thrust == 1:
+            self.setImage(self.moving)
+            self.moving += 1
+            if self.moving == 4:
+                self.moving = 1
+        else:
+            self.setImage(0)
 
-    def thrustOn(self, event):
+    def moveFoward(self, event):
+        self.thrust = -1
+
+    def moveBackward(self, event):
         self.thrust = 1
 
-    def thrustOff(self, event):
-        self.thrust = 0
-
     def turnLeft(self,event):
-        self.vr=0.5
+        self.vr=1
 
     def turnRight(self, event):
-        self.vr=0.5
+        self.vr=-1
 
 """
 class Sun(Sprite):
@@ -57,19 +57,21 @@ class Sun(Sprite):
         self.fycenter = 0
         self.circularCollisionModel()
     
-#    def step(self):
-#       
+    def step(self):
+       
 """
 class Galaxy(Sprite):
-    image=ImageAsset("images/starfield.jpg", Frame(600,0,1000,125), 1, 'vertical')
+    image=ImageAsset("images/starfield.jpg")
+    length=900
+    width=1000
     def __init__(self, position):
         super().__init__(Galaxy.image, position)
 
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
-        galaxy=Sprite(Galaxy(0,0))
-        Ship(500,600)
+        Galaxy((Galaxy.length, Galaxy.width))
+        Ship((500,600))
 
     def step(self):
         for ship in self.getSpritesbyClass(Ship):
