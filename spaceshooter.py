@@ -17,6 +17,7 @@ class Ship(Sprite):
         self.vr=0
         self.thrust=0
         self.thrustframe=0
+        self.moving=0
         SpaceGame.listenKeyEvent("keydown", self.moveForward)
         SpaceGame.listenKeyEvent("keyup", self.moveBackward)
         SpaceGame.listenKeyEvent("keyleft",self.turnLeft)
