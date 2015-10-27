@@ -57,10 +57,8 @@ class Sun(Sprite):
         self.fycenter = 0
         self.circularCollisionModel()
     
-    def step(self):
-        
-    
-
+#    def step(self):
+#       
 class Galaxy(Sprite):
     image=ImageAsset("images/starfield.jpg", Frame(600,0,1000,125), 1, 'vertical')
     def __init__(self, position):
