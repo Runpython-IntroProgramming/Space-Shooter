@@ -280,5 +280,12 @@ class SpaceGame(App):
         for ship in self.getSpritesbyClass(Ship2):
             ship.step()
         
+        explosions = self.getSpritesbyClass(ExplosionSmall)
+        for explosion in explosions:
+            explosion.step()
+        explosions = self.getSpritesbyClass(ExplosionBig)
+        for explosion in explosions:
+            explosion.step()
+            
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
