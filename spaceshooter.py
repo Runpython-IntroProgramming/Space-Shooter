@@ -221,6 +221,42 @@ class HealthBar:
         if self.count > 0:
             self.count -= 1
             self.sprites[self.count].visible = False
+
+class ExplosionSmall(Sprite):
+    
+    asset = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
+    boomasset = SoundAsset("sounds/explosion1.mp3")
+    
+    def __init__(self, position):
+        super().__init__(ExplosionSmall.asset, position)
+        self.image = 0
+        self.center = (0.5, 0.5)
+        self.boom = Sound(ExplosionSmall.boomasset)
+        self.boom.play()
+        
+    def step(self):
+        self.setImage(self.image//2)  # slow it down
+        self.image += 1
+        if self.image == 20:
+            self.destroy()
+
+class ExplosionBig(Sprite):
+    
+    asset = ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
+    boomasset = SoundAsset("sounds/explosion2.mp3")
+    
+    def __init__(self, position):
+        super().__init__(ExplosionBig.asset, position)
+        self.image = 0
+        self.center = (0.5, 0.5)
+        self.boom = Sound(ExplosionBig.boomasset)
+        self.boom.play()
+        
+    def step(self):
+        self.setImage(self.image//2)  # slow it down
+        self.image += 1
+        if self.image == 50:
+            self.destroy()
             
 class SpaceGame(App):
     def __init__(self, width, height):
