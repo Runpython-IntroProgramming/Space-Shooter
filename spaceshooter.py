@@ -8,7 +8,6 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 from ggame import App, Sprite, ImageAsset, Frame
 from ggame import TextAsset, Color
-import math
 
 class Ship(Sprite):
     image=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(100,0,225,125), 4, 'vertical')
