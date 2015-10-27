@@ -236,10 +236,12 @@ class SpaceGame(App):
         bg5 = Sprite(bg_asset, (1024,0))
         
         Ship1((250,250))
-        Ship2((1250,1250))
+        Ship2((300,300))
         
     def step(self):
-        for ship in self.getSpritesbyClass(SpaceShip):
+        for ship in self.getSpritesbyClass(Ship1):
+            ship.step()
+        for ship in self.getSpritesbyClass(Ship2):
             ship.step()
         
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
