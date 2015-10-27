@@ -273,6 +273,7 @@ class SpaceGame(App):
         
         Ship1((250,250))
         Ship2((300,300))
+        ExplosionBig((500,500))
         
     def step(self):
         for ship in self.getSpritesbyClass(Ship1):
