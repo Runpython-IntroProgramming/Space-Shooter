@@ -22,7 +22,8 @@ class Ship(Sprite):
         SpaceGame.listenKeyEvent("keyup", self.thrustOn)
         SpaceGame.listenKeyEvent("keyleft",self.turnLeft)
         Spacegame.listenKeyEvent("keyright", self.turnRight)
-        self.fxcenter = self.fycenter = 0.5
+        self.fxcenter = 0.5
+        self.fycenter = 0.5
 
     def step(self):
             self.x += self.vx
@@ -56,7 +57,8 @@ class Sun(Sprite):
         self.fycenter = 0
         self.circularCollisionModel()
     
-    
+    def step(self):
+        
     
 
 class Galaxy(Sprite):
