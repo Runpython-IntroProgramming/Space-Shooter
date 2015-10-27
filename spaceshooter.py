@@ -6,15 +6,14 @@ Assignment: Spaceshooter
 Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
 """
-from ggame import App, Sprite, ImageAsset, Frame
-from ggame import TextAsset, Color
+from ggame import App, Sprite, ImageAsset, Frame, Color
 
 class Ship(Sprite):
     image=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(100,0,225,125), 4, 'vertical')
     def __init__(self, position):
         super().__init__(Ship.image, position)
-        self.vx=0
-        self.vy=0
+        self.vx=1
+        self.vy=1
         self.vr=0
         self.trust=0
         self.trustframe=0
@@ -30,10 +29,10 @@ class Ship(Sprite):
             self.y += self.vy
             self.rotation += self.vr
             if self.thrust == 1:
-                self.setImage(self.thrustframe)
-                self.thrustframe += 1
-                if self.thrustframe == 4:
-                    self.thrustframe = 1
+                self.setImage(self.moving)
+                self.moving += 1
+                if self.moving == 4:
+                    self.moving = 1
             else:
                 self.setImage(0)
 
@@ -49,6 +48,7 @@ class Ship(Sprite):
     def turnRight(self, event):
         self.vr=0.5
 
+"""
 class Sun(Sprite):
     image=ImageAsset("images/sun.png", Frame(100,0,100,100), 1, 'vertical')
     def __init__(self, position):
@@ -59,6 +59,7 @@ class Sun(Sprite):
     
 #    def step(self):
 #       
+"""
 class Galaxy(Sprite):
     image=ImageAsset("images/starfield.jpg", Frame(600,0,1000,125), 1, 'vertical')
     def __init__(self, position):
@@ -67,11 +68,8 @@ class Galaxy(Sprite):
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
-        sun=Sprite(Sun(400,300))
         galaxy=Sprite(Galaxy(0,0))
         Ship(500,600)
-        Ship(550,650)
-        Ship(600,700)
 
     def step(self):
         for ship in self.getSpritesbyClass(Ship):
