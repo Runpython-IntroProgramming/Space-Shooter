@@ -9,7 +9,6 @@ https://github.com/HHS-IntroProgramming/Spacewar
 from ggame import App, Sprite, ImageAsset, Frame
 from ggame import TextAsset, Color
 import math
-from time import time
 
 class Ship(Sprite):
     image=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(100,0,225,125), 4, 'vertical')
@@ -54,9 +53,12 @@ class Sun(Sprite):
     image=ImageAsset("images/sun.png", Frame(100,0,100,100), 1, 'vertical')
     def __init__(self, position):
         super().__init__(Sun.image, position)
-    self.fxcenter = 0
-    self.fycenter = 0
-    self.circularCollisionModel()
+        self.fxcenter = 0
+        self.fycenter = 0
+        self.circularCollisionModel()
+    
+    
+    
 
 class Galaxy(Sprite):
     image=ImageAsset("images/starfield.jpg", Frame(600,0,1000,125), 1, 'vertical')
