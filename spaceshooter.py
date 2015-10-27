@@ -12,13 +12,13 @@ import math
 SCREEN_WIDTH = 1536
 SCREEN_HEIGHT = 1024
 
-class SpaceShip(Sprite):
+class Ship1(Sprite):
     
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
         Frame(227,0,292-227,125), 4, 'vertical')
 
     def __init__(self, position):
-        super().__init__(SpaceShip.asset, position)
+        super().__init__(Ship1.asset, position)
         self.vr = 0.00
         self.thrust = 0
         self.thrustframe = 1
@@ -88,6 +88,82 @@ class SpaceShip(Sprite):
     def rrOff(self,  event):
         self.vr = 0
 
+class Ship2(Sprite):
+    
+    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
+        Frame(0,0,86,125), 4, 'vertical')
+
+    def __init__(self, position):
+        super().__init__(Ship2.asset, position)
+        self.vr = 0.00
+        self.thrust = 0
+        self.thrustframe = 1
+        self.VX = 0
+        self.VY = 0   
+        self.vx = 0
+        self.vy = 0
+        self.turn = 0
+        SpaceGame.listenKeyEvent("keydown", "w", self.thrustOn)
+        SpaceGame.listenKeyEvent("keyup", "w", self.thrustOff)
+        SpaceGame.listenKeyEvent("keydown", "a", self.rotateLeft)
+        SpaceGame.listenKeyEvent("keyup", "a", self.lrOff)
+        SpaceGame.listenKeyEvent("keydown", "d", self.rotateRight)
+        SpaceGame.listenKeyEvent("keyup", "d", self.rrOff)
+        self.fxcenter = self.fycenter = 0.5
+    
+    def step(self):
+        self.rotation += 1.5*self.vr
+        if self.thrust == 1:
+            self.VX += self.vx
+            self.VY += self.vy
+        if 0 <= self.x <= SCREEN_WIDTH:
+            self.x -= 0.1*self.VX
+        elif self.x < 0:
+            self.x += SCREEN_WIDTH
+            self.x -= 0.1*self.VX
+        else:    
+            self.x -= (0.1*self.VX + SCREEN_WIDTH)
+        if 0 <= self.y <= SCREEN_HEIGHT:    
+            self.y -= 0.1*self.VY
+        elif self.y < 0:
+            self.y += SCREEN_HEIGHT
+            self.y -= 0.1*self.VY
+        else:
+            self.y -= (0.1*self.VY + SCREEN_HEIGHT)
+    
+        if self.thrust == 1:
+            self.setImage(self.thrustframe)
+            self.thrustframe += 1
+            if self.thrustframe == 4:
+                self.thrustframe = 1
+            self.move()
+        else:
+            self.setImage(0)
+    
+    def move(self):
+        self.X = math.sin(self.rotation)
+        self.Y = math.cos(self.rotation)
+        self.vx = self.X/math.sqrt(self.X*self.X + self.Y*self.Y)
+        self.vy = self.Y/math.sqrt(self.X*self.X + self.Y*self.Y)
+    
+    def thrustOn(self, event):
+        self.thrust = 1
+        
+    def thrustOff(self, event):
+        self.thrust = 0
+        
+    def rotateLeft(self, event):
+        self.vr = 0.05
+        
+    def lrOff(self,  event):
+        self.vr = 0
+        
+    def rotateRight(self, event):
+        self.vr = -0.05
+        
+    def rrOff(self,  event):
+        self.vr = 0
+        
 class Bullet(Sprite):
     
     asset1 = ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
@@ -96,7 +172,10 @@ class Bullet(Sprite):
     def __init__(self, position):
         super().__init__(Bullet.asset1, position)
         SpaceGame.listenKeyEvent("keydown", "space", self.shoot)
-        self.exist = 0
+        self.exist = False
+        self.circularCollisionModel()
+        self.pew = Sound(Bullet.pewasset)
+        self.pew.volume = 10
     
     def step(self):
         if self.exist == 1:
@@ -108,11 +187,41 @@ class Bullet(Sprite):
         else:
             self.setImage(0)
         
-    def shoot(self, event):
+    def shoot(self, position, velocity):
         Bullet((200,200))
-        self.exist == 1
+        self.exist = True
         
+class HealthBar:
     
+    def __init__(self, indicatorasset, initvalue, position, app):
+        self.sprites = [Sprite(indicatorasset, (0,app.height-75)) for i in range(initvalue)]
+        for s in self.sprites:
+            s.scale = 0.4
+        width = self.sprites[0].width
+        if position == 'left':
+            x = 50
+            step = width+5
+        else:
+            x = app.width - 50 - width
+            step = -width-5
+        for s in self.sprites:
+            s.x = x
+            x += step
+        self.restart()
+        
+    def restart(self):
+        for s in self.sprites:
+            s.visible = True
+        self.count = len(self.sprites)
+        
+    def dead(self):
+        return self.count == 0
+        
+    def killone(self):
+        if self.count > 0:
+            self.count -= 1
+            self.sprites[self.count].visible = False
+            
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
@@ -126,9 +235,8 @@ class SpaceGame(App):
         bg4 = Sprite(bg_asset, (1024,512))
         bg5 = Sprite(bg_asset, (1024,0))
         
-        SpaceShip((200,200))
-        SpaceShip((250,250))
-        SpaceShip((300,150))
+        Ship1((250,250))
+        Ship2((1250,1250))
         
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
