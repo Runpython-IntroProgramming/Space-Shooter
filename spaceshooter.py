@@ -68,9 +68,9 @@ class SpaceGame(App):
         super().__init__(width, height)
         sun=Sprite(Sun(400,300))
         galaxy=Sprite(Galaxy(0,0))
-        SpaceShip(500,600)
-        SpaceShip(550,650)
-        SpaceShip(600,700)
+        Ship(500,600)
+        Ship(550,650)
+        Ship(600,700)
 
     def step(self):
         for ship in self.getSpritesbyClass(Ship):
