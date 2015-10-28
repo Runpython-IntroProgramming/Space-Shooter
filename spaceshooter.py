@@ -72,7 +72,7 @@ class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
         Galaxy((Galaxy.length, Galaxy.width))
-        Ship((500,600))
+        Ship(500,600)
 
     def step(self):
         for ship in self.getSpritesbyClass(Ship):
