@@ -2,7 +2,7 @@
 spaceshooter.py
 Author: Suhan Gui
 Credit: Spacewar
-Assignment: Spaceshooter
+Assignment: Spaceshooter, jeffffffff
 Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
 """
@@ -17,10 +17,14 @@ class Ship(Sprite):
         self.vr=0
         self.thrust=0
         self.thrustframe=0
-        SpaceGame.listenKeyEvent("keydown", self.moveBackward)
-        SpaceGame.listenKeyEvent("keyup", self.moveForward)
-        SpaceGame.listenKeyEvent("keyleft",self.turnLeft)
-        SpaceGame.listenKeyEvent("", self.turnRight)
+        SpaceGame.listenKeyEvent("keydown","s", self.moveBackward)
+        SpaceGame.listenKeyEvent("keyup","s", self.moveBackward)
+        SpaceGame.listenKeyEvent("keydown","w", self.moveForward)
+        SpaceGame.listenKeyEvent("keyup","w", self.moveForward)
+        SpaceGame.listenKeyEvent("keydown","a",self.turnLeft)
+        SpaceGame.listenKeyEvent("keyup","a",self.turnLeft)
+        SpaceGame.listenKeyEvent("keydown","d", self.turnRight)
+        SpaceGame.listenKeyEvent("keyup","d", self.turnRight)
         self.fxcenter = 0.5
         self.fycenter = 0.5
 
