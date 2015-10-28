@@ -7,7 +7,7 @@ Assignment:
 Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
 """
-from ggame import App, RectangleAsset, ImageAsset, SoundAsset, Sprite, LineStyle, Color, Frame
+from ggame import App, RectangleAsset, ImageAsset, SoundAsset, Sprite, Sound, LineStyle, Color, Frame
 import math
 SCREEN_WIDTH = 1536
 SCREEN_HEIGHT = 1024
@@ -63,12 +63,23 @@ class Ship1(Sprite):
             self.move()
         else:
             self.setImage(0)
+            
+        collides = self.collidingWithSprites(Ship1)
+        if len(collides):
+            if collides[0].visible:
+                collides[0].explode()
+                self.explode()
     
     def move(self):
         self.X = math.sin(self.rotation)
         self.Y = math.cos(self.rotation)
         self.vx = self.X/math.sqrt(self.X*self.X + self.Y*self.Y)
         self.vy = self.Y/math.sqrt(self.X*self.X + self.Y*self.Y)
+    
+    def explode(self):
+        self.visible = False
+        ExplosionBig(self.position)
+        self.waitspawn = 5
     
     def thrustOn(self, event):
         self.thrust = 1
@@ -139,12 +150,23 @@ class Ship2(Sprite):
             self.move()
         else:
             self.setImage(0)
+        
+        collides = self.collidingWithSprites(Ship1)
+        if len(collides):
+            if collides[0].visible:
+                collides[0].explode()
+                self.explode()
     
     def move(self):
         self.X = math.sin(self.rotation)
         self.Y = math.cos(self.rotation)
         self.vx = self.X/math.sqrt(self.X*self.X + self.Y*self.Y)
         self.vy = self.Y/math.sqrt(self.X*self.X + self.Y*self.Y)
+    
+    def explode(self):
+        self.visible = False
+        ExplosionBig(self.position)
+        self.waitspawn = 5
     
     def thrustOn(self, event):
         self.thrust = 1
