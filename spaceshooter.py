@@ -18,8 +18,8 @@ class Ship(Sprite):
         self.thrust=0
         self.thrustframe=0
         self.moving=0
-        SpaceGame.listenKeyEvent("keydown", self.moveForward)
-        SpaceGame.listenKeyEvent("keyup", self.moveBackward)
+        SpaceGame.listenKeyEvent("keydown", self.moveBackward)
+        SpaceGame.listenKeyEvent("keyup", self.moveForward)
         SpaceGame.listenKeyEvent("keyleft",self.turnLeft)
         SpaceGame.listenKeyEvent("keyright", self.turnRight)
         self.fxcenter = 0.5
@@ -62,14 +62,16 @@ class Sun(Sprite):
        
 """
 class Galaxy(Sprite):
-    image=ImageAsset("images/starfield.jpg", Frame(1000,0,500,600), 4 ,'vertical')
+    image=ImageAsset("images/starfield.jpg")
+    width=1000
+    height=10000
     def __init__(self, position):
         super().__init__(Galaxy.image, position)
 
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
-        Galaxy((500,500))
+        Galaxy((Galaxy.width,Galaxy.height))
         Ship((500,600))
 
     def step(self):
