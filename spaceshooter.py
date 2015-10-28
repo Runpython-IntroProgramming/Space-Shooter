@@ -17,11 +17,10 @@ class Ship(Sprite):
         self.vr=0
         self.thrust=0
         self.thrustframe=0
-        self.moving=0
         SpaceGame.listenKeyEvent("keydown", self.moveBackward)
         SpaceGame.listenKeyEvent("keyup", self.moveForward)
         SpaceGame.listenKeyEvent("keyleft",self.turnLeft)
-        SpaceGame.listenKeyEvent("keyright", self.turnRight)
+        SpaceGame.listenKeyEvent("", self.turnRight)
         self.fxcenter = 0.5
         self.fycenter = 0.5
 
@@ -30,10 +29,10 @@ class Ship(Sprite):
         self.y += self.vy
         self.rotation += self.vr
         if self.thrust == 1:
-            self.setImage(self.moving)
-            self.moving += 1
-            if self.moving == 4:
-                self.moving = 1
+            self.setImage(self.thrust)
+            self.thrust += 1
+            if self.thrust == 4:
+                self.thrust = 1
         else:
             self.setImage(0)
 
