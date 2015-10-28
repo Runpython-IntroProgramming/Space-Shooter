@@ -62,17 +62,15 @@ class Sun(Sprite):
        
 """
 class Galaxy(Sprite):
-    image=ImageAsset("images/starfield.jpg")
-    length=900
-    width=1000
+    image=ImageAsset("images/starfield.jpg", Frame(1000,0,500,600), 4 ,'vertical')
     def __init__(self, position):
         super().__init__(Galaxy.image, position)
 
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
-        Galaxy((Galaxy.length, Galaxy.width))
-        Ship(500,600)
+        Galaxy((500,500))
+        Ship((500,600))
 
     def step(self):
         for ship in self.getSpritesbyClass(Ship):
