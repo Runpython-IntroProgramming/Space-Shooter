@@ -189,6 +189,7 @@ class Ship2(Sprite):
     
     def fire(self, event):
         Bullet((500, 500))
+        self.exist == True
         
 class Bullet(Sprite):
     
