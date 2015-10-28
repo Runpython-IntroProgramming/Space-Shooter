@@ -9,7 +9,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 from ggame import App, Sprite, ImageAsset, Frame, Color
 
 class Ship(Sprite):
-    image=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(100,0,225,125), 4, 'vertical')
+    image=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,292-227,125), 4, 'vertical')
     def __init__(self, position):
         super().__init__(Ship.image, position)
         self.vx=0
