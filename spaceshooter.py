@@ -11,7 +11,7 @@ from ggame import App, RectangleAsset, ImageAsset, SoundAsset
 from ggame import LineStyle, Color, Sprite, Sound
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 
-SCREEN_WIDTH = 1100
+SCREEN_WIDTH = 1250
 SCREEN_HEIGHT = 600
 
 black = Color(0, 1)
