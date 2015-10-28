@@ -1,12 +1,12 @@
 """
 spaceshooter.py
 Author: Suhan Gui
-Credit: Spacewar
-Assignment: Spaceshooter, jeffffffff
+Credit: Spacewar, jeeffff
+Assignment: Spaceshooter
 Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
 """
-from ggame import App, Sprite, ImageAsset, Frame, Color
+from ggame import App, Sprite, ImageAsset, Frame, Color, RectangleAsset
 
 class Ship(Sprite):
     image=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,292-227,125), 4, 'vertical')
@@ -64,17 +64,13 @@ class Sun(Sprite):
     def step(self):
        
 """
-class Galaxy(Sprite):
-    image=ImageAsset("images/starfield.jpg")
-    width=1000
-    height=10000
-    def __init__(self, position):
-        super().__init__(Galaxy.image, position)
 
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
-        Galaxy((Galaxy.width,Galaxy.height))
+        black=color(0,1)
+        john=
+        cena=RectangleAsset
         Ship((500,600))
 
     def step(self):
