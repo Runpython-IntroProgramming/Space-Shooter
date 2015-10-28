@@ -1,14 +1,5 @@
 """
 spaceshooter.py
-Author: <your name here>
-Credit: <list sources used, if any>
-
-Assignment:
-Write and submit a program that implements the spacewar game:
-https://github.com/HHS-IntroProgramming/Spacewar
-"""
-"""
-spaceshooter.py
 Author: Adam Pikielny
 Credit: Morgan
 
@@ -68,8 +59,10 @@ class SpaceGame(App):
         super().__init__(width, height)
         black = Color(0, 1)
         noline = LineStyle(0, black)
-        bg_asset = RectangleAsset(width, height, noline, black)
-        bg = Sprite(bg_asset, (0,0))
+        #bg_asset = RectangleAsset(width, height, noline, black)
+        bg_asset = ImageAsset("images/starfield.jpg",frame=None, qty=1)
+
+        Sprite(bg_asset, (0,0))
         SpaceShip((100,100))
         SpaceShip((150,150))
         SpaceShip((200,50))
