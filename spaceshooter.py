@@ -120,6 +120,7 @@ class Ship2(Sprite):
         SpaceGame.listenKeyEvent("keyup", "a", self.lrOff)
         SpaceGame.listenKeyEvent("keydown", "d", self.rotateRight)
         SpaceGame.listenKeyEvent("keyup", "d", self.rrOff)
+        SpaceGame.listenKeyEvent("keydown", "e", ExplosionBig(self.position))
         self.fxcenter = self.fycenter = 0.5
     
     def step(self):
@@ -294,8 +295,7 @@ class SpaceGame(App):
         bg5 = Sprite(bg_asset, (1024,0))
         
         Ship1((250,250))
-        Ship2((300,300))
-        ExplosionBig((500,500))
+        Ship2((400,400))
         
     def step(self):
         for ship in self.getSpritesbyClass(Ship1):
