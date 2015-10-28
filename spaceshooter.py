@@ -50,7 +50,6 @@ class SpaceShip(Sprite):
         self.thrust = 0
 
 
-
 class SpaceGame(App):
     """
     Tutorial4 space game example.
@@ -60,9 +59,8 @@ class SpaceGame(App):
         black = Color(0, 1)
         noline = LineStyle(0, black)
         #bg_asset = RectangleAsset(width, height, noline, black)
-        bg_asset = ImageAsset("images/starfield.jpg",frame=None, qty=1)
-
-        Sprite(bg_asset, (0,0))
+        bg_asset = ImageAsset("images/starfield.jpg")
+        bg=Sprite(bg_asset,(100,0))
         SpaceShip((100,100))
         SpaceShip((150,150))
         SpaceShip((200,50))
