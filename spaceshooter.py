@@ -171,8 +171,6 @@ class Ship2(Sprite):
                 collides[0].explode()
                 self.explode()
                 
-        if self.collidingWith(self.sun):
-            self.explode()
     
     def move(self):
         self.X = math.sin(self.rotation)
@@ -225,7 +223,6 @@ class Bullet(Sprite):
             self.appear += 1
             if self.appear == 8:
                 self.appear = 1
-            self.move()
         else:
             self.setImage(0)
         
