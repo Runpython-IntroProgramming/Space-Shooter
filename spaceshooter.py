@@ -198,7 +198,6 @@ class Ship2(Sprite):
     
     def fire(self, event):
         self.bullet= Bullet(self.position)
-        self.exist = True
         
 class Bullet(Sprite):
     
@@ -207,10 +206,13 @@ class Bullet(Sprite):
     
     def __init__(self, position):
         super().__init__(Bullet.asset, position)
-        self.exist = False
+        self.exist = True
         self.circularCollisionModel()
         self.pew = Sound(Bullet.pewasset)
         self.pew.volume = 10
+        self.appear = 1
+        self.fxcenter = 0.5
+        self.fycenter = 1
     
     def step(self):
         if self.exist:
