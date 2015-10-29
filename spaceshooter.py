@@ -212,7 +212,7 @@ class Bullet(Sprite):
         self.pew.volume = 10
         self.appear = 1
         self.fxcenter = 0.5
-        self.fycenter = 1
+        self.fycenter = 8.5
     
     def step(self):
         if self.exist:
