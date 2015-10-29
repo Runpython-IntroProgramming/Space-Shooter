@@ -69,7 +69,7 @@ class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
         black=color(0,1)
-        line=LineStyle(o,black)
+        line=LineStyle(0,black)
         john=ImageAsset("images/starfield.jpg")
         cena=RectangleAsset
         Ship((500,600))
