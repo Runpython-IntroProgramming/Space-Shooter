@@ -18,13 +18,13 @@ class Ship(Sprite):
         self.thrust=0
         self.thrustframe=0
         SpaceGame.listenKeyEvent("keydown","s", self.moveBackward)
-        SpaceGame.listenKeyEvent("keyup","s", self.moveBackward)
+        SpaceGame.listenKeyEvent("keyup","s", self.NomoveBackward)
         SpaceGame.listenKeyEvent("keydown","w", self.moveForward)
-        SpaceGame.listenKeyEvent("keyup","w", self.moveForward)
+        SpaceGame.listenKeyEvent("keyup","w", self.NomoveForward)
         SpaceGame.listenKeyEvent("keydown","a",self.turnLeft)
-        SpaceGame.listenKeyEvent("keyup","a",self.turnLeft)
+        SpaceGame.listenKeyEvent("keyup","a",self.NoturnLeft)
         SpaceGame.listenKeyEvent("keydown","d", self.turnRight)
-        SpaceGame.listenKeyEvent("keyup","d", self.turnRight)
+        SpaceGame.listenKeyEvent("keyup","d", self.NoturnRight)
         self.fxcenter = 0.5
         self.fycenter = 0.5
 
@@ -42,16 +42,29 @@ class Ship(Sprite):
 
     def moveFoward(self, event):
         self.thrust = -1
+        
+    def NomoveForward(self, event):
+        self.thrust=0
 
     def moveBackward(self, event):
         self.thrust = 1
+        
+    def NomoveBackward(self,event):
+        self.thrust=0
 
     def turnLeft(self,event):
         self.vr=1
 
+    def NoturnLeft(self,event):
+        self.vr=0
+
     def turnRight(self, event):
         self.vr=-1
+        
+    def NoturnRight(self,event):
+        self,vr=0
 
+    
 """
 class Sun(Sprite):
     image=ImageAsset("images/sun.png", Frame(100,0,100,100), 1, 'vertical')
@@ -68,10 +81,10 @@ class Sun(Sprite):
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
-        black=color(0,1)
+        black=Color(0,1)
         line=LineStyle(0,black)
         john=ImageAsset("images/starfield.jpg")
-        cena=RectangleAsset
+        jeff=Sprite(john,(0,0))
         Ship((500,600))
 
     def step(self):
