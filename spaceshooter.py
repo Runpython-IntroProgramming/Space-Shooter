@@ -327,9 +327,5 @@ class SpaceGame(App):
         for explosion in explosions:
             explosion.step()
         
-        bullets = self.getSpritebyClass(Bullet)
-        for bullet in bullets:
-            bullet.step()
-            
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
