@@ -190,7 +190,7 @@ class Ship2(Sprite):
     
     def fire(self, event):
         self.bullet= Bullet(self.position)
-        self.bullet.shoot()
+        self.bullet.shoot(self.position, 2)
         
 class Bullet(Sprite):
     
@@ -206,7 +206,7 @@ class Bullet(Sprite):
         self.pew.volume = 10
     
     def step(self):
-        if self.exist == 1:
+        if self.exist:
             self.setImage(self.appear)
             self.appear += 1
             if self.appear == 8:
@@ -216,8 +216,8 @@ class Bullet(Sprite):
             self.setImage(0)
         
     def shoot(self, position, velocity):
-        Bullet((200,200))
         self.exist = True
+        
         
 class HealthBar:
     
