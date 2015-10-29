@@ -170,6 +170,9 @@ class Ship2(Sprite):
             if collides[0].visible:
                 collides[0].explode()
                 self.explode()
+                
+        if self.collidingWith(self.sun):
+                self.explode()
     
     def move(self):
         self.X = math.sin(self.rotation)
@@ -202,7 +205,6 @@ class Ship2(Sprite):
     
     def fire(self, event):
         self.bullet= Bullet(self.position)
-        self.bullet.shoot(self.position, 2)
         
 class Bullet(Sprite):
     
@@ -275,7 +277,7 @@ class ExplosionSmall(Sprite):
         self.boom.play()
         
     def step(self):
-        self.setImage(self.image//2)  # slow it down
+        self.setImage(self.image//2)
         self.image += 1
         if self.image == 20:
             self.destroy()
@@ -293,7 +295,7 @@ class ExplosionBig(Sprite):
         self.boom.play()
         
     def step(self):
-        self.setImage(self.image//2)  # slow it down
+        self.setImage(self.image//2)
         self.image += 1
         if self.image == 50:
             self.destroy()
@@ -314,6 +316,7 @@ class SpaceGame(App):
         Ship1((250,250))
         Ship2((400,400))
         Sun((50,50))
+        
     def step(self):
         for ship in self.getSpritesbyClass(Ship1):
             ship.step()
@@ -326,6 +329,8 @@ class SpaceGame(App):
         explosions = self.getSpritesbyClass(ExplosionBig)
         for explosion in explosions:
             explosion.step()
+        for bullets in self.getSpritesbyClass(Bullet):
+            bullets.step()
         
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
