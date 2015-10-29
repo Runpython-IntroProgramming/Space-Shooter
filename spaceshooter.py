@@ -202,12 +202,11 @@ class Ship2(Sprite):
         
 class Bullet(Sprite):
     
-    asset1 = ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
+    asset = ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
     pewasset = SoundAsset("sounds/pew1.mp3")
     
     def __init__(self, position):
-        super().__init__(Bullet.asset1, position)
-        SpaceGame.listenKeyEvent("keydown", "space", self.shoot)
+        super().__init__(Bullet.asset, position)
         self.exist = False
         self.circularCollisionModel()
         self.pew = Sound(Bullet.pewasset)
