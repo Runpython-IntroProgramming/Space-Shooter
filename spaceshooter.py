@@ -6,7 +6,7 @@ Assignment: Spaceshooter
 Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
 """
-from ggame import App, Sprite, ImageAsset, Frame, Color, RectangleAsset
+from ggame import App, Sprite, ImageAsset, Frame, Color, RectangleAsset, LineStyle
 
 class Ship(Sprite):
     image=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,292-227,125), 4, 'vertical')
@@ -69,7 +69,8 @@ class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
         black=color(0,1)
-        john=
+        line=LineStyle(o,black)
+        john=ImageAsset("images/starfield.jpg")
         cena=RectangleAsset
         Ship((500,600))
 
