@@ -185,24 +185,20 @@ class Ship2(Sprite):
     
     def thrustOn(self, event):
         self.thrust = 1
-        
     def thrustOff(self, event):
         self.thrust = 0
-        
     def rotateLeft(self, event):
         self.vr = 0.05
-        
     def lrOff(self,  event):
         self.vr = 0
-        
     def rotateRight(self, event):
         self.vr = -0.05
-        
     def rrOff(self,  event):
         self.vr = 0
     
     def fire(self, event):
         self.bullet= Bullet(self.position)
+        self.exist = True
         
 class Bullet(Sprite):
     
@@ -225,9 +221,6 @@ class Bullet(Sprite):
                 self.appear = 1
         else:
             self.setImage(0)
-        
-    def shoot(self, position, velocity):
-        self.exist = True
         
         
 class HealthBar:
