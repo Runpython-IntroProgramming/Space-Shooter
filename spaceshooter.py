@@ -11,6 +11,19 @@ from ggame import App, RectangleAsset, ImageAsset, SoundAsset, Sprite, Sound, Li
 import math
 SCREEN_WIDTH = 1536
 SCREEN_HEIGHT = 1024
+class Sun(Sprite):
+    
+    asset = ImageAsset("images/sun.png")
+    width = 80
+    height = 76
+    
+    def __init__(self, position):
+        super().__init__(Sun.asset, position)
+        self.mass = 30*1000
+        self.fxcenter = 0.5
+        self.fycenter = 0.5
+        self.circularCollisionModel()
+
 
 class Ship1(Sprite):
     
@@ -301,7 +314,7 @@ class SpaceGame(App):
         
         Ship1((250,250))
         Ship2((400,400))
-        
+        Sun((50,50))
     def step(self):
         for ship in self.getSpritesbyClass(Ship1):
             ship.step()
@@ -314,6 +327,10 @@ class SpaceGame(App):
         explosions = self.getSpritesbyClass(ExplosionBig)
         for explosion in explosions:
             explosion.step()
+        
+        bullets = self.getSpritebyClass(Bullet)
+        for bullet in bullets:
+            bullet.step()
             
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
