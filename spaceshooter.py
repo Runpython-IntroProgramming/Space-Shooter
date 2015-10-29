@@ -172,7 +172,7 @@ class Ship2(Sprite):
                 self.explode()
                 
         if self.collidingWith(self.sun):
-                self.explode()
+            self.explode()
     
     def move(self):
         self.X = math.sin(self.rotation)
