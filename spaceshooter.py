@@ -133,8 +133,8 @@ class SpaceGame(App):
         jeff7=Sprite(suhan,(1024,2014))
         jeff8=Sprite(suhan,(512,1024))
         
-        Ship((400,400))
-        Ship1((200,200))
+        Ship((300,400))
+        Ship1((1000,400))
 
         Sun((650,500))
         Sun((450,200))
@@ -151,23 +151,11 @@ class SpaceGame(App):
         Sun((1199,400))
         Sun((340,1000))
         Sun((1250,900))
-        Sun((
-        Sun((
-        Sun((
-        Sun((
-        Sun((
-        Sun((
-        Sun((
-        Sun((
-        Sun((
-        Sun((
-        Sun((
-        Sun((
-        Sun((
-        Sun((
-        Sun((
-        Sun((
-        Sun((
+        Sun((1500,900))
+        Sun((100,1000))
+        Sun((1200,1350))
+        Sun((700,200))
+        Sun((950,800))
 
     def step(self):
         for ship in self.getSpritesbyClass(Ship):
