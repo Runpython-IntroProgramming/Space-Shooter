@@ -82,13 +82,13 @@ class SpaceGame(App):
         super().__init__(width, height)
 #        black=Color(0,1)
 #        line=LineStyle(0,black)
-        john=ImageAsset("images/starfield.jpg")
-        jeff=Sprite(john,(0,0))
-        jeff1=Sprite(john,(512,512))
-        jeff2=Sprite(john,(0,512))
-        jeff3=Sprite(john,(512,0))
-        jeff4=Sprite(john,(1024,512))
-        jeff5=Sprite(john,(1024,0))        #got the dimensions from Jeff
+        suhan=ImageAsset("images/starfield.jpg")
+        jeff=Sprite(suhan,(0,0))
+        jeff1=Sprite(suhan,(512,512))
+        jeff2=Sprite(suhan,(0,512))
+        jeff3=Sprite(suhan,(512,0))
+        jeff4=Sprite(suhan,(1024,512))
+        jeff5=Sprite(suhan,(1024,0))        #got the dimensions from Jeff
         Ship((500,600))
         Sun((400,600))
 
