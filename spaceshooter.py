@@ -35,6 +35,8 @@ class SpaceShip(Sprite):
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
+        if self.circularCollisionModel(self)==True:
+            self.thrust=1
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
@@ -48,6 +50,7 @@ class SpaceShip(Sprite):
 
     def thrustOff(self, event):
         self.thrust = 0
+
 
 
 class SpaceGame(App):
