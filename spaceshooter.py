@@ -214,7 +214,7 @@ class Bullet(Sprite):
         self.fxcenter = 0.5
         self.fycenter = 8.5
         self.X = x
-        self.Y
+        self.Y = y
     
     def step(self):
         if self.exist:
