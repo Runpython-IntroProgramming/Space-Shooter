@@ -213,8 +213,8 @@ class Bullet(Sprite):
         self.appear = 1
         self.fxcenter = 0.5
         self.fycenter = 8.5
-        self.X = x
-        self.Y = y
+        self.X = x = self.x
+        self.Y = y = self.y
     
     def step(self):
         if self.exist:
@@ -225,8 +225,8 @@ class Bullet(Sprite):
         else:
             self.setImage(0)
         
-        self.x -= 2*self.X
-        self.y -= 2*self.Y
+        self.x -= 10*self.X
+        self.y -= 10*self.Y
         
         
 class HealthBar:
