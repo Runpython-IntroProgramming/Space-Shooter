@@ -36,8 +36,8 @@ class SpaceShip(Sprite):
         self.y += self.vy
         self.rotation += self.vr
         #is the below function in the write step?
-        if collidingWithSprites(self, sclass=None)==True:
-            self.thrust = 1
+        if collidingWithSprites(self)==True:
+            print("collision")
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
@@ -65,6 +65,8 @@ class SpaceGame(App):
         #bg_asset = RectangleAsset(width, height, noline, black)
         bg_asset = ImageAsset("images/starfield.jpg")
         bg=Sprite(bg_asset,(0,0))
+        sun_asset = ImageAsset("images/sun.png")
+        sun=Sprite(sun_asset, (200,200))
         SpaceShip((100,100))
         SpaceShip((150,150))
         SpaceShip((200,50))
