@@ -1,7 +1,7 @@
 """
 spaceshooter.py
 Author: Suhan Gui
-Credit: Spacewar, jeeffff
+Credit: Spacewar, Jeff
 Assignment: Spaceshooter
 Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
@@ -9,6 +9,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 
 from ggame import App, Sprite, ImageAsset
 from ggame import Frame, Color, RectangleAsset, LineStyle
+import math
 
 SCREEN_WIDTH = 1536   #dimensions from jeffffff
 SCREEN_HEIGHT = 1024
@@ -22,8 +23,6 @@ class Ship(Sprite):
         self.vr=0
         self.thrust=0
         self.thrustframe=0
-        SpaceGame.listenKeyEvent("keydown","s", self.moveBackward)
-        SpaceGame.listenKeyEvent("keyup","s", self.NomoveBackward)
         SpaceGame.listenKeyEvent("keydown","w", self.moveForward)
         SpaceGame.listenKeyEvent("keyup","w", self.NomoveForward)
         SpaceGame.listenKeyEvent("keydown","a",self.turnLeft)
@@ -46,33 +45,27 @@ class Ship(Sprite):
             self.setImage(0)
 
     def moveForward(self, event):
-        self.thrust = -1
+        self.thrust = 1
         
     def NomoveForward(self, event):
         self.thrust=0
 
-    def moveBackward(self, event):
-        self.thrust = 1
-        
-    def NomoveBackward(self,event):
-        self.thrust=0
-
     def turnLeft(self,event):
-        self.vr=1
+        self.vr=0.05
 
     def NoturnLeft(self,event):
         self.vr=0
 
     def turnRight(self, event):
-        self.vr=-1
+        self.vr=-0.05
         
     def NoturnRight(self,event):
         self.vr=0
 
 class Sun(Sprite):
     image=ImageAsset("images/sun.png")
-    height=20
-    height=20
+    height=400
+    wdth=400
     def __init__(self, position):
         super().__init__(Sun.image, position)
         self.fxcenter = 0.5
@@ -89,8 +82,22 @@ class SpaceGame(App):
         jeff3=Sprite(suhan,(512,0))
         jeff4=Sprite(suhan,(1024,512))
         jeff5=Sprite(suhan,(1024,0))        #got the dimensions from Jeff
-        Ship((500,600))
-        Sun((400,600))
+        jeff6=Sprite(suhan,(0,1024))
+        jeff7=Sprite(suhan,(1024,2014))
+        jeff8=Sprite(suhan,(512,1024))
+        Ship((700,400))
+        Sun((650,500))
+        Sun((450,200))
+        Sun((199,54))
+        Sun((478,400))
+        Sun((900,900))
+        Sun((20,350))
+        Sun((900,90))
+        Sun((800,700))
+        Sun((347,784))
+        Sun((1000,1100))
+        Sun((1500,1000))
+        Sun((
 
     def step(self):
         for ship in self.getSpritesbyClass(Ship):
