@@ -204,7 +204,7 @@ class Bullet(Sprite):
     asset = ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
     pewasset = SoundAsset("sounds/pew1.mp3")
     
-    def __init__(self, position, x, y):
+    def __init__(self, position, vx, vy):
         super().__init__(Bullet.asset, position)
         self.exist = True
         self.circularCollisionModel()
@@ -213,8 +213,8 @@ class Bullet(Sprite):
         self.appear = 1
         self.fxcenter = 0.5
         self.fycenter = 8.5
-        self.X = x = self.x
-        self.Y = y = self.y
+        self.X = vx
+        self.Y = vy 
     
     def step(self):
         if self.exist:
@@ -227,6 +227,8 @@ class Bullet(Sprite):
         
         self.x -= 10*self.X
         self.y -= 10*self.Y
+        if self.x < 0 or self.x > SCREEN_WIDTH or self.y < 0 or self.y >SCREEN_HEIGHT:
+        self.destroy
         
         
 class HealthBar:
