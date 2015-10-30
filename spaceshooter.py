@@ -138,6 +138,7 @@ class Ship2(Sprite):
     
     def step(self):
         self.rotation += 1.5*self.vr
+        self.move()
         if self.thrust == 1:
             self.VX += self.vx
             self.VY += self.vy
@@ -161,7 +162,6 @@ class Ship2(Sprite):
             self.thrustframe += 1
             if self.thrustframe == 4:
                 self.thrustframe = 1
-            self.move()
         else:
             self.setImage(0)
         
@@ -197,6 +197,7 @@ class Ship2(Sprite):
         self.vr = 0
     
     def fire(self, event):
+        vx = 
         self.bullet= Bullet(self.position, self.vx, self.vy)
         
 class Bullet(Sprite):
@@ -228,7 +229,7 @@ class Bullet(Sprite):
         self.x -= 10*self.X
         self.y -= 10*self.Y
         if self.x < 0 or self.x > SCREEN_WIDTH or self.y < 0 or self.y >SCREEN_HEIGHT:
-            self.destroy
+            self.destroy()
         
         
 class HealthBar:
