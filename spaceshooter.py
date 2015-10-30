@@ -1,7 +1,7 @@
 """
 spaceshooter.py
 Author: Roger Danilek
-Credit: <list sources used, if any>
+Credit: Adam, Nils
 
 Assignment:
 Write and submit a program that implements the spacewar game:
@@ -61,6 +61,8 @@ class SpaceGame(App):
         noline = LineStyle(0, black)
         bg_asset = ImageAsset("images/starfield.jpg")
         bg = Sprite(bg_asset, (0,0))
+        s_asset = ImageAsset("images/sun.png")
+        s = Sprite(s_asset, (0,0))
         SpaceShip((100,100))
         SpaceShip((150,150))
         SpaceShip((200,50))
