@@ -85,6 +85,11 @@ class SpaceGame(App):
         line=LineStyle(0,black)
         john=ImageAsset("images/starfield.jpg")
         jeff=Sprite(john,(0,0))
+        jeff1=
+        jeff2=
+        jeff3=
+        jeff4=
+        jeff5=
         Ship((500,600))
 
     def step(self):
