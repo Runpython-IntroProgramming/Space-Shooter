@@ -80,8 +80,8 @@ class Sun(Sprite):
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
-        black=Color(0,1)
-        line=LineStyle(0,black)
+#        black=Color(0,1)
+#        line=LineStyle(0,black)
         john=ImageAsset("images/starfield.jpg")
         jeff=Sprite(john,(0,0))
         jeff1=Sprite(john,(512,512))
