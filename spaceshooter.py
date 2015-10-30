@@ -35,8 +35,9 @@ class SpaceShip(Sprite):
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
-        if self.circularCollisionModel(self)==True:
-            self.thrust=1
+        #is the below function in the write step?
+        if collidingWithSprites(self, sclass=None)==True:
+            self.thrust = 1
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
