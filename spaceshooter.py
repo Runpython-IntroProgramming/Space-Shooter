@@ -145,7 +145,7 @@ class SpaceGame(App):
         jeff2=Sprite(john,(0,512))
         jeff3=Sprite(john,(512,0))
         jeff4=Sprite(john,(1024,512)
-        jeff5=Sprite(john,(0,0))        #got the dimensions from Jeff
+        jeff5=Sprite(john,(1024,0))        #got the dimensions from Jeff
         Ship((500,600))
 
     def step(self):
