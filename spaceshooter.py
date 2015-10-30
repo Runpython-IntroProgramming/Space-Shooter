@@ -22,7 +22,6 @@ class Ship(Sprite):
         self.vy=0
         self.vr=0
         self.thrust=0
-        self.thrustframe=0
         SpaceGame.listenKeyEvent("keydown","w", self.moveForward)
         SpaceGame.listenKeyEvent("keyup","w", self.NomoveForward)
         SpaceGame.listenKeyEvent("keydown","a",self.turnLeft)
@@ -61,6 +60,54 @@ class Ship(Sprite):
         
     def NoturnRight(self,event):
         self.vr=0
+        
+        
+class Ship1(Sprite):
+    image=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,292-227,125), 4, 'vertical')
+    def __init__(self, position):
+        super().__init__(Ship1.image, position)
+        self.vx=0
+        self.vy=0
+        self.vr=0
+        self.thrust=0
+        SpaceGame.listenKeyEvent("keydown","up arrow", self.moveforward)
+        SpaceGame.listenKeyEvent("keyup","up arrow", self.Nomoveforward)
+        SpaceGame.listenKeyEvent("keydown","left arrow",self.turnleft)
+        SpaceGame.listenKeyEvent("keyup","left arrow",self.Noturnleft)
+        SpaceGame.listenKeyEvent("keydown","right arrow", self.turnright)
+        SpaceGame.listenKeyEvent("keyup","right arrow", self.Noturnright)
+        self.fxcenter = 0.5
+        self.fycenter = 0.5
+
+    def step(self):
+        self.x += self.vx
+        self.y += self.vy
+        self.rotation += self.vr
+        if self.thrust == 1:
+            self.setImage(self.thrust)
+            self.thrust += 1
+            if self.thrust == 4:
+                self.thrust = 1
+        else:
+            self.setImage(0)
+
+    def moveforward(self, event):
+        self.thrust = 1
+        
+    def Nomoveforward(self, event):
+        self.thrust=0
+
+    def turnleft(self,event):
+        self.vr=0.05
+
+    def Noturnleft(self,event):
+        self.vr=0
+
+    def turnright(self, event):
+        self.vr=-0.05
+        
+    def Noturnright(self,event):
+        self.vr=0
 
 class Sun(Sprite):
     image=ImageAsset("images/sun.png")
@@ -85,7 +132,10 @@ class SpaceGame(App):
         jeff6=Sprite(suhan,(0,1024))
         jeff7=Sprite(suhan,(1024,2014))
         jeff8=Sprite(suhan,(512,1024))
-        Ship((700,400))
+        
+        Ship((400,400))
+        Ship1((200,200))
+
         Sun((650,500))
         Sun((450,200))
         Sun((199,54))
@@ -97,7 +147,8 @@ class SpaceGame(App):
         Sun((347,784))
         Sun((1000,1100))
         Sun((1500,1000))
-        Sun((
+        Sun((1300,600))
+        Sun((1199,400))
 
     def step(self):
         for ship in self.getSpritesbyClass(Ship):
