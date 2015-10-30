@@ -73,7 +73,7 @@ class Ship(Sprite):
         self.vr=0
         self.thrust=0
         self.thrustframe=0
-        SpaceGame.listenKeyEvent("keydown","s", self.moveBackward)
+        SpaceGame.listenKeyEvent("keydown","", self.moveBackward)
         SpaceGame.listenKeyEvent("keyup","s", self.NomoveBackward)
         SpaceGame.listenKeyEvent("keydown","w", self.moveForward)
         SpaceGame.listenKeyEvent("keyup","w", self.NomoveForward)
@@ -141,15 +141,17 @@ class SpaceGame(App):
         line=LineStyle(0,black)
         john=ImageAsset("images/starfield.jpg")
         jeff=Sprite(john,(0,0))
-        jeff1=Sprite(john,(0,0))
-        jeff2=Sprite(john,(0,0))
-        jeff3=Sprite(john,(0,0))
-        jeff4=Sprite(john,(0,0))
+        jeff1=Sprite(john,(512,512))
+        jeff2=Sprite(john,(0,512))
+        jeff3=Sprite(john,(512,0))
+        jeff4=Sprite(john,(1024,512)
         jeff5=Sprite(john,(0,0))        #got the dimensions from jeefff
         Ship((500,600))
 
     def step(self):
-        for ship in self.getSpritesbyClass(Ship):
+        for ship in self.getSpritesbyClass(Ship1):
+            ship.step()
+        for ship in self.getSpritesbyClass(Ship2):
             ship.step()
 
 #Fin
