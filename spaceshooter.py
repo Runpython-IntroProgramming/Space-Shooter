@@ -228,7 +228,7 @@ class Bullet(Sprite):
         self.x -= 10*self.X
         self.y -= 10*self.Y
         if self.x < 0 or self.x > SCREEN_WIDTH or self.y < 0 or self.y >SCREEN_HEIGHT:
-        self.destroy
+            self.destroy
         
         
 class HealthBar:
