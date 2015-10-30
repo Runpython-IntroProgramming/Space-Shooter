@@ -73,14 +73,14 @@ class Ship(Sprite):
         self.vr=0
         self.thrust=0
         self.thrustframe=0
-        SpaceGame.listenKeyEvent("keydown","", self.moveBackward)
-        SpaceGame.listenKeyEvent("keyup","s", self.NomoveBackward)
-        SpaceGame.listenKeyEvent("keydown","w", self.moveForward)
-        SpaceGame.listenKeyEvent("keyup","w", self.NomoveForward)
-        SpaceGame.listenKeyEvent("keydown","a",self.turnLeft)
-        SpaceGame.listenKeyEvent("keyup","a",self.NoturnLeft)
-        SpaceGame.listenKeyEvent("keydown","d", self.turnRight)
-        SpaceGame.listenKeyEvent("keyup","d", self.NoturnRight)
+        SpaceGame.listenKeyEvent("keydown","k", self.moveBackward)
+        SpaceGame.listenKeyEvent("keyup","k", self.NomoveBackward)
+        SpaceGame.listenKeyEvent("keydown","i", self.moveForward)
+        SpaceGame.listenKeyEvent("keyup","i", self.NomoveForward)
+        SpaceGame.listenKeyEvent("keydown","j",self.turnLeft)
+        SpaceGame.listenKeyEvent("keyup","j",self.NoturnLeft)
+        SpaceGame.listenKeyEvent("keydown","l", self.turnRight)
+        SpaceGame.listenKeyEvent("keyup","l", self.NoturnRight)
         self.fxcenter = 0.5
         self.fycenter = 0.5
 
@@ -144,7 +144,7 @@ class SpaceGame(App):
         jeff1=Sprite(john,(512,512))
         jeff2=Sprite(john,(0,512))
         jeff3=Sprite(john,(512,0))
-        jeff4=Sprite(john,(1024,512)
+        jeff4=Sprite(john,(1024,512))
         jeff5=Sprite(john,(1024,0))        #got the dimensions from Jeff
         Ship((500,600))
 
