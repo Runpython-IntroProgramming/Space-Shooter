@@ -8,7 +8,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 from ggame import App, Sprite, ImageAsset, Frame, Color, RectangleAsset, LineStyle
 
-class Ship1(Sprite):
+class Ship(Sprite):
     image=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,292-227,125), 4, 'vertical')
     def __init__(self, position):
         super().__init__(Ship.image, position)
@@ -84,13 +84,13 @@ class SpaceGame(App):
         jeff3=Sprite(john,(512,0))
         jeff4=Sprite(john,(1024,512))
         jeff5=Sprite(john,(1024,0))        #got the dimensions from Jeff
-        Ship1((500,600))
-        Ship2((400,600))
+        Ship((500,600))
+        Sun((400,600))
 
     def step(self):
-        for ship in self.getSpritesbyClass(Ship1):
+        for ship in self.getSpritesbyClass(Ship):
             ship.step()
-        for ship in self.getSpritesbyClass(Ship2):
+        for ship in self.getSpritesbyClass(Sun):
             ship.step()
 
 #Fin
