@@ -149,6 +149,25 @@ class SpaceGame(App):
         Sun((1500,1000))
         Sun((1300,600))
         Sun((1199,400))
+        Sun((340,1000))
+        Sun((1250,900))
+        Sun((
+        Sun((
+        Sun((
+        Sun((
+        Sun((
+        Sun((
+        Sun((
+        Sun((
+        Sun((
+        Sun((
+        Sun((
+        Sun((
+        Sun((
+        Sun((
+        Sun((
+        Sun((
+        Sun((
 
     def step(self):
         for ship in self.getSpritesbyClass(Ship):
