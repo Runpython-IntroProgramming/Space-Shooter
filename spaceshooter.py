@@ -45,7 +45,7 @@ class Ship(Sprite):
         else:
             self.setImage(0)
 
-    def moveFoward(self, event):
+    def moveForward(self, event):
         self.thrust = -1
         
     def NomoveForward(self, event):
@@ -67,10 +67,12 @@ class Ship(Sprite):
         self.vr=-1
         
     def NoturnRight(self,event):
-        self,vr=0
+        self.vr=0
 
 class Sun(Sprite):
-    image=ImageAsset("images/sun.png", Frame(100,0,100,100), 1, 'vertical')
+    image=ImageAsset("images/sun.png")
+    height=20
+    height=20
     def __init__(self, position):
         super().__init__(Sun.image, position)
         self.fxcenter = 0.5
@@ -80,8 +82,6 @@ class Sun(Sprite):
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
-#        black=Color(0,1)
-#        line=LineStyle(0,black)
         suhan=ImageAsset("images/starfield.jpg")
         jeff=Sprite(suhan,(0,0))
         jeff1=Sprite(suhan,(512,512))
@@ -95,9 +95,7 @@ class SpaceGame(App):
     def step(self):
         for ship in self.getSpritesbyClass(Ship):
             ship.step()
-        for ship in self.getSpritesbyClass(Sun):
-            ship.step()
-
+      
 #Fin
 myapp = SpaceGame(SCREEN_WIDTH,SCREEN_HEIGHT)
 myapp.run
