@@ -197,14 +197,14 @@ class Ship2(Sprite):
         self.vr = 0
     
     def fire(self, event):
-        self.bullet= Bullet(self.position)
+        self.bullet= Bullet(self.position, self.vx, self.vy)
         
 class Bullet(Sprite):
     
     asset = ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
     pewasset = SoundAsset("sounds/pew1.mp3")
     
-    def __init__(self, position):
+    def __init__(self, position, x, y):
         super().__init__(Bullet.asset, position)
         self.exist = True
         self.circularCollisionModel()
@@ -222,6 +222,9 @@ class Bullet(Sprite):
                 self.appear = 1
         else:
             self.setImage(0)
+        
+        self.x -= x
+        self.y -= y
         
         
 class HealthBar:
