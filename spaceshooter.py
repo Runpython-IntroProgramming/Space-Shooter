@@ -197,7 +197,6 @@ class Ship2(Sprite):
         self.vr = 0
     
     def fire(self, event):
-        vx = 
         self.bullet= Bullet(self.position, self.vx, self.vy)
         
 class Bullet(Sprite):
