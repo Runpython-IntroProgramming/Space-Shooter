@@ -6,7 +6,12 @@ Assignment: Spaceshooter
 Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
 """
-from ggame import App, Sprite, ImageAsset, Frame, Color, RectangleAsset, LineStyle
+
+from ggame import App, Sprite, ImageAsset
+from ggame import Frame, Color, RectangleAsset, LineStyle
+
+SCREEN_WIDTH = 1536   #dimensions from jeffffff
+SCREEN_HEIGHT = 1024
 
 class Ship(Sprite):
     image=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,292-227,125), 4, 'vertical')
@@ -68,8 +73,8 @@ class Sun(Sprite):
     image=ImageAsset("images/sun.png", Frame(100,0,100,100), 1, 'vertical')
     def __init__(self, position):
         super().__init__(Sun.image, position)
-        self.fxcenter = 0
-        self.fycenter = 0
+        self.fxcenter = 0.5
+        self.fycenter = 0.5
         self.circularCollisionModel()
 
 class SpaceGame(App):
@@ -94,5 +99,5 @@ class SpaceGame(App):
             ship.step()
 
 #Fin
-myapp = SpaceGame(0,0)
+myapp = SpaceGame(SCREEN_WIDTH,SCREEN_HEIGHT)
 myapp.run
