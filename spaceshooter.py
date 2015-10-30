@@ -98,4 +98,4 @@ class SpaceGame(App):
       
 #Fin
 myapp = SpaceGame(SCREEN_WIDTH,SCREEN_HEIGHT)
-myapp.run
+myapp.run()
