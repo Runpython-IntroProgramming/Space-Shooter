@@ -225,8 +225,8 @@ class Bullet(Sprite):
         else:
             self.setImage(0)
         
-        self.x -= self.X
-        self.y -= self.Y
+        self.x -= 2*self.X
+        self.y -= 2*self.Y
         
         
 class HealthBar:
