@@ -14,10 +14,10 @@ import math
 SCREEN_WIDTH = 1536   #dimensions from jeffffff
 SCREEN_HEIGHT = 1024
 
-class Ship(Sprite):
+class Ship1(Sprite):
     image=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,292-227,125), 4, 'vertical')
     def __init__(self, position):
-        super().__init__(Ship.image, position)
+        super().__init__(Ship1.image, position)
         self.vx=0
         self.vy=0
         self.vr=0
@@ -62,11 +62,11 @@ class Ship(Sprite):
         self.vr=0
         
         
-class Ship1(Sprite):
+class Ship2(Sprite):
     image=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,292-227,125), 4, 'vertical')
     def __init__(self, position):
-        super().__init__(Ship1.image, position)
-        self.vx=0
+        super().__init__(Ship2.image, position)
+        self.Vx=0
         self.vy=0
         self.vr=0
         self.thrust=0
@@ -80,7 +80,7 @@ class Ship1(Sprite):
         self.fycenter = 0.5
 
     def step(self):
-        self.x += self.vx
+        self.x += self.Vx
         self.y += self.vy
         self.rotation += self.vr
         if self.thrust == 1:
