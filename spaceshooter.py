@@ -34,7 +34,6 @@ class Ship1(Sprite):
     def step(self):
         self.x += self.vx
         self.y += self.vy
-        self.movar
         self.rotation += self.vr
         if self.thrust == 1:
             self.setImage(self.thrust)
@@ -43,9 +42,7 @@ class Ship1(Sprite):
                 self.thrust = 1
         else:
             self.setImage(0)
-    
-    def movar(self):
-        
+
 
     def moveForward(self, event):
         self.thrust = 1
@@ -54,19 +51,19 @@ class Ship1(Sprite):
         self.thrust=0
 
     def turnLeft(self,event):
-        self.vr=0.05
+        self.vr=0.1
 
     def NoturnLeft(self,event):
         self.vr=0
 
     def turnRight(self, event):
-        self.vr=-0.05
+        self.vr=-0.1
         
     def NoturnRight(self,event):
         self.vr=0
         
         
-class Sh(Sprite):
+class Ship2(Sprite):
     image=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,292-227,125), 4, 'vertical')
     def __init__(self, position):
         super().__init__(Ship2.image, position)
@@ -96,19 +93,19 @@ class Sh(Sprite):
             self.setImage(0)
 
     def moveforward(self, event):
-        self.thrust = 1
+        self.thrust = -1
         
     def Nomoveforward(self, event):
         self.thrust=0
 
     def turnleft(self,event):
-        self.vr=0.05
+        self.vr=1
 
     def Noturnleft(self,event):
         self.vr=0
 
     def turnright(self, event):
-        self.vr=-0.05
+        self.vr=-1
         
     def Noturnright(self,event):
         self.vr=0
@@ -138,7 +135,7 @@ class SpaceGame(App):
         jeff8=Sprite(suhan,(512,1024))
         
         Ship((300,400))
-        Ship1((1000,400))
+        Ship2((1000,400))
 
         Sun((650,500))
         Sun((450,200))
