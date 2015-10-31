@@ -34,6 +34,7 @@ class Ship1(Sprite):
     def step(self):
         self.x += self.vx
         self.y += self.vy
+        self.movar
         self.rotation += self.vr
         if self.thrust == 1:
             self.setImage(self.thrust)
@@ -42,6 +43,9 @@ class Ship1(Sprite):
                 self.thrust = 1
         else:
             self.setImage(0)
+    
+    def movar(self):
+        
 
     def moveForward(self, event):
         self.thrust = 1
@@ -62,7 +66,7 @@ class Ship1(Sprite):
         self.vr=0
         
         
-class Ship2(Sprite):
+class Sh(Sprite):
     image=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,292-227,125), 4, 'vertical')
     def __init__(self, position):
         super().__init__(Ship2.image, position)
