@@ -6,7 +6,7 @@ Assignment: Spaceshooter
 Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
 """
-
+"""
 from ggame import App, Sprite, ImageAsset
 from ggame import Frame, Color, RectangleAsset, LineStyle
 import math
@@ -61,10 +61,10 @@ class Ship1(Sprite):
         
     def NoturnRight(self,event):
         self.vr=0
-        
+"""        
         
 class Ship2(Sprite):
-    image=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,292-227,125), 4, 'vertical')
+    image=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(0,0,86,125), 3, 'vertical')
     def __init__(self, position):
         super().__init__(Ship2.image, position)
         self.Vx=0
@@ -134,9 +134,10 @@ class SpaceGame(App):
         jeff7=Sprite(suhan,(1024,2014))
         jeff8=Sprite(suhan,(512,1024))
         
-        Ship((300,400))
-        Ship2((1000,400))
+        #Ship((200,570))
+        Ship2((1000,570))
 
+        Sun((300,400))
         Sun((650,500))
         Sun((450,200))
         Sun((199,54))
@@ -157,6 +158,8 @@ class SpaceGame(App):
         Sun((1200,1350))
         Sun((700,200))
         Sun((950,800))
+        Sun((500,700))
+        Sun((850,350))
 
     def step(self):
         for ship in self.getSpritesbyClass(Ship):
