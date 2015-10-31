@@ -70,12 +70,12 @@ class Ship1(Sprite):
         self.vy=0
         self.vr=0
         self.thrust=0
-        SpaceGame.listenKeyEvent("keydown","up arrow", self.moveforward)
-        SpaceGame.listenKeyEvent("keyup","up arrow", self.Nomoveforward)
-        SpaceGame.listenKeyEvent("keydown","left arrow",self.turnleft)
-        SpaceGame.listenKeyEvent("keyup","left arrow",self.Noturnleft)
-        SpaceGame.listenKeyEvent("keydown","right arrow", self.turnright)
-        SpaceGame.listenKeyEvent("keyup","right arrow", self.Noturnright)
+        SpaceGame.listenKeyEvent("keydown","i", self.moveforward)
+        SpaceGame.listenKeyEvent("keyup","i", self.Nomoveforward)
+        SpaceGame.listenKeyEvent("keydown","j",self.turnleft)
+        SpaceGame.listenKeyEvent("keyup","j",self.Noturnleft)
+        SpaceGame.listenKeyEvent("keydown","l", self.turnright)
+        SpaceGame.listenKeyEvent("keyup","l", self.Noturnright)
         self.fxcenter = 0.5
         self.fycenter = 0.5
 
