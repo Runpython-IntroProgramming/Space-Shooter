@@ -6,7 +6,7 @@ Assignment: Spaceshooter
 Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
 """
-"""
+
 from ggame import App, Sprite, ImageAsset
 from ggame import Frame, Color, RectangleAsset, LineStyle
 import math
@@ -14,10 +14,10 @@ import math
 SCREEN_WIDTH = 1536   #dimensions from jeffffff
 SCREEN_HEIGHT = 1024
 
-class Ship1(Sprite):
+class Ship(Sprite):
     image=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,292-227,125), 4, 'vertical')
     def __init__(self, position):
-        super().__init__(Ship1.image, position)
+        super().__init__(Ship.image, position)
         self.vx=0
         self.vy=0
         self.vr=0
@@ -61,16 +61,17 @@ class Ship1(Sprite):
         
     def NoturnRight(self,event):
         self.vr=0
-"""        
+
         
-class Ship2(Sprite):
-    image=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(0,0,86,125), 3, 'vertical')
+class Sip(Sprite):
+    image=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(158,0,71,125), 4, 'vertical')
     def __init__(self, position):
-        super().__init__(Ship2.image, position)
+        super().__init__(Sip.image, position)
         self.Vx=0
         self.vy=0
         self.vr=0
         self.thrust=0
+        self.thrustframe=1
         SpaceGame.listenKeyEvent("keydown","i", self.moveforward)
         SpaceGame.listenKeyEvent("keyup","i", self.Nomoveforward)
         SpaceGame.listenKeyEvent("keydown","j",self.turnleft)
@@ -85,7 +86,7 @@ class Ship2(Sprite):
         self.y += self.vy
         self.rotation += self.vr
         if self.thrust == 1:
-            self.setImage(self.thrust)
+            self.setImage(self.thrustframe)
             self.thrust += 1
             if self.thrust == 4:
                 self.thrust = 1
@@ -93,22 +94,24 @@ class Ship2(Sprite):
             self.setImage(0)
 
     def moveforward(self, event):
-        self.thrust = -1
+        self.thrust = 1
         
     def Nomoveforward(self, event):
         self.thrust=0
 
     def turnleft(self,event):
-        self.vr=1
+        self.vr=0.1
 
     def Noturnleft(self,event):
         self.vr=0
 
     def turnright(self, event):
-        self.vr=-1
+        self.vr=-0.1
         
     def Noturnright(self,event):
         self.vr=0
+
+class Missiles
 
 class Sun(Sprite):
     image=ImageAsset("images/sun.png")
@@ -134,8 +137,8 @@ class SpaceGame(App):
         jeff7=Sprite(suhan,(1024,2014))
         jeff8=Sprite(suhan,(512,1024))
         
-        #Ship((200,570))
-        Ship2((1000,570))
+        Ship((200,570))
+        Sip((1000,570))
 
         Sun((300,400))
         Sun((650,500))
@@ -163,6 +166,8 @@ class SpaceGame(App):
 
     def step(self):
         for ship in self.getSpritesbyClass(Ship):
+            ship.step()
+        for ship in self.getSpritesbyClass(Sip):
             ship.step()
       
 #Fin
