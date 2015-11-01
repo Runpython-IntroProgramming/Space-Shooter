@@ -9,11 +9,11 @@ https://github.com/HHS-IntroProgramming/Spacewar
 
 from ggame import App, Sprite, ImageAsset
 from ggame import Frame, Color, RectangleAsset, LineStyle
-from ggame import SoundAsset
+import time
 import math
 
-SCREEN_WIDTH = 1536   #dimensions from jeffffff
-SCREEN_HEIGHT = 1024
+SCREEN_WIDTH = 1524
+SCREEN_HEIGHT = 1000
 
 class Ship(Sprite):
     image=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,292-227,125), 4, 'vertical')
@@ -81,6 +81,8 @@ class Sip(Sprite):
         SpaceGame.listenKeyEvent("keyup","j",self.Noturnleft)
         SpaceGame.listenKeyEvent("keydown","l", self.turnright)
         SpaceGame.listenKeyEvent("keyup","l", self.Noturnright)
+        SpaceGame.listenKeyEvent("keydown","enter", self.Fire)
+        SpaceGame.listenKeyEvent("keyup","enter", self.NoFire)
         self.fxcenter = 0.5
         self.fycenter = 0.5
 
@@ -114,13 +116,13 @@ class Sip(Sprite):
     def Noturnright(self,event):
         self.vr=0
 
-class Missiles:
+class Magazine(Sprite):
+
+class Missiles(Sprite):
     image=ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
 
 class Sun(Sprite):
     image=ImageAsset("images/sun.png")
-    height=400
-    wdth=400
     def __init__(self, position):
         super().__init__(Sun.image, position)
         self.fxcenter = 0.5
