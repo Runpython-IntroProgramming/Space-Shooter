@@ -121,6 +121,8 @@ class Missiles(Sprite):
     def __init__(self, position):
         super().__init__(Missiles.image, position)
         self.circularCollisionModel()
+        self.fxcenter = 0.5
+        self.fycenter = 0.5
     
     def step(self):
         if self.exist:
