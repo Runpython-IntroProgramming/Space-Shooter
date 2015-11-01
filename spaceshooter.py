@@ -117,9 +117,13 @@ class Sip(Sprite):
         self.vr=0
 
 class Magazine(Sprite):
+    image=ImageAsset("
 
 class Missiles(Sprite):
     image=ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
+    def __init__(self, position):
+        super().__init__(Bullet.image, position)
+        self.circularCollisionModel()
 
 class Sun(Sprite):
     image=ImageAsset("images/sun.png")
