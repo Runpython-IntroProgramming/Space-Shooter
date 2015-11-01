@@ -136,7 +136,7 @@ class SpaceGame(App):
         jeff2=Sprite(suhan,(0,512))
         jeff3=Sprite(suhan,(512,0))
         jeff4=Sprite(suhan,(1024,512))
-        jeff5=Sprite(suhan,(1024,0))        #got the dimensions from Jeff
+        jeff5=Sprite(suhan,(1024,0))
         jeff6=Sprite(suhan,(0,1024))
         jeff7=Sprite(suhan,(1024,2014))
         jeff8=Sprite(suhan,(512,1024))
