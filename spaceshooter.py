@@ -122,7 +122,7 @@ class Magazine(Sprite):
 class Missiles(Sprite):
     image=ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
     def __init__(self, position):
-        super().__init__(Bullet.image, position)
+        super().__init__(Missiles.image, position)
         self.circularCollisionModel()
 
 class Sun(Sprite):
@@ -178,6 +178,8 @@ class SpaceGame(App):
         for ship in self.getSpritesbyClass(Ship):
             ship.step()
         for ship in self.getSpritesbyClass(Sip):
+            ship.step()
+        for ship in self.getSpritesbyClass(Missiles):
             ship.step()
       
 #Fin
