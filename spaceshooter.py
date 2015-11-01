@@ -116,14 +116,20 @@ class Sip(Sprite):
     def Noturnright(self,event):
         self.vr=0
 
-class Magazine(Sprite):
-    image=ImageAsset("
-
 class Missiles(Sprite):
     image=ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
     def __init__(self, position):
         super().__init__(Missiles.image, position)
         self.circularCollisionModel()
+    
+    def step(self):
+        if self.exist:
+            self.setImage(self.appear)
+            self.appear += 1
+            if self.appear == 8:
+                self.appear = 1
+        else:
+            self.setImage(0)
 
 class Sun(Sprite):
     image=ImageAsset("images/sun.png")
