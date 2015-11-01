@@ -9,6 +9,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 
 from ggame import App, Sprite, ImageAsset
 from ggame import Frame, Color, RectangleAsset, LineStyle
+from ggame import SoundAsset
 import math
 
 SCREEN_WIDTH = 1536   #dimensions from jeffffff
@@ -111,7 +112,8 @@ class Sip(Sprite):
     def Noturnright(self,event):
         self.vr=0
 
-class Missiles
+class Missiles:
+    image=ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
 
 class Sun(Sprite):
     image=ImageAsset("images/sun.png")
