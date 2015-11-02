@@ -23,6 +23,8 @@ class Ship(Sprite):
         self.vr=0
         self.thrust=0
         self.thrust1=1
+        self.appear=True
+        self.disapear=False
         SpaceGame.listenKeyEvent("keydown","w", self.moveForward)
         SpaceGame.listenKeyEvent("keyup","w", self.NomoveForward)
         SpaceGame.listenKeyEvent("keydown","a",self.turnLeft)
@@ -76,6 +78,8 @@ class Sip(Sprite):
         self.vr=0
         self.thrust=0
         self.thrustframe=1
+        self.appear=True
+        self.disappear=False
         SpaceGame.listenKeyEvent("keydown","i", self.moveforward)
         SpaceGame.listenKeyEvent("keyup","i", self.Nomoveforward)
         SpaceGame.listenKeyEvent("keydown","j",self.turnleft)
@@ -98,6 +102,10 @@ class Sip(Sprite):
                 self.thrust = 1
         else:
             self.setImage(0)
+        if self.appear:
+            collision= self.collisionWithSprites(Ship)
+            if collision.visible:
+                
 
     def moveforward(self, event):
         self.thrust = 1
