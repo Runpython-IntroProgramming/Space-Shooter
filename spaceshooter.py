@@ -214,12 +214,9 @@ class Bullet(Sprite):
         self.fxcenter = 0.5
         self.fycenter = 0
         self.X = vx
-        self.Y = vy 
-        self.visible = True
+        self.Y = vy
     
     def step(self):
-        self.visible = True
-        
         if self.exist:
             self.setImage(self.appear)
             self.appear += 1
@@ -233,10 +230,6 @@ class Bullet(Sprite):
         
         if self.x < 0 or self.x > SCREEN_WIDTH or self.y < 0 or self.y >SCREEN_HEIGHT:
             self.destroy()
-            
-        if self.collidingWith(Ship2):
-            self.visible = False
-        
         
 class HealthBar:
     
@@ -334,6 +327,7 @@ class SpaceGame(App):
         explosions = self.getSpritesbyClass(ExplosionBig)
         for explosion in explosions:
             explosion.step()
+            
         for bullets in self.getSpritesbyClass(Bullet):
             bullets.step()
         
