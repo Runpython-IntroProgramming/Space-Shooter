@@ -35,8 +35,8 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
         self.fxcenter = self.fycenter = 0.5
-        if self.collidingWith()==True:
-            self.stop
+        #if self.collidingWith(sun)==True:
+            #self.stop
 
     def step(self):
         self.x += self.vx
@@ -45,6 +45,8 @@ class SpaceShip(Sprite):
         #is the below function in the write step?
         #if collidingWithSprites(self)==True:
             #print("collision")
+        if self.collidingWith(sun)==True:
+            self.stop
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
@@ -55,8 +57,10 @@ class SpaceShip(Sprite):
 
     def moveleft(self, event):
         self.vx += -.1
+        self.vr += .01
     def moveright(self, event):
         self.vx += .1
+        self.vr += -.01
     def movedown(self, event):
         self.vy += .1
     def moveup(self, event):
