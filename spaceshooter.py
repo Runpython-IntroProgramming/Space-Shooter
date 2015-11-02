@@ -22,9 +22,9 @@ class SpaceShip(Sprite):
 
     def __init__(self, position):
         super().__init__(SpaceShip.asset, position)
-        self.vx = 1
-        self.vy = 1
-        self.vr = 0.01
+        self.vx = 0
+        self.vy = 0
+        self.vr = 0.001
         self.thrust = 0
         self.thrustframe = 1
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
@@ -36,8 +36,8 @@ class SpaceShip(Sprite):
         self.y += self.vy
         self.rotation += self.vr
         #is the below function in the write step?
-        if collidingWithSprites(self)==True:
-            print("collision")
+        #if collidingWithSprites(self)==True:
+            #print("collision")
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
