@@ -108,10 +108,11 @@ class Sip(Sprite):
         else:
             self.setImage(0)
 
-#        if self.appear:
-#            collision= self.collisionWithSprites(Ship)
-#            if collision.appear:
-#                self.destroy()
+        collision = self.collidingWithSprites(Ship1)
+            if len(collides):
+                if collides[0].visible:
+                    collides[0].rekt()
+                    self.rekt()
 
 
     def moveforward(self, event):
@@ -152,8 +153,6 @@ class Missiles(Sprite):
         self.fxcenter = 0.5 
         self.fycenter = 0.5
         pic=1
-    
-#esta un tooo mucha math de complicated. i no estudio trig m8.
     
     def step(self):
         if self.fire:
