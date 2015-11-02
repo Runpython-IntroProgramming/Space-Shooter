@@ -76,7 +76,7 @@ class Sip(Sprite):
         self.Vx=0
         self.vy=0
         self.vr=0
-        self.thrust=0
+        self.frame=0
         self.thrustframe=1
         self.appear=True
         self.disappear=False
@@ -95,24 +95,25 @@ class Sip(Sprite):
         self.x += self.Vx
         self.y += self.vy
         self.rotation += self.vr
-        if self.thrust == 1:
+        if self.frame == 1:
             self.setImage(self.thrustframe)
-            self.thrust += 1
-            if self.thrust == 4:
-                self.thrust = 1
+            self.frame += 1
+            if self.frame == 4:
+                self.frame = 1
         else:
             self.setImage(0)
-        if self.appear:
-            collision= self.collisionWithSprites(Ship)
-            if collision.visible:
-                
+
+#        if self.appear:
+#            collision= self.collisionWithSprites(Ship)
+#            if collision.visible:
+
 
     def moveforward(self, event):
-        self.thrust = 1
+        self.frame = 1
         self.vy=-3
         
     def Nomoveforward(self, event):
-        self.thrust=0
+        self.frame=0
         self.vy=0
 
     def turnleft(self,event):
