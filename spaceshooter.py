@@ -97,7 +97,7 @@ class Sip(Sprite):
         self.fycenter = 0.5
 
     def step(self):
-        self.x += self.Vx
+        self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
         if self.frame == 1:
@@ -110,7 +110,8 @@ class Sip(Sprite):
 
 #        if self.appear:
 #            collision= self.collisionWithSprites(Ship)
-#            if collision.visible:
+#            if collision.appear:
+#                self.destroy()
 
 
     def moveforward(self, event):
