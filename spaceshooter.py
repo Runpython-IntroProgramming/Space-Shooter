@@ -35,6 +35,7 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
         self.fxcenter = self.fycenter = 0.5
+        if collidingWith
 
     def step(self):
         self.x += self.vx
@@ -65,6 +66,9 @@ class SpaceShip(Sprite):
 
     def thrustOff(self, event):
         self.thrust = 0
+    def stop(self):
+        self.vx=0
+        self.vy=0
 
 
 
@@ -82,8 +86,8 @@ class SpaceGame(App):
         sun_asset = ImageAsset("images/sun.png")
         sun=Sprite(sun_asset, (200,200))
         SpaceShip((100,100))
-        SpaceShip((150,150))
-        SpaceShip((200,50))
+        #SpaceShip((150,150))
+        #SpaceShip((200,50))
 
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
