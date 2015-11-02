@@ -217,6 +217,7 @@ class Bullet(Sprite):
         self.Y = vy 
     
     def step(self):
+        self.visible = True
         if self.exist:
             self.setImage(self.appear)
             self.appear += 1
@@ -229,6 +230,8 @@ class Bullet(Sprite):
         self.y -= 10*self.Y
         if self.x < 0 or self.x > SCREEN_WIDTH or self.y < 0 or self.y >SCREEN_HEIGHT:
             self.destroy()
+        if self.collidingWith(Ship2):
+            self.visible = False
         
         
 class HealthBar:
