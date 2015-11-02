@@ -9,7 +9,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 
 from ggame import App, Sprite, ImageAsset
 from ggame import Frame, Color, RectangleAsset, LineStyle
-#import time
+import time
 import math
 
 SCREEN_WIDTH = 1524
@@ -24,8 +24,6 @@ class Ship(Sprite):
         self.vx=0
         self.thrust=0
         self.thrust1=1
-        self.appear=True
-        self.disapear=False
         SpaceGame.listenKeyEvent("keydown","w", self.moveForward)
         SpaceGame.listenKeyEvent("keyup","w", self.NomoveForward)
         SpaceGame.listenKeyEvent("keydown","a",self.turnLeft)
@@ -51,9 +49,14 @@ class Ship(Sprite):
             
         collision = self.collidingWithSprites(Ship1)
         if len(collides):
-            if collides[0].visible:
+            if collides[0].appear:
                 collides[0].rekt()
                 self.rekt()
+                
+    def rekt(self):
+        self.appear=False
+        BigExplosion(self.position)
+        self.Respawn = 5
 
     def moveForward(self, event):
         self.thrust = 1
