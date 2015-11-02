@@ -9,7 +9,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 
 from ggame import App, Sprite, ImageAsset
 from ggame import Frame, Color, RectangleAsset, LineStyle
-import time
+#import time
 import math
 
 SCREEN_WIDTH = 1524
@@ -21,6 +21,7 @@ class Ship(Sprite):
         super().__init__(Ship.image, position)
         self.vy=0
         self.vr=0
+        self.vx=0
         self.thrust=0
         self.thrust1=1
         self.appear=True
@@ -38,6 +39,7 @@ class Ship(Sprite):
 
     def step(self):
         self.y += self.vy
+        self.x += self.vx
         self.rotation += self.vr
         if self.thrust == 1:
             self.setImage(self.thrust1)
@@ -46,7 +48,6 @@ class Ship(Sprite):
                 self.thrust = 1
         else:
             self.setImage(0)
-
 
     def moveForward(self, event):
         self.thrust = 1
@@ -139,9 +140,11 @@ class Missiles(Sprite):
     def __init__(self, position):
         super().__init__(Missiles.image, position)
         self.circularCollisionModel()
-        self.fxcenter = 0.5
+        self.fxcenter = 0.5 
         self.fycenter = 0.5
         pic=1
+    
+#esta un tooo mucha math de complicated. i no estudio trig m8.
     
     def step(self):
         if self.fire:
@@ -152,6 +155,32 @@ class Missiles(Sprite):
         else:
             self.setImage(0)
 """
+class BigExplosion(Sprite):
+    image=ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
+    def __init__(self, position):
+        super().__init__(BigExplosion.image, position)
+        self.appear=True
+        self.frame=0
+    
+    def step(self):
+        self.frame += 1
+        if self.frame == 50:
+            self.destroy()
+
+class SmallExplosion(Sprite):
+    image=ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
+    def __init__(self, position):
+        super().__init__(SmallExplosion.image, position)
+        self.appear=True
+        self.frame=0
+        self.fxcenter = 0.5
+        self.fycenter = 0.5
+    
+    def step(self):
+        self.frame += 1
+        if self.frame == 20:
+            self.destroy()
+
 class Sun(Sprite):
     image=ImageAsset("images/sun.png")
     def __init__(self, position):
