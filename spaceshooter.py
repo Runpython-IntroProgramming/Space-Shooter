@@ -45,6 +45,7 @@ class Ship1(Sprite):
         SpaceGame.listenKeyEvent("keyup", "left arrow", self.lrOff)
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.rotateRight)
         SpaceGame.listenKeyEvent("keyup", "right arrow", self.rrOff)
+        SpaceGame.listenKeyEvent("keydown", "enter", self.fire)
         self.fxcenter = self.fycenter = 0.5
     
     def step(self):
@@ -110,6 +111,9 @@ class Ship1(Sprite):
         
     def rrOff(self,  event):
         self.vr = 0
+    
+    def fire(self, event):
+        self.bullet= Bullet(self.position, self.vx, self.vy)
 
 class Ship2(Sprite):
     
