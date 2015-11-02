@@ -35,7 +35,7 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
         self.fxcenter = self.fycenter = 0.5
-        if self.collidingWith(sun)==True:
+        if self.collidingWith()==True:
             self.stop
 
     def step(self):
