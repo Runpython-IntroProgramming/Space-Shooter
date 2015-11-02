@@ -2,7 +2,7 @@
 spaceshooter.py
 Author: Adam Pikielny
 Credit: Morgan
-
+ggame documentation
 Assignment:
 Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
@@ -27,6 +27,7 @@ class SpaceShip(Sprite):
         self.vr = 0.001
         self.thrust = 0
         self.thrustframe = 1
+        SpaceGame.listenKeyEvent("keydown", "left arrow", self.moveleft)
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
         self.fxcenter = self.fycenter = 0.5
@@ -45,6 +46,9 @@ class SpaceShip(Sprite):
                 self.thrustframe = 1
         else:
             self.setImage(0)
+
+    def moveleft(self, event):
+        self.vx = 1
 
     def thrustOn(self, event):
         self.thrust = 1
