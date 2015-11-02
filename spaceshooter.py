@@ -55,16 +55,16 @@ class SpaceShip(Sprite):
         self.thrust = 0
     
     def goleft(self, event):
-        self.vx-=1
+        self.vx-=.5
         
     def goright(self, event):
-        self.vx+=1
+        self.vx+=.5
         
     def goup(self, event):
-        self.vy+=1
+        self.vy-=.5
         
     def godown(self, event):
-        self.vy-=1
+        self.vy+=.5
 
 
 
