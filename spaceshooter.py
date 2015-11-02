@@ -55,9 +55,9 @@ class SpaceShip(Sprite):
     def moveright(self, event):
         self.vx += .1
     def movedown(self, event):
-        self.vy = 1
+        self.vy += .1
     def moveup(self, event):
-        self.vy = -1
+        self.vy += -.1
 
     def thrustOn(self, event):
         self.thrust = 1
