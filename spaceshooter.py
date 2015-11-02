@@ -32,8 +32,8 @@ class Ship(Sprite):
         SpaceGame.listenKeyEvent("keyup","a",self.NoturnLeft)
         SpaceGame.listenKeyEvent("keydown","d", self.turnRight)
         SpaceGame.listenKeyEvent("keyup","d", self.NoturnRight)
-#        SpaceGame.listenKeyEvent("keydown","space", self.Fire)
-#        SpaceGame.listenKeyEvent("keyup","space", self.NoFire)
+#        SpaceGame.listenKeyEvent("keydown","e", self.Fire)
+#        SpaceGame.listenKeyEvent("keyup","e", self.NoFire)
         self.fxcenter = 0.5
         self.fycenter = 0.5
 
@@ -51,11 +51,15 @@ class Ship(Sprite):
 
     def moveForward(self, event):
         self.thrust = 1
-        self.vy=-3
+        self.boris=math.sin(self.rotation)     #math skills from Jeff
+        self.moris=math.cos(self.rotation)
+        self.vx = -3*self.boris
+        self.vy = -3*self.moris
         
     def NomoveForward(self, event):
         self.thrust=0
         self.vy=0
+        self.vx=0
 
     def turnLeft(self,event):
         self.vr=0.1
@@ -74,7 +78,7 @@ class Sip(Sprite):
     image=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(158,0,71,125), 4, 'vertical')
     def __init__(self, position):
         super().__init__(Sip.image, position)
-        self.Vx=0
+        self.vx=0
         self.vy=0
         self.vr=0
         self.frame=0
@@ -87,8 +91,8 @@ class Sip(Sprite):
         SpaceGame.listenKeyEvent("keyup","j",self.Noturnleft)
         SpaceGame.listenKeyEvent("keydown","l", self.turnright)
         SpaceGame.listenKeyEvent("keyup","l", self.Noturnright)
-       # SpaceGame.listenKeyEvent("keydown","enter", self.Fire)
-        #SpaceGame.listenKeyEvent("keyup","enter", self.NoFire)
+       # SpaceGame.listenKeyEvent("keydown","o", self.Fire)
+        #SpaceGame.listenKeyEvent("keyup","o", self.NoFire)
         self.fxcenter = 0.5
         self.fycenter = 0.5
 
@@ -111,11 +115,15 @@ class Sip(Sprite):
 
     def moveforward(self, event):
         self.frame = 1
-        self.vy=-3
+        self.boris=math.sin(self.rotation)     #math skills from Jeff
+        self.moris=math.cos(self.rotation)
+        self.vx = -3*self.boris
+        self.vy = -3*self.moris
         
     def Nomoveforward(self, event):
         self.frame=0
         self.vy=0
+        self.vx=0
 
     def turnleft(self,event):
         self.vr=0.1
