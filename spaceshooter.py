@@ -33,6 +33,7 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.goleft)
         SpaceGame.listenKeyEvent("keydown", "down arrow", self.godown)
         SpaceGame.listenKeyEvent("keydown", "up arrow", self.goup)
+        SpaceGame.listenKeyEvent("keydown", "right arrow", self.turnright)
 
         self.fxcenter = self.fycenter = 0.5
 
