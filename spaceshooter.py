@@ -48,6 +48,12 @@ class Ship(Sprite):
                 self.thrust = 1
         else:
             self.setImage(0)
+            
+        collision = self.collidingWithSprites(Ship1)
+        if len(collides):
+            if collides[0].visible:
+                collides[0].rekt()
+                self.rekt()
 
     def moveForward(self, event):
         self.thrust = 1
@@ -72,7 +78,6 @@ class Ship(Sprite):
         
     def NoturnRight(self,event):
         self.vr=0
-
         
 class Sip(Sprite):
     image=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(158,0,71,125), 4, 'vertical')
@@ -109,10 +114,10 @@ class Sip(Sprite):
             self.setImage(0)
 
         collision = self.collidingWithSprites(Ship1)
-            if len(collides):
-                if collides[0].visible:
-                    collides[0].rekt()
-                    self.rekt()
+        if len(collides):
+            if collides[0].visible:
+                collides[0].rekt()
+                self.rekt()
 
 
     def moveforward(self, event):
@@ -173,7 +178,7 @@ class BigExplosion(Sprite):
     def step(self):
         self.frame += 1
         if self.frame == 50:
-            self.destroy()
+            self.rekt()
 
 class SmallExplosion(Sprite):
     image=ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
@@ -187,7 +192,7 @@ class SmallExplosion(Sprite):
     def step(self):
         self.frame += 1
         if self.frame == 20:
-            self.destroy()
+            self.rekt()
 
 class Sun(Sprite):
     image=ImageAsset("images/sun.png")
