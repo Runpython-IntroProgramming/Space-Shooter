@@ -212,7 +212,7 @@ class Bullet(Sprite):
         self.pew.volume = 10
         self.appear = 1
         self.fxcenter = 0.5
-        self.fycenter = 8.5
+        self.fycenter = 0
         self.X = vx
         self.Y = vy 
     
