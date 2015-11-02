@@ -215,9 +215,11 @@ class Bullet(Sprite):
         self.fycenter = 0
         self.X = vx
         self.Y = vy 
+        self.visible = True
     
     def step(self):
         self.visible = True
+        
         if self.exist:
             self.setImage(self.appear)
             self.appear += 1
@@ -228,8 +230,10 @@ class Bullet(Sprite):
         
         self.x -= 10*self.X
         self.y -= 10*self.Y
+        
         if self.x < 0 or self.x > SCREEN_WIDTH or self.y < 0 or self.y >SCREEN_HEIGHT:
             self.destroy()
+            
         if self.collidingWith(Ship2):
             self.visible = False
         
