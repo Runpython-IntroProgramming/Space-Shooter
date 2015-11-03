@@ -79,7 +79,7 @@ class Ship(Sprite):
         collision = self.collidingWithSprites(Sip)
         if len(collision):
             if collision[0].visible:
-                collision[0].rekt()
+                collision[0].destroy()
                 self.rekt()
 
     def rekt(self):
@@ -152,19 +152,19 @@ class Sip(Sprite):
         collision = self.collidingWithSprites(Ship)
         if len(collision):
             if collision[0].visible:
-                collision[0].rekt()
+                collision[0].destroy()
                 self.rekt()
                 
         collision = self.collidingWithSprites(Missiles)
         if len(collision):
             if collision[0].visible:
-                collision[0].rekt()
+                collision[0].destroy()
                 self.rekt()
                 
         collision = self.collidingWithSprites(Sun)
         if len(collision):
             if collision[0].visible:
-                collision[0].rekt()
+                collision[0].destroy()
                 self.rekt()
 
     def rekt(self):
@@ -203,6 +203,29 @@ class SpaceGame(App):
         jeff12=Sprite(suhan,(512,1024))
         jeff13=Sprite(suhan,(1024,512))
         
+        Sun((300,400))
+        Sun((650,500))
+        Sun((450,200))
+        Sun((199,54))
+        Sun((478,400))
+        Sun((900,900))
+        Sun((20,350))
+        Sun((900,90))
+        Sun((800,700))
+        Sun((347,784))
+        Sun((1000,1100))
+        Sun((1500,1000))
+        Sun((1300,600))
+        Sun((1199,400))
+        Sun((340,1000))
+        Sun((1250,900))
+        Sun((1500,900))
+        Sun((100,1000))
+        Sun((700,200))
+        Sun((950,800))
+        Sun((500,700))
+        Sun((850,350))
+        Sun((512,512))
         Ship((200,570))
         Sip((1000,570))
 
