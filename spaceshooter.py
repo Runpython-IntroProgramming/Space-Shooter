@@ -317,7 +317,7 @@ class SpaceGame(App):
         
         Ship1((250,250))
         Ship2((400,400))
-        Sun((800,800))
+        Sun((800,400))
         
     def step(self):
         for ship in self.getSpritesbyClass(Ship1):
