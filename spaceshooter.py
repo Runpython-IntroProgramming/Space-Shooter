@@ -14,8 +14,8 @@ SCREEN_HEIGHT = 1024
 class Sun(Sprite):
     
     asset = ImageAsset("images/sun.png")
-    width = 80
-    height = 76
+    width = 120
+    height = 114
     
     def __init__(self, position):
         super().__init__(Sun.asset, position)
@@ -317,7 +317,7 @@ class SpaceGame(App):
         
         Ship1((250,250))
         Ship2((400,400))
-        Sun((800,400))
+        Sun((750,450))
         
     def step(self):
         for ship in self.getSpritesbyClass(Ship1):
