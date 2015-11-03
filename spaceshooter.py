@@ -22,8 +22,8 @@ class SpaceShip(Sprite):
 
     def __init__(self, position, app):
         super().__init__(SpaceShip.asset, position)
-        self.vx = .0001
-        self.vy = .0001
+        self.vx = 0
+        self.vy = 0
         self.vr = 0
         self.app = app
         #self.vr = math.atan(self.vy/self.vx)
@@ -42,7 +42,10 @@ class SpaceShip(Sprite):
     def step(self):
         self.x += self.vx
         self.y += self.vy
-        self.rotation = self.vr
+        if self.vy!=0:
+            self.rotation = -1*math.pi+math.atan(self.vx/self.vy)
+        else:
+            self.rotation = 0
         #is the below function in the write step?
         #if collidingWithSprites(self)==True:
             #print("collision")
@@ -68,7 +71,16 @@ class SpaceShip(Sprite):
     def moveup(self, event):
         if self.vy>-1:
             self.vy += -.1
-
+    """def moveleft(self, event):
+        self.vr+=.001
+    def moveright(self, event):
+        self.vr-=.001
+    magnitude=0
+    def moveup(self, event):
+        magnitude+=.1
+        self.vx=-magnitude*math.sin(self.rotation)
+        self.vy=-.1*math.cos(self.rotation)"""
+    
     def thrustOn(self, event):
         self.thrust = 1
 
