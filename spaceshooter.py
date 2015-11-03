@@ -232,6 +232,26 @@ class Missiles(Sprite):
         SmallExplosion(self.position)
         self.reappear=5
 
+class Sun(Sprite):
+    image=ImageAsset("images/sun.png")
+    def __init__(self, position):
+        super().__init__(Sun.image, position)
+        self.fxcenter = 0.5
+        self.fycenter = 0.5
+        self.circularCollisionModel()
+
+class SmallExplosion(Sprite):
+    image=ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
+    def __init__(self, position):
+        super().__init__(SmallExplosion.image, position)
+        self.frame=0
+        self.fxcenter = 0.5
+        self.fycenter = 0.5
+    
+    def step(self):
+        self.frame += 1
+        if self.frame == 20:
+            self.destroy()
 
 class BigExplosion(Sprite):
     image=ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
@@ -286,6 +306,7 @@ class SpaceGame(App):
         Sun((500,700))
         Sun((850,350))
         Sun((512,512))
+
         Ship((200,570))
         Sip((1000,570))
 
