@@ -44,8 +44,7 @@ class SpaceShip(Sprite):
         self.y += self.vy
         if self.vy!=0:
             self.rotation = -1*math.pi+math.atan(self.vx/self.vy)
-        else:
-            self.rotation = 0
+            
         #is the below function in the write step?
         #if collidingWithSprites(self)==True:
             #print("collision")
