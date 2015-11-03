@@ -30,8 +30,8 @@ class Ship(Sprite):
         SpaceGame.listenKeyEvent("keyup","a",self.NoturnLeft)
         SpaceGame.listenKeyEvent("keydown","d", self.turnRight)
         SpaceGame.listenKeyEvent("keyup","d", self.NoturnRight)
-   #     SpaceGame.listenKeyEvent("keydown","e", self.Fire)
-  #      SpaceGame.listenKeyEvent("keyup","e", self.NoFire)
+        SpaceGame.listenKeyEvent("keydown","e", self.Fire)
+        SpaceGame.listenKeyEvent("keyup","e", self.NoFire)
         self.fxcenter = 0.5
         self.fycenter = 0.5
 
@@ -46,7 +46,25 @@ class Ship(Sprite):
                 self.thrust = 1
         else:
             self.setImage(0)
-
+        
+        collision = self.collidingWithSprites(Sip)
+        if len(collision):
+            if collision[0].visible:
+                collision[0].destroy()
+                self.rekt()
+        
+        collision = self.collidingWithSprites(Missiles)
+        if len(collision):
+            if collision[0].visible:
+                collision[0].destroy()
+                self.rekt()
+                
+        collision = self.collidingWithSprites(Sun)
+        if len(collision):
+            if collision[0].visible:
+                collision[0].destroy()
+                self.rekt()
+                
     def moveForward(self, event):
         self.thrust = 1
         self.boris=math.sin(self.rotation)     #math skills from Jeff
@@ -71,16 +89,11 @@ class Ship(Sprite):
     def NoturnRight(self,event):
         self.vr=0
 
-#    def Fire(self,event):
+    def Fire(self,event):
+        Missiles
         
-        
- #   def NoFire(self,event):
-        
-        collision = self.collidingWithSprites(Sip)
-        if len(collision):
-            if collision[0].visible:
-                collision[0].destroy()
-                self.rekt()
+    def NoFire(self,event):
+        Missiles
 
     def rekt(self):
         self.appear=False
@@ -102,8 +115,8 @@ class Sip(Sprite):
         SpaceGame.listenKeyEvent("keyup","j",self.Noturnleft)
         SpaceGame.listenKeyEvent("keydown","l", self.turnright)
         SpaceGame.listenKeyEvent("keyup","l", self.Noturnright)
-     #   SpaceGame.listenKeyEvent("keydown","o", self.Fire)
-    #    SpaceGame.listenKeyEvent("keyup","o", self.NoFire)
+        SpaceGame.listenKeyEvent("keydown","o", self.Fire)
+        SpaceGame.listenKeyEvent("keyup","o", self.NoFire)
         self.fxcenter = 0.5
         self.fycenter = 0.5
 
@@ -144,10 +157,11 @@ class Sip(Sprite):
     def Noturnright(self,event):
         self.vr=0
 
-    #def Fire(self,event):
+    def Fire(self,event):
+        Missiles
         
-        
-    #def NoFire(self,event):
+    def NoFire(self,event):
+        Missiles
 
         collision = self.collidingWithSprites(Ship)
         if len(collision):
@@ -234,8 +248,8 @@ class SpaceGame(App):
             ship.step()
         for ship in self.getSpritesbyClass(Sip):
             ship.step()
-        #for missile in self.getSpritesbyClass(Missiles):
-         #   missile.step()
+        for missile in self.getSpritesbyClass(Missiles):
+            missile.step()
         explosions = self.getSpritesbyClass(SmallExplosion)
         for explosion in explosions:
             explosion.step()
