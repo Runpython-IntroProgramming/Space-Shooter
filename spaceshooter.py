@@ -185,6 +185,52 @@ class Sip(Sprite):
         self.appear=False
         BigExplosion(self.position)
         self.reappear=5
+        
+class Missiles(Sprite):
+    image=ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
+    def __init__(self, position):
+        super().__init__(Missiles.image, position)
+        self.circularCollisionModel()
+        self.fxcenter = 0.5 
+        self.fycenter = 0.5
+        pic=1
+    
+    def step(self):
+        if self.fire:
+            self.setImage(self.pic)
+            self.pic += 1
+            if self.pic == 8:
+                self.pic = 1
+        else:
+            self.setImage(0)
+            
+        collision = self.collidingWithSprites(Ship)
+        if len(collision):
+            if collision[0].visible:
+                collision[0].destroy()
+                self.rekt()
+                
+        collision = self.collidingWithSprites(Sip)
+        if len(collision):
+            if collision[0].visible:
+                collision[0].destroy()
+                self.rekt()
+                
+        collision = self.collidingWithSprites(Sun)
+        if len(collision):
+            if collision[0].visible:
+                collision[0].destroy()
+                self.minirekt()
+        
+    def rekt(self):
+        self.appear=False
+        BigExplosion(self.position)
+        self.reappear=5
+        
+    def minirekt(self):
+        self.appear=False
+        SmallExplosion(self.position)
+        self.reappear=5
 
 
 class BigExplosion(Sprite):
