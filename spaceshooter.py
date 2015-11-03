@@ -1,7 +1,7 @@
 """
 spaceshooter.py
 Author: Roger Danilek
-Credit: Adam, Nils
+Credit: Adam, Nils, Morgan, Spacewar source code
 
 Assignment:
 Write and submit a program that implements the spacewar game:
@@ -29,9 +29,6 @@ class SpaceShip(Sprite):
         self.thrustframe = 1
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
-        SpaceGame.listenKeyEvent("keydown", "right arrow", self.goright)
-        SpaceGame.listenKeyEvent("keydown", "left arrow", self.goleft)
-        SpaceGame.listenKeyEvent("keydown", "down arrow", self.godown)
         SpaceGame.listenKeyEvent("keydown", "up arrow", self.goup)
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.turnright)
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.turnleft)
@@ -55,18 +52,10 @@ class SpaceShip(Sprite):
 
     def thrustOff(self, event):
         self.thrust = 0
-    
-    def goleft(self, event):
-        self.vx-=.1
-        
-    def goright(self, event):
-        self.vx+=.1
         
     def goup(self, event):
-        self.vy-=.1
-        
-    def godown(self, event):
-        self.vy+=.1
+        self.vy+=.1*(math.cos(self.rotation))
+        self.vx+=.1*(math.sin(self.rotation))
         
     def turnright(self, event):
         self.vr-=.005
@@ -90,7 +79,7 @@ class SpaceGame(App):
         s = Sprite(s_asset, (0,0))
         SpaceShip((100,100))
         SpaceShip((150,150))
-        SpaceShip((200,50))
+        
 
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
