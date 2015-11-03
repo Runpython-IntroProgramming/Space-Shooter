@@ -55,18 +55,18 @@ class SpaceShip(Sprite):
         self.thrust = 0
         
     def goup(self, event):
-        self.vy+=(-.5*(math.cos(self.rotation)))
-        self.vx+=(-.5*(math.sin(self.rotation)))
+        self.vy+=(-.5*(math.sin(self.rotation)))
+        self.vx+=(-.5*(math.cos(self.rotation)))
         
     def goback(self, event):
         self.vy+=(.5*(math.cos(self.rotation)))
         self.vx+=(.5*(math.sin(self.rotation)))
         
     def turnright(self, event):
-        self.vr==(-1)
+        self.vr-=
 
     def turnleft(self, event):
-        self.vr==1
+        self.vr+=1
 
 
 
