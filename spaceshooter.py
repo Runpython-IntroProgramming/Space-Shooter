@@ -30,8 +30,8 @@ class Ship(Sprite):
         SpaceGame.listenKeyEvent("keyup","a",self.NoturnLeft)
         SpaceGame.listenKeyEvent("keydown","d", self.turnRight)
         SpaceGame.listenKeyEvent("keyup","d", self.NoturnRight)
-        SpaceGame.listenKeyEvent("keydown","e", self.Fire)
-        SpaceGame.listenKeyEvent("keyup","e", self.NoFire)
+   #     SpaceGame.listenKeyEvent("keydown","e", self.Fire)
+  #      SpaceGame.listenKeyEvent("keyup","e", self.NoFire)
         self.fxcenter = 0.5
         self.fycenter = 0.5
 
@@ -46,8 +46,20 @@ class Ship(Sprite):
                 self.thrust = 1
         else:
             self.setImage(0)
-            
+"""   
         collision = self.collidingWithSprites(Sip)
+        if len(collides):
+            if collides[0].appear:
+                collides[0].rekt()
+                self.rekt()
+                
+        collision = self.collidingWithSprites(Sun)
+        if len(collides):
+            if collides[0].appear:
+                collides[0].rekt()
+                self.rekt()
+                
+        collision = self.collidingWithSprites(Missiles)
         if len(collides):
             if collides[0].appear:
                 collides[0].rekt()
@@ -56,8 +68,7 @@ class Ship(Sprite):
     def rekt(self):
         self.appear=False
         BigExplosion(self.position)
-        self.Respawn = 5
-
+"""
     def moveForward(self, event):
         self.thrust = 1
         self.boris=math.sin(self.rotation)     #math skills from Jeff
@@ -82,10 +93,10 @@ class Ship(Sprite):
     def NoturnRight(self,event):
         self.vr=0
 
-    def Fire(self,event):
+#    def Fire(self,event):
         
         
-    def NoFire(self,event):
+ #   def NoFire(self,event):
         
 
 class Sip(Sprite):
@@ -103,8 +114,8 @@ class Sip(Sprite):
         SpaceGame.listenKeyEvent("keyup","j",self.Noturnleft)
         SpaceGame.listenKeyEvent("keydown","l", self.turnright)
         SpaceGame.listenKeyEvent("keyup","l", self.Noturnright)
-        SpaceGame.listenKeyEvent("keydown","o", self.Fire)
-        SpaceGame.listenKeyEvent("keyup","o", self.NoFire)
+     #   SpaceGame.listenKeyEvent("keydown","o", self.Fire)
+    #    SpaceGame.listenKeyEvent("keyup","o", self.NoFire)
         self.fxcenter = 0.5
         self.fycenter = 0.5
 
@@ -119,14 +130,29 @@ class Sip(Sprite):
                 self.frame = 1
         else:
             self.setImage(0)
-
+"""
         collision = self.collidingWithSprites(Ship)
         if len(collides):
             if collides[0].visible:
                 collides[0].rekt()
                 self.rekt()
+                
+        collision = self.collidingWithSprites(Missiles)
+        if len(collides):
+            if collides[0].visible:
+                collides[0].rekt()
+                self.rekt()
+                
+        collision = self.collidingWithSprites(Sun)
+        if len(collides):
+            if collides[0].visible:
+                collides[0].rekt()
+                self.rekt()
 
-
+    def rekt(self):
+        self.appear=False
+        BigExplosion(self.position)
+"""
     def moveforward(self, event):
         self.frame = 1
         self.boris=math.sin(self.rotation)     #math skills from Jeff
@@ -151,17 +177,11 @@ class Sip(Sprite):
     def Noturnright(self,event):
         self.vr=0
 
-    def Fire(self,event):
+    #def Fire(self,event):
         
         
-    def NoFire(self,event):
+    #def NoFire(self,event):
         
-
-class HealthBar(Sprite):
-    image=ImageAsset("images/four_spaceship_by_albertov.png",Frame()
-    
-class HealthBar2(Sprite):
-    image=ImageAsset("images/four_spaceship_by_albertov.png", Frame(
 
 class Missiles(Sprite):
     image=ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
@@ -230,9 +250,6 @@ class SpaceGame(App):
         jeff7=Sprite(suhan,(1024,2014))
         jeff8=Sprite(suhan,(512,1024))
         
-        HealthBar((
-        HealthBar2((
-        
         Ship((200,570))
         Sip((1000,570))
 
@@ -259,6 +276,7 @@ class SpaceGame(App):
         Sun((950,800))
         Sun((500,700))
         Sun((850,350))
+        Sun((512,512))
 
     def step(self):
         for ship in self.getSpritesbyClass(Ship):
