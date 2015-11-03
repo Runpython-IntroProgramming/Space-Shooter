@@ -46,8 +46,8 @@ class Ship(Sprite):
                 self.thrust = 1
         else:
             self.setImage(0)
-"""   
-        collision = self.collidingWithSprites(Sip)
+"""
+        #collision = self.collidingWithSprites(Sip)
         if len(collides):
             if collides[0].appear:
                 collides[0].rekt()
