@@ -214,6 +214,7 @@ class Bullet(Sprite):
         self.circularCollisionModel()
         self.pew = Sound(Bullet.pewasset)
         self.pew.volume = 10
+        self.pew.play()
         self.appear = 1
         self.fxcenter = 0.5
         self.fycenter = 0
@@ -229,8 +230,8 @@ class Bullet(Sprite):
         else:
             self.setImage(0)
         
-        self.x -= 10*self.X
-        self.y -= 10*self.Y
+        self.x -= 15*self.X
+        self.y -= 15*self.Y
         
         if self.x < 0 or self.x > SCREEN_WIDTH or self.y < 0 or self.y >SCREEN_HEIGHT:
             self.destroy()
