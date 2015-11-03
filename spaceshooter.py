@@ -132,6 +132,24 @@ class Sip(Sprite):
         else:
             self.setImage(0)
         
+        collision = self.collidingWithSprites(Ship)
+        if len(collision):
+            if collision[0].visible:
+                collision[0].destroy()
+                self.rekt()
+                
+        collision = self.collidingWithSprites(Missiles)
+        if len(collision):
+            if collision[0].visible:
+                collision[0].destroy()
+                self.rekt()
+                
+        collision = self.collidingWithSprites(Sun)
+        if len(collision):
+            if collision[0].visible:
+                collision[0].destroy()
+                self.rekt()
+                self.destroy
 
     def moveforward(self, event):
         self.frame = 1
@@ -163,27 +181,12 @@ class Sip(Sprite):
     def NoFire(self,event):
         Missiles
 
-        collision = self.collidingWithSprites(Ship)
-        if len(collision):
-            if collision[0].visible:
-                collision[0].destroy()
-                self.rekt()
-                
-        collision = self.collidingWithSprites(Missiles)
-        if len(collision):
-            if collision[0].visible:
-                collision[0].destroy()
-                self.rekt()
-                
-        collision = self.collidingWithSprites(Sun)
-        if len(collision):
-            if collision[0].visible:
-                collision[0].destroy()
-                self.rekt()
+        
 
     def rekt(self):
         self.appear=False
         BigExplosion(self.position)
+        self.destroy()
         
 class Missiles(Sprite):
     image=ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
