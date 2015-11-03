@@ -81,18 +81,6 @@ class Ship(Sprite):
             if collision[0].visible:
                 collision[0].rekt()
                 self.rekt()
-                
-        collision = self.collidingWithSprites(Missiles)
-        if len(collision):
-            if collision[0].visible:
-                collision[0].rekt()
-                self.rekt()
-                
-        collision = self.collidingWithSprites(Sun)
-        if len(collision):
-            if collision[0].visible:
-                collision[0].rekt()
-                self.rekt()
 
     def rekt(self):
         self.appear=False
@@ -184,52 +172,7 @@ class Sip(Sprite):
         BigExplosion(self.position)
         self.reappear=5
 
-class Missiles(Sprite):
-    image=ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
-    def __init__(self, position):
-        super().__init__(Missiles.image, position)
-        self.circularCollisionModel()
-        self.fxcenter = 0.5 
-        self.fycenter = 0.5
-        pic=1
-    
-    def step(self):
-        if self.fire:
-            self.setImage(self.pic)
-            self.pic += 1
-            if self.pic == 8:
-                self.pic = 1
-        else:
-            self.setImage(0)
-            
-        collision = self.collidingWithSprites(Ship)
-        if len(collision):
-            if collision[0].visible:
-                collision[0].rekt()
-                self.rekt()
-                
-        collision = self.collidingWithSprites(Sip)
-        if len(collision):
-            if collision[0].visible:
-                collision[0].rekt()
-                self.rekt()
-                
-        collision = self.collidingWithSprites(Sun)
-        if len(collision):
-            if collision[0].visible:
-                collision[0].minirekt()
-                self.minirekt()
-        
-    def rekt(self):
-        self.appear=False
-        BigExplosion(self.position)
-        self.reappear=5
-        
-    def minirekt(self):
-        self.appear=False
-        SmallExplosion(self.position)
-        self.reappear=5
-    
+
 class BigExplosion(Sprite):
     image=ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
     def __init__(self, position):
@@ -242,27 +185,6 @@ class BigExplosion(Sprite):
         self.frame += 1
         if self.frame == 50:
             self.destroy()
-
-class SmallExplosion(Sprite):
-    image=ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
-    def __init__(self, position):
-        super().__init__(SmallExplosion.image, position)
-        self.frame=0
-        self.fxcenter = 0.5
-        self.fycenter = 0.5
-    
-    def step(self):
-        self.frame += 1
-        if self.frame == 20:
-            self.destroy()
-
-class Sun(Sprite):
-    image=ImageAsset("images/sun.png")
-    def __init__(self, position):
-        super().__init__(Sun.image, position)
-        self.fxcenter = 0.5
-        self.fycenter = 0.5
-        self.circularCollisionModel()
 
 class SpaceGame(App):
     def __init__(self, width, height):
@@ -283,39 +205,14 @@ class SpaceGame(App):
         
         Ship((200,570))
         Sip((1000,570))
-"""
-        Sun((300,400))
-        Sun((650,500))
-        Sun((450,200))
-        Sun((199,54))
-        Sun((478,400))
-  #      Sun((900,900))
-        Sun((20,350))
-        Sun((900,90))
-        Sun((800,700))
-        Sun((347,784))
- #       Sun((1000,1100))
-#        Sun((1500,1000))
-        Sun((1300,600))
-        Sun((1199,400))
-        Sun((340,1000))
-#        Sun((1250,900))
- #       Sun((1500,900))
-  #      Sun((100,1000))
-   #     Sun((1200,1350))
-        Sun((700,200))
-        Sun((950,800))
-        Sun((500,700))
-        Sun((850,350))
-        Sun((512,512))
-"""
+
     def step(self):
         for ship in self.getSpritesbyClass(Ship):
             ship.step()
         for ship in self.getSpritesbyClass(Sip):
             ship.step()
-        for missile in self.getSpritesbyClass(Missiles):
-            missile.step()
+        #for missile in self.getSpritesbyClass(Missiles):
+         #   missile.step()
         explosions = self.getSpritesbyClass(SmallExplosion)
         for explosion in explosions:
             explosion.step()
