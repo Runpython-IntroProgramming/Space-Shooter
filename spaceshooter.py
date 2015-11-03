@@ -14,8 +14,8 @@ SCREEN_HEIGHT = 1024
 class Sun(Sprite):
     
     asset = ImageAsset("images/sun.png")
-    width = 120
-    height = 114
+    width = 80
+    height = 76
     
     def __init__(self, position):
         super().__init__(Sun.asset, position)
