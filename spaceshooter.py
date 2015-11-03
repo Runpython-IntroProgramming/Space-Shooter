@@ -57,15 +57,17 @@ class SpaceShip(Sprite):
             self.setImage(0)
 
     def moveleft(self, event):
-        self.vx += -.1
-        self.vr += .01
+        if self.vx>-1:
+            self.vx += -.1
     def moveright(self, event):
-        self.vx += .1
-        self.vr += -.01
+        if self.vx<1:
+            self.vx += .1
     def movedown(self, event):
-        self.vy += .1
+        if self.vy<1:
+            self.vy += .1
     def moveup(self, event):
-        self.vy += -.1
+        if self.vy>-1:
+            self.vy += -.1
 
     def thrustOn(self, event):
         self.thrust = 1
@@ -89,7 +91,7 @@ class SpaceGame(App):
         #bg_asset = RectangleAsset(width, height, noline, black)
         bg_asset = ImageAsset("images/starfield.jpg")
         bg=Sprite(bg_asset,(0,0))
-        sun_asset = ImageAsset("images/sun.png",Frame(227,0,292-227,125), 4, 'vertical')
+        sun_asset = ImageAsset("images/sun.png")
         self.sun=Sprite(sun_asset, (200,200))
         SpaceShip((100,100), self)
         #SpaceShip((150,150))
