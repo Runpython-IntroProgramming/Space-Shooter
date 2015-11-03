@@ -98,7 +98,7 @@ class Ship(Sprite):
     def rekt(self):
         self.appear=False
         BigExplosion(self.position)
-        self.reappear=5
+        self.destroy()
     
 class Sip(Sprite):
     image=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(158,0,71,125), 4, 'vertical')
