@@ -97,8 +97,6 @@ class Sip(Sprite):
         self.vr=0
         self.frame=0
         self.thrustframe=1
-        self.appear=True
-        self.disappear=False
         SpaceGame.listenKeyEvent("keydown","i", self.moveforward)
         SpaceGame.listenKeyEvent("keyup","i", self.Nomoveforward)
         SpaceGame.listenKeyEvent("keydown","j",self.turnleft)
@@ -158,7 +156,13 @@ class Sip(Sprite):
         
     def NoFire(self,event):
         
+
+class HealthBar(Sprite):
+    image=ImageAsset("images/four_spaceship_by_albertov.png",Frame()
     
+class HealthBar2(Sprite):
+    image=ImageAsset("images/four_spaceship_by_albertov.png", Frame(
+
 class Missiles(Sprite):
     image=ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
     def __init__(self, position):
@@ -181,19 +185,19 @@ class BigExplosion(Sprite):
     image=ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
     def __init__(self, position):
         super().__init__(BigExplosion.image, position)
-        self.appear=True
         self.frame=0
+        self.fxcenter = 0.5
+        self.fycenter = 0.5
     
     def step(self):
         self.frame += 1
         if self.frame == 50:
-            self.rekt()
+            self.stop()
 
 class SmallExplosion(Sprite):
     image=ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
     def __init__(self, position):
         super().__init__(SmallExplosion.image, position)
-        self.appear=True
         self.frame=0
         self.fxcenter = 0.5
         self.fycenter = 0.5
@@ -201,7 +205,7 @@ class SmallExplosion(Sprite):
     def step(self):
         self.frame += 1
         if self.frame == 20:
-            self.rekt()
+            self.stop()
 
 class Sun(Sprite):
     image=ImageAsset("images/sun.png")
@@ -225,6 +229,9 @@ class SpaceGame(App):
         jeff6=Sprite(suhan,(0,1024))
         jeff7=Sprite(suhan,(1024,2014))
         jeff8=Sprite(suhan,(512,1024))
+        
+        HealthBar((
+        HealthBar2((
         
         Ship((200,570))
         Sip((1000,570))
@@ -260,9 +267,9 @@ class SpaceGame(App):
             ship.step()
         for missile in self.getSpritesbyClass(Missiles):
             missile.step()
-        for boom in self.getSpritesbyClass(Missiles):
+        for boom in self.getSpritesbyClass(BigExplosion):
             boom.step()
-        for boom in self.getSpritesbyClass(Missiles):
+        for boom in self.getSpritesbyClass(SmallExplosion):
             boom.step()
 
 #Fin
