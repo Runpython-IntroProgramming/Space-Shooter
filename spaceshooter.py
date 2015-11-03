@@ -30,8 +30,8 @@ class Ship(Sprite):
         SpaceGame.listenKeyEvent("keyup","a",self.NoturnLeft)
         SpaceGame.listenKeyEvent("keydown","d", self.turnRight)
         SpaceGame.listenKeyEvent("keyup","d", self.NoturnRight)
-#        SpaceGame.listenKeyEvent("keydown","e", self.Fire)
-#        SpaceGame.listenKeyEvent("keyup","e", self.NoFire)
+        SpaceGame.listenKeyEvent("keydown","e", self.Fire)
+        SpaceGame.listenKeyEvent("keyup","e", self.NoFire)
         self.fxcenter = 0.5
         self.fycenter = 0.5
 
@@ -47,7 +47,7 @@ class Ship(Sprite):
         else:
             self.setImage(0)
             
-        collision = self.collidingWithSprites(Ship1)
+        collision = self.collidingWithSprites(Sip)
         if len(collides):
             if collides[0].appear:
                 collides[0].rekt()
@@ -81,7 +81,8 @@ class Ship(Sprite):
         
     def NoturnRight(self,event):
         self.vr=0
-        
+
+    def 
 class Sip(Sprite):
     image=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(158,0,71,125), 4, 'vertical')
     def __init__(self, position):
@@ -99,8 +100,8 @@ class Sip(Sprite):
         SpaceGame.listenKeyEvent("keyup","j",self.Noturnleft)
         SpaceGame.listenKeyEvent("keydown","l", self.turnright)
         SpaceGame.listenKeyEvent("keyup","l", self.Noturnright)
-       # SpaceGame.listenKeyEvent("keydown","o", self.Fire)
-        #SpaceGame.listenKeyEvent("keyup","o", self.NoFire)
+        SpaceGame.listenKeyEvent("keydown","o", self.Fire)
+        SpaceGame.listenKeyEvent("keyup","o", self.NoFire)
         self.fxcenter = 0.5
         self.fycenter = 0.5
 
@@ -116,7 +117,7 @@ class Sip(Sprite):
         else:
             self.setImage(0)
 
-        collision = self.collidingWithSprites(Ship1)
+        collision = self.collidingWithSprites(Ship)
         if len(collides):
             if collides[0].visible:
                 collides[0].rekt()
@@ -146,7 +147,7 @@ class Sip(Sprite):
         
     def Noturnright(self,event):
         self.vr=0
-"""
+
     def Fire(self,event):
         
         
@@ -170,7 +171,7 @@ class Missiles(Sprite):
                 self.pic = 1
         else:
             self.setImage(0)
-"""
+
 class BigExplosion(Sprite):
     image=ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
     def __init__(self, position):
@@ -252,9 +253,13 @@ class SpaceGame(App):
             ship.step()
         for ship in self.getSpritesbyClass(Sip):
             ship.step()
- #       for ship in self.getSpritesbyClass(Missiles):
- #           ship.step()
-      
+        for missile in self.getSpritesbyClass(Missiles):
+            missile.step()
+        for boom in self.getSpritesbyClass(Missiles):
+            boom.step()
+        for boom in self.getSpritesbyClass(Missiles):
+            boom.step()
+
 #Fin
 myapp = SpaceGame(SCREEN_WIDTH,SCREEN_HEIGHT)
 myapp.run()
