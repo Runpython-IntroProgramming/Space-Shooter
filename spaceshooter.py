@@ -63,10 +63,10 @@ class SpaceShip(Sprite):
         self.vx+=(.5*(math.sin(self.rotation)))
         
     def turnright(self, event):
-        self.vr-=.005
+        self.vr-=.0005
 
     def turnleft(self, event):
-        self.vr+=.005
+        self.vr+=.0005
 
 
 
