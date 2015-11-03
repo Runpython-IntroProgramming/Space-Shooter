@@ -46,29 +46,7 @@ class Ship(Sprite):
                 self.thrust = 1
         else:
             self.setImage(0)
-"""
-        #collision = self.collidingWithSprites(Sip)
-        if len(collides):
-            if collides[0].appear:
-                collides[0].rekt()
-                self.rekt()
-                
-        collision = self.collidingWithSprites(Sun)
-        if len(collides):
-            if collides[0].appear:
-                collides[0].rekt()
-                self.rekt()
-                
-        collision = self.collidingWithSprites(Missiles)
-        if len(collides):
-            if collides[0].appear:
-                collides[0].rekt()
-                self.rekt()
-                
-    def rekt(self):
-        self.appear=False
-        BigExplosion(self.position)
-"""
+
     def moveForward(self, event):
         self.thrust = 1
         self.boris=math.sin(self.rotation)     #math skills from Jeff
@@ -98,7 +76,28 @@ class Ship(Sprite):
         
  #   def NoFire(self,event):
         
+#        collision = self.collidingWithSprites(Sip)
+ #       if len(collides):
+  #          if collides[0].visible:
+   #             collides[0].rekt()
+    #            self.rekt()
+     #           
+      #  collision = self.collidingWithSprites(Missiles)
+       # if len(collides):
+        #    if collides[0].visible:
+         #       collides[0].rekt()
+          #      self.rekt()
+           #     
+#        collision = self.collidingWithSprites(Sun)
+ #       if len(collides):
+  #          if collides[0].visible:
+   #             collides[0].rekt()
+    #            self.rekt()
 
+ #   def rekt(self):
+  #      self.appear=False
+    #    BigExplosion(self.position)
+    
 class Sip(Sprite):
     image=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(158,0,71,125), 4, 'vertical')
     def __init__(self, position):
@@ -130,29 +129,8 @@ class Sip(Sprite):
                 self.frame = 1
         else:
             self.setImage(0)
-"""
-        collision = self.collidingWithSprites(Ship)
-        if len(collides):
-            if collides[0].visible:
-                collides[0].rekt()
-                self.rekt()
-                
-        collision = self.collidingWithSprites(Missiles)
-        if len(collides):
-            if collides[0].visible:
-                collides[0].rekt()
-                self.rekt()
-                
-        collision = self.collidingWithSprites(Sun)
-        if len(collides):
-            if collides[0].visible:
-                collides[0].rekt()
-                self.rekt()
+        
 
-    def rekt(self):
-        self.appear=False
-        BigExplosion(self.position)
-"""
     def moveforward(self, event):
         self.frame = 1
         self.boris=math.sin(self.rotation)     #math skills from Jeff
@@ -181,7 +159,28 @@ class Sip(Sprite):
         
         
     #def NoFire(self,event):
-        
+
+#        collision = self.collidingWithSprites(Ship)
+ #       if len(collides):
+  #          if collides[0].visible:
+   #             collides[0].rekt()
+    #            self.rekt()
+     #           
+      #  collision = self.collidingWithSprites(Missiles)
+       # if len(collides):
+        #    if collides[0].visible:
+         #       collides[0].rekt()
+          #      self.rekt()
+           #     
+#        collision = self.collidingWithSprites(Sun)
+ #       if len(collides):
+  #          if collides[0].visible:
+   #             collides[0].rekt()
+    #            self.rekt()
+
+ #   def rekt(self):
+  #      self.appear=False
+    #    BigExplosion(self.position)
 
 class Missiles(Sprite):
     image=ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
