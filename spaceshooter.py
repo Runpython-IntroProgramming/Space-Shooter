@@ -181,8 +181,6 @@ class Sip(Sprite):
     def NoFire(self,event):
         Missiles
 
-        
-
     def rekt(self):
         self.appear=False
         BigExplosion(self.position)
