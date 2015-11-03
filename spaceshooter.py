@@ -25,6 +25,7 @@ class SpaceShip(Sprite):
         self.vx = .0001
         self.vy = .0001
         self.vr = 0
+        self.app = app
         #self.vr = math.atan(self.vy/self.vx)
         self.thrust = 0
         self.thrustframe = 1
@@ -45,8 +46,8 @@ class SpaceShip(Sprite):
         #is the below function in the write step?
         #if collidingWithSprites(self)==True:
             #print("collision")
-        if self.collidingWith(app.sun)==True:
-            self.stop
+        if self.collidingWith(self.app.sun)==True:
+            self.stop()
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
@@ -88,7 +89,7 @@ class SpaceGame(App):
         #bg_asset = RectangleAsset(width, height, noline, black)
         bg_asset = ImageAsset("images/starfield.jpg")
         bg=Sprite(bg_asset,(0,0))
-        sun_asset = ImageAsset("images/sun.png")
+        sun_asset = ImageAsset("images/sun.png",Frame(227,0,292-227,125), 4, 'vertical')
         self.sun=Sprite(sun_asset, (200,200))
         SpaceShip((100,100), self)
         #SpaceShip((150,150))
