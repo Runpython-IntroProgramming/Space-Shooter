@@ -12,8 +12,8 @@ from ggame import Frame, Color, RectangleAsset, LineStyle
 import time
 import math
 
-SCREEN_WIDTH = 1524
-SCREEN_HEIGHT = 1000
+SCREEN_WIDTH = 1800
+SCREEN_HEIGHT = 860
 
 class Ship(Sprite):
     image=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,292-227,125), 4, 'vertical')
@@ -77,26 +77,27 @@ class Ship(Sprite):
  #   def NoFire(self,event):
         
         collision = self.collidingWithSprites(Sip)
-        if len(collides):
-            if collides[0].visible:
-                collides[0].rekt()
+        if len(collision):
+            if collision[0].visible:
+                collision[0].rekt()
                 self.rekt()
                 
         collision = self.collidingWithSprites(Missiles)
-        if len(collides):
-            if collides[0].visible:
-                collides[0].rekt()
+        if len(collision):
+            if collision[0].visible:
+                collision[0].rekt()
                 self.rekt()
                 
         collision = self.collidingWithSprites(Sun)
-        if len(collides):
-            if collides[0].visible:
-                collides[0].rekt()
+        if len(collision):
+            if collision[0].visible:
+                collision[0].rekt()
                 self.rekt()
 
     def rekt(self):
         self.appear=False
         BigExplosion(self.position)
+        self.reappear=5
     
 class Sip(Sprite):
     image=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(158,0,71,125), 4, 'vertical')
@@ -161,26 +162,27 @@ class Sip(Sprite):
     #def NoFire(self,event):
 
         collision = self.collidingWithSprites(Ship)
-        if len(collides):
-            if collides[0].visible:
-                collides[0].rekt()
+        if len(collision):
+            if collision[0].visible:
+                collision[0].rekt()
                 self.rekt()
                 
         collision = self.collidingWithSprites(Missiles)
-        if len(collides):
-            if collides[0].visible:
-                collides[0].rekt()
+        if len(collision):
+            if collision[0].visible:
+                collision[0].rekt()
                 self.rekt()
                 
         collision = self.collidingWithSprites(Sun)
-        if len(collides):
-            if collides[0].visible:
-                collides[0].rekt()
+        if len(collision):
+            if collision[0].visible:
+                collision[0].rekt()
                 self.rekt()
 
     def rekt(self):
         self.appear=False
         BigExplosion(self.position)
+        self.reappear=5
 
 class Missiles(Sprite):
     image=ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
@@ -199,7 +201,35 @@ class Missiles(Sprite):
                 self.pic = 1
         else:
             self.setImage(0)
-
+            
+        collision = self.collidingWithSprites(Ship)
+        if len(collision):
+            if collision[0].visible:
+                collision[0].rekt()
+                self.rekt()
+                
+        collision = self.collidingWithSprites(Sip)
+        if len(collision):
+            if collision[0].visible:
+                collision[0].rekt()
+                self.rekt()
+                
+        collision = self.collidingWithSprites(Sun)
+        if len(collision):
+            if collision[0].visible:
+                collision[0].minirekt()
+                self.minirekt()
+        
+    def rekt(self):
+        self.appear=False
+        BigExplosion(self.position)
+        self.reappear=5
+        
+    def minirekt(self):
+        self.appear=False
+        SmallExplosion(self.position)
+        self.reappear=5
+    
 class BigExplosion(Sprite):
     image=ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
     def __init__(self, position):
@@ -211,7 +241,7 @@ class BigExplosion(Sprite):
     def step(self):
         self.frame += 1
         if self.frame == 50:
-            self.stop()
+            self.destroy()
 
 class SmallExplosion(Sprite):
     image=ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
@@ -224,7 +254,7 @@ class SmallExplosion(Sprite):
     def step(self):
         self.frame += 1
         if self.frame == 20:
-            self.stop()
+            self.destroy()
 
 class Sun(Sprite):
     image=ImageAsset("images/sun.png")
@@ -247,7 +277,11 @@ class SpaceGame(App):
         jeff5=Sprite(suhan,(1024,0))
         jeff6=Sprite(suhan,(0,1024))
         jeff7=Sprite(suhan,(1024,2014))
-        jeff8=Sprite(suhan,(512,1024))
+        jeff9=Sprite(suhan,(2014,2014))
+        jeff10=Sprite(suhan,(512,2014))
+        jeff11=Sprite(suhan,(1024,1024))
+        jeff12=Sprite(suhan,(512,1024))
+        jeff13=Sprite(suhan,(1024,512))
         
         Ship((200,570))
         Sip((1000,570))
@@ -257,20 +291,20 @@ class SpaceGame(App):
         Sun((450,200))
         Sun((199,54))
         Sun((478,400))
-        Sun((900,900))
+  #      Sun((900,900))
         Sun((20,350))
         Sun((900,90))
         Sun((800,700))
         Sun((347,784))
-        Sun((1000,1100))
-        Sun((1500,1000))
+ #       Sun((1000,1100))
+#        Sun((1500,1000))
         Sun((1300,600))
         Sun((1199,400))
         Sun((340,1000))
-        Sun((1250,900))
-        Sun((1500,900))
-        Sun((100,1000))
-        Sun((1200,1350))
+#        Sun((1250,900))
+ #       Sun((1500,900))
+  #      Sun((100,1000))
+   #     Sun((1200,1350))
         Sun((700,200))
         Sun((950,800))
         Sun((500,700))
@@ -284,10 +318,12 @@ class SpaceGame(App):
             ship.step()
         for missile in self.getSpritesbyClass(Missiles):
             missile.step()
-        for boom in self.getSpritesbyClass(BigExplosion):
-            boom.step()
-        for boom in self.getSpritesbyClass(SmallExplosion):
-            boom.step()
+        explosions = self.getSpritesbyClass(SmallExplosion)
+        for explosion in explosions:
+            explosion.step()
+        explosions = self.getSpritesbyClass(BigExplosion)
+        for explosion in explosions:
+            explosion.step()
 
 #Fin
 myapp = SpaceGame(SCREEN_WIDTH,SCREEN_HEIGHT)
