@@ -12,7 +12,7 @@ from ggame import Frame, Color, RectangleAsset, LineStyle
 import time
 import math
 
-SCREEN_WIDTH = 1800
+SCREEN_WIDTH = 1400
 SCREEN_HEIGHT = 860
 
 class Ship(Sprite):
@@ -34,6 +34,7 @@ class Ship(Sprite):
         SpaceGame.listenKeyEvent("keyup","e", self.NoFire)
         self.fxcenter = 0.5
         self.fycenter = 0.5
+        self.ammo=None
 
     def step(self):
         self.y += self.vy
@@ -90,10 +91,10 @@ class Ship(Sprite):
         self.vr=0
 
     def Fire(self,event):
-        Missiles
+        self.ammo=Missiles
         
     def NoFire(self,event):
-        Missiles
+        self.ammo=None
 
     def rekt(self):
         self.appear=False
@@ -176,10 +177,10 @@ class Sip(Sprite):
         self.vr=0
 
     def Fire(self,event):
-        Missiles
+        self.ammo=Missiles
         
     def NoFire(self,event):
-        Missiles
+        self.ammo=None
 
     def rekt(self):
         self.appear=False
@@ -250,34 +251,7 @@ class Sun(Sprite):
         collision = self.collidingWithSprites(Sip)
         if len(collision):
             if collision[0].visible:
-                collision[0].destroy()
-                self.rekt()
-            
-    def rekt(self):
-        self.appear=False
-        BigExplosion(self.position)
-
-class fin(Sprite):
-    image=ImageAsset("images/sun.png")
-    def __init__(self, position):
-        super().__init__(Sun.image, position)
-        vx
-        self.fxcenter = 0.5
-        self.fycenter = 0.5
-        self.circularCollisionModel()
-    
-    def step(self):
-        
-        collision = self.collidingWithSprites(Ship)
-        if len(collision):
-            if collision[0].visible:
-                collision[0].destroy()
-                self.rekt()
-                
-        collision = self.collidingWithSprites(Sip)
-        if len(collision):
-            if collision[0].visible:
-                collision[0].destroy()
+                collision[0].rekt()
                 self.rekt()
             
     def rekt(self):
@@ -337,14 +311,9 @@ class SpaceGame(App):
         Sun((900,90))
         Sun((800,700))
         Sun((347,784))
-        Sun((1000,1100))
-        Sun((1500,1000))
         Sun((1300,600))
         Sun((1199,400))
         Sun((340,1000))
-        Sun((1250,900))
-        Sun((1500,900))
-        Sun((100,1000))
         Sun((700,200))
         Sun((950,800))
         Sun((500,700))
