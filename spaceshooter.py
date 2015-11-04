@@ -66,6 +66,12 @@ class Ship(Sprite):
                 collision[0].destroy()
                 self.rekt()
                 
+        collision = self.collidingWithSprites(Deathsun)
+        if len(collision):
+            if collision[0].visible:
+                collision[0].destroy()
+                self.rekt()
+                
     def moveForward(self, event):
         self.thrust = 1
         self.boris=math.sin(self.rotation)     #math skills from Jeff
@@ -91,7 +97,7 @@ class Ship(Sprite):
         self.vr=0
 
     def Fire(self,event):
-        self.ammo=Missiles
+        self.ammo=Missiles(self.x,self.y)
         
     def NoFire(self,event):
         self.ammo=None
@@ -177,7 +183,7 @@ class Sip(Sprite):
         self.vr=0
 
     def Fire(self,event):
-        self.ammo=Missiles
+        self.ammo=Missiles(self.x,self.y)
         
     def NoFire(self,event):
         self.ammo=None
@@ -240,10 +246,47 @@ class Sun(Sprite):
         self.fxcenter = 0.5
         self.fycenter = 0.5
         self.circularCollisionModel()
-            
-    def rekt(self):
-        self.appear=False
-        BigExplosion(self.position)
+        
+class Deathsun(Sprite):
+    image=ImageAsset("images/sun.png")
+    def __init__(self, position):
+        super().__init__(Sun.image, position)
+        self.vy=0
+        self.vr=0
+        self.vx=0
+        SpaceGame.listenKeyEvent("keydown","a",self.turnLeft)
+        SpaceGame.listenKeyEvent("keyup","a",self.NoturnLeft)
+        SpaceGame.listenKeyEvent("keydown","d", self.turnRight)
+        SpaceGame.listenKeyEvent("keyup","d", self.NoturnRight)
+        SpaceGame.listenKeyEvent("keydown","e", self.Fire)
+        SpaceGame.listenKeyEvent("keyup","e", self.NoFire)
+        self.fxcenter = 0.5
+        self.fycenter = 0.5
+        self.ammo=None
+
+    def step(self):
+        self.y += self.vy
+        self.x += self.vx
+        self.rotation += self.vr
+        
+    def turnleft(self,event):
+        self.vr=0.1
+
+    def Noturnleft(self,event):
+        self.vr=0
+
+    def turnright(self, event):
+        self.vr=-0.1
+        
+    def Noturnright(self,event):
+        self.vr=0
+
+    def Fire(self,event):
+        self.ammo=Missiles(self.x,self.y)
+        
+    def NoFire(self,event):
+        self.ammo=None
+    
 
 class SmallExplosion(Sprite):
     image=ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
@@ -288,27 +331,18 @@ class SpaceGame(App):
         jeff12=Sprite(suhan,(512,1024))
         jeff13=Sprite(suhan,(1024,512))
         
-        Sun((300,400))
-        Sun((650,500))
-        Sun((450,200))
-        Sun((199,54))
-        Sun((478,400))
-        Sun((900,900))
-        Sun((20,350))
-        Sun((900,90))
-        Sun((800,700))
-        Sun((347,784))
-        Sun((1300,600))
-        Sun((1199,400))
-        Sun((340,1000))
+        Deathsun((700,430))
+        Sun((500,600))
+        Sun((500,250))
+        Sun((900,600))
+        Sun((900,250))
+        Sun((700,660))
         Sun((700,200))
-        Sun((950,800))
-        Sun((500,700))
-        Sun((850,350))
-        Sun((512,512))
 
-        Ship((200,570))
-        Sip((1000,570))
+#SCREEN_WIDTH = 1400
+#SCREEN_HEIGHT = 860
+        Ship((400,430))
+        Sip((1000,430))
 
     def step(self):
         for ship in self.getSpritesbyClass(Ship):
