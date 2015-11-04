@@ -30,11 +30,8 @@ class Ship(Sprite):
         SpaceGame.listenKeyEvent("keyup","a",self.NoturnLeft)
         SpaceGame.listenKeyEvent("keydown","d", self.turnRight)
         SpaceGame.listenKeyEvent("keyup","d", self.NoturnRight)
-        SpaceGame.listenKeyEvent("keydown","e", self.Fire)
-        SpaceGame.listenKeyEvent("keyup","e", self.NoFire)
         self.fxcenter = 0.5
         self.fycenter = 0.5
-        self.ammo=None
 
     def step(self):
         self.y += self.vy
@@ -53,20 +50,8 @@ class Ship(Sprite):
             if collision[0].visible:
                 collision[0].destroy()
                 self.rekt()
-        
-        collision = self.collidingWithSprites(Missiles)
-        if len(collision):
-            if collision[0].visible:
-                collision[0].destroy()
-                self.rekt()
                 
         collision = self.collidingWithSprites(Sun)
-        if len(collision):
-            if collision[0].visible:
-                collision[0].destroy()
-                self.rekt()
-                
-        collision = self.collidingWithSprites(Deathsun)
         if len(collision):
             if collision[0].visible:
                 collision[0].destroy()
@@ -96,12 +81,6 @@ class Ship(Sprite):
     def NoturnRight(self,event):
         self.vr=0
 
-    def Fire(self,event):
-        self.ammo=Missiles(self.x,self.y)
-        
-    def NoFire(self,event):
-        self.ammo=None
-
     def rekt(self):
         self.appear=False
         BigExplosion(self.position)
@@ -122,8 +101,6 @@ class Sip(Sprite):
         SpaceGame.listenKeyEvent("keyup","j",self.Noturnleft)
         SpaceGame.listenKeyEvent("keydown","l", self.turnright)
         SpaceGame.listenKeyEvent("keyup","l", self.Noturnright)
-        SpaceGame.listenKeyEvent("keydown","o", self.Fire)
-        SpaceGame.listenKeyEvent("keyup","o", self.NoFire)
         self.fxcenter = 0.5
         self.fycenter = 0.5
 
@@ -140,12 +117,6 @@ class Sip(Sprite):
             self.setImage(0)
         
         collision = self.collidingWithSprites(Ship)
-        if len(collision):
-            if collision[0].visible:
-                collision[0].destroy()
-                self.rekt()
-                
-        collision = self.collidingWithSprites(Missiles)
         if len(collision):
             if collision[0].visible:
                 collision[0].destroy()
@@ -182,62 +153,10 @@ class Sip(Sprite):
     def Noturnright(self,event):
         self.vr=0
 
-    def Fire(self,event):
-        self.ammo=Missiles(self.x,self.y)
-        
-    def NoFire(self,event):
-        self.ammo=None
-
     def rekt(self):
         self.appear=False
         BigExplosion(self.position)
         self.destroy()
-        
-class Missiles(Sprite):
-    image=ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
-    def __init__(self, position):
-        super().__init__(Missiles.image, position)
-        self.circularCollisionModel()
-        self.fxcenter = 0.5 
-        self.fycenter = 0.5
-        pic=1
-    
-    def step(self):
-        if self.fire:
-            self.setImage(self.pic)
-            self.pic += 1
-            if self.pic == 8:
-                self.pic = 1
-        else:
-            self.setImage(0)
-            
-        collision = self.collidingWithSprites(Ship)
-        if len(collision):
-            if collision[0].visible:
-                collision[0].destroy()
-                self.rekt()
-                
-        collision = self.collidingWithSprites(Sip)
-        if len(collision):
-            if collision[0].visible:
-                collision[0].destroy()
-                self.rekt()
-                
-        collision = self.collidingWithSprites(Sun)
-        if len(collision):
-            if collision[0].visible:
-                collision[0].destroy()
-                self.minirekt()
-        
-    def rekt(self):
-        self.appear=False
-        BigExplosion(self.position)
-        self.reappear=5
-        
-    def minirekt(self):
-        self.appear=False
-        SmallExplosion(self.position)
-        self.reappear=5
 
 class Sun(Sprite):
     image=ImageAsset("images/sun.png")
@@ -246,63 +165,9 @@ class Sun(Sprite):
         self.fxcenter = 0.5
         self.fycenter = 0.5
         self.circularCollisionModel()
-        
-class Deathsun(Sprite):
-    image=ImageAsset("images/sun.png")
-    def __init__(self, position):
-        super().__init__(Sun.image, position)
-        self.vy=0
-        self.vr=0
-        self.vx=0
-        SpaceGame.listenKeyEvent("keydown","a",self.turnLeft)
-        SpaceGame.listenKeyEvent("keyup","a",self.NoturnLeft)
-        SpaceGame.listenKeyEvent("keydown","d", self.turnRight)
-        SpaceGame.listenKeyEvent("keyup","d", self.NoturnRight)
-        SpaceGame.listenKeyEvent("keydown","e", self.Fire)
-        SpaceGame.listenKeyEvent("keyup","e", self.NoFire)
-        self.fxcenter = 0.5
-        self.fycenter = 0.5
-        self.ammo=None
-
-    def step(self):
-        self.y += self.vy
-        self.x += self.vx
-        self.rotation += self.vr
-        
-    def turnleft(self,event):
-        self.vr=0.1
-
-    def Noturnleft(self,event):
-        self.vr=0
-
-    def turnright(self, event):
-        self.vr=-0.1
-        
-    def Noturnright(self,event):
-        self.vr=0
-
-    def Fire(self,event):
-        self.ammo=Missiles(self.x,self.y)
-        
-    def NoFire(self,event):
-        self.ammo=None
-    
-
-class SmallExplosion(Sprite):
-    image=ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
-    def __init__(self, position):
-        super().__init__(SmallExplosion.image, position)
-        self.frame=0
-        self.fxcenter = 0.5
-        self.fycenter = 0.5
-    
-    def step(self):
-        self.frame += 1
-        if self.frame == 20:
-            self.destroy()
 
 class BigExplosion(Sprite):
-    image=ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
+    image=ImageAsset("images/explosion2.png", Frame(0,0,192,195), 25)
     def __init__(self, position):
         super().__init__(BigExplosion.image, position)
         self.frame=0
@@ -319,25 +184,25 @@ class SpaceGame(App):
         super().__init__(width, height)
         suhan=ImageAsset("images/starfield.jpg")
 
-        jeff=Sprite(suhan,(0,0))     #jjeeeefffffff
-        jeff1=Sprite(suhan,(512,512))
-        jeff2=Sprite(suhan,(0,512))
-        jeff3=Sprite(suhan,(512,0))
-        jeff4=Sprite(suhan,(1024,512))
-        jeff5=Sprite(suhan,(1024,0))
-        jeff6=Sprite(suhan,(0,1024))
-        jeff10=Sprite(suhan,(512,2014))
-        jeff11=Sprite(suhan,(1024,1024))
-        jeff12=Sprite(suhan,(512,1024))
-        jeff13=Sprite(suhan,(1024,512))
+        quiter=Sprite(suhan,(0,0))     #jjeeeefffffff
+        quiter1=Sprite(suhan,(512,512))
+        quiter2=Sprite(suhan,(0,512))
+        quiter3=Sprite(suhan,(512,0))
+        quiter4=Sprite(suhan,(1024,512))
+        quiter5=Sprite(suhan,(1024,0))
+        quiter6=Sprite(suhan,(0,1024))
+        quiter10=Sprite(suhan,(512,2014))
+        quiter11=Sprite(suhan,(1024,1024))
+        quiter12=Sprite(suhan,(512,1024))
+        quiter13=Sprite(suhan,(1024,512))
         
-        Deathsun((700,430))
+        Sun((700,430))
         Sun((500,600))
         Sun((500,250))
         Sun((900,600))
         Sun((900,250))
-        Sun((700,660))
-        Sun((700,200))
+        Sun((700,760))
+        Sun((700,100))
 
 #SCREEN_WIDTH = 1400
 #SCREEN_HEIGHT = 860
@@ -349,11 +214,6 @@ class SpaceGame(App):
             ship.step()
         for ship in self.getSpritesbyClass(Sip):
             ship.step()
-        for missile in self.getSpritesbyClass(Missiles):
-            missile.step()
-        explosions = self.getSpritesbyClass(SmallExplosion)
-        for explosion in explosions:
-            explosion.step()
         explosions = self.getSpritesbyClass(BigExplosion)
         for explosion in explosions:
             explosion.step()
