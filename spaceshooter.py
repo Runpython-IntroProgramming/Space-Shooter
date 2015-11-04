@@ -49,8 +49,7 @@ class SpaceShip(Sprite):
         else:
             self.setImage(0)
         if collidingWith(self.sun):
-            self.vx = 0
-            self.vy = 0
+            self.vr = 100
 
     def thrustOn(self, event):
         self.thrust = 1
@@ -85,7 +84,7 @@ class SpaceGame(App):
         bg_asset = ImageAsset("images/starfield.jpg")
         bg = Sprite(bg_asset, (0,0))
         s_asset = ImageAsset("images/sun.png")
-        s = Sprite(s_asset, (500,500))
+        s = Sprite(s_asset, (200,200))
         SpaceShip((100,100),s)
 
 
