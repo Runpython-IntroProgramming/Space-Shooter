@@ -49,7 +49,8 @@ class SpaceShip(Sprite):
         else:
             self.setImage(0)
         if collidingWith(self.sun):
-            self.setImage(ImageAsset("images/explosion2.png"))
+            self.vx = 0
+            self.vy = 0
 
     def thrustOn(self, event):
         self.thrust = 1
