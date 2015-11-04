@@ -240,19 +240,6 @@ class Sun(Sprite):
         self.fxcenter = 0.5
         self.fycenter = 0.5
         self.circularCollisionModel()
-    
-    def step(self):    
-        collision = self.collidingWithSprites(Ship)
-        if len(collision):
-            if collision[0].visible:
-                collision[0].destroy()
-                self.rekt()
-                
-        collision = self.collidingWithSprites(Sip)
-        if len(collision):
-            if collision[0].visible:
-                collision[0].rekt()
-                self.rekt()
             
     def rekt(self):
         self.appear=False
