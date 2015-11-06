@@ -47,6 +47,7 @@ class Ship1(Sprite):
         SpaceGame.listenKeyEvent("keyup", "right arrow", self.rrOff)
         SpaceGame.listenKeyEvent("keypress", "enter", self.fire)
         self.fxcenter = self.fycenter = 0.5
+        self.bullet = None
     
     def step(self):
         self.rotation += 1.5*self.vr
@@ -77,7 +78,7 @@ class Ship1(Sprite):
         else:
             self.setImage(0)
             
-        collides = self.collidingWithSprites()
+        collides = self.collidingWithSprites(Ship2 or Bullet)
         if len(collides):
             if collides[0].visible:
                 collides[0].explode()
@@ -169,7 +170,7 @@ class Ship2(Sprite):
         else:
             self.setImage(0)
         
-        collides = self.collidingWithSprites()
+        collides = self.collidingWithSprites(Ship1 or Sun)
         if len(collides):
             if collides[0].visible:
                 collides[0].explode()
