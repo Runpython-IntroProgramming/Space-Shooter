@@ -26,6 +26,8 @@ class SpaceShip(Sprite):
         self.vx = 0
         self.vy = 0
         self.vr = 0
+        self.collision = 0
+        self.collisionframe = 1
         self.thrust = 0
         self.thrustframe = 1
         self.sun = s
@@ -49,8 +51,8 @@ class SpaceShip(Sprite):
                 self.thrustframe = 1
         else:
             self.setImage(0)
-        #if collidingWith(self.sun):
-            #print("Collision")
+        if self.collidingWith(self.sun):
+            self.setImage(self.collision)
 
     def thrustOn(self, event):
         self.thrust = 1
