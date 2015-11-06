@@ -232,9 +232,6 @@ class Bullet(Sprite):
         self.x -= 15*self.X
         self.y -= 15*self.Y
         
-        if self.collidingWith(Ship1 or Ship2):
-            ExplosionBig(self.position)
-        
         if self.x < 0 or self.x > SCREEN_WIDTH or self.y < 0 or self.y >SCREEN_HEIGHT:
             self.destroy()
         
