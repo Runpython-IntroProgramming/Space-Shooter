@@ -29,6 +29,7 @@ class SpaceShip(Sprite):
         #self.vr = math.atan(self.vy/self.vx)
         self.thrust = 0
         self.thrustframe = 1
+        #self.explodeframe = 
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.moveleft)
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.moveright)
         SpaceGame.listenKeyEvent("keydown", "up arrow", self.moveup)
@@ -49,14 +50,14 @@ class SpaceShip(Sprite):
         #if collidingWithSprites(self)==True:
             #print("collision")
         if self.collidingWith(self.app.sun)==True:
-            self.stop()
-        if self.thrust == 1:
+            self.explode()
+        """if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
             if self.thrustframe == 4:
                 self.thrustframe = 1
         else:
-            self.setImage(0)
+            self.setImage(0)"""
 
     def moveleft(self, event):
         if self.vx>-1:
@@ -85,9 +86,16 @@ class SpaceShip(Sprite):
 
     def thrustOff(self, event):
         self.thrust = 0
-    def stop(self):
+    
+    """def explode(self):
+        self.setImage(self.thrustframe)
+            self.thrustframe += 1
+            if self.thrustframe == 4:
+                self.thrustframe = 1
+        else:
+            self.setImage(0)
         self.vx=0
-        self.vy=0
+        self.vy=0"""
 
 
 
