@@ -45,12 +45,13 @@ class Ship1(Sprite):
         SpaceGame.listenKeyEvent("keyup", "left arrow", self.lrOff)
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.rotateRight)
         SpaceGame.listenKeyEvent("keyup", "right arrow", self.rrOff)
-        SpaceGame.listenKeyEvent("keypress", "enter", self.fire)
+        SpaceGame.listenKeyEvent("keydown", "enter", self.fire)
         self.fxcenter = self.fycenter = 0.5
         self.bullet = None
     
     def step(self):
         self.rotation += 1.5*self.vr
+        self.move()
         if self.thrust == 1:
             self.VX += self.vx
             self.VY += self.vy
@@ -74,7 +75,6 @@ class Ship1(Sprite):
             self.thrustframe += 1
             if self.thrustframe == 4:
                 self.thrustframe = 1
-            self.move()
         else:
             self.setImage(0)
             
