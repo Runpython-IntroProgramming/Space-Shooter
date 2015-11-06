@@ -9,6 +9,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 from ggame import App, RectangleAsset, ImageAsset, SoundAsset, Sprite, Sound, LineStyle, Color, Frame
 import math
+import datetime
 SCREEN_WIDTH = 1536
 SCREEN_HEIGHT = 1024
 class Sun(Sprite):
@@ -45,7 +46,7 @@ class Ship1(Sprite):
         SpaceGame.listenKeyEvent("keyup", "left arrow", self.lrOff)
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.rotateRight)
         SpaceGame.listenKeyEvent("keyup", "right arrow", self.rrOff)
-        SpaceGame.listenKeyEvent("keydown", "enter", self.fire)
+        SpaceGame.listenKeyEvent("keypress", "enter", self.fire)
         self.fxcenter = self.fycenter = 0.5
         self.bullet = None
     
@@ -78,7 +79,8 @@ class Ship1(Sprite):
         else:
             self.setImage(0)
             
-        collides = self.collidingWithSprites(Ship2 or Bullet)
+        collides = self.collidingWithSprites(Ship2)
+        collides.extend(self.collidingWithSprites(Bullet))
         if len(collides):
             if collides[0].visible:
                 collides[0].explode()
@@ -137,7 +139,7 @@ class Ship2(Sprite):
         SpaceGame.listenKeyEvent("keyup", "a", self.lrOff)
         SpaceGame.listenKeyEvent("keydown", "d", self.rotateRight)
         SpaceGame.listenKeyEvent("keyup", "d", self.rrOff)
-        SpaceGame.listenKeyEvent("keydown", "e", self.fire)
+        SpaceGame.listenKeyEvent("keypress", "e", self.fire)
         self.fxcenter = self.fycenter = 0.5
         self.bullet = None
     
