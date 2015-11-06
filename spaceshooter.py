@@ -77,7 +77,7 @@ class Ship1(Sprite):
         else:
             self.setImage(0)
             
-        collides = self.collidingWithSprites(Ship1)
+        collides = self.collidingWithSprites()
         if len(collides):
             if collides[0].visible:
                 collides[0].explode()
@@ -169,7 +169,7 @@ class Ship2(Sprite):
         else:
             self.setImage(0)
         
-        collides = self.collidingWithSprites(Ship1)
+        collides = self.collidingWithSprites()
         if len(collides):
             if collides[0].visible:
                 collides[0].explode()
