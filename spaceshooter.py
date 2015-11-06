@@ -318,7 +318,7 @@ class SpaceGame(App):
         Ship1((250,250))
         Ship2((400,400))
         Sun((750,450))
-        HealthBar((0,0))
+        HealthBar((SCREEN_WIDTH, SCREEN_HEIGHT),5,(0,0),(SCREEN_WIDTH, SCREEN_HEIGHT))
         
     def step(self):
         for ship in self.getSpritesbyClass(Ship1):
