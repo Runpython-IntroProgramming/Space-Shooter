@@ -237,9 +237,10 @@ class Bullet(Sprite):
         self.x -= 15*self.X
         self.y -= 15*self.Y
         
-        collide = self.collidingWithSprites(Ship2)
-        if len(collide):
-            if collide[0].visible:
+        collides = self.collidingWithSprites(Ship2)
+        collides.extend(self.collidingWithSprites(Ship1))
+        if len(collides):
+            if collides[0].visible:
                 self.visible = False
         else:
             self.visible = True
