@@ -9,7 +9,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 from ggame import App, RectangleAsset, ImageAsset, SoundAsset, Sprite, Sound, LineStyle, Color, Frame
 import math
-import datetime
+import time
 SCREEN_WIDTH = 1536
 SCREEN_HEIGHT = 1024
 class Sun(Sprite):
@@ -222,8 +222,12 @@ class Bullet(Sprite):
         self.fycenter = 0
         self.X = vx
         self.Y = vy
+        self.visible = False
+        time.sleep(2)
+        
     
     def step(self):
+        self.visible = True
         if self.exist:
             self.setImage(self.appear)
             self.appear += 1
