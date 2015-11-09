@@ -17,14 +17,15 @@ class SpaceShip(Sprite):
     """
     Animated space ship
     """
-    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
-        Frame(227,0,292-227,125), 4, 'vertical')
+    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,292-227,125), 4, 'vertical')
+
 
     def __init__(self, position, app):
         super().__init__(SpaceShip.asset, position)
         self.vx = 0
         self.vy = 0
         self.vr = 0
+        #self.img=img
         self.app = app
         #self.vr = math.atan(self.vy/self.vx)
         self.thrust = 0
@@ -39,6 +40,11 @@ class SpaceShip(Sprite):
         self.fxcenter = self.fycenter = 0.5
         #if self.collidingWith(sun)==True:
             #self.stop
+    """imageNum=1       
+    if imageNum==1:
+        asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,292-227,125), 4, 'vertical')
+    if imageNum==2:
+        asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(500,0,292-227,125), 4, 'horizontal')"""
 
     def step(self):
         self.x += self.vx
@@ -60,17 +66,17 @@ class SpaceShip(Sprite):
             self.setImage(0)"""
 
     def moveleft(self, event):
-        if self.vx>-1:
-            self.vx += -.1
+        if self.vx>-5:
+            self.vx += -.3
     def moveright(self, event):
-        if self.vx<1:
-            self.vx += .1
+        if self.vx<5:
+            self.vx += .3
     def movedown(self, event):
-        if self.vy<1:
-            self.vy += .1
+        if self.vy<5:
+            self.vy += .3
     def moveup(self, event):
-        if self.vy>-1:
-            self.vy += -.1
+        if self.vy>-5:
+            self.vy += -.3
     """def moveleft(self, event):
         self.vr+=.001
     def moveright(self, event):
@@ -88,15 +94,19 @@ class SpaceShip(Sprite):
         self.thrust = 0
     
     def explode(self):
-        self.vx=0
-        self.vy=0
+        self.destroy()
+        explosion((0,0))
         """self.setImage(self.thrustframe)
             self.thrustframe += 1
             if self.thrustframe == 4:
                 self.thrustframe = 1
         else:
             self.setImage(0)"""
-
+#class Ship1(SpaceShip):
+    #def __init__():
+    
+class explosion(Sprite):
+    collision = ImageAsset("image/explosion2.png", Frame(0,0,112-0,195), 25, 'horizontal')
 
 
 class SpaceGame(App):
@@ -113,6 +123,8 @@ class SpaceGame(App):
         sun_asset = ImageAsset("images/sun.png")
         self.sun=Sprite(sun_asset, (200,200))
         SpaceShip((100,100), self)
+        #SpaceShip((200,100), self, 2)
+
         #SpaceShip((150,150))
         #SpaceShip((200,50))
 
