@@ -222,8 +222,6 @@ class Bullet(Sprite):
         self.fycenter = 0
         self.X = vx
         self.Y = vy
-        self.visible = False
-        time.sleep(2)
         
     
     def step(self):
@@ -238,6 +236,13 @@ class Bullet(Sprite):
         
         self.x -= 15*self.X
         self.y -= 15*self.Y
+        
+        if collides = self.collidingWithSprites(Ship1)
+        if len(collides):
+            if collides[0].visible:
+                self.visible = false
+        else:
+            self.visible = True
         
         if self.x < 0 or self.x > SCREEN_WIDTH or self.y < 0 or self.y >SCREEN_HEIGHT:
             self.destroy()
