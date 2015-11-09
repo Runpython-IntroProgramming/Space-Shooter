@@ -172,7 +172,7 @@ class Ship2(Sprite):
         else:
             self.setImage(0)
         
-        collides = self.collidingWithSprites(Ship1 or Sun)
+        collides = self.collidingWithSprites(Ship1)
         if len(collides):
             if collides[0].visible:
                 collides[0].explode()
