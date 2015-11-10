@@ -25,6 +25,7 @@ class SpaceShip(Sprite):
         self.vx = 0
         self.vy = 0
         self.vr = 0
+        #explosionTime=0
         #self.img=img
         self.app = app
         #self.vr = math.atan(self.vy/self.vx)
@@ -57,13 +58,6 @@ class SpaceShip(Sprite):
             #print("collision")
         if self.collidingWith(self.app.sun)==True:
             self.explode()
-        """if self.thrust == 1:
-            self.setImage(self.thrustframe)
-            self.thrustframe += 1
-            if self.thrustframe == 4:
-                self.thrustframe = 1
-        else:
-            self.setImage(0)"""
 
     def moveleft(self, event):
         if self.vx>-5:
@@ -96,6 +90,7 @@ class SpaceShip(Sprite):
     def explode(self):
         explosion(self.position)
         self.destroy()
+        
         """self.setImage(self.thrustframe)
             self.thrustframe += 1
             if self.thrustframe == 4:
@@ -107,14 +102,15 @@ class SpaceShip(Sprite):
     
 class explosion(Sprite):
     asset = ImageAsset("images/explosion2.png", Frame(0,0,192-0,195), 25, 'horizontal')
-    frameNum=0
     def __init__(self, position):
         super().__init__(explosion.asset, position)
-        """self.setImage(self.frameNum)
-        self.thrustframe += 1
-        if self.thrustframe == 4:
-            self.thrustframe = 1"""
-
+    """need to check this step function because it isn't working"""def step(self):
+        self.FrameNum=0
+        for bruh in range(5):
+            self.setImage(self.FrameNum)
+            self.FrameNum += 1
+        #if self.FrameNum == 4:
+            #self.FrameNum = 1
 class SpaceGame(App):
     """
     Tutorial4 space game example.
