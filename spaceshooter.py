@@ -109,6 +109,8 @@ class explosion(Sprite):
     def step(self):
         self.setImage(self.FrameNum)
         self.FrameNum += 1
+        if FrameNum==25:
+            self.destroy()
         #if self.FrameNum == 4:
             #self.FrameNum = 1
 class SpaceGame(App):
@@ -133,6 +135,8 @@ class SpaceGame(App):
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
+        for explode in self.getSpritesbyClass(explosion):
+            explode.step()
 
 
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
