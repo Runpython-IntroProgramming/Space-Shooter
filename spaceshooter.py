@@ -105,9 +105,11 @@ class explosion(Sprite):
     def __init__(self, position):
         super().__init__(explosion.asset, position)
         self.FrameNum=0
-
+        self.speed=0.0
     def step(self):
         self.setImage(self.FrameNum)
+        self.speed+=0.2
+        self.FrameNum=int(self.speed)
         self.FrameNum += 1
         if self.FrameNum==25:
             self.destroy()
