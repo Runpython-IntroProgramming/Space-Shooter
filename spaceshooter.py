@@ -106,7 +106,7 @@ class SpaceShip(Sprite):
     #def __init__():
     
 class explosion(Sprite):
-    asset = ImageAsset("images/explosion2.png", Frame(0,0,112-0,195), 25, 'horizontal')
+    asset = ImageAsset("images/explosion2.png", Frame(0,0,150-0,195), 25, 'horizontal')
     def __init__(self, position):
         super().__init__(explosion.asset, position)
 
