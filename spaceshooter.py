@@ -26,8 +26,6 @@ class SpaceShip(Sprite):
         self.vx = 0
         self.vy = 0
         self.vr = 0
-        self.collision = 0
-        self.collisionframe = 1
         self.thrust = 0
         self.thrustframe = 1
         self.sun = s
@@ -52,8 +50,8 @@ class SpaceShip(Sprite):
         else:
             self.setImage(0)
         if self.collidingWith(self.sun):
-            self.setImage(self.collision)
-
+            self.explode()
+            
     def thrustOn(self, event):
         self.thrust = 1
 
@@ -74,8 +72,15 @@ class SpaceShip(Sprite):
     def turnleft(self, event):
         self.vr+=.4
 
+    def explode(self):
+        explosion(self.position)
+        self.destroy()
 
-
+class explosion(Sprite):
+    asset = ImageAsset("images/explosion2.png", Frame(0,0,192-0,195), 25, 'horizontal')
+    def __init__(self, position):
+        super().__init__(explosion.asset, position)
+        self.explode = 0 
 class SpaceGame(App):
     """
     Tutorial4 space game example.
