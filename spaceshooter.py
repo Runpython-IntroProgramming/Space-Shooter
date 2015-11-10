@@ -109,7 +109,7 @@ class explosion(Sprite):
     def step(self):
         self.setImage(self.FrameNum)
         self.FrameNum += 1
-        if FrameNum==25:
+        if self.FrameNum==25:
             self.destroy()
         #if self.FrameNum == 4:
             #self.FrameNum = 1
