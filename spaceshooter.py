@@ -80,12 +80,14 @@ class explosion(Sprite):
     asset = ImageAsset("images/explosion2.png", Frame(0,0,192-0,195), 25, 'horizontal')
     def __init__(self, position):
         super().__init__(explosion.asset, position)
-        self.explode = 0 
-        self.explodeframe = 1
+        self.explosion = 0 
+        self.explosionframe = 1
     def step(self):
-        if self.explode == 1:
-            self.setImage(self.explodeframe)
-            self.explodeframe +=1
+        if self.explosion == 1:
+            self.setImage(self.explosionframe)
+            self.explosionframe +=1
+            if self.explosionframe == 4:
+                self.explosionframe = 1
         
 class SpaceGame(App):
     """
