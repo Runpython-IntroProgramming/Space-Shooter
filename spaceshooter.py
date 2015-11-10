@@ -104,11 +104,11 @@ class explosion(Sprite):
     asset = ImageAsset("images/explosion2.png", Frame(0,0,192-0,195), 25, 'horizontal')
     def __init__(self, position):
         super().__init__(explosion.asset, position)
-    """need to check this step function because it isn't working"""def step(self):
         self.FrameNum=0
-        for bruh in range(5):
-            self.setImage(self.FrameNum)
-            self.FrameNum += 1
+
+    def step(self):
+        self.setImage(self.FrameNum)
+        self.FrameNum += 1
         #if self.FrameNum == 4:
             #self.FrameNum = 1
 class SpaceGame(App):
