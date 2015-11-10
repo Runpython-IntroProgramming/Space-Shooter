@@ -81,6 +81,12 @@ class explosion(Sprite):
     def __init__(self, position):
         super().__init__(explosion.asset, position)
         self.explode = 0 
+        self.explodeframe = 1
+    def step(self):
+        if self.explode == 1:
+            self.setImage(self.explodeframe)
+            self.explodeframe +=1
+        
 class SpaceGame(App):
     """
     Tutorial4 space game example.
