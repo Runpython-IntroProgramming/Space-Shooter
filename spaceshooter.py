@@ -83,11 +83,10 @@ class explosion(Sprite):
         self.explosion = 0 
         self.explosionframe = 1
     def step(self):
-        if self.explosion == 1:
-            self.setImage(self.explosionframe)
-            self.explosionframe +=1
-            if self.explosionframe ==25:
-                self.explosionframe = 1
+        self.setImage(self.explosionframe)
+        self.explosionframe +=1
+        if self.explosionframe ==25:
+            self.explosionframe = 1
         
 class SpaceGame(App):
     """
