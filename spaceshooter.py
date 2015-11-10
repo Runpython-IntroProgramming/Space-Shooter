@@ -107,6 +107,8 @@ class SpaceGame(App):
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
+        for explode in self.getSpritesbyClass(explosion):
+            explode.step()
         
 
 
