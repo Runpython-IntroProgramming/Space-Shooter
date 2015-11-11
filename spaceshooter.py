@@ -86,7 +86,7 @@ class explosion(Sprite):
         self.setImage(self.explosionframe)
         self.explosionframe +=1
         if self.explosionframe ==25:
-            self.explosionframe = 25
+            self.destroy()
         
 class SpaceGame(App):
     """
