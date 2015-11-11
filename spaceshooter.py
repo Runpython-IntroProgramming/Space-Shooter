@@ -26,7 +26,7 @@ class SpaceShip(Sprite):
         self.vx = 0
         self.vy = 0
         self.vr = 0
-        self.thrust = 0
+        self.thrust = 1
         self.thrustframe = 1
         self.sun = s
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
