@@ -1,9 +1,9 @@
 """
 spaceshooter.py
-Author: <your name here>
-Credit: <list sources used, if any>
+Author: Sam Supattapone
+Credit: [none] as of now
 
-Assignment:
+Assignment: Space Shooter
 Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
 """
