@@ -36,10 +36,33 @@ class Stars(Sprite):
 class Ship(GravitySprite):
     
     def registerKeys(self, leys):
-        commans = ["left", "right", "forward"]
+        commands = ["left", "right", "forward"]
         self.keymap = dict(zip(keys, commands))
         [self.app.listenKeyEvent("keydown", k, self.controldown) for k in keys]
         [self.app.listenKeyEvent("keyup", k, self.controlup) for k in keys]
+        
+    def controldown(self, keys):
+        if self.visible:
+            command=self.keymap[event.key]
+            if command=="left":
+                sef.rrate=Ship.R
+            elif command=="right":
+                self.rrate=Ship.R
+            elif command=="forward"
+                self.thrust=40.0
+                self.imagex=0
+                self.setImage(self.imagex)
+                
+    def controlup(self, event):
+        command = self.keymap[eventkey,key]
+        if command in ["left", "right"]:
+            self.rrate=0.0
+        elif command =="forward":
+            self.thrust=0.0
+            self.imagex=0
+            self.setImage(self.imagex)
+            #still got some stuff for class(Ship)
+        
 class Ship1(Ship):
         asset = imageAsset("images/four_spaceship_by_albertiv_with_thrust.png",
             Frame(227,0,292-227,125), 4, 'vertical')
