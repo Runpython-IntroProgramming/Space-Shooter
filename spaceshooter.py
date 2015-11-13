@@ -2,6 +2,7 @@
 spaceshooter.py
 Author: Adam Pikielny
 Credit: Morgan
+Roger
 ggame documentation
 Assignment:
 Write and submit a program that implements the spacewar game:
@@ -31,13 +32,12 @@ class SpaceShip(Sprite):
         #self.vr = math.atan(self.vy/self.vx)
         self.thrust = 0
         self.thrustframe = 1
-        #self.explodeframe = 
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.moveleft)
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.moveright)
-        SpaceGame.listenKeyEvent("keydown", "up arrow", self.moveup)
-        SpaceGame.listenKeyEvent("keydown", "down arrow", self.movedown)
-        SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
-        SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
+        SpaceGame.listenKeyEvent("keydown", "up arrow", self.moveforward)
+        SpaceGame.listenKeyEvent("keydown", "down arrow", self.movebackward)
+        SpaceGame.listenKeyEvent("keydown", "up arrow", self.thrustOn)
+        SpaceGame.listenKeyEvent("keyup", "down arrow", self.thrustOff)
         self.fxcenter = self.fycenter = 0.5
         #if self.collidingWith(sun)==True:
             #self.stop
@@ -50,36 +50,33 @@ class SpaceShip(Sprite):
     def step(self):
         self.x += self.vx
         self.y += self.vy
-        if self.vy!=0:
-            self.rotation = -1*math.pi+math.atan(self.vx/self.vy)
+        self.rotation = self.vr
+        if self.thrust==1:
+            self.setImage(self.thrustframe)
+            self.thrustframe += 1
+            if self.thrustframe == 4:
+                self.thrustframe = 1
+            else:
+                self.setImage(0)
+        #if self.vy!=0:
+            #self.rotation = -1*math.pi+math.atan(self.vx/self.vy)
             
         #is the below function in the write step?
         #if collidingWithSprites(self)==True:
             #print("collision")
         if self.collidingWith(self.app.sun)==True:
             self.explode()
+    def moveleft(self,event):
+        self.vr+=.4
+    def moveright(self,event):
+        self.vr-=.4
+    def moveforward(self,event):
+        self.vy+=(-.3*(math.cos(self.rotation)))
+        self.vx+=(-.3*(math.sin(self.rotation)))
+    def movebackward(self,event):
+        self.vy+=(.3*(math.cos(self.rotation)))
+        self.vx+=(.3*(math.sin(self.rotation)))
 
-    def moveleft(self, event):
-        if self.vx>-5:
-            self.vx += -.3
-    def moveright(self, event):
-        if self.vx<5:
-            self.vx += .3
-    def movedown(self, event):
-        if self.vy<5:
-            self.vy += .3
-    def moveup(self, event):
-        if self.vy>-5:
-            self.vy += -.3
-    """def moveleft(self, event):
-        self.vr+=.001
-    def moveright(self, event):
-        self.vr-=.001
-    magnitude=0
-    def moveup(self, event):
-        magnitude+=.1
-        self.vx=-magnitude*math.sin(self.rotation)
-        self.vy=-.1*math.cos(self.rotation)"""
     
     def thrustOn(self, event):
         self.thrust = 1
@@ -90,13 +87,7 @@ class SpaceShip(Sprite):
     def explode(self):
         explosion(self.position)
         self.destroy()
-        
-        """self.setImage(self.thrustframe)
-            self.thrustframe += 1
-            if self.thrustframe == 4:
-                self.thrustframe = 1
-        else:
-            self.setImage(0)"""
+    
 #class Ship1(SpaceShip):
     #def __init__():
     
