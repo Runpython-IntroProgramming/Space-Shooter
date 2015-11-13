@@ -51,9 +51,10 @@ def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
             def thrustOn(self, event):
-            self.thrust = 1
-
-    def thrustOff(self, event):
+                self.thrust = 1
+                
+                
+def thrustOff(self, event):
         self.thrust = 0
 def step(self):
         self.x += self.vx
