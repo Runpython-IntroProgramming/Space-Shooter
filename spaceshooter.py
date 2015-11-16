@@ -31,7 +31,7 @@ class Stars(Sprite):
         super().__init__(Stars.asset, position)
         
 class gravitysprite(Sprite):
-    
+    #error in line above. Don't know what it is
     def__init__(self, asset, position, velocity)
     super().__init__(asset, position)
     self.vx=velocity[0]
