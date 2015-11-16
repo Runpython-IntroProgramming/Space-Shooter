@@ -21,9 +21,6 @@ from time import time
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
 
-class GravitySprite(Sprite):
-    def step(self
-    #not sure how to translate this -->class GracitySprite(Sprite)<-- from the sourcecode 
 class Stars(Sprite):
 
     asset = ImageAsset("images/starfield.jpg")
@@ -32,8 +29,22 @@ class Stars(Sprite):
 
     def __init__(self, position):
         super().__init__(Stars.asset, position)
+        
+class gravitysprite(Sprite):
+    
+    def__init__(self, asset, position, velocity)
+    super().__init__(asset, position)
+    self.vx=velocity[0]
+    self.vy=velocity[1]
+    self.fxcenter=0.5
+    self.fycenter=0.5
+    self.rrate=0.0
+    self.thrust=0.0
+    self.mass=1.0
+    #not sure how to translate this -->class GracitySprite(Sprite)<-- from the sourcecode 
 
-class Ship(GravitySprite):
+
+class Ship(gravitygprite):
     
     def registerKeys(self, leys):
         commands = ["left", "right", "forward"]
@@ -48,7 +59,7 @@ class Ship(GravitySprite):
                 sef.rrate=Ship.R
             elif command=="right":
                 self.rrate=Ship.R
-            elif command=="forward"
+            elif command=="forward":
                 self.thrust=40.0
                 self.imagex=0
                 self.setImage(self.imagex)
@@ -67,9 +78,9 @@ class Ship1(Ship):
         asset = imageAsset("images/four_spaceship_by_albertiv_with_thrust.png",
             Frame(227,0,292-227,125), 4, 'vertical')
             
-        def_init_(self, app, position, velocity):
-            super()._init_(Ship1.asset, app, position, velocity)
-            self.registerKeys(["a", "d", "w"])
+        def_init_(self, app, position, velocity)
+        super()._init_(Ship1.asset, app, position, velocity)
+        self.registerKeys(["a", "d", "w"])
             
         def step(self, t, dT):
             super().step(T, dT)
@@ -84,9 +95,9 @@ class Ship2(Ship):
         asset=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
             Frame(0,0,86,125), 4, 'vertical')
             
-        def_init_(self, app, position, velocity):
-            super()._init_(Ship2.asset, app, position, velocity)
-            self.registerKeys(["left arrow", "right arrow", "up arrow"])
+        def_init_(self, app, position, velocity)
+        super()._init_(Ship2.asset, app, position, velocity)
+        self.registerKeys(["left arrow", "right arrow", "up arrow"])
             
         def step(self, T, dT):
             super().step(T, dT)
