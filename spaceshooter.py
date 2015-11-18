@@ -8,6 +8,24 @@ SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
 
 
+class Sun(Sprite):
+    """
+    The Sun on the Screen
+    """
+    
+    asset =  ImageAsset("http://img11.deviantart.net/73f2/i/2012/279/3/f/sun_sprite_by_medamayakii-d5gzpl3.png")
+    height = 80
+    width = 80
+    
+    def _init_(self, position):
+        self.weight = 1
+        self.fxcenter = 0.5
+        self.fycenter = 0.5
+        self.circularCollisionModel()
+
+
+
+
 class SpaceShip(Sprite):
     """
     Animated space ship
@@ -67,3 +85,7 @@ class SpaceGame(App):
 
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
+
+
+
+#self rotation will give you the current angle of rotation in radians
