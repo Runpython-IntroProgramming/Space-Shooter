@@ -23,14 +23,14 @@ SCREEN_HEIGHT = 480
 
 
             
-class Stars(Sprite):
+class background(Sprite):
 
     asset = ImageAsset("images/starfield.jpg")
     width = 512
     height = 512
 
     def __init__(self, position):
-        super().__init__(Stars.asset, position)
+        super().__init__(background.asset, position)
 
             
 class gravitysprite(Sprite):
@@ -80,7 +80,7 @@ class Ship(gravitysprite):
         
 class Ship1(Ship):
         asset = ImageAsset("images/four_spaceship_by_albertiv_with_thrust.png",
-            Frame(227,0,292-227,125), 4, 'vertical')
+        Frame(227,0,292-227,125), 4, 'vertical')
             
         def __init__(self, app, position, velocity):
             super()._init_(Ship1.asset, app, position, velocity)
@@ -91,9 +91,9 @@ class Ship1(Ship):
             if self.visible:
                 collides = self.collidingWithSprites(Ship2)
                 if len(collides):
-                        if collides[0].visible:
-                            collides[0].explode()
-                            self.explode()
+                    if collides[0].visible:
+                        collides[0].explode()
+                        self.explode()
                             
 class Ship2(Ship):
         asset=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
@@ -114,9 +114,9 @@ class Ship2(Ship):
 class SpaceWar(App):
     def __init__ (self, width, height):
         super().__init__(width, height)
-        for x in range(self.width//Stars.width + 1):
-            for y in range(self.height//Stars.height + 1):
-                Stars((x*Stars.width, y*Stars.height))
+        for x in range(self.width//background.width + 1):
+            for y in range(self.height//background.height + 1):
+                background((x*background.width, y*background.height))
         self.ship1=Ship1(self,(self.width/2-140, self.height/2), (0, -120))
         self.ship2=Ship2(self,(self.width/2+140, self.height/2), (0, 120))
     #
