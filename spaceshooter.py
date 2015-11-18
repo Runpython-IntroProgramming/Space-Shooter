@@ -1,6 +1,9 @@
 """
 Space game
 Ryan Kynor
+
+Source:
+lines 23 - 27 taken from orininal space game code
 """
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 
@@ -13,7 +16,7 @@ class Sun(Sprite):
     The Sun on the Screen
     """
     
-    asset =  ImageAsset("http://img11.deviantart.net/73f2/i/2012/279/3/f/sun_sprite_by_medamayakii-d5gzpl3.png")
+    asset =  ImageAsset("images/sun.png")
     height = 80
     width = 80
     
