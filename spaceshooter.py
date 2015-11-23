@@ -19,6 +19,10 @@ width = 512
 height = 512
 
 stars = Sprite(asset)
+stars1 = Sprite(asset)
+stars1.x = 512
+stars1.y = 0
+
 stars.width *= 3
 stars.height *= 2
 
