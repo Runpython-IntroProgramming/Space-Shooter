@@ -22,9 +22,19 @@ stars = Sprite(asset)
 stars1 = Sprite(asset)
 stars1.x = 512
 stars1.y = 0
+stars2 = Sprite(asset)
+stars2.x = 1024
+stars2.y = 0
+stars3 = Sprite(asset)
+stars3.x = 0
+stars3.y = 512
+stars4 = Sprite(asset)
+stars4.x = 512
+stars4.y = 512
+stars5 = Sprite(asset)
+stars5.x = 1024
+stars5.y = 512
 
-stars.width *= 3
-stars.height *= 2
 
 app = App()
 app.run()
