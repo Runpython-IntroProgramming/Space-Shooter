@@ -19,7 +19,7 @@ width = 512
 height = 512
 
 stars = Sprite(asset)
-stars.width *= 2
+stars.width *= 3
 stars.height *= 2
 
 app = App()
