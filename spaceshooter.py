@@ -34,7 +34,13 @@ stars5.x = 1024
 stars5.y = 512
 
 
+asset2 = ImageAsset("images/sun.png")
+width = 80
+height = 80
 
+sun = Sprite(asset2)
+sun.xcenter
+sun.ycenter
 
 
 app = App()
