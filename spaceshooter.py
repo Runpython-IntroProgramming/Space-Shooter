@@ -39,8 +39,8 @@ width = 80
 height = 80
 
 sun = Sprite(asset2)
-sun.x = 600
-sun.y = 320
+sun.x = 608
+sun.y = 324
 
 
 app = App()
