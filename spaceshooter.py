@@ -88,6 +88,7 @@ class SpaceGame(App):
         noline = LineStyle(0, black)
         bg_asset = RectangleAsset(width, height, noline, black)
         bg = Sprite(bg_asset, (0,0))
+        Sun((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         SpaceShip((100,100))
         SpaceShip((150,150))
         SpaceShip((200,50))
@@ -97,7 +98,7 @@ class SpaceGame(App):
             ship.step()
 
 
-Sun((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
+#Sun((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
 
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
