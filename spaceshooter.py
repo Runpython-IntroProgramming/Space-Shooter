@@ -2,8 +2,18 @@
 Space game
 Ryan Kynor
 
+Checklist:
+fixed star field
+Sun sprite
+at least one player
+muliple players or multplie inanimate objects to avoid
+animated rocket thrust
+collisions destroy ship
+moving ships
+rotating ships
+
 Source:
-lines 23 - 27 taken from orininal space game code
+lines 23 - 27 based off of orininal space game code
 """
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 
@@ -20,7 +30,8 @@ class Sun(Sprite):
     height = 80
     width = 80
     
-    def _init_(self, position):
+    def __init__(self, position):
+        super().__init__(Sun.asset, position)
         self.weight = 1
         self.fxcenter = 0.5
         self.fycenter = 0.5
@@ -85,6 +96,8 @@ class SpaceGame(App):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
 
+
+Sun(SCREEN_WIDTH/2,SCREEN_HEIGHT/2)
 
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
