@@ -75,7 +75,7 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
         #Rotation animation
-        SpaceGame.listenKeyEvent("keydown", 
+        #SpaceGame.listenKeyEvent("keydown", "w",
         self.fxcenter = self.fycenter = 0.5
 
     def step(self):
