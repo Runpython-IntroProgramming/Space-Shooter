@@ -38,22 +38,21 @@ class Sun(Sprite):
         self.circularCollisionModel()
         
         
-        
+     
 class Starfield(Sprite):
     """
     The Starfield
     """
     
-    asset = ImageAsset("images/starfield.png")
+    asset1 = ImageAsset("images/starfield.png")
     height = SCREEN_HEIGHT
     width = SCREEN_WIDTH
     
     def __init__(self, position):
-        super().__init__(Starfield.asset, position)
+        super().__init__(Starfield.asset1, position)
         self.weight = 1
         self.fxcenter = 0.5
         self.fycenter = 0.5
-
 
 
 
@@ -108,7 +107,7 @@ class SpaceGame(App):
         noline = LineStyle(0, black)
         bg_asset = RectangleAsset(width, height, noline, black)
         bg = Sprite(bg_asset, (0,0))
-        Starfield((SCREEN_WIDTH,SCREEN_HEIGHT))
+        Starfield((0,0))
         Sun((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         SpaceShip((100,100))
         #SpaceShip((150,150))
