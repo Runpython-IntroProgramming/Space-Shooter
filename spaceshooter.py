@@ -48,11 +48,11 @@ class Starfield(Sprite):
     height = SCREEN_HEIGHT
     width = SCREEN_WIDTH
     
-    def __init__(self,position):
+    def __init__(self, position):
         super().__init__(Starfield.asset, position)
-        self.weight = 0
-        self.fxcenter = 1
-        self.fycenter = 1
+        self.weight = 1
+        self.fxcenter = 0.5
+        self.fycenter = 0.5
 
 
 
@@ -110,7 +110,6 @@ class SpaceGame(App):
         bg = Sprite(bg_asset, (0,0))
         Starfield((SCREEN_WIDTH,SCREEN_HEIGHT))
         Sun((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
-        Star
         SpaceShip((100,100))
         #SpaceShip((150,150))
         #SpaceShip((200,50))
