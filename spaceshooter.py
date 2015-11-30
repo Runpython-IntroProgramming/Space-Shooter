@@ -39,9 +39,9 @@ class Sun(Sprite):
         
         
         
-class Star(Sprite):
+class Starfield(Sprite):
     """
-    The Star
+    The Starfield
     """
     
     asset = ImageAsset("images/starfield.png")
@@ -49,7 +49,7 @@ class Star(Sprite):
     width = SCREEN_WIDTH
     
     def __init__(self,position):
-        super().__init__(Sun.asset, position)
+        super().__init__(Starfield.asset, position)
         self.weight = 0
         self.fxcenter = 1
         self.fycenter = 1
