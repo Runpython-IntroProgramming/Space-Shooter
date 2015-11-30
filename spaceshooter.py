@@ -97,7 +97,7 @@ class SpaceGame(App):
             ship.step()
 
 
-Sun(SCREEN_WIDTH/2,SCREEN_HEIGHT/2)
+Sun((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
 
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
