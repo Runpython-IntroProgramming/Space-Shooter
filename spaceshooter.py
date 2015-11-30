@@ -4,7 +4,7 @@ Ryan Kynor
 
 Checklist:
 fixed star field
-Sun sprite
+~~Sun sprite~~
 at least one player
 muliple players or multplie inanimate objects to avoid
 animated rocket thrust
@@ -36,6 +36,15 @@ class Sun(Sprite):
         self.fxcenter = 0.5
         self.fycenter = 0.5
         self.circularCollisionModel()
+        
+        
+        
+class Star(Sprite):
+    """
+    The Star
+    """
+    
+    asset = ImageAsset("images/starfield.png")
 
 
 
@@ -54,8 +63,11 @@ class SpaceShip(Sprite):
         self.vr = 0.01
         self.thrust = 0
         self.thrustframe = 1
+        #Thrust animation
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
+        #Rotation animation
+        SpaceGame.listenKeyEvent("keydown", 
         self.fxcenter = self.fycenter = 0.5
 
     def step(self):
@@ -89,9 +101,10 @@ class SpaceGame(App):
         bg_asset = RectangleAsset(width, height, noline, black)
         bg = Sprite(bg_asset, (0,0))
         Sun((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
+        Star
         SpaceShip((100,100))
-        SpaceShip((150,150))
-        SpaceShip((200,50))
+        #SpaceShip((150,150))
+        #SpaceShip((200,50))
 
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
