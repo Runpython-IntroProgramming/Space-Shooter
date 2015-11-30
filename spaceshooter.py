@@ -45,6 +45,14 @@ class Star(Sprite):
     """
     
     asset = ImageAsset("images/starfield.png")
+    height = SCREEN_HEIGHT
+    width = SCREEN_WIDTH
+    
+    def __init__(self,position):
+        super().__init__(Sun.asset, position)
+        self.weight = 0
+        self.fxcenter = 1
+        self.fycenter = 1
 
 
 
@@ -100,6 +108,7 @@ class SpaceGame(App):
         noline = LineStyle(0, black)
         bg_asset = RectangleAsset(width, height, noline, black)
         bg = Sprite(bg_asset, (0,0))
+        Starfield((SCREEN_WIDTH,SCREEN_HEIGHT))
         Sun((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         Star
         SpaceShip((100,100))
