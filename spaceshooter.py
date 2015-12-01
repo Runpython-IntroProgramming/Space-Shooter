@@ -15,6 +15,9 @@ rotating ships
 Source:
 lines 23 - 27 based off of orininal space game code
 """
+
+#key list starts a line 1067 in ggame.py file
+
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 
 SCREEN_WIDTH = 640
@@ -70,10 +73,19 @@ class SpaceShip(Sprite):
         self.vr = 0.01
         self.thrust = 0
         self.thrustframe = 1
+       
         #Thrust animation
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
+       
+        #Movement animation
+        SpaceGame.listenKeyEvent("keydown", "w", self.moveFowardOn)
+        SpaceGame.listenKeyEvent("keyup", "w", self.moveFowardOff)
+        
+        SpaceGame.listenKeyEvent("keydown", "s", self.moveBackOn)
+        SpaceGame.listenKeyEvent("keyup", "s", self.moveBackOff)
         #Rotation animation
+       
         #SpaceGame.listenKeyEvent("keydown", "w",
         self.fxcenter = self.fycenter = 0.5
 
@@ -88,13 +100,37 @@ class SpaceShip(Sprite):
                 self.thrustframe = 1
         else:
             self.setImage(0)
-
+#thrust
     def thrustOn(self, event):
         self.thrust = 1
-
     def thrustOff(self, event):
         self.thrust = 0
-
+        
+#movement
+    def moveFowardOn(self,event):
+        self.foward = 1
+    def moveFowardOff(self,event):
+        self.foward = 0
+    
+    def moveRightOn(self,event):
+        self.right = 1
+    def moveRightOff(self,event):
+        self.right = 0
+        
+    def moveLeftOn(self,event):
+        self.left = 1
+    def moveLeftOff(self,event):
+        self.left = 0
+        
+    def moveBackOn(self,event):
+        self.back = 1
+    def moveBackOff(self,event):
+        self.back = 0
+        
+#rotation
+        
+        
+    
 
 
 class SpaceGame(App):
