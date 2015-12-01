@@ -42,8 +42,8 @@ sun = Sprite(asset2)
 sun.x = 608
 sun.y = 324
 
-
-asset3 = ImageAsset("images/four_spaceship_by_albertov.png",Frame(0,0,87,93))
+f = Frame(0,0,87,93)
+asset3 = ImageAsset("images/four_spaceship_by_albertov.png")
 width = 100
 height = 100
 
