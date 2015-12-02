@@ -22,7 +22,11 @@ SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
 
 
-            
+class background(Sprite):
+    def __init__(self, asset, position):
+        super().__init__(asset, position)
+        
+        
 
             
 class gravitysprite(Sprite):
@@ -112,9 +116,8 @@ class SpaceWar(App):
         super().__init__(width, height)
         BG = ImageAsset("images/starfield.jpg")
         
-        for x in range(self.width//background.width + 1):
-            for y in range(self.height//background.height + 1):
-                background((x*background.width, y*background.height))
+        
+        background(BG, (0, 0))
         self.ship1=Ship1(self,(self.width/2-140, self.height/2), (0, -120))
         self.ship2=Ship2(self,(self.width/2+140, self.height/2), (0, 120))
     #
