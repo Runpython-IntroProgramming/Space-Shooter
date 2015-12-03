@@ -66,7 +66,10 @@ class SpaceShip(Sprite):
 
     def thrustOff(self, event):
         self.thrust = 0
-
+    
+    def Collision(self, event):
+        if Ship.collidingwithsprites(Sun) == True:
+            
 
 
 class SpaceGame(App):
