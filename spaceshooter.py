@@ -61,11 +61,8 @@ class SpaceShip(Sprite):
         else:
             self.setImage(0)
 
-#////////////////////////////////////////////////////////////////////////////////
-        [self.app.listenKeyEvent("keydown", k, self.controldown) for k in keys]
-        [self.app.listenKeyEvent("keyup", k, self.controlup) for k in keys]
-#////////////////////////////////////////////////////////////////////////////////       
     def thrustOn(self, event):
+        print("Roaaaarrrrr!!")
         self.thrust = 1
 
     def thrustOff(self, event):
