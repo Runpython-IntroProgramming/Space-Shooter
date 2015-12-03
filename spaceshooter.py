@@ -1,154 +1,105 @@
 """
 spaceshooter.py
 Author: James Napier
-Credit: Space War Source Code, Morgan
+Credit: Space War Source Code. Mr. Dennison
+
 
 Assignment:
 Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
 """
 
+from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 
-#still need to flesh out what I need to write on my own
-#some parts of the classes need to be redefined so that they are not including elements included in the SpaceWar Source Code
-
-
-from ggame import App, Sprite, ImageAsset, Frame
-from ggame import SoundAsset, Sound, TextAsset, Color
-import math
-from time import time
-
-SCREEN_WIDTH = 640
-SCREEN_HEIGHT = 480
-
+SCREEN_WIDTH = 1665
+SCREEN_HEIGHT = 945
 
 class background(Sprite):
     def __init__(self, asset, position):
         super().__init__(asset, position)
-        
-        
 
-            
-class gravitysprite(Sprite):
-    #error in line above. Don't know what it is
-    def __init__(self, asset, position, velocity):
-        super().__init__(position)
-    #insert asset, if it does not work
-        self.vx=velocity[0]
-        self.vy=velocity[1]
-        self.fxcenter=0.5
-        self.fycenter=0.5
-        self.rrate=0.0
-        self.thrust=0.0
-        self.mass=1.0
-    #not sure how to translate this -->class GracitySprite(Sprite)<-- from the sourcecode 
-
-
-class Ship(gravitysprite):
+class Sun(background):
     
-    def registerKeys(self, leys):
-        commands = ["left", "right", "forward"]
-        self.keymap = dict(zip(keys, commands))
+    asset = ImageAsset("images/sun.png")
+    width = 80
+    height = 76
+"""
+    def __init__(self, position):
+        super().__init__(Sun.asset, position)
+        self.mass = 30*1000
+        self.fxcenter = 0.5
+        self.fycenter = 0.5
+        self.circularCollisionModel()
+"""
+class SpaceShip(Sprite):
+    """
+    Animated space ship
+    """
+    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
+        Frame(227,0,292-227,125), 4, 'vertical')
+
+    def __init__(self, position):
+        super().__init__(SpaceShip.asset, position)
+        self.vx = 1
+        self.vy = 1
+        self.vr = 0.01
+        self.thrust = 0
+        self.thrustframe = 1
+        SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
+        SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
+        self.fxcenter = self.fycenter = 0.5
+
+    def step(self):
+        self.x += self.vx
+        self.y += self.vy
+        self.rotation += self.vr
+        if self.thrust == 1:
+            self.setImage(self.thrustframe)
+            self.thrustframe += 1
+            if self.thrustframe == 4:
+                self.thrustframe = 1
+        else:
+            self.setImage(0)
+
+#////////////////////////////////////////////////////////////////////////////////
         [self.app.listenKeyEvent("keydown", k, self.controldown) for k in keys]
         [self.app.listenKeyEvent("keyup", k, self.controlup) for k in keys]
-        
-    def controldown(self, keys):
-        if self.visible:
-            command=self.keymap[event.key]
-            if command=="left":
-                sef.rrate=Ship.R
-            elif command=="right":
-                self.rrate=Ship.R
-            elif command=="forward":
-                self.thrust=40.0
-                self.imagex=0
-                self.setImage(self.imagex)
-                
-    def controlup(self, event):
-        command = self.keymap[eventkey,key]
-        if command in ["left", "right"]:
-            self.rrate=0.0
-        elif command =="forward":
-            self.thrust=0.0
-            self.imagex=0
-            self.setImage(self.imagex)
-            #still got some stuff for class(Ship)
-        
-class Ship1(Ship):
-        asset = ImageAsset("images/four_spaceship_by_albertiv_with_thrust.png",
-        Frame(227,0,292-227,125), 4, 'vertical')
-            
-        def __init__(self, app, position, velocity):
-            super()._init_(Ship1.asset, app, position, velocity)
-            self.registerKeys(["a", "d", "w"])
-            
-        def step(self, t, dT):
-            super().step(T, dT)
-            if self.visible:
-                collides = self.collidingWithSprites(Ship2)
-                if len(collides):
-                    if collides[0].visible:
-                        collides[0].explode()
-                        self.explode()
-                            
-class Ship2(Ship):
-        asset=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
-            Frame(0,0,86,125), 4, 'vertical')
-            
-        def __init__(self, app, position, velocity):
-            super()._init_(Ship2.asset, app, position, velocity)
-            self.registerKeys(["left arrow", "right arrow", "up arrow"])
-            
-        def step(self, T, dT):
-            super().step(T, dT)
-            if self.visible:
-                collides = self.collidingWithSprites(Ship1)
-                if len(collides): 
-                    if collides[0].visible:
-                        collides[0].explode()
-                        self.explode()
-class SpaceWar(App):
+#////////////////////////////////////////////////////////////////////////////////       
+    def thrustOn(self, event):
+        self.thrust = 1
+
+    def thrustOff(self, event):
+        self.thrust = 0
+
+
+
+class SpaceGame(App):
+    """
+    Tutorial4 space game example.
+    """
     
-    
-    
-    
-    def __init__ (self, width, height):
+    def __init__(self, width, height):
         super().__init__(width, height)
         BG = ImageAsset("images/starfield.jpg")
+        BGS = ImageAsset("images/sun.png")
+        bgsprite = background(BG, (0,0))
+        bgsprite.width = SCREEN_WIDTH
+        bgsprite.height = SCREEN_HEIGHT
+        bgs_sprite = Sun(BGS, (800, 450))
+        SpaceShip((400,450))
         
         
-        background(BG, (0, 0))
-        self.ship1=Ship1(self,(self.width/2-140, self.height/2), (0, -120))
-        self.ship2=Ship2(self,(self.width/2+140, self.height/2), (0, 120))
-    #
-        self.tsprites = {k:Sprite(TextAsset(text=v, width=200, align='center',style='20px Arial', fill=Color(0xff2222,1))) 
-            for k, v in Spacewar.strings.items()}
-        self.listenKeyEvent('keydown', 'space', self.space)
-    #
-    def space(self, evt):
-        if self.state in ['instructions', 'gameover']:
-            for t in self.tsprites.values():
-                t.visible = False
-            self.state = 'playing'
-            self.Tlast = time()
-            evt.consumed = True
-            self.ship1.newgame()
-            self.ship2.newgame()
-            
+    
     def step(self):
-        explosions = self.getSpritesbyClass(ExplosionSmall)
-        for explosion in explosions:
-            explosion.step()
-        explosions = self.getSpritesbyClass(ExplosionBig)
-        for explosion in explosions:
-            explosion.step()
-        if self.state == 'instructions':
-            self.tsprites['space'].visible = True
-            self.tsprites['left'].visible = True
-            self.tsprites['right'].visible = True
-    
-    
+        for ship in self.getSpritesbyClass(SpaceShip):
+            ship.step()
 
-app = SpaceWar(0,0)
-app.run()
 
+myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
+myapp.listenKeyEvent('keydown', 'w', ThrustOn)
+myapp.listenKeyEvent('keyup', 'space', ThrustOff)
+myapp.listenKeyEvent('keydown', 'a', TurnLOn)
+myapp.listenKeyEvent('keyup', 'space', TurnLOff)
+myapp.listenKeyEvent('keydown', 'd', TurnROn)
+myapp.listenKeyEvent('keyup', 'space', TurnROff)
+myapp.run()
