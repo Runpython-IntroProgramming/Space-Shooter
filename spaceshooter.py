@@ -66,6 +66,7 @@ class SpaceShip(Sprite):
         self.thrust = 1
 
     def thrustOff(self, event):
+        print("No Roaaarrrr!!")
         self.thrust = 0
 
 
