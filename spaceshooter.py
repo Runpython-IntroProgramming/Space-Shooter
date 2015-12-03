@@ -86,7 +86,7 @@ class SpaceGame(App):
         bgsprite.width = SCREEN_WIDTH
         bgsprite.height = SCREEN_HEIGHT
         bgs_sprite = Sun(BGS, (800, 450))
-        SpaceShip((400,450))
+        self.ship = SpaceShip((400,450))
         
         
     
@@ -96,10 +96,12 @@ class SpaceGame(App):
 
 
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
-myapp.listenKeyEvent('keydown', 'w', ThrustOn)
-myapp.listenKeyEvent('keyup', 'space', ThrustOff)
+myapp.listenKeyEvent('keydown', 'w', myapp.ship.thrustOn)
+myapp.listenKeyEvent('keyup', 'space', myapp.ship.thrustOff)
+"""
 myapp.listenKeyEvent('keydown', 'a', TurnLOn)
 myapp.listenKeyEvent('keyup', 'space', TurnLOff)
 myapp.listenKeyEvent('keydown', 'd', TurnROn)
 myapp.listenKeyEvent('keyup', 'space', TurnROff)
+"""
 myapp.run()
