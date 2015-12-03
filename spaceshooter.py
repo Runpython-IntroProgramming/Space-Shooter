@@ -21,8 +21,8 @@ class background(Sprite):
 class Sun(background):
     
     asset = ImageAsset("images/sun.png")
-    width = 80
-    height = 76
+    width = 100
+    height = 100
 """
     def __init__(self, position):
         super().__init__(Sun.asset, position)
