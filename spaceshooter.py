@@ -51,10 +51,6 @@ spaceship1 = Sprite(asset3)
 spaceship1.x = 800
 spaceship1.y = 324
 
-spaceship2 = Sprite(asset3)
-spaceship2.x = 416
-spaceship2.y = 324
-
 
 app = App()
 app.run()
