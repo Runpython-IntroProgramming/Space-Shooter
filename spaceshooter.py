@@ -38,18 +38,35 @@ asset2 = ImageAsset("images/sun.png")
 width = 80
 height = 80
 
-sun = Sprite(asset2)
-sun.x = 608
-sun.y = 324
+class sun(Sprite):
+    sun = Sprite(asset2)
+    sun.x = 608
+    sun.y = 324
 
-f = Frame(0,0,87,92)
-asset3 = ImageAsset("images/four_spaceship_by_albertov.png",f)
-width = 100
-height = 100
+    def __init__(self, position):
+        super().__init__(sun.asset2, position)
+        self.mass = 30*1000
+        self.fxcenter = 0.5
+        self.fycenter = 0.5
+        self.circularCollisionModel()
 
-spaceship1 = Sprite(asset3)
-spaceship1.x = 800
-spaceship1.y = 324
+
+class spaceship(Sprite):
+    f = Frame(0,0,87,92)
+    asset3 = ImageAsset("images/four_spaceship_by_albertov.png",f)
+    width = 100
+    height = 100
+
+    spaceship1 = Sprite(asset3)
+    spaceship1.x = 800
+    spaceship1.y = 324
+    
+    def registerKeys(self, keys):
+        commands = ["left", "right", "forward"]
+        self.keymap = dict(zip(keys, commands))
+        [self.app.listenKeyEvent("keydown", k, self.controldown) for k in keys]
+        [self.app.listenKeyEvent("keyup", k, self.controlup) for k in keys]
+
 
 
 app = App()
