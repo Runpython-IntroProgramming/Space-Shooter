@@ -95,7 +95,7 @@ class SpaceGame(App):
 
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.listenKeyEvent('keydown', 'w', myapp.ship.thrustOn)
-myapp.listenKeyEvent('keyup', 'space', myapp.ship.thrustOff)
+myapp.listenKeyEvent('keyup', 'w', myapp.ship.thrustOff)
 """
 myapp.listenKeyEvent('keydown', 'a', TurnLOn)
 myapp.listenKeyEvent('keyup', 'space', TurnLOff)
