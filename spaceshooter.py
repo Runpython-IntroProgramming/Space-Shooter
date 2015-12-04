@@ -71,13 +71,15 @@ class SpaceShip(Sprite):
         self.rotation += self.vr
         
     def TurnLOff(self, event):
-        self.rotation = 0.00
+        self.vr = 0.0
+        self.rotation += self.vr
         
     def TurnROn(self, event):
         self.rotation -= self.vr
         
     def TurnROff(self, event):
-        self.rotation = 0.00
+        sef.vr = 0.0
+        self.rotation -=self.vr
     #def Collision(self, event):
         #if Ship.collidingwithsprites(Sun) == True:
 
