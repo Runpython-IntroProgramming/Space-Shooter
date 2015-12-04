@@ -70,14 +70,10 @@ class SpaceShip(Sprite):
     def TurnLOn(self, event):
         self.rotation += self.vr
         
-    def TurnLOff(self, event):
-        self.rotation +- self.rotation
-        
     def TurnROn(self, event):
         self.rotation -= self.vr
         
-    def TurnROff(self, event):
-        self.rotation +- self.rotation
+   
     #def Collision(self, event):
         #if Ship.collidingwithsprites(Sun) == True:
 
@@ -109,7 +105,5 @@ myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.listenKeyEvent('keydown', 'w', myapp.ship.thrustOn)
 myapp.listenKeyEvent('keyup', 'w', myapp.ship.thrustOff)
 myapp.listenKeyEvent('keydown', 'a', myapp.ship.TurnLOn)
-myapp.listenKeyEvent('keyup', 'a', myapp.ship.TurnLOff)
 myapp.listenKeyEvent('keydown', 'd', myapp.ship.TurnROn)
-myapp.listenKeyEvent('keyup', 'd', myapp.ship.TurnROff)
 myapp.run()
