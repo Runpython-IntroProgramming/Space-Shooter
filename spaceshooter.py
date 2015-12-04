@@ -71,7 +71,6 @@ class SpaceShip(Sprite):
         self.rotation += self.vr
         
     def TurnLOff(self, event):
-        self.vr = 0.0
         self.rotation +- self.rotation
         
     def TurnROn(self, event):
