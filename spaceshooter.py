@@ -50,9 +50,9 @@ class SpaceShip(Sprite):
         self.fxcenter = self.fycenter = 0.5
 
     def step(self):
-        self.x += self.vx
-        self.y += self.vy
-        self.rotation += self.vr
+        #self.x += self.vx
+        #self.y += self.vy
+        #self.rotation += self.vr
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
@@ -67,6 +67,17 @@ class SpaceShip(Sprite):
     def thrustOff(self, event):
         self.thrust = 0
     
+    def TurnLOn(self, event):
+        self.rotation += self.vr
+        
+    def TurnLOff(self, event):
+        self.rotation = 0.00
+        
+    def TurnROn(self, event):
+        self.rotation -= self.vr
+        
+    def TurnROff(self, event):
+        self.rotation = 0.00
     #def Collision(self, event):
         #if Ship.collidingwithsprites(Sun) == True:
 
@@ -97,8 +108,8 @@ class SpaceGame(App):
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.listenKeyEvent('keydown', 'w', myapp.ship.thrustOn)
 myapp.listenKeyEvent('keyup', 'w', myapp.ship.thrustOff)
-#myapp.listenKeyEvent('keydown', 'a', myapp.ship.TurnLOn)
-#myapp.listenKeyEvent('keyup', 'a', myapp.ship.TurnLOff)
-#myapp.listenKeyEvent('keydown', 'd', myapp.ship.TurnROn)
-#myapp.listenKeyEvent('keyup', 'd', myapp.ship.TurnROff)
+myapp.listenKeyEvent('keydown', 'a', myapp.ship.TurnLOn)
+myapp.listenKeyEvent('keyup', 'a', myapp.ship.TurnLOff)
+myapp.listenKeyEvent('keydown', 'd', myapp.ship.TurnROn)
+myapp.listenKeyEvent('keyup', 'd', myapp.ship.TurnROff)
 myapp.run()
