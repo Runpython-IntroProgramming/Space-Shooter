@@ -22,7 +22,6 @@ class ExplosionSmall(Sprite):
     
     asset = ImageAsset("images/explosion1.png")
     
-    
     def __init__(self, position):
         super().__init__(ExplosionSmall.asset, position)
         self.image = 0
@@ -39,18 +38,9 @@ class Sun(background):
     asset = ImageAsset("images/sun.png")
     width = 100
     height = 100
-"""
-    def __init__(self, position):
-        super().__init__(Sun.asset, position)
-        self.mass = 30*1000
-        self.fxcenter = 0.5
-        self.fycenter = 0.5
-        self.circularCollisionModel()
-"""
+
 class SpaceShip(Sprite):
-    """
-    Animated space ship
-    """
+
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(227,0,292-227,125), 4, 'vertical')
 
@@ -58,12 +48,11 @@ class SpaceShip(Sprite):
         super().__init__(SpaceShip.asset, position)
         self.vx = 1
         self.vy = 1
-        self.vr = 0.04
+        self.vr = 0.02
         self.thrust = 0
         self.thrustframe = 1
         self.fxcenter = self.fycenter = 0.5
-        
-
+    
     def step(self):
         #self.x += self.vx
         #self.y += self.vy
@@ -76,14 +65,17 @@ class SpaceShip(Sprite):
                 self.thrustframe = 1
             self.x += -sin(self.rotation)
             self.y += -cos(self.rotation)
-            
-            if self.collidingWith(self.sun):
-                self.visible = False
-                ExplosionSmall(self.position)
+
+            if self.collidingWith(self.Sun):
+                pass
+                #ExplosionSmall(self.position) 
                 
+
         else:
             self.setImage(0)
-
+            
+       
+                
     def thrustOn(self, event):
         self.thrust = 1
         
@@ -95,18 +87,9 @@ class SpaceShip(Sprite):
         
     def TurnROn(self, event):
         self.rotation -= self.vr
-        
-   
-    #def Collision(self, event):
-        #if Ship.collidingwithsprites(Sun) == True:
-
-
 
 class SpaceGame(App):
-    """
-    Tutorial4 space game example.
-    """
-    
+
     def __init__(self, width, height):
         super().__init__(width, height)
         BG = ImageAsset("images/starfield.jpg")
@@ -117,12 +100,9 @@ class SpaceGame(App):
         bgs_sprite = Sun(BGS, (800, 450))
         self.ship = SpaceShip((400,450))
         
-        
-    
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
-
 
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.listenKeyEvent('keydown', 'w', myapp.ship.thrustOn)
