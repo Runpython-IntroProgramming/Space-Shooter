@@ -53,7 +53,7 @@ class SpaceShip(Sprite):
         self.thrustframe = 1
         self.fxcenter = self.fycenter = 0.5
     
-    def step(self):
+    def step(self, sun):
         #self.x += self.vx
         #self.y += self.vy
         #self.rotation += self.vr
@@ -66,9 +66,9 @@ class SpaceShip(Sprite):
             self.x += -sin(self.rotation)
             self.y += -cos(self.rotation)
 
-            if self.collidingWith(self.Sun):
-                pass
-                #ExplosionSmall(self.position) 
+            if self.collidingWith(sun):
+                self.destroy()
+                ExplosionSmall(self.position) 
                 
 
         else:
@@ -97,13 +97,13 @@ class SpaceGame(App):
         bgsprite = background(BG, (0,0))
         bgsprite.width = SCREEN_WIDTH
         bgsprite.height = SCREEN_HEIGHT
-        bgs_sprite = Sun(BGS, (800, 450))
+        self.bgs_sprite = Sun(BGS, (800, 450))
         self.ship = SpaceShip((400,450))
         
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
-            ship.step()
-
+            ship.step(self.bgs_sprite)
+        
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.listenKeyEvent('keydown', 'w', myapp.ship.thrustOn)
 myapp.listenKeyEvent('keyup', 'w', myapp.ship.thrustOff)
