@@ -10,7 +10,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
-
+from math import sin, cos
 SCREEN_WIDTH = 1665
 SCREEN_HEIGHT = 945
 
@@ -58,6 +58,7 @@ class SpaceShip(Sprite):
         
             if self.thrustframe == 4:
                 self.thrustframe = 1
+            self.x += -sin(self.rotation)
         else:
             self.setImage(0)
 
