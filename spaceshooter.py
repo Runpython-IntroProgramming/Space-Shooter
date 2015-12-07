@@ -1,73 +1,65 @@
-"""
-spaceshooter.py
-Author: Sam Supattapone
-Credit: original code
+from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 
-Assignment: Space Shooter
-Write and submit a program that implements the spacewar game:
-https://github.com/HHS-IntroProgramming/Spacewar
-"""
-from ggame import App, Sprite, ImageAsset, Frame
-from ggame import SoundAsset, Sound, TextAsset, Color
-import math
-from time import time
-
-asset1 = ImageAsset("images/starfield.jpg")
-width = 512
-height = 512
-
-stars = Sprite(asset1)
-stars1 = Sprite(asset1)
-stars1.x = 512
-stars1.y = 0
-stars2 = Sprite(asset1)
-stars2.x = 1024
-stars2.y = 0
-stars3 = Sprite(asset1)
-stars3.x = 0
-stars3.y = 512
-stars4 = Sprite(asset1)
-stars4.x = 512
-stars4.y = 512
-stars5 = Sprite(asset1)
-stars5.x = 1024
-stars5.y = 512
+SCREEN_WIDTH = 640
+SCREEN_HEIGHT = 480
 
 
-asset2 = ImageAsset("images/sun.png")
-width = 80
-height = 80
-
-class sun(Sprite):
-    sun = Sprite(asset2)
-    sun.x = 608
-    sun.y = 324
+class SpaceShip(Sprite):
+    """
+    Animated space ship
+    """
+    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
+        Frame(227,0,292-227,125), 4, 'vertical')
 
     def __init__(self, position):
-        super().__init__(sun.asset2, position)
-        self.mass = 30*1000
-        self.fxcenter = 0.5
-        self.fycenter = 0.5
-        self.circularCollisionModel()
+        super().__init__(SpaceShip.asset, position)
+        self.vx = 1
+        self.vy = 1
+        self.vr = 0.01
+        self.thrust = 0
+        self.thrustframe = 1
+        SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
+        SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
+        self.fxcenter = self.fycenter = 0.5
+
+    def step(self):
+        self.x += self.vx
+        self.y += self.vy
+        self.rotation += self.vr
+        if self.thrust == 1:
+            self.setImage(self.thrustframe)
+            self.thrustframe += 1
+            if self.thrustframe == 4:
+                self.thrustframe = 1
+        else:
+            self.setImage(0)
+
+    def thrustOn(self, event):
+        self.thrust = 1
+
+    def thrustOff(self, event):
+        self.thrust = 0
 
 
-class spaceship(Sprite):
-    f = Frame(0,0,87,92)
-    asset3 = ImageAsset("images/four_spaceship_by_albertov.png",f)
-    width = 100
-    height = 100
 
-    spaceship1 = Sprite(asset3)
-    spaceship1.x = 800
-    spaceship1.y = 324
-    
-    def registerKeys(self, keys):
-        commands = ["left", "right", "forward"]
-        self.keymap = dict(zip(keys, commands))
-        [self.app.listenKeyEvent("keydown", k, self.controldown) for k in keys]
-        [self.app.listenKeyEvent("keyup", k, self.controlup) for k in keys]
+class SpaceGame(App):
+    """
+    Tutorial4 space game example.
+    """
+    def __init__(self, width, height):
+        super().__init__(width, height)
+        black = Color(0, 1)
+        noline = LineStyle(0, black)
+        bg_asset = RectangleAsset(width, height, noline, black)
+        bg = Sprite(bg_asset, (0,0))
+        SpaceShip((100,100))
+        SpaceShip((150,150))
+        SpaceShip((200,50))
+
+    def step(self):
+        for ship in self.getSpritesbyClass(SpaceShip):
+            ship.step()
 
 
-
-app = App()
-app.run()
+myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
+myapp.run()
