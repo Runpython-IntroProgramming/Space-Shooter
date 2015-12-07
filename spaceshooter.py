@@ -21,7 +21,7 @@ class background(Sprite):
 class ExplosionSmall(Sprite):
     
     asset = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
-    boomasset = SoundAsset("sounds/explosion1.mp3")
+    
     
     def __init__(self, position):
         super().__init__(ExplosionSmall.asset, position)
