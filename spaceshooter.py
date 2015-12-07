@@ -1,6 +1,7 @@
 """
 Space game
 Ryan Kynor
+
 Checklist:
 fixed star field
 ~~Sun sprite~~
@@ -10,6 +11,7 @@ animated rocket thrust
 collisions destroy ship
 moving ships
 rotating ships
+
 Source:
 lines 23 - 27 based off of orininal space game code
 """
