@@ -66,19 +66,20 @@ class SpaceShip(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(227,0,292-227,125), 4, 'vertical')
 
+#spaceship spawn movement
     def __init__(self, position):
         super().__init__(SpaceShip.asset, position)
-        self.vx = 1
-        self.vy = 1
-        self.vr = 0.01
+        self.vx = 0
+        self.vy = 0
+        self.vr = 1.00
         self.thrust = 0
         self.thrustframe = 1
        
-        #Thrust animation
+        #Thrust detection
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
        
-        #Movement animation
+        #Movement detection
         SpaceGame.listenKeyEvent("keydown", "w", self.moveFowardOn)
         SpaceGame.listenKeyEvent("keyup", "w", self.moveFowardOff)
         
@@ -95,6 +96,7 @@ class SpaceShip(Sprite):
         #SpaceGame.listenKeyEvent("keydown", "w",
         self.fxcenter = self.fycenter = 0.5
 
+#display of thrust
     def step(self):
         self.x += self.vx
         self.y += self.vy
