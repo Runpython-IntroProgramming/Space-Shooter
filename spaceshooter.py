@@ -69,7 +69,7 @@ class SpaceShip(Sprite):
         super().__init__(SpaceShip.asset, position)
         self.vx = 0
         self.vy = 0
-        self.vr = 1.00
+        self.vr = 0.00
         self.thrust = 0
         self.thrustframe = 1
        
@@ -151,7 +151,7 @@ class SpaceGame(App):
         bg = Sprite(bg_asset, (0,0))
         Starfield((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         Sun((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
-        SpaceShip((100,100))
+        SpaceShip((190,240))
         #SpaceShip((150,150))
         #SpaceShip((200,50))
 
@@ -168,4 +168,3 @@ myapp.run()
 
 
 #self rotation will give you the current angle of rotation in radians
-Status API Training Shop Blog About Pricing
