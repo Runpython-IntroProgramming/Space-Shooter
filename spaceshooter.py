@@ -18,6 +18,22 @@ class background(Sprite):
     def __init__(self, asset, position):
         super().__init__(asset, position)
 
+class ExplosionSmall(Sprite):
+    
+    asset = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
+    boomasset = SoundAsset("sounds/explosion1.mp3")
+    
+    def __init__(self, position):
+        super().__init__(ExplosionSmall.asset, position)
+        self.image = 0
+        self.center = (0.5, 0.5)
+        
+    def step(self):
+        self.setImage(self.image//2)  # slow it down
+        self.image += 1
+        if self.image == 20:
+            self.destroy()
+            
 class Sun(background):
     
     asset = ImageAsset("images/sun.png")
@@ -60,6 +76,11 @@ class SpaceShip(Sprite):
                 self.thrustframe = 1
             self.x += -sin(self.rotation)
             self.y += -cos(self.rotation)
+            
+            if self.collidingWith(self.sun):
+                self.visible = False
+                ExplosionSmall(self.position)
+                
         else:
             self.setImage(0)
 
