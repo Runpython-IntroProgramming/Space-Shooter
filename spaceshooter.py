@@ -67,9 +67,11 @@ class SpaceShip(Sprite):
             self.y += -cos(self.rotation)
 
             if self.collidingWith(sun):
-                self.destroy()
+                """
+                self.visible == False
                 ExplosionSmall(self.position) 
-                
+                The ship does not act dead
+                """
 
         else:
             self.setImage(0)
