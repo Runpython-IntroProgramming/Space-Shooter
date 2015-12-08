@@ -65,7 +65,7 @@ class SpaceShip(Sprite):
             self.y += -cos(self.rotation)
 
             if self.collidingWith(sun):
-                ExplosionSmall(self.position)
+                ExplosionSmall((self.x, self.y))
                 self.destroy()
                 
                 
