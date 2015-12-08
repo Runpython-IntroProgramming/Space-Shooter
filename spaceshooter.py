@@ -79,18 +79,20 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
        
-        #Movement detection
+        #Rotation detection
+        """
         SpaceGame.listenKeyEvent("keydown", "w", self.moveFowardOn)
         SpaceGame.listenKeyEvent("keyup", "w", self.moveFowardOff)
         
         SpaceGame.listenKeyEvent("keydown", "s", self.moveBackOn)
         SpaceGame.listenKeyEvent("keyup", "s", self.moveBackOff)
+        """
         
-        SpaceGame.listenKeyEvent("keydown", "a", self.moveLeftOn)
-        SpaceGame.listenKeyEvent("keyup", "a", self.moveLeftOff)
+        SpaceGame.listenKeyEvent("keydown", "a", self.rotateLeftOn)
+        SpaceGame.listenKeyEvent("keyup", "a", self.rotateLeftOff)
         
-        SpaceGame.listenKeyEvent("keydown", "d", self.moveRightOn)
-        SpaceGame.listenKeyEvent("keydown", "d", self.moveRightOff)
+        SpaceGame.listenKeyEvent("keydown", "d", self.rotateRightOn)
+        SpaceGame.listenKeyEvent("keydown", "d", self.rotateRightOff)
         #Rotation animation
        
         #SpaceGame.listenKeyEvent("keydown", "w",
