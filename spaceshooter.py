@@ -43,53 +43,55 @@ class SpaceShip(Sprite):
 
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(227,0,292-227,125), 4, 'vertical')
-
-    def __init__(self, position):
-        super().__init__(SpaceShip.asset, position)
-        self.vx = 1
-        self.vy = 1
-        self.vr = 0.02
-        self.thrust = 0
-        self.thrustframe = 1
-        self.fxcenter = self.fycenter = 0.5
+    destroyed = 0
+    if destroyed == 0:
+        def __init__(self, position):
+            super().__init__(SpaceShip.asset, position)
+            self.vx = 1
+            self.vy = 1
+            self.vr = 0.02
+            self.thrust = 0
+            self.thrustframe = 1
+            self.fxcenter = self.fycenter = 0.5
     
-    def step(self, sun):
-        #self.x += self.vx
-        #self.y += self.vy
-        #self.rotation += self.vr
-        if self.thrust == 1:
-            self.setImage(self.thrustframe)
-            self.thrustframe += 1
+        def step(self, sun):
+            #self.x += self.vx
+            #self.y += self.vy
+            #self.rotation += self.vr
+            if self.thrust == 1:
+                self.setImage(self.thrustframe)
+                self.thrustframe += 1
         
-            if self.thrustframe == 4:
-                self.thrustframe = 1
-            self.x += -sin(self.rotation)
-            self.y += -cos(self.rotation)
+                if self.thrustframe == 4:
+                    self.thrustframe = 1
+                self.x += -sin(self.rotation)
+                self.y += -cos(self.rotation)
 
-            if self.collidingWith(sun):
-                """
-                self.visible == False
-                ExplosionSmall(self.position) 
-                The ship does not act dead
-                """
+                if self.collidingWith(sun):
+                    ExplosionSmall(self.position)
+                    destroyed == 1
+                    #The ship does not act dead
+                
 
-        else:
-            self.setImage(0)
+            else:
+                self.setImage(0)
             
        
                 
-    def thrustOn(self, event):
-        self.thrust = 1
+        def thrustOn(self, event):
+            self.thrust = 1
         
-    def thrustOff(self, event):
-        self.thrust = 0
+        def thrustOff(self, event):
+            self.thrust = 0
     
-    def TurnLOn(self, event):
-        self.rotation += self.vr
+        def TurnLOn(self, event):
+            self.rotation += self.vr
         
-    def TurnROn(self, event):
-        self.rotation -= self.vr
-
+        def TurnROn(self, event):
+            self.rotation -= self.vr
+    else:
+        self.visible = False
+        
 class SpaceGame(App):
 
     def __init__(self, width, height):
