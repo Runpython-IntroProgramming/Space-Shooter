@@ -67,7 +67,7 @@ class SpaceShip(Sprite):
             if self.collidingWith(sun):
                 ExplosionSmall(self.position)
                 self.destroy()
-                #The ship does not act dead
+                
                 
 
         else:
@@ -75,17 +75,17 @@ class SpaceShip(Sprite):
             
        
                 
-        def thrustOn(self, event):
-            self.thrust = 1
+    def thrustOn(self, event):
+        self.thrust = 1
         
-        def thrustOff(self, event):
-            self.thrust = 0
+    def thrustOff(self, event):
+        self.thrust = 0
     
-        def TurnLOn(self, event):
-            self.rotation += self.vr
+    def TurnLOn(self, event):
+        self.rotation += self.vr
         
-        def TurnROn(self, event):
-            self.rotation -= self.vr
+    def TurnROn(self, event):
+        self.rotation -= self.vr
     
         
 class SpaceGame(App):
@@ -103,7 +103,10 @@ class SpaceGame(App):
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step(self.bgs_sprite)
-        
+        explosions = self.getSpritesbyClass(ExplosionSmall)
+        for explosion in explosions:
+            explosion.step()
+            
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.listenKeyEvent('keydown', 'w', myapp.ship.thrustOn)
 myapp.listenKeyEvent('keyup', 'w', myapp.ship.thrustOff)
