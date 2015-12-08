@@ -39,6 +39,9 @@ class SpaceShip(Sprite):
     
     def turnleft(self, event):
         self.turn =+ 1
+    
+    def turnleft(self, event):
+        self.turn == 0
 
 
 
@@ -59,4 +62,5 @@ class SpaceGame(App):
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.listenKeyEvent('keydown', 'space', myapp.ship.thrustOn)
 myapp.listenKeyEvent('keyup', 'space', myapp.ship.thrustOff)
+myapp.listenKeyEvent('keydown', 'space', myapp.ship.turnleft)
 myapp.run()
