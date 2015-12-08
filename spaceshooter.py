@@ -20,7 +20,7 @@ class background(Sprite):
 
 class ExplosionSmall(Sprite):
     
-    asset = ImageAsset("images/explosion1.png", Frame(0,0,128,128))
+    asset = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
     
     def __init__(self, position):
         super().__init__(ExplosionSmall.asset, position)
@@ -65,7 +65,7 @@ class SpaceShip(Sprite):
             self.y += -cos(self.rotation)
 
             if self.collidingWith(sun):
-                ExplosionSmall(slf.position)
+                ExplosionSmall(self.position)
                 self.destroy()
                 
                 
