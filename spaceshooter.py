@@ -74,6 +74,8 @@ class SpaceShip(Sprite):
         self.vr = 0.00
         self.thrust = 0
         self.thrustframe = 1
+        self.rotateRight = 0
+        self.rotateLeft = 0
        
         #Thrust detection
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
