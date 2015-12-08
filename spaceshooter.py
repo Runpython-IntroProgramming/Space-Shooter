@@ -20,9 +20,9 @@ class SpaceShip(Sprite):
         self.fxcenter = self.fycenter = 0.5
 
     def step(self):
-        self.x += self.vx
-        self.y += self.vy
-        self.rotation += self.vr
+        #self.x += self.vx
+        #self.y += self.vy
+        #self.rotation += self.vr
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
@@ -38,10 +38,10 @@ class SpaceShip(Sprite):
         self.thrust = 0
     
     def turnleft(self, event):
-        self.turn =+ 1
+        self.turn = 1
     
     def turnleft(self, event):
-        self.turn == 0
+        self.turn = 0
 
 
 
