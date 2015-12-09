@@ -115,9 +115,9 @@ class SpaceShip(Sprite):
             self.setImage(0)
 #rotation
         if self.rotateRight == 1:
-            self.vr = self.vr -0.05
+            self.vr = self.vr -0.03
         elif self.rotateLeft == 1:
-            self.vr = self.vr +0.05
+            self.vr = self.vr +0.03
         else:
             self.vr = 0
 
