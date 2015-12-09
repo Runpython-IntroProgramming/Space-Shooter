@@ -1,5 +1,5 @@
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
-
+from math import sin, cos
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
 
@@ -23,8 +23,7 @@ class SpaceShip(Sprite):
         self.fxcenter = self.fycenter = 0.5
 
     def step(self):
-        self.x += -sin(self.rotation)
-        self.y += -cos(self.rotation)
+        
         self.rotation += self.turn/75
         if self.thrust == 1:
             self.setImage(self.thrustframe)
@@ -36,7 +35,9 @@ class SpaceShip(Sprite):
 
     def thrustOn(self, event):
         self.thrust = 1
-
+        self.x += -sin(self.rotation)
+        self.y += -cos(self.rotation)
+        
     def thrustOff(self, event):
         self.thrust = 0
     
