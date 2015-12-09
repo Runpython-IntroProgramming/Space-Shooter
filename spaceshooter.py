@@ -45,7 +45,7 @@ class SpaceShip(Sprite):
         self.turn = 0
     
     def turnrightOn(self, event):
-        self.turn = -1
+        self.turn = 1
     
     def turnrightOff(self, event):
         self.turn = 0
@@ -71,6 +71,6 @@ myapp.listenKeyEvent('keydown', 'space', myapp.ship.thrustOn)
 myapp.listenKeyEvent('keyup', 'space', myapp.ship.thrustOff)
 myapp.listenKeyEvent('keydown', 'a', myapp.ship.turnleftOn)
 myapp.listenKeyEvent('keyup', 'a', myapp.ship.turnleftOff)
-myapp.listenKeyEvent('keydown', 'd', myapp.ship.turnleftOn)
-myapp.listenKeyEvent('keyup', 'd', myapp.ship.turnleftOff)
+myapp.listenKeyEvent('keydown', 'd', myapp.ship.turnrighOn)
+myapp.listenKeyEvent('keyup', 'd', myapp.ship.turnrightOff)
 myapp.run()
