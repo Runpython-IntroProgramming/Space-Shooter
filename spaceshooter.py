@@ -1,9 +1,26 @@
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 from math import sin, cos
 
-asset = ImageAsset("images/starfield.jpg")
-asset.x = 1024
-asset.y = 1024
+asset1 = ImageAsset("images/starfield.jpg")
+width = 512
+height = 512
+ 
+stars = Sprite(asset1)
+stars1 = Sprite(asset1)
+stars1.x = 512
+stars1.y = 0
+stars2 = Sprite(asset1)
+stars2.x = 1024
+stars2.y = 0
+stars3 = Sprite(asset1)
+stars3.x = 0
+stars3.y = 512
+stars4 = Sprite(asset1)
+stars4.x = 512
+stars4.y = 512
+stars5 = Sprite(asset1)
+stars5.x = 1024
+stars5.y = 512
 
 Sprite(asset)
 
