@@ -94,7 +94,7 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keyup", "a", self.rotateLeftOff)
         
         SpaceGame.listenKeyEvent("keydown", "d", self.rotateRightOn)
-        SpaceGame.listenKeyEvent("keydown", "d", self.rotateRightOff)
+        SpaceGame.listenKeyEvent("keyup", "d", self.rotateRightOff)
         #Rotation animation
        
         #SpaceGame.listenKeyEvent("keydown", "w",
