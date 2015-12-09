@@ -48,6 +48,8 @@ class SpaceShip(Sprite):
     def step(self):
         self.rotation += self.turn/75
         if self.thrust == 1:
+            self.x += -sin(self.rotation)
+            self.y += -cos(self.rotation)
             self.setImage(self.thrustframe)
             self.thrustframe += 1
             if self.thrustframe == 4:
@@ -57,8 +59,6 @@ class SpaceShip(Sprite):
 
     def thrustOn(self, event):
         self.thrust = 1
-        self.x += -sin(self.rotation)
-        self.y += -cos(self.rotation)
         
     def thrustOff(self, event):
         self.thrust = 0
@@ -92,8 +92,8 @@ class SpaceGame(App):
 
 
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
-myapp.listenKeyEvent('keydown', 'w', myapp.ship.thrustOn)
-myapp.listenKeyEvent('keyup', 'w', myapp.ship.thrustOff)
+#myapp.listenKeyEvent('keydown', 'w', myapp.ship.thrustOn)
+#myapp.listenKeyEvent('keyup', 'w', myapp.ship.thrustOff)
 myapp.listenKeyEvent('keydown', 'a', myapp.ship.turnleftOn)
 myapp.listenKeyEvent('keyup', 'a', myapp.ship.turnleftOff)
 myapp.listenKeyEvent('keydown', 'd', myapp.ship.turnrightOn)
