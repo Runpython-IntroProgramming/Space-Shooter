@@ -82,6 +82,6 @@ myapp.listenKeyEvent('keydown', 'a', myapp.ship.turnleftOn)
 myapp.listenKeyEvent('keyup', 'a', myapp.ship.turnleftOff)
 myapp.listenKeyEvent('keydown', 'd', myapp.ship.turnrightOn)
 myapp.listenKeyEvent('keyup', 'd', myapp.ship.turnrightOff)
-myapp.listenKeyEvent('keydown', 'w', myapp.ship.goforawrdOn)
-myapp.listenKeyEvent('keyup', 'w', myapp.ship.goforawrdOff)
+
+
 myapp.run()
