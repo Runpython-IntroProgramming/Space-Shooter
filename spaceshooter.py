@@ -1,6 +1,11 @@
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 from math import sin, cos
 
+asset = ImageAsset("images/starfield.jpg")
+asset.x = 1024
+asset.y = 1024
+
+Sprite(asset)
 
 class SpaceShip(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
@@ -59,10 +64,6 @@ class SpaceShip(Sprite):
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
-        black = Color(0, 1)
-        noline = LineStyle(0, black)
-        bg_asset = RectangleAsset(width, height, noline, black)
-        bg = Sprite(bg_asset, (0,0))
         self.ship = SpaceShip((200,50))
         
     def step(self):
