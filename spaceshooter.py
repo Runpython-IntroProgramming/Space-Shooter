@@ -116,8 +116,13 @@ class SpaceShip(Sprite):
 #rotation
         if self.rotateRight == 1:
             self.vr = self.vr -0.01
+        if self.rotateRight == 0:
+            self.vr = 0
+            
         if self.rotateLeft == 1:
             self.vr = self.vr +0.01
+        if self.rotateLeft == 0:
+            self.vr = 0
 #thrust
     def thrustOn(self, event):
         self.thrust = 1
