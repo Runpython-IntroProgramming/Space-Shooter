@@ -30,8 +30,8 @@ width = 80
 height = 80
 
 sun = Sprite(asset2)
-sun.x = 711.5
-sun.y = 394
+sun.x = 670
+sun.y = 345
 
 class SpaceShip(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
