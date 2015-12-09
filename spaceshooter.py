@@ -45,7 +45,7 @@ class SpaceShip(Sprite):
         self.turn = 0
     
     def turnrightOn(self, event):
-        self.turn = 1
+        self.turn = -1
     
     def turnrightOff(self, event):
         self.turn = 0
