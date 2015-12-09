@@ -17,13 +17,14 @@ class SpaceShip(Sprite):
         self.thrustframe = 1
         self.turn = 0
         self.go = 0
+        self.rotation = 0
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
         self.fxcenter = self.fycenter = 0.5
 
     def step(self):
         self.x += -sin(self.rotation)
-        #self.y += self.vy
+        self.y += -cos(self.rotation)
         self.rotation += self.turn/75
         if self.thrust == 1:
             self.setImage(self.thrustframe)
