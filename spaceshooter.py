@@ -1,6 +1,9 @@
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 from math import sin, cos
 
+SCREEN_WIDTH = 2000
+SCEEN_HEIGHT = 2000
+
 asset1 = ImageAsset("images/starfield.jpg")
 width = 512
 height = 512
