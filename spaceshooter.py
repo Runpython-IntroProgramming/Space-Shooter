@@ -84,7 +84,7 @@ class SpaceShip(Sprite):
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
-        self.ship = SpaceShip((200,50))
+        self.ship = SpaceShip((711.5,394))
         
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
