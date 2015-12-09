@@ -22,7 +22,7 @@ class SpaceShip(Sprite):
         self.fxcenter = self.fycenter = 0.5
 
     def step(self):
-        #self.x += self.vx
+        self.x += -sin(self.rotation)
         #self.y += self.vy
         self.rotation += self.turn/75
         if self.thrust == 1:
