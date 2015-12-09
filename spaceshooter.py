@@ -25,7 +25,13 @@ stars5 = Sprite(asset1)
 stars5.x = 1024
 stars5.y = 512
 
-Sprite(asset)
+asset2 = ImageAsset("images/sun.png")
+width = 80
+height = 80
+
+sun = Sprite(asset2)
+sun.x = 711.5
+sun.y = 394
 
 class SpaceShip(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
