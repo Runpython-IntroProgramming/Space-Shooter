@@ -58,8 +58,6 @@ class SpaceShip(Sprite):
     def goforwardOff(self, event):
         self.go = 0
 
-
-
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
