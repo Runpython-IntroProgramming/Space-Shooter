@@ -96,7 +96,8 @@ class SpaceGame(App):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
 
-if 671.5 <= ship1.x <= 751.5 and 390 <= ship.y <= 434
+if 671.5 <= ship1.x <= 751.5 and 390 <= ship.y <= 434:
+    ship1 = ImageAsset("")
 
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.listenKeyEvent('keydown', 'a', myapp.ship.turnleftOn)
