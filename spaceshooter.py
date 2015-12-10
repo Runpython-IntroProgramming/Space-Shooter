@@ -94,6 +94,7 @@ class Explosion(Sprite):
         Frame(0,0,128.1,129), 10, 'horizontal')
     def __init__(self, position):
         super().__init__(Explosion.explosion, position)
+        self.setImage(3)
     
 
 class SpaceGame(App):
