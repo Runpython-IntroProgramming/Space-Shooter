@@ -89,7 +89,7 @@ class SpaceShip(Sprite):
     def goforwardOff(self, event):
         self.go = 0
 
-class Explosion:
+class Explosion(Sprite):
     explosion = ImageAsset("images/explosion1.png", 
         Frame(0,0,128.1,129), 10, 'horizontal')
     def __init__(self, position):
