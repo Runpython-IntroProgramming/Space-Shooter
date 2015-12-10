@@ -93,7 +93,7 @@ class Explosion(Sprite):
     explosion = ImageAsset("images/explosion1.png", 
         Frame(0,0,128.1,129), 10, 'horizontal')
     def __init__(self, position):
-        super().__init__(SpaceShip.asset, position)
+        super().__init__(Explosion.explosion, position)
     
 
 class SpaceGame(App):
