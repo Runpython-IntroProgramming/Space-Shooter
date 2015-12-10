@@ -25,7 +25,7 @@ stars5 = Sprite(asset1)
 stars5.x = 1024
 stars5.y = 512
 
-asset2 = ImageAsset("images/sun.png")
+sun = ImageAsset("images/sun.png")
 width = 80
 height = 80
 
@@ -34,11 +34,11 @@ sun.x = 670
 sun.y = 345
 
 class SpaceShip(Sprite):
-    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
+    ship1 = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(227,0,292-227,125), 4, 'vertical')
 
     def __init__(self, position):
-        super().__init__(SpaceShip.asset, position)
+        super().__init__(SpaceShip.ship1, position)
         self.vx = 1
         self.vy = 1
         self.vr = 0.01
@@ -96,6 +96,7 @@ class SpaceGame(App):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
 
+if 671.5 <= ship1.x <= 751.5 and 390 <= ship.y <= 434
 
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.listenKeyEvent('keydown', 'a', myapp.ship.turnleftOn)
