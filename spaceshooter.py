@@ -53,7 +53,7 @@ class SpaceShip(Sprite):
 
     def step(self):
         self.rotation += self.turn/50
-        if 671.5 <= ship.x <= 751.5 and 390 <= ship.y <= 434:
+        if 671.5 <= self.x <= 751.5 and 390 <= self.y <= 434:
             Explosion(self.position)
         if self.thrust == 1:
             self.x += -1.5*sin(self.rotation)
