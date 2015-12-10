@@ -25,7 +25,7 @@ stars5 = Sprite(asset1)
 stars5.x = 1024
 stars5.y = 512
 
-sun = ImageAsset("images/sun.png")
+asset2 = ImageAsset("images/sun.png")
 width = 80
 height = 80
 
