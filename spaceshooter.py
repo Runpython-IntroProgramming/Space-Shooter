@@ -34,11 +34,11 @@ sun.x = 670
 sun.y = 345
 
 class SpaceShip(Sprite):
-    ship1 = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
+    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(227,0,292-227,125), 4, 'vertical')
 
     def __init__(self, position):
-        super().__init__(SpaceShip.ship1, position)
+        super().__init__(SpaceShip.asset, position)
         self.vx = 1
         self.vy = 1
         self.vr = 0.01
@@ -53,6 +53,8 @@ class SpaceShip(Sprite):
 
     def step(self):
         self.rotation += self.turn/50
+        if 671.5 <= ship.x <= 751.5 and 390 <= ship.y <= 434:
+            Explosion(self.position)
         if self.thrust == 1:
             self.x += -1.5*sin(self.rotation)
             self.y += -1.5*cos(self.rotation)
@@ -87,6 +89,13 @@ class SpaceShip(Sprite):
     def goforwardOff(self, event):
         self.go = 0
 
+class Explosion:
+    explosion = ImageAsset("images/explosion1.png", 
+        Frame(0,0,128.1,129), 10, 'horizontal')
+    def __init__(self, position):
+        super().__init__(SpaceShip.asset, position)
+    
+
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
@@ -96,8 +105,6 @@ class SpaceGame(App):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
 
-if 671.5 <= ship1.x <= 751.5 and 390 <= ship.y <= 434:
-    ship1 = ImageAsset("")
 
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.listenKeyEvent('keydown', 'a', myapp.ship.turnleftOn)
