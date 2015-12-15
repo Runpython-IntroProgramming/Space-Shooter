@@ -1,3 +1,7 @@
+"""
+credits!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+"""
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 from math import sin, cos
 
@@ -55,7 +59,8 @@ class SpaceShip(Sprite):
         self.rotation += self.turn/30
         if 671.5 <= self.x <= 751.5 and 390 <= self.y <= 434:
             Explosion(self.position)
-        if self.thrust == 1:
+            self.destroy()
+        elif self.thrust == 1:
             self.x += -2*sin(self.rotation)
             self.y += -2*cos(self.rotation)
             self.setImage(self.thrustframe)
@@ -93,8 +98,15 @@ class Explosion(Sprite):
     explosion = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10, 'horizontal')
     def __init__(self, position):
         super().__init__(Explosion.explosion, position)
-        self.setImage(7)
+        self.setImage(0)
+        self.fxcenter = self.fycenter = 0.5
+        self.count = 0
     
+    def step(self):
+        self.setImage(self.count//2)
+        self.count += 1
+        if self.count == 9:
+            self.destroy()
 
 class SpaceGame(App):
     def __init__(self, width, height):
@@ -104,6 +116,8 @@ class SpaceGame(App):
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
+        for exp in self.getSpritesbyClass(Explosion):
+            exp.step()
 
 
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
