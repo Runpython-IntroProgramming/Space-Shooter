@@ -105,7 +105,7 @@ class Explosion(Sprite):
     def step(self):
         self.setImage(self.count//2)
         self.count += 1
-        if self.count == 9:
+        if self.count == 50:
             self.destroy()
 
 class SpaceGame(App):
