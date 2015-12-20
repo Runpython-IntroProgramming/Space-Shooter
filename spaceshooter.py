@@ -14,6 +14,7 @@ rotating ships
 
 Source:
 lines 23 - 27 based off of orininal space game code
+lines 123 and 124 taken from idea in original code
 """
 
 #key list starts a line 1067 in ggame.py file
@@ -111,13 +112,18 @@ class SpaceShip(Sprite):
             self.vy = self.vy -0.1
             if self.thrustframe == 4:
                 self.thrustframe = 1
-        elif:
-            self.setImage(0)
+            else:
+                self.setImage(0)
 #rotation
+        if self.collision(self.app.sun) == true:
+            self.explode()
         if self.rotateRight == 1:
             self.vr = self.vr -0.01
-        elif self.rotateLeft == 1:
+        if self.rotateLeft == 1:
             self.vr = self.vr +0.01
+        if self.foward == 1:
+            self.vy+=(-.3*(math.cos(self.rotation)))
+            self.vx+=(-.3*(math.sin(self.rotation)))
         else:
             self.vr = 0
 
@@ -126,6 +132,10 @@ class SpaceShip(Sprite):
         self.thrust = 1
     def thrustOff(self, event):
         self.thrust = 0
+#explode
+    def explode(self):
+        explosion(self.position)
+        self.die()
         
 #movement
     def moveFowardOn(self,event):
@@ -159,7 +169,9 @@ class SpaceShip(Sprite):
     def rotateLeftOff(self,event):
         self.rotateLeft = 0
         
-    
+#explosion image
+class explosion(Sprite):
+    asset = ImageAsset ("images/explosion2.png")
 
 
 class SpaceGame(App):
