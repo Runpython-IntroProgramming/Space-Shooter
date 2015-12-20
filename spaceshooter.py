@@ -174,6 +174,13 @@ class explosion(Sprite):
     asset = ImageAsset ("images/explosion2.png", Frame(0,0,128,128), 10)
     def __init__(self,position):
         super().__init__(explosion.asset, position)
+        self.center = (0.5,0.5)
+        self.Frame = 0
+        self.eSpeed = 0
+    def step(self):
+        self.setImage(self.Frame)
+        self.eSpeed += 0.3
+        self.Frame = init(self.eSpeed)
 
 
 class SpaceGame(App):
