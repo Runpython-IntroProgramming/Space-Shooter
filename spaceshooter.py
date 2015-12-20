@@ -172,6 +172,7 @@ class SpaceShip(Sprite):
 #explosion image
 class explosion(Sprite):
     asset = ImageAsset ("images/explosion2.png", Frame(0,0,128,128), 10)
+    def __init__(explosion.asset, position)
 
 
 class SpaceGame(App):
