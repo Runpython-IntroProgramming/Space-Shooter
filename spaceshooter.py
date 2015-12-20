@@ -114,9 +114,11 @@ class SpaceShip(Sprite):
                 self.thrustframe = 1
             else:
                 self.setImage(0)
-#rotation
+
         if self.collision(self.app.sun) == true:
             self.explode()
+
+#rotation
         if self.rotateRight == 1:
             self.vr = self.vr -0.01
         if self.rotateLeft == 1:
@@ -183,7 +185,7 @@ class explosion(Sprite):
         self.Frame = init(self.eSpeed)
         self.Frame += 2
         if self.Frame == 10:
-            self.destroy()
+            self.die()
 
 
 class SpaceGame(App):
