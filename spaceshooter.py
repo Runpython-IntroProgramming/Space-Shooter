@@ -198,7 +198,7 @@ class SpaceGame(App):
         bg = Sprite(bg_asset, (0,0))
         Starfield((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         Sun((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
-        SpaceShip((190,240,self))
+        SpaceShip((190,240))
         #SpaceShip((150,150))
         #SpaceShip((200,50))
 
