@@ -176,7 +176,7 @@ class explosion(Sprite):
     asset = ImageAsset ("images/explosion2.png", Frame(0,0,128,128), 10, "horrizontal")
     def __init__(self,position):
         super().__init__(explosion.asset, position)
-        self.center = (0.5,0.5)
+        #self.center = (0.5,0.5)
         self.Frame = 0
         self.eSpeed = 0
     def step(self):
@@ -198,6 +198,7 @@ class SpaceGame(App):
         noline = LineStyle(0, black)
         bg_asset = RectangleAsset(width, height, noline, black)
         bg = Sprite(bg_asset, (0,0))
+        sun_asset = ImageAsset("images/sun.png")
         Starfield((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         Sun((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         SpaceShip((190,240))
