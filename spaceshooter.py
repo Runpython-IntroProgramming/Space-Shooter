@@ -181,6 +181,9 @@ class explosion(Sprite):
         self.setImage(self.Frame)
         self.eSpeed += 0.3
         self.Frame = init(self.eSpeed)
+        self.Frame += 2
+        if self.Frame == 10:
+            self.destroy()
 
 
 class SpaceGame(App):
@@ -195,7 +198,7 @@ class SpaceGame(App):
         bg = Sprite(bg_asset, (0,0))
         Starfield((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         Sun((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
-        SpaceShip((190,240))
+        SpaceShip((190,240,self))
         #SpaceShip((150,150))
         #SpaceShip((200,50))
 
