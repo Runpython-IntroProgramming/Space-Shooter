@@ -173,7 +173,7 @@ class SpaceShip(Sprite):
         
 #explosion image
 class explosion(Sprite):
-    asset = ImageAsset ("images/explosion2.png", Frame(0,0,128,128), 10)
+    asset = ImageAsset ("images/explosion2.png", Frame(0,0,128,128), 10, "horrizontal")
     def __init__(self,position):
         super().__init__(explosion.asset, position)
         self.center = (0.5,0.5)
