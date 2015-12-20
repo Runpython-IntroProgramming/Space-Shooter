@@ -198,7 +198,7 @@ class SpaceGame(App):
         noline = LineStyle(0, black)
         bg_asset = RectangleAsset(width, height, noline, black)
         bg = Sprite(bg_asset, (0,0))
-        sun_asset = ImageAsset("images/sun.png")
+       
         Starfield((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         Sun((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         SpaceShip((190,240))
