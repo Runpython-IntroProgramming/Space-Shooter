@@ -126,8 +126,8 @@ class SpaceShip(Sprite):
             self.vr = self.vr +0.0001
         self.rotation += self.vr   # <<<< change rotation!
         if self.forward == 1:  # <<<< forward
-            self.y+=(-cos(self.rotation))
-            self.x+=(-sin(self.rotation))
+            self.vy+=(-cos(self.rotation))
+            self.vx+=(-sin(self.rotation))
         
 
 #thrust
