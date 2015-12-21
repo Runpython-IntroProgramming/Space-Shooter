@@ -115,19 +115,20 @@ class SpaceShip(Sprite):
             else:
                 self.setImage(0)
 
-        if self.collision(self.app.sun) == true:
-            self.explode()
+        #if self.collision(self.app.sun) == true:
+            #self.explode()
 
 #rotation
-        if self.rotateRight == 1:
-            self.vr = self.vr -0.01
+         if self.rotateRight == 1:
+            self.vr = self.vr -0.001
         if self.rotateLeft == 1:
-            self.vr = self.vr +0.01
-        if self.foward == 1:
+            self.vr = self.vr +0.001
+        self.rotation += self.vr   # <<<< change rotation!
+        if self.forward == 1:  # <<<< forward
             self.vy+=(-.3*(math.cos(self.rotation)))
             self.vx+=(-.3*(math.sin(self.rotation)))
-        else:
-            self.vr = 0
+        #else:
+        #    self.vr = 0
 
 #thrust
     def thrustOn(self, event):
@@ -137,7 +138,7 @@ class SpaceShip(Sprite):
 #explode
     def explode(self):
         explosion(self.position)
-        self.die()
+        self.destroy()
         
 #movement
     def moveFowardOn(self,event):
