@@ -20,7 +20,7 @@ lines 123 and 124 taken from idea in original code
 #key list starts a line 1067 in ggame.py file
 
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
-
+from math import cos, sin
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
 
@@ -77,16 +77,17 @@ class SpaceShip(Sprite):
         self.thrustframe = 1
         self.rotateRight = 0
         self.rotateLeft = 0
+        self.forward = 0   # <<<
        
         #Thrust detection
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
        
         #Rotation detection
-        """
+        
         SpaceGame.listenKeyEvent("keydown", "w", self.moveFowardOn)
         SpaceGame.listenKeyEvent("keyup", "w", self.moveFowardOff)
-        
+        """
         SpaceGame.listenKeyEvent("keydown", "s", self.moveBackOn)
         SpaceGame.listenKeyEvent("keyup", "s", self.moveBackOff)
         """
@@ -116,19 +117,18 @@ class SpaceShip(Sprite):
                 self.setImage(0)
 
         #if self.collision(self.app.sun) == true:
-            #self.explode()
+        #    self.explode()
 
 #rotation
-         if self.rotateRight == 1:
-            self.vr = self.vr -0.001
+        if self.rotateRight == 1:
+            self.vr = self.vr -0.0001
         if self.rotateLeft == 1:
-            self.vr = self.vr +0.001
+            self.vr = self.vr +0.0001
         self.rotation += self.vr   # <<<< change rotation!
         if self.forward == 1:  # <<<< forward
             self.vy+=(-.3*(math.cos(self.rotation)))
             self.vx+=(-.3*(math.sin(self.rotation)))
-        #else:
-        #    self.vr = 0
+        
 
 #thrust
     def thrustOn(self, event):
@@ -137,8 +137,9 @@ class SpaceShip(Sprite):
         self.thrust = 0
 #explode
     def explode(self):
+        print("explode")
         explosion(self.position)
-        self.destroy()
+        self.die()
         
 #movement
     def moveFowardOn(self,event):
@@ -183,10 +184,10 @@ class explosion(Sprite):
     def step(self):
         self.setImage(self.Frame)
         self.eSpeed += 0.3
-        self.Frame = init(self.eSpeed)
+        #self.Frame = init(self.eSpeed)
         self.Frame += 2
         if self.Frame == 10:
-            self.die()
+            self.destroy()   # <<< self.destroy() ??
 
 
 class SpaceGame(App):
@@ -209,7 +210,7 @@ class SpaceGame(App):
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
-        for explode in self.getSpritebyClass(explosion):
+        for explode in self.getSpritesbyClass(explosion):
             explode.step()
 
 
