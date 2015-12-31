@@ -80,8 +80,8 @@ class SpaceShip(Sprite):
         self.forward = 0   # <<<
        
         #Thrust detection
-        SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
-        SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
+        SpaceGame.listenKeyEvent("keydown", "w", self.thrustOn)
+        SpaceGame.listenKeyEvent("keyup", "w", self.thrustOff)
        
         #Rotation detection
         
@@ -110,7 +110,7 @@ class SpaceShip(Sprite):
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
-            self.vy = self.vy -0.1
+            self.vy = self.vy -0.01
             if self.thrustframe == 4:
                 self.thrustframe = 1
             else:
@@ -121,9 +121,9 @@ class SpaceShip(Sprite):
 
 #rotation
         if self.rotateRight == 1:
-            self.vr = self.vr -0.0001
+            self.vr = self.vr -0.001
         if self.rotateLeft == 1:
-            self.vr = self.vr +0.0001
+            self.vr = self.vr +0.001
         self.rotation += self.vr   # <<<< change rotation!
         if self.forward == 1:  # <<<< forward
             self.vy+=(-cos(self.rotation))
@@ -142,10 +142,10 @@ class SpaceShip(Sprite):
         self.die()
         
 #movement
-    def moveFowardOn(self,event):
-        self.foward = 1
-    def moveFowardOff(self,event):
-        self.foward = 0
+    def moveForwardOn(self,event):
+        self.forward = 1
+    def moveForwardOff(self,event):
+        self.forward = 0
     
     def moveRightOn(self,event):
         self.right = 1
