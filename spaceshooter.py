@@ -192,8 +192,8 @@ class explosion(Sprite):
         if self.Frame == 10:
             self.destroy()   # <<< self.destroy() ??
 
-if self.y > 200 and self.y < 250:
-    if self.x > 200 and self.x < 250:
+if y > 200 and y < 250:
+    if x > 200 and x < 250:
         explode3 = 1
 else:
     explode3 = 0
