@@ -24,7 +24,7 @@ from math import cos, sin
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
 
-
+explode3 = 0
 class Sun(Sprite):
     """
     The Sun on the Screen
@@ -66,6 +66,8 @@ class SpaceShip(Sprite):
     """
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(227,0,292-227,125), 4, 'vertical')
+    if explode3 = 1:
+        asset = ImageAsset("images/explosion2.png", Frame(0,0,128,128), 10, "horrizontal")
 
 #spaceship spawn movement
     def __init__(self, position):
@@ -175,6 +177,7 @@ class SpaceShip(Sprite):
         
 #explosion image
 class explosion(Sprite):
+
     asset = ImageAsset ("images/explosion2.png", Frame(0,0,128,128), 10, "horrizontal")
     def __init__(self,position):
         super().__init__(explosion.asset, position)
@@ -189,7 +192,10 @@ class explosion(Sprite):
         if self.Frame == 10:
             self.destroy()   # <<< self.destroy() ??
 
-
+explode3 = 0:
+    if self.vy > 200 and self.vy < 250:
+        if self.vx > 200 and self.vx < 250:
+            explode3 = 1
 class SpaceGame(App):
     """
     Tutorial4 space game example.
