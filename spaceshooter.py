@@ -192,11 +192,12 @@ class explosion(Sprite):
         if self.Frame == 10:
             self.destroy()   # <<< self.destroy() ??
 
-if self.vy > 200 and self.vy < 250:
-    if self.vx > 200 and self.vx < 250:
+if self.y > 200 and self.y < 250:
+    if self.x > 200 and self.x < 250:
         explode3 = 1
 else:
     explode3 = 0
+    
 class SpaceGame(App):
     """
     Tutorial4 space game example.
