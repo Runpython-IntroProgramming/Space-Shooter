@@ -66,7 +66,7 @@ class SpaceShip(Sprite):
     """
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(227,0,292-227,125), 4, 'vertical')
-    if explode3 = 1:
+    if explode3 == 1:
         asset = ImageAsset("images/explosion2.png", Frame(0,0,128,128), 10, "horrizontal")
 
 #spaceship spawn movement
