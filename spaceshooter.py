@@ -192,8 +192,7 @@ class explosion(Sprite):
         self.Frame += 2
         if self.Frame == 10:
             self.destroy()   # <<< self.destroy() ??
-print(self.y)
-print(self.x)
+
 """
 if (y > 200) and (y < 250):
     if (x > 200) and (x < 250):
