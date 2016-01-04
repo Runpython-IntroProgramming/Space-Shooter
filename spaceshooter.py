@@ -64,15 +64,6 @@ class SpaceShip(Sprite):
     """
     Animated space ship
     """
-    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
-        Frame(227,0,292-227,125), 4, 'vertical')
-    if explode3 == 1:
-        asset = ImageAsset("images/explosion2.png", Frame(0,0,128,128), 10, "horrizontal")
-    if (y > 200) and (y < 250):
-    if (x > 200) and (x < 250):
-        explode3 = 1
-    else:
-        explode3 = 0
 #spaceship spawn movement
     def __init__(self, position):
         super().__init__(SpaceShip.asset, position)
@@ -195,8 +186,7 @@ class explosion(Sprite):
         self.Frame += 2
         if self.Frame == 10:
             self.destroy()   # <<< self.destroy() ??
-print(self.y)
-print(self.x)
+
 """
 if (y > 200) and (y < 250):
     if (x > 200) and (x < 250):
