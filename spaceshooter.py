@@ -22,7 +22,7 @@ from math import cos, sin
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
 
-explode3 = 0
+
 class Sun(Sprite):
     """
     The Sun on the Screen
@@ -76,7 +76,7 @@ class SpaceShip(Sprite):
         self.rotateRight = 0
         self.rotateLeft = 0
         self.forward = 0
-        
+        self.explode3 = 0
        
         #Thrust detection
         SpaceGame.listenKeyEvent("keydown", "w", self.thrustOn)
@@ -103,12 +103,12 @@ class SpaceShip(Sprite):
 
 #display of thrust
     def step(self):
-        if explode3 == 1:
+        if self.explode3 == 1:
             asset = ImageAsset("images/explosion2.png", Frame(0,0,128,128), 10, "horrizontal")
         if (self.y > 200) and (self.y < 250) and (self.x > 200) and (self.x < 250):
-            explode3 = 1
+            self.explode3 = 1
         else:
-            explode3 = 0
+            self.explode3 = 0
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
@@ -123,7 +123,7 @@ class SpaceShip(Sprite):
 
         #if self.collision(self.app.sun) == true:
         #    self.explode()
-
+        
 #rotation
         if self.rotateRight == 1:
             self.vr = self.vr -0.001
