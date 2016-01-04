@@ -64,12 +64,7 @@ class SpaceShip(Sprite):
     """
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(227,0,292-227,125), 4, 'vertical')
-    if explode3 == 1:
-        asset = ImageAsset("images/explosion2.png", Frame(0,0,128,128), 10, "horrizontal")
-    if (self.vy > 200) and (self.vy < 250) and (self.vx > 200) and (self.vx < 250):
-        explode3 = 1
-    else:
-        explode3 = 0
+    
 #spaceship spawn movement
     def __init__(self, position):
         super().__init__(SpaceShip.asset, position)
@@ -80,7 +75,8 @@ class SpaceShip(Sprite):
         self.thrustframe = 1
         self.rotateRight = 0
         self.rotateLeft = 0
-        self.forward = 0   # <<<
+        self.forward = 0
+        
        
         #Thrust detection
         SpaceGame.listenKeyEvent("keydown", "w", self.thrustOn)
@@ -107,6 +103,12 @@ class SpaceShip(Sprite):
 
 #display of thrust
     def step(self):
+        if explode3 == 1:
+            asset = ImageAsset("images/explosion2.png", Frame(0,0,128,128), 10, "horrizontal")
+        if (self.y > 200) and (self.y < 250) and (self.x > 200) and (self.x < 250):
+            explode3 = 1
+        else:
+            explode3 = 0
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
