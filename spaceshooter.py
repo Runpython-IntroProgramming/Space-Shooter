@@ -109,6 +109,7 @@ class SpaceShip(Sprite):
             self.explode3 = 1
             self.vy = 0
             self.vx = 0
+            self.vr = 0
             SpaceGame.listenKeyEvent("keydown", "w", self.moveForwardOff)
             print(self.explode3)
         else:
