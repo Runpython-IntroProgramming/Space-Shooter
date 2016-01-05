@@ -107,8 +107,11 @@ class SpaceShip(Sprite):
             asset = ImageAsset("images/explosion2.png", Frame(0,0,128,128), 10, "horrizontal")
         if (self.y > 200) and (self.y < 250) and (self.x > 200) and (self.x < 250):
             self.explode3 = 1
+            self.vy = 0
+            self.vx = 0
+            self.vr = 0
             self.visible = False
-            
+            explosion(self.position)
         else:
             self.explode3 = 0
         self.x += self.vx
