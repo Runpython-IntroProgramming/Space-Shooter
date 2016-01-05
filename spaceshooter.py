@@ -196,8 +196,8 @@ class explosion(Sprite):
         self.setImage(self.Frame)
         self.eSpeed += 0.3
         #self.Frame = init(self.eSpeed)
-        self.Frame += 2
-        if self.Frame == 10:
+        self.Frame += 1
+        if self.Frame == 25:
             self.destroy()   # <<< self.destroy() ??
 
 """
