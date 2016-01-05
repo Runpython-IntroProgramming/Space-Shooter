@@ -148,8 +148,8 @@ class SpaceShip(Sprite):
 #explode
     def explode(self):
         print("explode")
-        explosion(self.position)
-        self.die()
+        self.explosion(self.position)
+        self.destroy()
         
 #movement
     def moveForwardOn(self,event):
