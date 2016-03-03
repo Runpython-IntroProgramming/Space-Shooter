@@ -10,7 +10,9 @@ https://github.com/HHS-IntroProgramming/Spacewar
 
 from ggame import App, Sprite, ImageAsset
 
-starback = ImageAsset("images/starfield.jpg")
+starback_asset = ImageAsset("images/starfield.jpg")
+
+starback = Sprite(starback_asset, (0, 0))
 
 myapp = App()
 myapp.run()
