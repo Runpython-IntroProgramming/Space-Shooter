@@ -21,6 +21,10 @@ class StarBack(Sprite):
         super().__init__(StarBack.asset, position)
         self.scale = 2
         
+class Asteroid(Sprite):
+    
+    asset = 
+        
 class SpaceShip(Sprite):
     
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
