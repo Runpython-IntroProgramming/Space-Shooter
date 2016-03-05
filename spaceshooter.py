@@ -10,6 +10,25 @@ https://github.com/HHS-IntroProgramming/Spacewar
 
 from ggame import App, Sprite, ImageAsset, Frame
 
+class StarBack(Sprite):
+    
+    asset = ImageAsset("images/starfield.jpg")
+    
+    def __init__(self, position):
+        super().__init(StarBack.asset, position)
+        
+
+class SpaceGame(App):
+    def __init__(self):
+        super().__init__()
+        StarBack(0,0)
+        
+myapp = SpaceGame()
+myapp.run()
+
+'''
+from ggame import App, Sprite, ImageAsset, Frame
+
 class starback(Sprite):
     starback_asset = ImageAsset("images/starfield.jpg")
     starback = Sprite(starback_asset, (0,0))
@@ -22,3 +41,4 @@ class ship1(Sprite):
 
 myapp = App()
 myapp.run()
+'''
