@@ -15,13 +15,14 @@ class StarBack(Sprite):
     asset = ImageAsset("images/starfield.jpg")
     
     def __init__(self, position):
-        super().__init(StarBack.asset, position)
-        
+        super().__init__(StarBack.asset, position)
+        self.scale = 2
 
 class SpaceGame(App):
     def __init__(self):
         super().__init__()
-        StarBack(0,0)
+        StarBack((0,0))
+        
         
 myapp = SpaceGame()
 myapp.run()
