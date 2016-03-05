@@ -1,7 +1,7 @@
 """
 spaceshooter.py
 Author: David Wilson
-Credit: Space War Source Code (by Mr. Dennsion)
+Credit: Mr. Dennison ("Space War Source Code" and "Advanced Graphics with Classes")
 
 Assignment:
 Write and submit a program that implements the spacewar game:
@@ -20,6 +20,11 @@ class StarBack(Sprite):
     def __init__(self, position):
         super().__init__(StarBack.asset, position)
         self.scale = 2
+        
+class SpaceShip(Sprite):
+    
+    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
+        Frame(227,0,292-227,125), 4, 'vertical')
 
 class SpaceGame(App):
     def __init__(self):
