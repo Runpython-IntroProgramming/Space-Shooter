@@ -10,12 +10,15 @@ https://github.com/HHS-IntroProgramming/Spacewar
 
 from ggame import App, Sprite, ImageAsset, Frame
 
-SCREEN_WIDTH = 500
-SCREEN_HEIGHT = 250
+SCREEN_WIDTH = 1000
+SCREEN_HEIGHT = 600
+
+BACK_WIDTH = SCREEN_WIDTH/2
+BACK_HEIGHT = SCREEN_HEIGHT/2
 
 class StarBack(Sprite):
     
-    asset = ImageAsset("images/starfield.jpg", Frame(0,0,SCREEN_WIDTH,SCREEN_HEIGHT))
+    asset = ImageAsset("images/starfield.jpg", Frame(0,0,BACK_WIDTH,BACK_HEIGHT))
     
     def __init__(self, position):
         super().__init__(StarBack.asset, position)
