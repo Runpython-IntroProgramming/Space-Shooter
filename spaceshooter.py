@@ -58,16 +58,21 @@ class SpaceShip(Sprite):
         
     def step(self):
         if self.thrustFrame == 4 and self.thrust == 1:
-            self.thrustFrame = 1
+            self.thrustFrame = 0
         else:
             self.thrustFrame += self.thrust
         self.setImage(self.thrustFrame)
 
 class SpaceGame(App):
+    
+    def step(self):
+        SpaceShip.step()
+        
     def __init__(self):
         super().__init__()
         StarBack((0,0))
         SpaceShip((100,100))
+    
         
 myapp = SpaceGame()
 myapp.run()
