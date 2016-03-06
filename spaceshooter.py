@@ -41,18 +41,16 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.rotateLeft)
         
     def rotateRight (self, event):
-        self.rotation += self.rotSpd
+        self.rotation -= self.rotSpd
         
     def rotateLeft (self, event):
-        self.rotation -= self.rotSpd
+        self.rotation += self.rotSpd
 
 class SpaceGame(App):
     def __init__(self):
         super().__init__()
         StarBack((0,0))
         SpaceShip((100,100))
-        Asteroid((500,500))
-        
         
 myapp = SpaceGame()
 myapp.run()
