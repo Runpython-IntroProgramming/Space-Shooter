@@ -83,7 +83,7 @@ class Bullet(Sprite):
         self.vely = 5
     
     def step(self):
-        while 0 <= self.x <= SCREEN_WIDTH and 0 <= self.y <= SCREEN_HEIGHT:
+        if 0 <= self.x <= SCREEN_WIDTH and 0 <= self.y <= SCREEN_HEIGHT:
             self.x += self.velx
             self.y += self.vely
 
