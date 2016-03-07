@@ -64,11 +64,6 @@ class SpaceGame(App):
     black = Color(0, 1)
     noline = LineStyle(0, black)
     bg_asset = ImageAsset("images/starfield.jpg")
-    width = 512
-    height = 512
-
-    def __init__(self, position):
-        super().__init__(Stars.asset, position)
     bg = Sprite(bg_asset, (0,0))
     
     def step(self):
