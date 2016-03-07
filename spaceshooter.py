@@ -9,6 +9,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 
 from ggame import App, Sprite, ImageAsset, Frame
+import random
 
 SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 600
@@ -28,6 +29,7 @@ class Asteroid(Sprite):
     def __init__(self, position):
         super().__init__(Asteroid.asset, position)
 '''
+
 class SpaceShip(Sprite):
     
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
@@ -38,11 +40,11 @@ class SpaceShip(Sprite):
         self.rotSpd = 0.1
         self.fxcenter = self.fycenter = 0.5
         self.thrust = 0
-        self.thrustFrame = 0
+        self.thrustframe = 0
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.rotateRight)
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.rotateLeft)
-        SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
-        SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
+        SpaceGame.listenKeyEvent("keydown", "up arrow", self.thrustOn)
+        SpaceGame.listenKeyEvent("keyup", "up arrow", self.thrustOff)
         
     def rotateRight(self, event):
         self.rotation -= self.rotSpd
@@ -58,10 +60,11 @@ class SpaceShip(Sprite):
         
     def step(self):
         if self.thrust == 1:
-            self.setImage(self.thrustframe)
-            self.thrustframe += 1
-            if self.thrustframe == 4:
+            if self.thrustframe == 3:
                 self.thrustframe = 1
+            else:
+                self.thrustframe += 1
+            self.setImage(self.thrustframe)
         else:
             self.setImage(0)
 
