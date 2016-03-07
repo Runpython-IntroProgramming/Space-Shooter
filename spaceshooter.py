@@ -23,7 +23,7 @@ class SpaceShip(Sprite):
 
     def __init__(self, position):
         super().__init__(SpaceShip.asset, position)
-        SpaceShip((100,100))
+        
 
 class SpaceGame(App):
     """
@@ -31,6 +31,7 @@ class SpaceGame(App):
     """
     def __init__(self, width, height):
         super().__init__(width, height)
+        SpaceShip((100,100))
     black = Color(0, 1)
     noline = LineStyle(0, black)
     bg_asset = RectangleAsset(SCREEN_WIDTH, SCREEN_HEIGHT, noline, black)
