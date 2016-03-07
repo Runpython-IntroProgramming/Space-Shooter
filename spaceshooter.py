@@ -45,6 +45,7 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.rotateLeft)
         SpaceGame.listenKeyEvent("keydown", "up arrow", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "up arrow", self.thrustOff)
+        SpaceGame.listenKeyEvent("keydown", "space", self.shoot)
         
     def rotateRight(self, event):
         self.rotation -= self.rotSpd
@@ -57,6 +58,9 @@ class SpaceShip(Sprite):
         
     def thrustOff(self, event):
         self.thrust = 0
+        
+    def shoot(self, event):
+        Bullet(100,100)
         
     def step(self):
         if self.thrust == 1:
@@ -73,11 +77,14 @@ class Bullet(Sprite):
     asset = ImageAsset("images/blast.png", Frame(0,0,8,8))
     
     def __init__(self, position):
-        super().__init__(Bullet.asset, position):
-            
+        super().__init__(Bullet.asset, position)
+        self.fxcenter = self.fycenter = 0.5
+        self.velx = 5
+        self.vely = 5
     
     def step(self):
-        
+        self.x += self.velx
+        self.y += self.vely
 
 class SpaceGame(App):
         
@@ -87,8 +94,10 @@ class SpaceGame(App):
         SpaceShip((100,100))
         
     def step(self):
-        for ship in self.getSpritesbyClass(SpaceShip):
-            ship.step()
+        for x in self.getSpritesbyClass(SpaceShip):
+            x.step()
+        for x in self.getSpritesbyClass(Bullet):
+            x.step()
         
 myapp = SpaceGame()
 myapp.run()
