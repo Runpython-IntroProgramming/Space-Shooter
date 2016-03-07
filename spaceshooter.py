@@ -32,6 +32,8 @@ class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
         SpaceShip((100,100))
+        SpaceShip((150,150))
+        SpaceShip((200,50))
     black = Color(0, 1)
     noline = LineStyle(0, black)
     bg_asset = RectangleAsset(SCREEN_WIDTH, SCREEN_HEIGHT, noline, black)
