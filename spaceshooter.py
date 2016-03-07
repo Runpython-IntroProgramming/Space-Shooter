@@ -63,7 +63,7 @@ class SpaceGame(App):
                 ship.step()
     black = Color(0, 1)
     noline = LineStyle(0, black)
-    bg_asset = RectangleAsset(SCREEN_WIDTH, SCREEN_HEIGHT, noline, black)
+    bg_asset = ImageAsset("images/starfield.jpg")
     bg = Sprite(bg_asset, (0,0))
     
     def step(self):
