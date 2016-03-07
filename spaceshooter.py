@@ -67,6 +67,17 @@ class SpaceShip(Sprite):
             self.setImage(self.thrustframe)
         else:
             self.setImage(0)
+            
+class Bullet(Sprite):
+    
+    asset = ImageAsset("images/blast.png", Frame(0,0,8,8))
+    
+    def __init__(self, position):
+        super().__init__(Bullet.asset, position):
+            
+    
+    def step(self):
+        
 
 class SpaceGame(App):
         
