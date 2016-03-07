@@ -27,9 +27,9 @@ class SpaceShip(Sprite):
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
-    self.vx = 1
-    self.vy = 1
-    self.vr = 0.01    
+        self.vx = 1
+        self.vy = 1
+        self.vr = 0.01    
 
 class SpaceGame(App):
     """
