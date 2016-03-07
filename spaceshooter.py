@@ -23,13 +23,14 @@ class SpaceShip(Sprite):
 
     def __init__(self, position):
         super().__init__(SpaceShip.asset, position)
-    def step(self):
-        self.x += self.vx
-        self.y += self.vy
-        self.rotation += self.vr
-        self.vx = 1
-        self.vy = 1
-        self.vr = 0.01    
+        
+        def step(self):
+            self.x += self.vx
+            self.y += self.vy
+            self.rotation += self.vr
+            self.vx = 1
+            self.vy = 1
+            self.vr = 0.01    
 
 class SpaceGame(App):
     """
@@ -38,8 +39,9 @@ class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
         SpaceShip((100,100))
-        SpaceShip((150,150))
-        SpaceShip((200,50))
+        def step(self):
+            for ship in self.getSpritesbyClass(SpaceShip):
+                ship.step()
     black = Color(0, 1)
     noline = LineStyle(0, black)
     bg_asset = RectangleAsset(SCREEN_WIDTH, SCREEN_HEIGHT, noline, black)
