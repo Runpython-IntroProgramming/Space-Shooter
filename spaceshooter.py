@@ -60,7 +60,7 @@ class SpaceShip(Sprite):
         self.thrust = 0
         
     def shoot(self, event):
-        Bullet(100,100)
+        Bullet((100,100))
         
     def step(self):
         if self.thrust == 1:
@@ -83,8 +83,9 @@ class Bullet(Sprite):
         self.vely = 5
     
     def step(self):
-        self.x += self.velx
-        self.y += self.vely
+        while 0 <= self.x <= SCREEN_WIDTH and 0 <= self.y <= SCREEN_HEIGHT:
+            self.x += self.velx
+            self.y += self.vely
 
 class SpaceGame(App):
         
