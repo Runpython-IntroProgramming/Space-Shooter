@@ -40,8 +40,8 @@ class SpaceShip(Sprite):
                 self.thrustframe += 1
             if self.thrustframe == 4:
                 self.thrustframe = 1
-        else:
-            self.setImage(0)
+            else:
+                self.setImage(0)
         self.thrust = 0
         self.thrustframe = 1
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
