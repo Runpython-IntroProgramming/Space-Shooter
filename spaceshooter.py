@@ -30,7 +30,11 @@ class SpaceShip(Sprite):
             self.rotation += self.vr
             self.vx = 1
             self.vy = 1
-            self.vr = 0.01    
+            self.vr = 0.01
+        self.thrust = 0
+        self.thrustframe = 1
+        SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
+        SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
 
 class SpaceGame(App):
     """
