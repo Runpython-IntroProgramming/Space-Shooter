@@ -86,6 +86,8 @@ class Bullet(Sprite):
         if 0 <= self.x <= SCREEN_WIDTH and 0 <= self.y <= SCREEN_HEIGHT:
             self.x += self.velx
             self.y += self.vely
+        else:
+            self.destroy()
 
 class SpaceGame(App):
         
