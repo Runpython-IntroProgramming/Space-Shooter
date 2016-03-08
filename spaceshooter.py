@@ -9,7 +9,6 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 
 from ggame import App, Sprite, ImageAsset, Frame
-import random
 
 SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 600
@@ -71,6 +70,9 @@ class SpaceShip(Sprite):
             self.setImage(self.thrustframe)
         else:
             self.setImage(0)
+            
+class Player(SpaceShip):
+    
             
 class Bullet(Sprite):
     
