@@ -86,5 +86,5 @@ class SpaceGame(App):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
 
-myapp = SpaceGame(SCREEN_WIDTH*2, SCREEN_HEIGHT*2)
+myapp = SpaceGame(SCREEN_WIDTH*1.5, SCREEN_HEIGHT*1.5)
 myapp.run()
