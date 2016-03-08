@@ -73,7 +73,7 @@ class SpaceGame(App):
         noline = LineStyle(0, black)
         bg_asset = ImageAsset("images/starfield.jpg")
         bg = Sprite(bg_asset, (0,0))
-        star1= Sprite(bg_asset, (10,0))
+        star1= Sprite(bg_asset, (640,0))
         SpaceShip((100,100))
         Sunthing((200,200))
         def step(self):
