@@ -52,7 +52,8 @@ class SpaceShip(Sprite):
     
 class Sunthing(Sprite):
     asset=ImageAsset("images/sun.png")
-    
+    def __init__(self, position):
+        super().__init__(Sunthing.asset, position)
 
 class SpaceGame(App):
     """
