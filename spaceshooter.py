@@ -50,6 +50,11 @@ class SpaceShip(Sprite):
     def thrustOff(self, event):
         self.thrust = 0
     
+    def explode(self):
+        self.visible = False
+        ExplosionSmale(self.position)
+        self.waitspawn = 5
+        
 class Sunthing(Sprite):
     asset=ImageAsset("images/sun.png")
     def __init__(self, position):
