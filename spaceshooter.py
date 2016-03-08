@@ -58,6 +58,7 @@ class Sunthing(Sprite):
         self.fxcenter = 0.5
         self.fycenter = 0.5
         self.circularCollisionModel()
+        
     def checkCollision(self, sprite1, sprite2):
         col = pygame.sprite.collide_rect(sprite1, sprite2)
         if col == True:
@@ -68,15 +69,15 @@ class SpaceGame(App):
     """
     def __init__(self, width, height):
         super().__init__(width, height)
+        black = Color(0, 1)
+        noline = LineStyle(0, black)
+        bg_asset = ImageAsset("images/starfield.jpg")
+        bg = Sprite(bg_asset, (0,0))
         SpaceShip((100,100))
         Sunthing((200,200))
         def step(self):
             for ship in self.getSpritesbyClass(SpaceShip):
                 ship.step()
-    black = Color(0, 1)
-    noline = LineStyle(0, black)
-    bg_asset = ImageAsset("images/starfield.jpg")
-    bg = Sprite(bg_asset, (0,0))
     
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
