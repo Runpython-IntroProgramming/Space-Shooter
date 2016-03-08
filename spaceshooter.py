@@ -1,7 +1,7 @@
 """
 spaceshooter.py
 Author: Avery Wallis
-Credit: <list sources used, if any>
+Credit: Original Spacewar Code,
 
 Assignment:
 Write and submit a program that implements the spacewar game:
@@ -58,7 +58,7 @@ class Sunthing(Sprite):
         self.fxcenter = 0.5
         self.fycenter = 0.5
         self.circularCollisionModel()
-        
+     
     def checkCollision(self, sprite1, sprite2):
         col = pygame.sprite.collide_rect(sprite1, sprite2)
         if col == True:
