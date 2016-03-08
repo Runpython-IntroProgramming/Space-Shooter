@@ -54,7 +54,10 @@ class Sunthing(Sprite):
     asset=ImageAsset("images/sun.png")
     def __init__(self, position):
         super().__init__(Sunthing.asset, position)
-        
+        self.mass = 30*1000
+        self.fxcenter = 0.5
+        self.fycenter = 0.5
+        self.circularCollisionModel()
     def checkCollision(self, sprite1, sprite2):
         col = pygame.sprite.collide_rect(sprite1, sprite2)
         if col == True:
