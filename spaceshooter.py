@@ -59,8 +59,8 @@ class Sunthing(Sprite):
         self.fycenter = 0.5
         self.circularCollisionModel()
      
-    def checkCollision(self, sprite1, sprite2):
-        col = pygame.sprite.collide_rect(sprite1, sprite2)
+    def checkCollision(self, Sunthing, SpaceShip):
+        col = pygame.sprite.collide_rect(Sunthing, SpaceShip)
         if col == True:
             sys.exit()
 class SpaceGame(App):
