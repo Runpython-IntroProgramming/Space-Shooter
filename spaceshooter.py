@@ -74,6 +74,8 @@ class SpaceGame(App):
         bg_asset = ImageAsset("images/starfield.jpg")
         bg = Sprite(bg_asset, (0,0))
         star1= Sprite(bg_asset, (512,0))
+        star2= Sprite(bg_asset, (0,512))
+        star3= Sprite(bg_asset, (512, 512))
         SpaceShip((100,100))
         Sunthing((200,200))
         def step(self):
