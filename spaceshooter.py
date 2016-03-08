@@ -49,7 +49,10 @@ class SpaceShip(Sprite):
 
     def thrustOff(self, event):
         self.thrust = 0
-        
+    
+class Sunthing(Sprite):
+    asset=ImageAsset("images/sun.png")
+    
 
 class SpaceGame(App):
     """
@@ -58,6 +61,7 @@ class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
         SpaceShip((100,100))
+        Sunthing((200,200))
         def step(self):
             for ship in self.getSpritesbyClass(SpaceShip):
                 ship.step()
