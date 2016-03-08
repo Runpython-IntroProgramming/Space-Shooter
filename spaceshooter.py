@@ -63,6 +63,7 @@ class Sunthing(Sprite):
         col = pygame.sprite.collide_rect(Sunthing, SpaceShip)
         if col == True:
             sys.exit()
+        
 class SpaceGame(App):
     """
     Tutorial4 space game example.
