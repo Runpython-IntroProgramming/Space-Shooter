@@ -54,7 +54,11 @@ class Sunthing(Sprite):
     asset=ImageAsset("images/sun.png")
     def __init__(self, position):
         super().__init__(Sunthing.asset, position)
-
+        
+    def checkCollision(self, sprite1, sprite2):
+    col = pygame.sprite.collide_rect(sprite1, sprite2)
+    if col == True:
+        sys.exit()
 class SpaceGame(App):
     """
     Tutorial4 space game example.
