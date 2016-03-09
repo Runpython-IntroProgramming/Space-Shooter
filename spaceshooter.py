@@ -105,7 +105,7 @@ class SpaceGame(App):
         Sunthing((400,360))
         def step(self):
             for ship in self.getSpritesbyClass(SpaceShip):
-                ship.step()
+                SpaceShip.step() 
 
         
 myapp = SpaceGame(SCREEN_WIDTH*1.5, SCREEN_HEIGHT*1.5)
