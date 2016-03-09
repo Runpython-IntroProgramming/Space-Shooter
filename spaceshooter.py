@@ -19,4 +19,4 @@ height = 512
 def __init__(self, position):
     super().__init__(Stars.asset, position)
 
-print(asset, width, height)
+print(asset)
