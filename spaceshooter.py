@@ -169,6 +169,11 @@ class Player(SpaceShip):
         else:
             self.setImage(0)
             
+class Enemy(SpaceShip):
+    
+    def __init__(self, position):
+        super().__init__(
+            
 class Bullet(Sprite):
     
     asset = ImageAsset("images/blast.png", Frame(0,0,8,8))
@@ -176,6 +181,7 @@ class Bullet(Sprite):
     def __init__(self, position):
         super().__init__(Bullet.asset, position)
         self.fxcenter = self.fycenter = 0.5
+        self.rotation = Player.rotation
         self.velx = 5/math.sin(self.rotation)
         self.vely = 5/math.cos(self.rotation)
     
@@ -191,7 +197,7 @@ class SpaceGame(App):
     def __init__(self):
         super().__init__()
         StarBack((0,0))
-        Player((100,100))
+        Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         
     def step(self):
         for x in self.getSpritesbyClass(Player):
