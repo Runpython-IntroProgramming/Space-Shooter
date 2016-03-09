@@ -123,12 +123,9 @@ class StarBack(Sprite):
         self.scale = 2
 
 class SpaceShip(Sprite):
-    
-    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
-        Frame(227,0,292-227,125), 4, 'vertical')
         
-    def __init__(self, position):
-        super().__init__(SpaceShip.asset, position)
+    def __init__(self, asset, position):
+        super().__init__(asset, position)
         self.rotSpd = 0.1
         self.fxcenter = self.fycenter = 0.5
  
@@ -137,8 +134,11 @@ class SpaceShip(Sprite):
             
 class Player(SpaceShip):
     
+    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
+        Frame(227,0,292-227,125), 4, 'vertical')
+    
     def __init__(self, position):
-        super().__init__(position)
+        super().__init__(Player.asset, position)
         self.thrust = 0
         self.thrustframe = 0
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.rotateRight)
@@ -168,12 +168,12 @@ class Player(SpaceShip):
             self.setImage(self.thrustframe)
         else:
             self.setImage(0)
-            
+'''            
 class Enemy(SpaceShip):
     
     def __init__(self, position):
         super().__init__(
-            
+'''            
 class Bullet(Sprite):
     
     asset = ImageAsset("images/blast.png", Frame(0,0,8,8))
