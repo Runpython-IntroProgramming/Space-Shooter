@@ -45,7 +45,7 @@ class SpaceShip(Sprite):
             else:
                 self.setImage(0)
         col= self.collidingWithSprites(Sunthing)
-        if col==True:
+        if col:
             self.explode()
         
     def thrustOn(self, event):
