@@ -12,9 +12,11 @@ from ggame import SoundAsset, Sound, TextAsset, Color
 import math
 from time import time
 
-    asset = ImageAsset("images/starfield.jpg")
-    width = 512
-    height = 512
+asset = ImageAsset("images/starfield.jpg")
+width = 512
+height = 512
 
-    def __init__(self, position):
-        super().__init__(Stars.asset, position)
+def __init__(self, position):
+    super().__init__(Stars.asset, position)
+
+print(asset, width, height)
