@@ -79,6 +79,8 @@ class ExplosionSmall(Sprite):
             
 class Sunthing(Sprite):
     asset=ImageAsset("images/sun.png")
+    width=80
+    length=76
     def __init__(self, position):
         super().__init__(Sunthing.asset, position)
         self.mass = 30*1000
@@ -105,7 +107,7 @@ class SpaceGame(App):
         Sunthing((400,360))
         def step(self):
             for ship in self.getSpritesbyClass(SpaceShip):
-                SpaceShip.step() 
+                ship.step() 
 
         
 myapp = SpaceGame(SCREEN_WIDTH*1.5, SCREEN_HEIGHT*1.5)
