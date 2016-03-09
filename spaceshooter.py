@@ -21,6 +21,7 @@ class SpaceShip(Sprite):
 
     def __init__(self, position):
         super().__init__(SpaceShip.asset, position)
+        SpaceShip((100,100))
 class SpaceGame(App):
     """
     Tutorial4 space game example.
