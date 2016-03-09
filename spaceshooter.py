@@ -109,6 +109,7 @@ class SpaceGame(App):
             ship.step()
         col= self.collingWithSprites(Sunthing)
         if col:
+            self.explode
     def explode(self):
         self.visible=False
         
