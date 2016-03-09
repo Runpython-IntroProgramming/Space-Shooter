@@ -51,10 +51,14 @@ class SpaceShip(Sprite):
     def thrustOff(self, event):
         self.thrust = 0
     
+    def step(self):
+        for ship in self.getSpritesbyClass(SpaceShip):
+            ship.step()
+        col= self.collingWithSprites(Sunthing)
+        if col:
+            self.explode
     def explode(self):
-        self.visible = False
-        ExplosionSmale(self.position)
-        self.waitspawn = 5
+        self.visible=False
         
 class ExplosionSmall(Sprite):
     
@@ -103,15 +107,7 @@ class SpaceGame(App):
         def step(self):
             for ship in self.getSpritesbyClass(SpaceShip):
                 ship.step()
-    
-    def step(self):
-        for ship in self.getSpritesbyClass(SpaceShip):
-            ship.step()
-        col= self.collingWithSprites(Sunthing)
-        if col:
-            self.explode
-    def explode(self):
-        self.visible=False
+
         
 myapp = SpaceGame(SCREEN_WIDTH*1.5, SCREEN_HEIGHT*1.5)
 myapp.run()
