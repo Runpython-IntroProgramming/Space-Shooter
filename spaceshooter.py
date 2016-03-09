@@ -83,10 +83,7 @@ class Sunthing(Sprite):
         self.fycenter = 0.5
         self.circularCollisionModel()
      
-    def checkCollision(self, Sunthing, SpaceShip):
-        col = pygame.sprite.collide_rect(Sunthing, SpaceShip)
-        if col == True:
-            sys.exit()
+    
         
 class SpaceGame(App):
     """
@@ -110,6 +107,10 @@ class SpaceGame(App):
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
-
+        col= self.collingWithSprites(Sunthing)
+        if col:
+    def explode(self):
+        self.visible=False
+        
 myapp = SpaceGame(SCREEN_WIDTH*1.5, SCREEN_HEIGHT*1.5)
 myapp.run()
