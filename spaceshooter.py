@@ -87,8 +87,6 @@ class Sunthing(Sprite):
         self.fxcenter = 0.5
         self.fycenter = 0.5
         self.circularCollisionModel()
-     
-    
         
 class SpaceGame(App):
     """
@@ -103,12 +101,11 @@ class SpaceGame(App):
         star1= Sprite(bg_asset, (512,0))
         star2= Sprite(bg_asset, (0,512))
         star3= Sprite(bg_asset, (512, 512))
-        SpaceShip((100,100))
         Sunthing((400,360))
+        SpaceShip((100,100))
         def step(self):
             for ship in self.getSpritesbyClass(SpaceShip):
                 ship.step() 
 
-        
 myapp = SpaceGame(SCREEN_WIDTH*1.5, SCREEN_HEIGHT*1.5)
 myapp.run()
