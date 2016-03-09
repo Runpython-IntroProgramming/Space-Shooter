@@ -43,20 +43,16 @@ class SpaceShip(Sprite):
                 self.thrustframe = 1
             else:
                 self.setImage(0)
+        col= self.collingWithSprites(Sunthing)
+        if col:
+            self.explode
         
-            
     def thrustOn(self, event):
         self.thrust = 1
 
     def thrustOff(self, event):
         self.thrust = 0
     
-    def step(self):
-        for ship in self.getSpritesbyClass(SpaceShip):
-            ship.step()
-        col= self.collingWithSprites(Sunthing)
-        if col:
-            self.explode
     def explode(self):
         self.visible=False
         
