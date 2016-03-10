@@ -46,8 +46,8 @@ class SpaceShip(Sprite):
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
-            self.vx=self.vx+.01
-            sekf.vy=self.vy+.01
+            self.vx=1
+            self.vy=1
             if self.thrustframe == 4:
                 self.thrustframe = 1
             else:
