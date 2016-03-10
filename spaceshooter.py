@@ -36,7 +36,7 @@ class SpaceShip(Sprite):
     def step(self):
         self.x += self.vx
         self.y += self.vy
-        self.rotation += self.vr
+        
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
