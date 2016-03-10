@@ -1,7 +1,7 @@
 """
 spaceshooter.py
 Author: Avery Wallis
-Credit: Original Spacewar Code,
+Credit: Original Spacewar Code, Daniel
 
 Assignment:
 Write and submit a program that implements the spacewar game:
