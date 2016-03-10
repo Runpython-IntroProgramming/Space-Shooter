@@ -1,7 +1,7 @@
 """
 spaceshooter.py
 Author: Payton
-Credit: Morgan
+Credit: Morgan, Avery, Daniel
 
 Assignment:
 Write and submit a program that implements the spacewar game:
