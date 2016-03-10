@@ -61,8 +61,10 @@ class SpaceShip(Sprite):
                 self.setImage(0)
         if self.vr==.1:
             self.rotation =self.rotation+.1
-        if self.vr==-.1:
+        elif self.vr==-.1:
             self.rotation =self.rotation-.1
+        else:
+            self.rotation=0
         col= self.collidingWithSprites(Sunthing)
         if col:
             self.explode
@@ -72,7 +74,7 @@ class SpaceShip(Sprite):
     def thrustOff(self, event):
         self.thrust = 0
     def thrustDecel(self, event):
-        self.thrust=-.1
+        self.thrust=-1
         
     def CCOn(self, event):
         self.vr=.1
