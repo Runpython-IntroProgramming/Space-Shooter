@@ -131,7 +131,7 @@ class SpaceGame(App):
         star1= Sprite(bg_asset, (512,0))
         star2= Sprite(bg_asset, (0,512))
         star3= Sprite(bg_asset, (512, 512))
-        Sunthing((400,360))
+        Sunthing((520,360))
         SpaceShip((100,100))
         
     def step(self):
