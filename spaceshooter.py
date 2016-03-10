@@ -61,7 +61,7 @@ class SpaceShip(Sprite):
                 self.setImage(0)
         if self.vr==.1:
             self.rotation =self.rotation+.1
-        elif self.vr==-.1:
+        if self.vr==-.1:
             self.rotation =self.rotation-.1
             
         col= self.collidingWithSprites(Sunthing)
