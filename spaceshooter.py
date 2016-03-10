@@ -72,7 +72,7 @@ class SpaceShip(Sprite):
     def thrustOff(self, event):
         self.thrust = 0
     def thrustDecel(self, event):
-        self.thrust=-1
+        self.thrust=-.1
         
     def CCOn(self, event):
         self.vr=.1
