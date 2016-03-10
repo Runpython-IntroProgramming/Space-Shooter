@@ -82,7 +82,7 @@ class SpaceShip(Sprite):
     def CCOff(self, event):
         self.vr=0
     def CCthing(self, event):
-        self,vr=-.1
+        self.vr=-.1
     
     def explode(self):
         self.visible=False
