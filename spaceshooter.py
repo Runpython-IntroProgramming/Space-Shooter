@@ -35,6 +35,8 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keyup", "s", self.thrustOff)
         SpaceGame.listenKeyEvent("keydown", "a" , self.CCOn)
         SpaceGame.listenKeyEvent("keyup", "a", self.CCOff)
+        SpaceGame.listenKeyEvent("keydown", "d" , self.CCthing)
+        SpaceGame.listenKeyEvent("keyup", "d", self.CCOff)
         self.fxcenter = self.fycenter = 0.5
         
     def step(self):
@@ -59,6 +61,8 @@ class SpaceShip(Sprite):
                 self.setImage(0)
         if self.vr==.1:
             self.rotation =self.rotation+.1
+        if self.vr==-.1:
+            self.rotation =self.rotation-.1
         col= self.collidingWithSprites(Sunthing)
         if col:
             self.explode
@@ -74,6 +78,8 @@ class SpaceShip(Sprite):
         self.vr=.1
     def CCOff(self, event):
         self.vr=0
+    def CCthing(self, event):
+        self,vr=-.1
     
     def explode(self):
         self.visible=False
