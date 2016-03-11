@@ -83,7 +83,7 @@ class Enemy(SpaceShip):
         self.vely = 0
         self.changeDirec
         
-    def changeDirec(self, event):
+    def changeDirec(self):
         self.rotation = randint(0,1000)/500*pi
         self.velx = 5/sin(self.rotation)
         self.vely = 5/cos(self.rotation)
