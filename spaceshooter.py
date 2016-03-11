@@ -179,6 +179,7 @@ class Enemy(SpaceShip):
     def __init__(self, position):
         super().__init__(Enemy.asset, position)
         self.dist = 0
+        self.changeDirec
         
     def changeDirec(self):
         self.rotation = randint(0,1000)/500*pi
@@ -186,12 +187,13 @@ class Enemy(SpaceShip):
         self.vely = 5/cos(self.rotation)
         
     def step(self):
-        if self.dist == sqrt(SCREEN_WIDTH**2+SCREEN_HEIGHT**2) or self.x > SCREEN_WIDTH self.x < 0 or self.y > SCREEN_HEIGHT or self.y < 0:
+        if self.dist == sqrt(SCREEN_WIDTH**2+SCREEN_HEIGHT**2) or self.x > SCREEN_WIDTH or self.x < 0 or self.y > SCREEN_HEIGHT or self.y < 0:
             self.changeDirec
         elif self.dist > 50 and randint(0,20) == 0:
             self.changeDirec
         self.x += self.velx
         self.y += self.vely
+        self.dist += 5
 
 class Bullet(Sprite):
     
