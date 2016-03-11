@@ -37,4 +37,4 @@ class Spaceship(Sprite):
 
 
 myapp = SpaceGame(SCREEN_WIDTH*1.5, SCREEN_WIDTH*1.5)
-myapp.run
+myapp.run()
