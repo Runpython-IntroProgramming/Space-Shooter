@@ -77,5 +77,7 @@ def registerKeys(self, keys):
         [self.app.listenKeyEvent("keyup", k, self.controlup) for k in keys]
 """        
 
+"""
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
+"""
