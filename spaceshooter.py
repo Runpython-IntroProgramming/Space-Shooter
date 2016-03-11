@@ -109,7 +109,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 
 from ggame import App, Sprite, ImageAsset, Frame
-from math import sine, cosine, sqrt, pi
+from math import sin, cos, sqrt, pi
 from random import randint
 
 SCREEN_WIDTH = 1000
@@ -186,7 +186,7 @@ class Enemy(SpaceShip):
         self.vely = 5/cos(self.rotation)
         
     def step(self):
-        if self.dist == sqrt(SCREEN_WIDTH**2+SCREEN_HEIGHT**2) or 0 > self.x > SCREEN_WIDTH or 0 > self.y > SCREEN_HEIGHT:
+        if self.dist == sqrt(SCREEN_WIDTH**2+SCREEN_HEIGHT**2) or self.x > SCREEN_WIDTH self.x < 0 or self.y > SCREEN_HEIGHT or self.y < 0:
             self.changeDirec
         elif self.dist > 50 and randint(0,20) == 0:
             self.changeDirec
