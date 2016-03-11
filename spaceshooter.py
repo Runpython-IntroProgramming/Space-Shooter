@@ -78,9 +78,12 @@ class Enemy(SpaceShip):
     
     def __init__(self, position):
         super().__init__(Enemy.asset, position)
+        self.dist = 0
+        self.velx = 0
+        self.vely = 0
         self.changeDirec
         
-    def changeDirec(self):
+    def changeDirec(self, event):
         self.rotation = randint(0,1000)/500*pi
         self.velx = 5/sin(self.rotation)
         self.vely = 5/cos(self.rotation)
@@ -120,6 +123,7 @@ class SpaceGame(App):
         StarBack((0,0))
         Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         Enemy((100,100))
+        self.step()
         
     def step(self):
         for x in self.getSpritesbyClass(Player):
