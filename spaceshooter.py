@@ -203,6 +203,7 @@ class SpaceGame(App):
         super().__init__()
         StarBack((0,0))
         Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
+        Enemy((100,100))
         
     def step(self):
         for x in self.getSpritesbyClass(Player):
