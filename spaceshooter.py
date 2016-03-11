@@ -52,8 +52,10 @@ class SpaceShip(Sprite):
 
 
 class SpaceGame(App):
+    pass
     """
     Tutorial4 space game example.
+    """
     """
     def __init__(self, width, height):
         super().__init__(width, height)
@@ -68,7 +70,7 @@ class SpaceGame(App):
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
-
+    """
 """
 def registerKeys(self, keys):
         commands = ["left", "right", "forward", "fire"]
