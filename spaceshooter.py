@@ -109,10 +109,12 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 
 from ggame import App, Sprite, ImageAsset, Frame
-import math
+from math import sine, cosine, sqrt, pi
+from random import randint
 
 SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 600
+SCREEN_DIAG = sqrt(SCREEN_WIDTH**2+SCREEN_HEIGHT**2)
 
 class StarBack(Sprite):
     
@@ -135,7 +137,7 @@ class SpaceShip(Sprite):
 class Player(SpaceShip):
     
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
-        Frame(227,0,292-227,125), 4, 'vertical')
+        Frame(0,0,85,125), 4, 'vertical')
     
     def __init__(self, position):
         super().__init__(Player.asset, position)
@@ -171,13 +173,25 @@ class Player(SpaceShip):
 
 class Enemy(SpaceShip):
     
-    asset = ImageAsset("images/sun.png")
+    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
+        Frame(227,0,292-227,125))
     
     def __init__(self, position):
         super().__init__(Enemy.asset, position)
+        self.dist = 0
+        
+    def changeDirec(self):
+        self.rotation = randint(0,1000)/500*pi
+        self.velx = 5/sin(self.rotation)
+        self.vely = 5/cos(self.rotation)
         
     def step(self):
-        self.rotation -= self.rotSpd
+        if self.dist == sqrt(SCREEN_WIDTH**2+SCREEN_HEIGHT**2) or 0 > self.x > SCREEN_WIDTH or 0 > self.y > SCREEN_HEIGHT:
+            self.changeDirec
+        elif self.dist > 50 and randint(0,20) == 0:
+            self.changeDirec
+        self.x += self.velx
+        self.y += self.vely
 
 class Bullet(Sprite):
     
@@ -187,8 +201,8 @@ class Bullet(Sprite):
         super().__init__(Bullet.asset, position)
         self.fxcenter = self.fycenter = 0.5
         self.rotation = Player.rotation
-        self.velx = 5/math.sin(self.rotation)
-        self.vely = 5/math.cos(self.rotation)
+        self.velx = 5/sin(self.rotation)
+        self.vely = 5/cos(self.rotation)
     
     def step(self):
         if 0 <= self.x <= SCREEN_WIDTH and 0 <= self.y <= SCREEN_HEIGHT:
@@ -210,7 +224,7 @@ class SpaceGame(App):
             x.step()
         for x in self.getSpritesbyClass(Bullet):
             x.step()
-        for x in self.getSpritesbyClass(Sun):
+        for x in self.getSpritesbyClass(Enemy):
             x.step()
         
 myapp = SpaceGame()
