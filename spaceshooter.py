@@ -32,7 +32,7 @@ class SpaceShip(Sprite):
         self.fxcenter = self.fycenter = 0.5
  
     def shoot(self, event):
-        Bullet((100,100))
+        Bullet((self.x,self.y))
             
 class Player(SpaceShip):
     
@@ -105,7 +105,8 @@ class Bullet(Sprite):
     def __init__(self, position):
         super().__init__(Bullet.asset, position)
         self.fxcenter = self.fycenter = 0.5
-        self.rotation = Player.rotation
+        for x in SpaceGame.getSpritesbyClass(Player):
+            self.rotation = x.rotation
         self.velx = 5/sin(self.rotation)
         self.vely = 5/cos(self.rotation)
     
