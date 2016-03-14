@@ -9,7 +9,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 
 from ggame import App, Sprite, ImageAsset, Frame
-from math import sin, cos, sqrt, pi
+from math import sqrt, sin, cos, radians, degrees
 from random import randint
 
 SCREEN_WIDTH = 1000
@@ -57,6 +57,8 @@ class Player(SpaceShip):
         
     def thrustOn(self, event):
         self.thrust = 1
+        self.x -= 5*sin(self.rotation)
+        self.y -= 5*cos(self.rotation)
         
     def thrustOff(self, event):
         self.thrust = 0
@@ -107,13 +109,13 @@ class Bullet(Sprite):
         self.fxcenter = self.fycenter = 0.5
         for x in SpaceGame.getSpritesbyClass(Player):
             self.rotation = x.rotation
-        self.velx = 5/sin(self.rotation)
-        self.vely = 5/cos(self.rotation)
+        self.velx = 5*sin(self.rotation)
+        self.vely = 5*cos(self.rotation)
     
     def step(self):
         if 0 <= self.x <= SCREEN_WIDTH and 0 <= self.y <= SCREEN_HEIGHT:
-            self.x += self.velx
-            self.y += self.vely
+            self.x -= self.velx
+            self.y -= self.vely
         else:
             self.destroy()
 
