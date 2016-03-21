@@ -51,6 +51,9 @@ class SpaceShip(Sprite):
             if self.rotation==0:
                 self.vx = 0
                 self.vy = -1
+            if self.rotation==pi:
+                self.vx = 0
+                self.vy = 1
             if self.thrustframe == 4:
                 self.thrustframe = 1
             else:
