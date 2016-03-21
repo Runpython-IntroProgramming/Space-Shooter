@@ -56,7 +56,7 @@ class SpaceShip(Sprite):
 
     def UPON(self, event):
         self.vy=1
-    def DOWNOn(self, event):
+    def DOWNON(self, event):
         self.vy=-1
 
 
