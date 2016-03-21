@@ -48,7 +48,7 @@ class SpaceShip(Sprite):
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
-            if self.rotation==0 or self.rotation==math.degrees(2*math.pi):
+            if 0 =< self.rotation==0 =< math.pi/6:
                 self.vx = 0
                 self.vy = -1
             elif self.rotation==math.degrees(math.pi) or self.rotation==math.degrees(3*math.pi/2):
