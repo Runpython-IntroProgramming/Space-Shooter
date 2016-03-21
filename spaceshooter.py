@@ -16,6 +16,10 @@ SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 600
 SCREEN_DIAG = sqrt(SCREEN_WIDTH**2+SCREEN_HEIGHT**2)
 
+def velcalc (rotation, speed, velx, vely):
+    velx = -1*speed*sin(rotation)
+    vely = -1*speed*cos(rotation)
+
 class StarBack(Sprite):
     
     asset = ImageAsset("images/starfield.jpg", Frame(0,0,SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
@@ -109,13 +113,16 @@ class Bullet(Sprite):
         self.fxcenter = self.fycenter = 0.5
         for x in SpaceGame.getSpritesbyClass(Player):
             self.rotation = x.rotation
-        self.velx = 5*sin(self.rotation)
-        self.vely = 5*cos(self.rotation)
+#        self.velx = 5*sin(self.rotation)
+#        self.vely = 5*cos(self.rotation)
+        self.velx = 0
+        self.vely = 0
+        velcalc(self.rotation, 5, self.velx, self.vely)
     
     def step(self):
         if 0 <= self.x <= SCREEN_WIDTH and 0 <= self.y <= SCREEN_HEIGHT:
-            self.x -= self.velx
-            self.y -= self.vely
+            self.x += self.velx
+            self.y += self.vely
         else:
             self.destroy()
 
