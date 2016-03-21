@@ -28,7 +28,7 @@ class SpaceShip(Sprite):
         self.vx = 0
         self.vy = 0
         self.vr = 0
-        self.rotation = math.pi/2
+        self.rotation = 0
         self.thrust = 0
         self.thrustframe = 1
         SpaceGame.listenKeyEvent("keydown", "w", self.thrustOn)
@@ -48,7 +48,7 @@ class SpaceShip(Sprite):
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
-            if self.rotation in range(0,((math.pi)/6)):
+            if self.rotation in range(0,((math.pi)/6)+1):
                 self.vx = 0
                 self.vy = -1
             if self.thrustframe == 4:
