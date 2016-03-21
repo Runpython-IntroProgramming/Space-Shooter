@@ -62,7 +62,7 @@ class SpaceGame(App):
         asset = ImageAsset("images/starfield.jpg")
         bg_asset = RectangleAsset(width, height, noline, black)
         bg = Sprite(asset, (0,0))
-        bg = Sprite(asset, (320,0))
+        bg = Sprite(asset, (700,0))
         bg = Sprite(asset, (0,240))
         bg = Sprite(asset, (320,240))
         SpaceShip((100,100))
