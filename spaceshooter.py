@@ -54,7 +54,7 @@ class SpaceShip(Sprite):
     def thrustOff(self, event):
         self.thrust = 0
 
-if 
+
 
 
 
