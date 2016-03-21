@@ -145,7 +145,7 @@ class SpaceGame(App):
         star2= Sprite(bg_asset, (0,512))
         star3= Sprite(bg_asset, (512, 512))
         Sunthing((500,360))
-        SpaceShip((100,300))
+        SpaceShip((300,300))
         
     def step(self):
             for ship in self.getSpritesbyClass(SpaceShip):
