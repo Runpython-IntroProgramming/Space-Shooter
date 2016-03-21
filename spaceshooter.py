@@ -54,7 +54,7 @@ class SpaceShip(Sprite):
             elif math.pi/4 <= self.rotation and self.rotation <= math.pi/2:
                 self.vx = -1.5
                 self.vy = -.5
-            elif math.pi/2 <= self.rotation adn self.rotation <= 3*math.pi/4:
+            elif math.pi/2 <= self.rotation and self.rotation <= 3*math.pi/4:
                 self.vx = -.5
                 self.vy =1.5
                 
