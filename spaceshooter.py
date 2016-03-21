@@ -9,8 +9,8 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 700
+SCREEN_WIDTH = 700
+SCREEN_HEIGHT = 600
 
 
 class SpaceShip(Sprite):
