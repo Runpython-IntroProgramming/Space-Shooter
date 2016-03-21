@@ -80,5 +80,5 @@ class SpaceGame(App):
             ship.step()
 
 
-myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
+myapp = SpaceGame(width, height)
 myapp.run()
