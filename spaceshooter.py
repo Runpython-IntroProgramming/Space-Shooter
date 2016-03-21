@@ -7,11 +7,9 @@ Assignment:
 Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
 """
+
+"""
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
-
-SCREEN_WIDTH = 640
-SCREEN_HEIGHT = 480
-
 from ggame import App, Sprite, ImageAsset, Frame, SoundAsset, Sound, TextAsset, Color
 import math
 from time import time
@@ -30,6 +28,13 @@ class Sun(Sprite):
     asset = ImageAsset("images/sun.png")
     width = 80
     height = 76
+"""
+
+from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
+
+SCREEN_WIDTH = 640
+SCREEN_HEIGHT = 480
+
 
 class SpaceShip(Sprite):
     """
@@ -75,6 +80,13 @@ class SpaceGame(App):
     """
     def __init__(self, width, height):
         super().__init__(width, height)
+        black = Color(0, 1)
+        noline = LineStyle(0, black)
+        bg_asset = ImageAsset("images/starfield.jpg")
+        bg = Sprite(bg_asset, (0,0))
+        bg = Sprite(bg_asset, (0,512))
+        bg = Sprite(bg_asset, (512,0))
+        bg = Sprite(bg_asset, (512,512))
         SpaceShip((100,100))
         SpaceShip((150,150))
         SpaceShip((200,50))
