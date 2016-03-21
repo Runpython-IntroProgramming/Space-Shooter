@@ -1,7 +1,7 @@
 """
 spaceshooter.py
 Author: Daniel Wilson
-Credit: <list sources used, if any>
+Credit: 
 
 Assignment:
 Write and submit a program that implements the spacewar game:
@@ -22,8 +22,8 @@ class SpaceShip(Sprite):
 
     def __init__(self, position):
         super().__init__(SpaceShip.asset, position)
-        self.vx = 1
-        self.vy = 1
+        self.vx = 0
+        self.vy = 0
         self.vr = 0.0
         self.thrust = 0
         self.thrustframe = 1
@@ -71,7 +71,7 @@ class SpaceGame(App):
         bg = Sprite(bg_asset, (0,0))
         SpaceShip((100,100))
         SpaceShip((150,150))
-        SpaceShip((200,50))
+        
 
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
