@@ -87,6 +87,8 @@ class SpaceGame(App):
         bg = Sprite(bg_asset, (0,512))
         bg = Sprite(bg_asset, (512,0))
         bg = Sprite(bg_asset, (512,512))
+        sn_asset = ImageAsset("images/sun.png")
+        sn = Sprite(sn_asset, (256,256))
         SpaceShip((100,100))
         SpaceShip((150,150))
         SpaceShip((200,50))
