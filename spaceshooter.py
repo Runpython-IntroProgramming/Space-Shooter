@@ -48,6 +48,20 @@ class SpaceShip(Sprite):
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
+            R = Vector(self.sun.x-self.x, self.sun.y-self.y)
+            #Ur = R.unit()
+            r = R.mag()
+            Ux, Uy = R.x/r, R.y/r
+            ag = GravitySprite.G*self.sun.mass/R.mag()**2
+            Agx, Agy = Ux*ag, Uy*ag
+            vx, vy = self.vx, self.vy
+            At = self.thrust/self.mass
+            dt2o2 = dT*dT*0.5
+            self.vx = self.vx + (Agx - At*math.sin(self.rotation))* dT
+            self.vy = self.vy + (Agy - At*math.cos(self.rotation))* dT
+            self.x = self.x + self.vx * dT + Agx*dt2o2
+            self.y = self.y + self.vy * dT + Agy*dt2o2
+            
             if 0 <= self.rotation and self.rotation <= math.pi/6:
                 self.vx = -.5
                 self.vy = -1.5
