@@ -72,7 +72,7 @@ class Player(SpaceShip):
             self.setImage(self.thrustframe)
         else:
             self.setImage(0)
-        if collidingWith(self, Bullet) == "True":
+        if self.collidingWith(self, Bullet) == "True":
             self.destroy()
 
 class Enemy(Sprite):
