@@ -72,8 +72,6 @@ class Player(SpaceShip):
             self.setImage(self.thrustframe)
         else:
             self.setImage(0)
-        if self.collidingWith(Bullet) == "True":
-            self.destroy()
 
 class Enemy(Sprite):
     
@@ -100,6 +98,8 @@ class Enemy(Sprite):
         self.dist = 0
         
     def step(self):
+        if self.collidingWith(Bullet.rectangularCollisionModel()) == "True":
+            self.destroy()
         self.x += self.velx
         self.y += self.vely
         if self.frame == 3:
@@ -125,7 +125,6 @@ class Bullet(Sprite):
             self.rotation = x.rotation
         self.velx = 5*sin(self.rotation)
         self.vely = 5*cos(self.rotation)
-        self.rectangularCollisionModel()
     
     def step(self):
         if 0 <= self.x <= SCREEN_WIDTH and 0 <= self.y <= SCREEN_HEIGHT:
