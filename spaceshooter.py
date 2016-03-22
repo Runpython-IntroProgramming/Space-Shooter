@@ -68,6 +68,7 @@ class SpaceGame(App):
         sn_asset = ImageAsset("images/sun.png")
         sn = Sprite(sn_asset, (400,300))
         SpaceShip((100,100))
+        SpaceShip((150,150))
 
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
