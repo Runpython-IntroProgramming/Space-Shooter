@@ -30,9 +30,6 @@ class SpaceShip(Sprite):
         super().__init__(asset, position)
         self.rotSpd = 0.1
         self.fxcenter = self.fycenter = 0.5
-        
-    def collidingWith(self, Bullet):
-        self.destroy() 
  
     def shoot(self, event):
         Bullet((self.x,self.y))
@@ -75,6 +72,8 @@ class Player(SpaceShip):
             self.setImage(self.thrustframe)
         else:
             self.setImage(0)
+        if collidingWith(self, Bullet) == "True":
+            self.destroy()
 
 class Enemy(Sprite):
     
