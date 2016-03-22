@@ -104,11 +104,11 @@ class Enemy(Sprite):
             self.visibile = False
         self.x += self.velx
         self.y += self.vely
-#        if self.frame == 3:
-#            self.frame = 1
-#        else:
-#            self.frame += 1
-#        self.setImage(self.frame)
+        if self.frame == 3:
+            self.frame = 1
+        else:
+            self.frame += 1
+        self.setImage(self.frame)
         if self.x > SCREEN_WIDTH or self.x < 0 or self.y > SCREEN_HEIGHT or self.y < 0:
             self.rotation += pi
             self.velocitySet()
