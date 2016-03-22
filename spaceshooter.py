@@ -52,10 +52,10 @@ class SpaceShip(Sprite):
                 self.thrustframe = 1
             else:
                 self.setImage(0)
-        if self.vr == 1:
-            self.rotation = self.rotation + 0.001
-        if self.vr == -1:
-            self.rotation = self.rotation + 0.001
+        if self.vr == .1:
+            self.rotation = self.rotation + 0.00000001
+        if self.vr == -.1:
+            self.rotation = self.rotation - 0.00000001
         if self.vr == 0:
             self.rotation = 0
 
@@ -70,9 +70,9 @@ class SpaceShip(Sprite):
     def DOWNON(self, event):
         self.vy=-1
     def Right(self, event):
-        self.vr = 1
+        self.vr = .1
     def Left(self, event):
-        self.vr = -1
+        self.vr = -.1
     def stop(self, event):
         self.vy=0
         self.vx=0
