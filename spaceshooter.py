@@ -4,7 +4,7 @@ Author: Payton
 Credit: Morgan, Avery, Daniel
 
 Assignment:
-Write and submit a program that implements the spacewar game:
+Write and submit a program that implements the ControlDwon game:
 https://github.com/HHS-IntroProgramming/Spacewar
 """
 from ggame import App, Sprite, ImageAsset, Frame
