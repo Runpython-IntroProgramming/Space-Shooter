@@ -96,6 +96,7 @@ class SpaceGame(App):
         step.rotation += self.vr
         
         
+        
 
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
