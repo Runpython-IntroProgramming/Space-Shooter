@@ -100,7 +100,7 @@ class Enemy(Sprite):
     def step(self):
         collides = self.collidingWithSprites(Bullet)
         if len(collides) > 0:
-            self.destroy()
+            print("hello")
         self.x += self.velx
         self.y += self.vely
         if self.frame == 3:
