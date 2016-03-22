@@ -50,27 +50,6 @@ class SpaceShip(Sprite):
             self.thrustframe += 1
             self.vx = self.vx + .1*math.cos((self.rotation+math.pi/2))
             self.vy = self.vy + .1*math.sin((self.rotation-math.pi/2))
-            
-            """
-            if 0 <= self.rotation and self.rotation <= math.pi/4:
-                self.vx = -.5
-                self.vy = -1.5
-            elif math.pi/4 <= self.rotation and self.rotation <= math.pi/2:
-                self.vx = -1.5
-                self.vy = -.5
-            elif math.pi/2 <= self.rotation and self.rotation <= 3*math.pi/4:
-                self.vx = -1.5
-                self.vy =.5
-            elif 3*math.pi/4 <= self.rotation and self.rotation <= math.pi:
-                self.vx=-.5
-                self.vy=1.5
-            elif math.pi <= self.rotation and self.rotation <= 5*math.pi/4:
-                self.vx=.5
-                self.vy=1.5
-            elif 5*math.pi/4 <= self.rotation and self.rotation <= 3*math.pi/2:
-                self.vx =1.5
-                self.vy=.5
-            """
             if self.thrustframe == 4:
                 self.thrustframe = 1
             else:
