@@ -30,7 +30,10 @@ class Sun(Sprite):
     height = 76
 """
 
-from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
+from ggame import App, Sprite, ImageAsset, Frame
+from ggame import SoundAsset, Sound, TextAsset, Color
+import math
+from time import time
 
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
