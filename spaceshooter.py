@@ -83,7 +83,7 @@ class SpaceGame(App):
         bg_asset = RectangleAsset(width, height, noline, black)
         bg = Sprite(bg_asset, (0,0))
         SpaceShip((100,100))
-        SpaceShip((300,150))
+        SpaceShip((500,100))
         
 
     def step(self):
