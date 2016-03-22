@@ -61,7 +61,7 @@ class SpaceShip(Sprite):
             self.setImage(0)
 
     def thrustOn(self, event):
-        self.thrust = 10
+        self.thrust = 1
 
     def thrustOff(self, event):
         self.thrust = 0
