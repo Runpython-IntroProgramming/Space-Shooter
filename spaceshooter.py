@@ -33,12 +33,12 @@ class SpaceShip(Sprite):
         left_location = 1
         SpaceGame.listenKeyEvent("keydown", "w", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "w", self.thrustOff)
-        SpaceGame.listenKeyEvent("keydown", "a", self.thrustOn)
-        SpaceGame.listenKeyEvent("keyup", "a", self.thrustOff)
-        SpaceGame.listenKeyEvent("keyup", "d", self.thrustOff)
-        SpaceGame.listenKeyEvent("keydown", "d", self.thrustOn)
-        SpaceGame.listenKeyEvent("keyup", "s", self.thrustOff)
-        SpaceGame.listenKeyEvent("keydown", "s", self.thrustOn)
+        SpaceGame.listenKeyEvent("keydown", "a", self.rotation)
+        SpaceGame.listenKeyEvent("keyup", "a", self.rotation)
+        SpaceGame.listenKeyEvent("keyup", "d", self.rotation)
+        SpaceGame.listenKeyEvent("keydown", "d", self.rotation)
+        SpaceGame.listenKeyEvent("keyup", "s", self.rotation)
+        SpaceGame.listenKeyEvent("keydown", "s", self.rotation)
         right_location = 2
         SpaceGame.listenKeyEvent("keyup", "up arrow", self.thrustOff)
         SpaceGame.listenKeyEvent("keydown", "up arrow", self.thrustOn)
