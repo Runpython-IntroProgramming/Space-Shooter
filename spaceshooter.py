@@ -64,9 +64,9 @@ class SpaceShip(Sprite):
     def DOWNON(self, event):
         self.vy=-1
     def Right(self, event):
-        self.vx = 1
+        self.vr = 1
     def Left(self, event):
-        self.vx = -1
+        self.vr = -1
     def stop(self, event):
         self.vy=0
         self.vx=0
