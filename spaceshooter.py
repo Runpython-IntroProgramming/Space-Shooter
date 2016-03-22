@@ -79,8 +79,8 @@ class SpaceShip(Sprite):
         return -self.GFX.rotation
         
     @rotation.setter
-    def rotation(self, pi/4):
-        self.GFX.rotation = -pi/4
+    def rotation(self, pi):
+        self.GFX.rotation = -(pi/4)
 
 
 
