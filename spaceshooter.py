@@ -36,7 +36,7 @@ import math
 from time import time
 
 SCREEN_WIDTH = 1024
-SCREEN_HEIGHT = 750
+SCREEN_HEIGHT = 550
 
 
 class SpaceShip(Sprite):
