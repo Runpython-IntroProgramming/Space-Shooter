@@ -35,8 +35,8 @@ from ggame import SoundAsset, Sound, TextAsset, Color
 import math
 from time import time
 
-SCREEN_WIDTH = 640
-SCREEN_HEIGHT = 480
+SCREEN_WIDTH = 1024
+SCREEN_HEIGHT = 1024
 
 
 class SpaceShip(Sprite):
