@@ -30,6 +30,9 @@ class SpaceShip(Sprite):
         super().__init__(asset, position)
         self.rotSpd = 0.1
         self.fxcenter = self.fycenter = 0.5
+        
+    def collidingWithSprites(self, Bullet):
+        self.destroy() 
  
     def shoot(self, event):
         Bullet((self.x,self.y))
