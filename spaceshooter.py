@@ -9,7 +9,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 import math
-SCREEN_WIDTH = 1500
+SCREEN_WIDTH = 1250
 SCREEN_HEIGHT = 700
 
 
