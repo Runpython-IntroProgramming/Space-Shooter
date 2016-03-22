@@ -77,12 +77,11 @@ class SpaceShip(Sprite):
         #Value may be a floating point number. A value of 0.0 means no rotation. A value 
         #of 1.0 means  a rotation of 1 radian in a counter-clockwise direction. One radian
         #is 180/pi or approximately 57.3 degrees.
-        """
-        return -self.GFX.rotation
+        #return -self.GFX.rotation
         
-    @rotation.setter
-    def rotation(self, pi):
-        self.GFX.rotation = -(pi/4)
+    #@rotation.setter
+    #def rotation(self, pi):
+        #self.GFX.rotation = -(pi/4)
     """
 
 class SpaceGame(App):
