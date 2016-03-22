@@ -70,6 +70,11 @@ class SpaceShip(Sprite):
         
     #def thrustdecel(self, event):
         #self.thrust = 0.5
+    
+    if self.vr == 0.1:
+        self.rotation = self.rotation = 0.001
+    if self.vr == -0.1:
+        self.rotation = self.rotation = -0.001
 
 class SpaceGame(App):
     """
