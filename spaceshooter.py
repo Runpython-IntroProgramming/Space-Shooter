@@ -30,6 +30,7 @@ class SpaceShip(Sprite):
         self.vr = 0.0
         self.thrust = 0
         self.thrustframe = 1
+        left_location = 1
         SpaceGame.listenKeyEvent("keydown", "w", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "w", self.thrustOff)
         SpaceGame.listenKeyEvent("keydown", "a", self.thrustOn)
@@ -38,6 +39,7 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keydown", "d", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "s", self.thrustOff)
         SpaceGame.listenKeyEvent("keydown", "s", self.thrustOn)
+        right_location = 2
         SpaceGame.listenKeyEvent("keyup", "up arrow", self.thrustOff)
         SpaceGame.listenKeyEvent("keydown", "up arrow", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "down arrow", self.thrustOff)
@@ -81,7 +83,6 @@ class SpaceShip(Sprite):
     @rotation.setter
     def rotation(self, pi):
         self.GFX.rotation = -(pi/4)
-
 
 
 class SpaceGame(App):
