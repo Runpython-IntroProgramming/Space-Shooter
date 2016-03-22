@@ -33,9 +33,9 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keyup", "s", self.stop)
         SpaceGame.listenKeyEvent("keydown", "w", self.DOWNON)
         SpaceGame.listenKeyEvent("keyup", "w", self.stop)
-        SpaceGame.listenKeyEvent("keydown", "a", self.Left)
+        SpaceGame.listenKeyEvent("keydown", "a", self.Right)
         SpaceGame.listenKeyEvent("keyup", "a", self.stop)
-        SpaceGame.listenKeyEvent("keydown", "d", self.Right)
+        SpaceGame.listenKeyEvent("keydown", "d", self.Left)
         SpaceGame.listenKeyEvent("keyup", "d", self.stop)
         self.fxcenter = self.fycenter = 0.5
 
