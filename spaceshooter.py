@@ -59,8 +59,12 @@ class SpaceShip(Sprite):
             self.thrustframe += 1
             if self.thrustframe == 4:
                 self.thrustframe = 1
-        else:
-            self.setImage(0)
+            else:
+                self.setImage(0)
+        if self.vr == 0.1:
+            self.rotation = 0.001
+        if self.vr == -0.1:
+            self.rotation = -0.001
 
     def thrustOn(self, event):
         self.thrust = 1
@@ -70,11 +74,7 @@ class SpaceShip(Sprite):
         
     #def thrustdecel(self, event):
         #self.thrust = 0.5
-    
-    if self.vr == 0.1:
-        self.rotation = self.rotation = 0.001
-    if self.vr == -0.1:
-        self.rotation = self.rotation = -0.001
+
 
 class SpaceGame(App):
     """
