@@ -9,7 +9,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 
 from ggame import App, Sprite, ImageAsset, Frame
-from math import sqrt, sin, cos, radians, degrees
+from math import sqrt, sin, cos, radians, degrees, pi
 from random import randint
 
 SCREEN_WIDTH = 1000
