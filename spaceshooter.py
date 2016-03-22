@@ -70,7 +70,7 @@ class SpaceShip(Sprite):
         
     #def thrustdecel(self, event):
         #self.thrust = 0.5
-        
+    """   
     def rotation(self):
         """
         This attribute may be used to change the rotation of the sprite on the screen.
@@ -83,7 +83,7 @@ class SpaceShip(Sprite):
     @rotation.setter
     def rotation(self, pi):
         self.GFX.rotation = -(pi/4)
-
+    """
 
 class SpaceGame(App):
     """
