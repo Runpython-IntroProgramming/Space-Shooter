@@ -83,8 +83,6 @@ class SpaceGame(App):
     """
     def __init__(self, width, height):
         super().__init__(width, height)
-        black = Color(0, 1)
-        noline = LineStyle(0, black)
         bg_asset = ImageAsset("images/starfield.jpg")
         bg = Sprite(bg_asset, (0,0))
         bg = Sprite(bg_asset, (0,512))
