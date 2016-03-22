@@ -9,7 +9,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 import math
-SCREEN_WIDTH = 3000
+SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 700
 
 
@@ -85,6 +85,7 @@ class SpaceGame(App):
         bg2 = Sprite(bg_asset, (512,0))
         bg3 = Sprite(bg_asset, (0, 512))
         bg4 = Sprite(bg_asset, (512, 512)) 
+        bg5 = Sprite(bg_asset, (1024, 512))
         SpaceShip((100,100))
         SpaceShip((500,100))
     
