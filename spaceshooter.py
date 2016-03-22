@@ -89,7 +89,6 @@ class Enemy(Sprite):
         self.fxcenter = self.fycenter = 0.5
         self.dist = 0
         self.frame = 1
-        self.rectangularCollisionModel()
     
     def velocitySet(self):
         self.velx = -1*self.speed*sin(self.rotation)
@@ -126,6 +125,7 @@ class Bullet(Sprite):
             self.rotation = x.rotation
         self.velx = 5*sin(self.rotation)
         self.vely = 5*cos(self.rotation)
+        self.rectangularCollisionModel()
     
     def step(self):
         if 0 <= self.x <= SCREEN_WIDTH and 0 <= self.y <= SCREEN_HEIGHT:
