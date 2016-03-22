@@ -47,6 +47,7 @@ class SpaceShip(Sprite):
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
+        
             if self.thrustframe == 4:
                 self.thrustframe = 1
         else:
@@ -89,13 +90,7 @@ class SpaceGame(App):
         bg6 = Sprite(bg_asset, (1024, 0))
         SpaceShip((100,100))
         SpaceShip((500,100))
-    
-    def step(self):
-        step.x += self.vx
-        step.y += self.vy
-        step.rotation += self.vr
-        
-        
+
         
 
     def step(self):
