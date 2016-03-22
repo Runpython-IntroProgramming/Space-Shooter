@@ -31,7 +31,7 @@ class SpaceShip(Sprite):
         self.rotSpd = 0.1
         self.fxcenter = self.fycenter = 0.5
         
-    def collidingWithSprites(self, Bullet):
+    def collidingWith(self, Bullet):
         self.destroy() 
  
     def shoot(self, event):
