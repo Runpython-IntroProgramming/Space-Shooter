@@ -128,8 +128,11 @@ class SpaceGame(App):
         SpaceShip((300,300))
         
     def step(self):
-            for ship in self.getSpritesbyClass(SpaceShip):
-                ship.step() 
+        for ship in self.getSpritesbyClass(SpaceShip):
+            ship.step()
+        explosions = self.getSpritesbyClass(ExplosionSmall)
+        for explosion in explosions:
+            explosion.step()    
 
 myapp = SpaceGame(SCREEN_WIDTH*1.5, SCREEN_HEIGHT*1.5)
 myapp.run()
