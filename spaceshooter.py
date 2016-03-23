@@ -1,7 +1,7 @@
 """
 spaceshooter.py
 Author: Avery Wallis
-Credit: Original Spacewar Code, Daniel
+Credit: Original Spacewar Code, Daniel, Payton, Ethan
 
 Assignment:
 Write and submit a program that implements the spacewar game:
@@ -79,7 +79,7 @@ class SpaceShip(Sprite):
     
     def explode(self):
         self.visible = False
-        self.ExplosionSmall
+        ExplosionSmall(self.position)
         
         
 class ExplosionSmall(Sprite):
