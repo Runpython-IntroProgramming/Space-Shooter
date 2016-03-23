@@ -153,7 +153,7 @@ class Explosion(Sprite):
             print('hi')
         else:
             self.frame += 1
-            self.setImage(self.frame)
+        self.setImage(self.frame)
 
 class SpaceGame(App):
         
