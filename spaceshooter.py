@@ -66,7 +66,7 @@ class SpaceShip(Sprite):
         self.thrust = 0
 
     def UPON(self, event):
-        self.vy=1
+        self.vy=1 + self.thrust
     def DOWNON(self, event):
         self.vy=-1
     def Right(self, event):
