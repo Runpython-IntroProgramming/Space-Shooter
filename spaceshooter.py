@@ -45,6 +45,8 @@ class SpaceShip(Sprite):
         self.y += self.vy
         self.rotation += self.vr
         if self.thrust == 1:
+            self.vx = cos(self.rotation+pi)+self.vx
+            self.vy = sin(self.rotation+pi)+self.vy
             self.setImage(self.thrustframe)
             self.thrustframe += 1
             
@@ -66,7 +68,7 @@ class SpaceShip(Sprite):
         self.thrust = 0
 
     def UPON(self, event):
-        self.vy=1 + self.thrust
+        self.vy=1 
     def DOWNON(self, event):
         self.vy=-1
     def Right(self, event):
