@@ -33,12 +33,10 @@ class SpaceShip(Sprite):
         left_location = 1
         ControlDwon.listenKeyEvent("keydown", "w", self.thrustOn)
         ControlDwon.listenKeyEvent("keyup", "w", self.thrustOff)
-        ControlDwon.listenKeyEvent("keydown", "a", self.rotation)
-        ControlDwon.listenKeyEvent("keyup", "a", self.rotation)
-        ControlDwon.listenKeyEvent("keyup", "d", self.rotation)
-        ControlDwon.listenKeyEvent("keydown", "d", self.rotation)
-        ControlDwon.listenKeyEvent("keyup", "s", self.rotation)
-        ControlDwon.listenKeyEvent("keydown", "s", self.rotation)
+        ControlDwon.listenKeyEvent("keydown", "a", self.rotationOnLeft)
+        ControlDwon.listenKeyEvent("keyup", "a", self.rotationOff)
+        ControlDwon.listenKeyEvent("keyup", "d", self.rotationOnRight)
+        ControlDwon.listenKeyEvent("keydown", "d", self.rotationOff)
         right_location = 2
         ControlDwon.listenKeyEvent("keyup", "up arrow", self.thrustOff)
         ControlDwon.listenKeyEvent("keydown", "up arrow", self.thrustOn)
@@ -65,6 +63,13 @@ class SpaceShip(Sprite):
             self.rotation = 0.001
         if self.vr == -0.1:
             self.rotation = -0.001
+    
+    def rotationOnLeft(self, event):
+        self.vr = -1
+    def rotationOnRight(self, event):
+        self.vr = 1
+    def rotationOff(self, event):
+        self.vr = 0
 
     def thrustOn(self, event):
         self.thrust = 1
