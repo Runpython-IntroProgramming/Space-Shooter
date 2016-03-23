@@ -101,7 +101,8 @@ class Enemy(Sprite):
         collides = self.collidingWithSprites(Bullet)
         if len(collides) > 0:
             print("hello")
-            self.destroy()
+#            self.destroy()
+            Explosion((self.x, self.y))
         self.x += self.velx
         self.y += self.vely
         if self.frame == 3:
@@ -168,6 +169,8 @@ class SpaceGame(App):
         for x in self.getSpritesbyClass(Bullet):
             x.step()
         for x in self.getSpritesbyClass(Enemy):
+            x.step()
+        for x in self.getSpritesbyClass(Explosion):
             x.step()
         
 myapp = SpaceGame()
