@@ -87,7 +87,6 @@ class Enemy(Sprite):
         self.fxcenter = self.fycenter = 0.5
         self.dist = 0
         self.frame = 1
-        self.hit = 0
     
     def velocitySet(self):
         self.velx = -1*self.speed*sin(self.rotation)
