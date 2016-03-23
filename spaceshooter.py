@@ -31,23 +31,23 @@ class SpaceShip(Sprite):
         self.thrust = 0
         self.thrustframe = 1
         left_location = 1
-        SpaceGame.listenKeyEvent("keydown", "w", self.thrustOn)
-        SpaceGame.listenKeyEvent("keyup", "w", self.thrustOff)
-        SpaceGame.listenKeyEvent("keydown", "a", self.rotation)
-        SpaceGame.listenKeyEvent("keyup", "a", self.rotation)
-        SpaceGame.listenKeyEvent("keyup", "d", self.rotation)
-        SpaceGame.listenKeyEvent("keydown", "d", self.rotation)
-        SpaceGame.listenKeyEvent("keyup", "s", self.rotation)
-        SpaceGame.listenKeyEvent("keydown", "s", self.rotation)
+        ControlDwon.listenKeyEvent("keydown", "w", self.thrustOn)
+        ControlDwon.listenKeyEvent("keyup", "w", self.thrustOff)
+        ControlDwon.listenKeyEvent("keydown", "a", self.rotation)
+        ControlDwon.listenKeyEvent("keyup", "a", self.rotation)
+        ControlDwon.listenKeyEvent("keyup", "d", self.rotation)
+        ControlDwon.listenKeyEvent("keydown", "d", self.rotation)
+        ControlDwon.listenKeyEvent("keyup", "s", self.rotation)
+        ControlDwon.listenKeyEvent("keydown", "s", self.rotation)
         right_location = 2
-        SpaceGame.listenKeyEvent("keyup", "up arrow", self.thrustOff)
-        SpaceGame.listenKeyEvent("keydown", "up arrow", self.thrustOn)
-        SpaceGame.listenKeyEvent("keyup", "down arrow", self.thrustOff)
-        SpaceGame.listenKeyEvent("keydown", "down arrow", self.thrustOn)
-        SpaceGame.listenKeyEvent("keyup", "left arrow", self.thrustOff)
-        SpaceGame.listenKeyEvent("keydown", "left arrow", self.thrustOn)
-        SpaceGame.listenKeyEvent("keyup", "right arrow", self.thrustOff)
-        SpaceGame.listenKeyEvent("keydown", "right arrow", self.thrustOn)
+        ControlDwon.listenKeyEvent("keyup", "up arrow", self.thrustOff)
+        ControlDwon.listenKeyEvent("keydown", "up arrow", self.thrustOn)
+        ControlDwon.listenKeyEvent("keyup", "down arrow", self.thrustOff)
+        ControlDwon.listenKeyEvent("keydown", "down arrow", self.thrustOn)
+        ControlDwon.listenKeyEvent("keyup", "left arrow", self.thrustOff)
+        ControlDwon.listenKeyEvent("keydown", "left arrow", self.thrustOn)
+        ControlDwon.listenKeyEvent("keyup", "right arrow", self.thrustOff)
+        ControlDwon.listenKeyEvent("keydown", "right arrow", self.thrustOn)
         self.fxcenter = self.fycenter = 0.5
 
     def step(self):
