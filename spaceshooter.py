@@ -80,13 +80,6 @@ class ControlDwon(App):
     """
     Tutorial4 space game example.
     """
-    strings = {'winner': 'WINNER!',
-        'tie': 'TIE!',
-        'space': 'Press SPACE to play.',
-        'left': 'AWD\nSpace to FIRE',
-        'right': 'Arrow Keys\nEnter to FIRE',
-        }
-    print("ControlDwon!")
     def __init__(self, width, height):
         super().__init__(width, height)
         bg_asset = ImageAsset("images/starfield.jpg")
