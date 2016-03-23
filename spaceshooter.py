@@ -107,5 +107,5 @@ class ControlDwon(App):
         'right': 'Arrow Keys\nEnter to FIRE',
         }
 
-myapp = ControlDwon(0,0)
-myapp.run()
+app = ControlDwon(0,0)
+app.run()
