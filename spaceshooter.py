@@ -1,7 +1,7 @@
 """
 spaceshooter.py
 Author: Payton
-Credit: Morgan, Avery, Daniel
+Credit: Morgan, Avery, Daniel, Original Spacewar Code
 
 Assignment:
 Write and submit a program that implements the ControlDwon game:
@@ -98,6 +98,14 @@ class SpaceGame(App):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
 
+class ControlDwon(App):
+    
+    strings = {'winner': 'WINNER!',
+        'tie': 'TIE!',
+        'space': 'Press SPACE to play.',
+        'left': 'AWD\nSpace to FIRE',
+        'right': 'Arrow Keys\nEnter to FIRE',
+        }
 
-myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
+myapp = ControlDwon(0,0)
 myapp.run()
