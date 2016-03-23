@@ -140,6 +140,18 @@ class Bullet(Sprite):
 class Explosion(Sprite):
     
     asset = ImageAsset("images/explosion1.png", Frame(18,5,2,4), 9, 'horizontal')
+    
+    def __init__(self, position):
+        super().__init__(Explosion.asset, position)
+        self.fxcenter = self.fycenter = 0.5
+        self.frame = 0
+        
+    def step(self):
+        if self.frame == 8:
+            self.destroy()
+        else:
+            self.frame += 1
+            self.setImage(self.frame)
 
 class SpaceGame(App):
         
