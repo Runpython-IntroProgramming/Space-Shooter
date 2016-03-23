@@ -80,10 +80,8 @@ class SpaceShip(Sprite):
     def explode(self):
         if self.visible:
             collides = self.collidingWithSprites(Ship2)
-            if len(collides):
-                if collides[0].visible:
-                    collides[0].explode()
-                    self.explode()
+            if collides:
+                self.explode()
         
         
 class ExplosionSmall(Sprite):
