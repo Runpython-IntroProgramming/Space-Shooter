@@ -61,7 +61,7 @@ class SpaceShip(Sprite):
             
         col= self.collidingWithSprites(Sunthing)
         if col:
-            self.explode
+            self.explode()
         
     def thrustOn(self, event):
         self.thrust = 1
@@ -78,10 +78,8 @@ class SpaceShip(Sprite):
         self.vr=-.1
     
     def explode(self):
-        if self.visible:
-            collides = self.collidingWithSprites(Ship2)
-            if collides:
-                self.explode()
+        self.visible = False
+        ExplosionSmall(self.position)
         
         
 class ExplosionSmall(Sprite):
