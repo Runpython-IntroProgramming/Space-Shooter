@@ -136,6 +136,10 @@ class Bullet(Sprite):
             self.y += self.vely
         else:
             self.destroy()
+            
+class Explosion(Sprite):
+    
+    asset = ImageAsset("images/explosion1.png", Frame(18,5,2,4), 9, 'horizontal')
 
 class SpaceGame(App):
         
