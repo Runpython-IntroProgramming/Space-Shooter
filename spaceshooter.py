@@ -76,10 +76,16 @@ class SpaceShip(Sprite):
         #self.thrust = 0.5
 
 
-class SpaceGame(App):
+class ControlDwon(App):
     """
     Tutorial4 space game example.
     """
+    strings = {'winner': 'WINNER!',
+        'tie': 'TIE!',
+        'space': 'Press SPACE to play.',
+        'left': 'AWD\nSpace to FIRE',
+        'right': 'Arrow Keys\nEnter to FIRE',
+        }
     def __init__(self, width, height):
         super().__init__(width, height)
         bg_asset = ImageAsset("images/starfield.jpg")
@@ -98,14 +104,6 @@ class SpaceGame(App):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
 
-class ControlDwon(App):
-    
-    strings = {'winner': 'WINNER!',
-        'tie': 'TIE!',
-        'space': 'Press SPACE to play.',
-        'left': 'AWD\nSpace to FIRE',
-        'right': 'Arrow Keys\nEnter to FIRE',
-        }
 
-myapp = Spacewar(SCREEN_WIDTH, SCREEN_HEIGHT)
+myapp = ControlDwon(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
