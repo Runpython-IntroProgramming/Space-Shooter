@@ -86,6 +86,7 @@ class ControlDwon(App):
         'left': 'AWD\nSpace to FIRE',
         'right': 'Arrow Keys\nEnter to FIRE',
         }
+    print("ControlDwon!")
     def __init__(self, width, height):
         super().__init__(width, height)
         bg_asset = ImageAsset("images/starfield.jpg")
