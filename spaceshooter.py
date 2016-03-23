@@ -30,6 +30,7 @@ class SpaceShip(Sprite):
         self.vr = 0.0
         self.thrust = 0
         self.thrustframe = 1
+        self.rotation = 0
         left_location = 1
         ControlDwon.listenKeyEvent("keydown", "w", self.thrustOn)
         ControlDwon.listenKeyEvent("keyup", "w", self.thrustOff)
