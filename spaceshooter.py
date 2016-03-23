@@ -101,7 +101,7 @@ class Enemy(Sprite):
         collides = self.collidingWithSprites(Bullet)
         if len(collides) > 0:
             print("hello")
-            self.visibile = False
+            self.destroy()
         self.x += self.velx
         self.y += self.vely
         if self.frame == 3:
