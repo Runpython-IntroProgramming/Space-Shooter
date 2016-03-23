@@ -107,5 +107,5 @@ class ControlDwon(App):
         'right': 'Arrow Keys\nEnter to FIRE',
         }
 
-myapp = SpaceWar(SCREEN_WIDTH, SCREEN_HEIGHT)
+myapp = Spacewar(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
