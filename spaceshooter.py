@@ -63,7 +63,7 @@ class SpaceShip(Sprite):
         if self.vr == 1:
             self.rotation = self.rotation +.0001
         if self.vr == -1:
-            self.rotation = -0.001
+            self.rotation = self.rotation - 0.001
     
     def rotationOnLeft(self, event):
         self.vr = -1
