@@ -105,5 +105,5 @@ class ControlDwon(App):
             ship.step()
 
 
-myapp = ControlDwon(SCREEN_WIDTH, SCREEN_HEIGHT)
-myapp.run()
+app = ControlDwon(SCREEN_WIDTH, SCREEN_HEIGHT)
+app.run()
