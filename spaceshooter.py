@@ -91,6 +91,8 @@ class ExplosionSmall(Sprite):
         super().__init__(ExplosionSmall.asset, position)
         self.image = 0
         self.center = (0.5, 0.5)
+        self.vx = 0
+        self.vy = 0
         self.boom = Sound(ExplosionSmall.boomasset)
         self.boom.play()
         
