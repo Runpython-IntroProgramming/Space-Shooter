@@ -99,8 +99,7 @@ class ExplosionSmall(Sprite):
     def step(self):
         self.setImage(self.image//2)  # slow it down
         self.image += 1
-        self.vy = 0
-        self.vx = 0
+        self.boom.play()
         if self.image == 50:
             self.destroy()
             
