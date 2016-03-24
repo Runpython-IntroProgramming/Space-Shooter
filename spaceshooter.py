@@ -103,8 +103,8 @@ class ExplosionSmall(Sprite):
         self.image += 1
         self.boom.play()
         if self.image == 20:
-            self.destroy()
             self.visible = False
+            self.destroy()
             
 class Sunthing(Sprite):
     asset=ImageAsset("images/sun.png")
