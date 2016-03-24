@@ -102,7 +102,7 @@ class ExplosionSmall(Sprite):
         self.setImage(self.image//2)  # slow it down
         self.image += 1
         self.boom.play()
-        if self.image == 50:
+        if self.image == 5:
             self.destroy()
             
 class Sunthing(Sprite):
