@@ -65,7 +65,7 @@ class SpaceShip(Sprite):
 
     def thrustOn(self, event):
         self.thrust = 1
-        self.x += (cos((self.vr/(2*math.pi))*360))
+        self.x += cos((self.vr/(2*math.pi))*360)
 
     def thrustOff(self, event):
         self.thrust = 0
