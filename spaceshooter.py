@@ -16,6 +16,9 @@ SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 600
 SCREEN_DIAG = sqrt(SCREEN_WIDTH**2+SCREEN_HEIGHT**2)
 
+velCalcX = lambda speed, rotation: -1*speed*sin(rotation)
+velCalcY = lambda speed, rotation: -1*speed*cos(rotation)
+
 class StarBack(Sprite):
     
     asset = ImageAsset("images/starfield.jpg", Frame(0,0,SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
@@ -89,8 +92,10 @@ class Enemy(Sprite):
         self.frame = 1
     
     def velocitySet(self):
-        self.velx = -1*self.speed*sin(self.rotation)
-        self.vely = -1*self.speed*cos(self.rotation)
+#        self.velx = -1*self.speed*sin(self.rotation)
+#        self.vely = -1*self.speed*cos(self.rotation)
+        self.velx = velCalcX(self.speed, self.rotation)
+        self.vely = velCalcY(self.speed, self.rotation)
     
     def changeDirec(self):
         self.rotation = randint(0,1000)/500*pi
