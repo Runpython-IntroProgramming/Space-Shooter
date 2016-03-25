@@ -31,8 +31,6 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keyup", "w", self.thrustOff)
         SpaceGame.listenKeyEvent("keydown", "s", self.UPON)
         SpaceGame.listenKeyEvent("keyup", "s", self.stop)
-        SpaceGame.listenKeyEvent("keydown", "w", self.DOWNON)
-        SpaceGame.listenKeyEvent("keyup", "w", self.stop)
         SpaceGame.listenKeyEvent("keydown", "a", self.Right)
         SpaceGame.listenKeyEvent("keyup", "a", self.stop)
         SpaceGame.listenKeyEvent("keydown", "d", self.Left)
@@ -45,21 +43,19 @@ class SpaceShip(Sprite):
         self.y += self.vy
         self.rotation += self.vr
         if self.thrust == 1:
-            #self.vx = 0.1*cos(self.rotation+1/2*pi)+self.vx
-            #self.vy = 0.1*sin(self.rotation+1/2*pi)+self.vy
             self.setImage(self.thrustframe)
             self.thrustframe += 1
-            
+            self.vx += 0.1*math.cos(self.rotation+1/2*math.pi)
+            self.vy += 0.1*math.sin(self.rotation-1/2*math.pi)
             if self.thrustframe == 4:
                 self.thrustframe = 1
             else:
                 self.setImage(0)
-        if self.vr == .1:
+        """if self.vr == .1:
             self.rotation = self.rotation - 0.00000001
         if self.vr == -.1:
             self.rotation = self.rotation + 0.00000001
-        if self.vr == 0:
-            self.rotation = 0
+        """
 
     def thrustOn(self, event):
         self.thrust = 1
