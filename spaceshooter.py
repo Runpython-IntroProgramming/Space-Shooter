@@ -159,7 +159,6 @@ class Explosion(Sprite):
         if self.frame == 8:
             SpaceGame.destroyed += 1
             self.destroy()
-            return
         else:
             self.frame += 1
         self.setImage(self.frame)
