@@ -103,7 +103,6 @@ class Enemy(Sprite):
     def step(self):
         collides = self.collidingWithSprites(Bullet)
         if len(collides) > 0:
-            print("hello")
             Explosion((self.x, self.y))
             self.destroy()
             return
@@ -164,6 +163,9 @@ class SpaceGame(App):
         super().__init__()
         StarBack((0,0))
         Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
+        Enemy((100,100))
+        Enemy((100,100))
+        Enemy((100,100))
         Enemy((100,100))
         self.step()
         
