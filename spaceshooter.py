@@ -37,6 +37,8 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keyup", "a", self.CCOff)
         SpaceGame.listenKeyEvent("keydown", "d" , self.CCthing)
         SpaceGame.listenKeyEvent("keyup", "d", self.CCOff)
+        SpaceGame.listenKeyEvent("keydown", "r", self.restartOn)
+        SpaceGame.listenKeyEvent("keyup", "r", self.restartOn)
         self.fxcenter = self.fycenter = 0.5
         
     def step(self):
@@ -62,6 +64,9 @@ class SpaceShip(Sprite):
         col= self.collidingWithSprites(Sunthing)
         if col:
             self.explode()
+            
+    if self.reset == 1:
+        
         
     def thrustOn(self, event):
         self.thrust = 1
@@ -76,6 +81,12 @@ class SpaceShip(Sprite):
         self.vr=0
     def CCthing(self, event):
         self.vr=-.1
+    
+    def restartOn(self,event):
+        self.reset = 1
+    
+    def restartOff(self, event):
+        self.rot = 0
     
     def explode(self):
         self.visible = False
