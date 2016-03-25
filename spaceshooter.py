@@ -81,7 +81,6 @@ class SpaceShip(Sprite):
     def explode(self):
         self.visible = False
         ExplosionSmall(self.position)
-        self.waitspawn = 5
     
 
 class ExplosionSmall(Sprite):
