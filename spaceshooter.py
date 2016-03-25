@@ -75,8 +75,8 @@ class SpaceShip(Sprite):
         self.thrust = 0.5
     
     col=self.collidingWithSprites(sn)
-        if col:
-            self.explode()
+    if col:
+        self.explode()
 
     def explode(self):
         self.visible = False
