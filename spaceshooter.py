@@ -38,15 +38,6 @@ class SpaceShip(Sprite):
         ControlDwon.listenKeyEvent("keyup", "a", self.rotationOff)
         ControlDwon.listenKeyEvent("keydown", "d", self.rotationOnRight)
         ControlDwon.listenKeyEvent("keyup", "d", self.rotationOff)
-        right_location = 2
-        ControlDwon.listenKeyEvent("keyup", "up arrow", self.thrustOff)
-        ControlDwon.listenKeyEvent("keydown", "up arrow", self.thrustOn)
-        ControlDwon.listenKeyEvent("keyup", "down arrow", self.thrustOff)
-        ControlDwon.listenKeyEvent("keydown", "down arrow", self.thrustOn)
-        ControlDwon.listenKeyEvent("keyup", "left arrow", self.thrustOff)
-        ControlDwon.listenKeyEvent("keydown", "left arrow", self.thrustOn)
-        ControlDwon.listenKeyEvent("keyup", "right arrow", self.thrustOff)
-        ControlDwon.listenKeyEvent("keydown", "right arrow", self.thrustOn)
         self.fxcenter = self.fycenter = 0.5
 
     def step(self):
@@ -134,8 +125,6 @@ class ControlDwon(App):
         sn = Sprite(sn_asset, (400,300))
         left_location = 1
         SpaceShip((100,100))
-        right_location = 2
-        SpaceShip((500,500))
 
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
