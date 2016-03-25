@@ -154,20 +154,15 @@ class Explosion(Sprite):
         super().__init__(Explosion.asset, position)
         self.fxcenter = self.fycenter = 0.5
         self.frame = 0
-        self.new = True
         
     def step(self):
-        if self.new == True:
-            self.new == False
         if self.frame == 8:
+            SpaceGame.destroyed += 1
             self.destroy()
+            return
         else:
             self.frame += 1
         self.setImage(self.frame)
-        
-class Score(Sprite):
-    
-    asset = TextAsset(
 
 class SpaceGame(App):
         
@@ -188,8 +183,7 @@ class SpaceGame(App):
             x.step()
         for x in self.getSpritesbyClass(Explosion):
             x.step()
-            if x.new == True:
-                self.destroyed += 1
+            print(self.destroyed)
         
 myapp = SpaceGame()
 myapp.run()
