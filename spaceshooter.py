@@ -34,10 +34,10 @@ class SpaceShip(Sprite):
         left_location = 1
         ControlDwon.listenKeyEvent("keydown", "w", self.thrustOn)
         ControlDwon.listenKeyEvent("keyup", "w", self.thrustOff)
-        ControlDwon.listenKeyEvent("keydown", "a", self.rotationOnLeft)
-        ControlDwon.listenKeyEvent("keyup", "a", self.rotationOff)
-        ControlDwon.listenKeyEvent("keydown", "d", self.rotationOnRight)
+        ControlDwon.listenKeyEvent("keydown", "d", self.rotationOnLeft)
         ControlDwon.listenKeyEvent("keyup", "d", self.rotationOff)
+        ControlDwon.listenKeyEvent("keydown", "a", self.rotationOnRight)
+        ControlDwon.listenKeyEvent("keyup", "a", self.rotationOff)
         self.fxcenter = self.fycenter = 0.5
 
     def step(self):
