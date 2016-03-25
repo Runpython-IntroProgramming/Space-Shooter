@@ -182,7 +182,7 @@ class SpaceGame(App):
             x.step()
         for x in self.getSpritesbyClass(Explosion):
             x.step()
-            print(self.destroyed)
+        print(self.destroyed)
         
 myapp = SpaceGame()
 myapp.run()
