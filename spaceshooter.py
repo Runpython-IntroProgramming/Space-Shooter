@@ -60,15 +60,15 @@ class SpaceShip(Sprite):
                 self.thrustframe = 1
             else:
                 self.setImage(0)
-        if self.vr == 1:
-            self.rotation = self.rotation +.00001
-        if self.vr == -1:
-            self.rotation = self.rotation - 0.00001
+        if self.vr == .1:
+            self.rotation = self.rotation +.0001
+        if self.vr == -0.1:
+            self.rotation = self.rotation - 0.0001
     
     def rotationOnLeft(self, event):
-        self.vr = -1
+        self.vr = -.1
     def rotationOnRight(self, event):
-        self.vr = 1
+        self.vr = .1
     def rotationOff(self, event):
         self.vr = 0
 
