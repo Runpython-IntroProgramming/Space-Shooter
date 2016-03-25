@@ -71,6 +71,7 @@ class SpaceShip(Sprite):
             self.x = 300
             self.y = 300
             ship.step()
+            self.rotation += self.vr
             
             
     def thrustOn(self, event):
