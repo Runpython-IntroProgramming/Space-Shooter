@@ -162,7 +162,6 @@ class SpaceGame(App):
         StarBack((0,0))
         Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         Enemy((100,100))
-        Explosion((300,300))
         self.step()
         
     def step(self):
