@@ -44,6 +44,7 @@ class Player(SpaceShip):
     
     def __init__(self, position):
         super().__init__(Player.asset, position)
+        self.speed = 5
         self.thrust = 0
         self.thrustframe = 0
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.rotateRight)
@@ -51,6 +52,8 @@ class Player(SpaceShip):
         SpaceGame.listenKeyEvent("keydown", "up arrow", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "up arrow", self.thrustOff)
         SpaceGame.listenKeyEvent("keydown", "space", self.shoot)
+        self.velx = 0
+        self.vely = 0
         
     def rotateRight(self, event):
         self.rotation -= self.rotSpd
@@ -60,8 +63,10 @@ class Player(SpaceShip):
         
     def thrustOn(self, event):
         self.thrust = 1
-        self.x -= 5*sin(self.rotation)
-        self.y -= 5*cos(self.rotation)
+        self.velx = velCalcX(self.speed, self.rotation)
+        self.vely = velCalcY(self.speed, self.rotation)
+        self.x += self.velx
+        self.y += self.vely
         
     def thrustOff(self, event):
         self.thrust = 0
