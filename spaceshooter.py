@@ -74,10 +74,19 @@ class SpaceShip(Sprite):
     def thrustdecel(self, event):
         self.thrust = 0.5
 
-def explode(self):
+    def explode(self):
         self.visible = False
         ExplosionSmall(self.position)
         self.waitspawn = 5
+    
+    def step(self, T, dT):
+        super().step(T, dT)
+        if self.visible:
+            collides = self.collidingWithSprites(Ship2)
+            if len(collides):
+                if collides[0].visible:
+                    collides[0].explode()
+                    self.explode()
 
 class ExplosionSmall(Sprite):
     
@@ -101,13 +110,6 @@ class ControlDwon(App):
     """
     Tutorial4 space game example.
     """
-    strings = {'winner': 'WINNER!',
-        'tie': 'TIE!',
-        'space': 'Press SPACE to play.',
-        'left': 'AWD\nSpace to FIRE',
-        'right': 'Arrow Keys\nEnter to FIRE',
-        }
-
     def __init__(self, width, height):
         super().__init__(width, height)
         for x in range(self.width//Stars.width + 1):
