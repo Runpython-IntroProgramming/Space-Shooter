@@ -82,8 +82,8 @@ class SpaceShip(Sprite):
         self.vy += 1
         ExplosionSmall(self.position)
     col=self.collidingWithSprites(sn)
-        if col:
-            self.explode()
+    if col:
+        self.explode()
 
     
     
