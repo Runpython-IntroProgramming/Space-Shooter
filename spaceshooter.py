@@ -73,15 +73,16 @@ class SpaceShip(Sprite):
         
     def thrustdecel(self, event):
         self.thrust = 0.5
+    
+    collis=self.collidingWithSprites(sn)
+        if collis:
+            self.explode()
 
     def explode(self):
         self.visible = False
         ExplosionSmall(self.position)
         self.waitspawn = 5
     
-    collis=self.collidingWithSprites(sn)
-        if collis:
-            self.explode()
 
 class ExplosionSmall(Sprite):
     
