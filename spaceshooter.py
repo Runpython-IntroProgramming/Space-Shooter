@@ -70,8 +70,8 @@ class SpaceShip(Sprite):
             self.visible = True
             self.x = 300
             self.y = 300
-            self.x += self.vx
-            self.y += self.vy
+            self.x += .001
+            self.y += .001
             self.rotation += self.vr
         else:
             self.rotation = self.rotation
