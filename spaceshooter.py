@@ -70,9 +70,9 @@ class SpaceShip(Sprite):
             self.visible = True
             self.x = 300
             self.y = 300
-            self.vx = 1
-            self.vy = 1
-        
+            self.vx = 0
+            self.vy = 0
+            self.step
     def thrustOn(self, event):
         self.thrust = 1
     def thrustOff(self, event):
