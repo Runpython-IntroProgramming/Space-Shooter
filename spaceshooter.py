@@ -67,6 +67,8 @@ class SpaceShip(Sprite):
             self.explode()
             
         if self.reset == 1:
+            self.setImage(asset)
+            self.visible = True
             self.x = 300
             self.y = 300
             self.vx = .01
