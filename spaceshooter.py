@@ -68,6 +68,9 @@ class SpaceShip(Sprite):
         if self.reset == 1:
             self.x = 0
             self.y = 0
+        elif self.reset == 0:
+            self.vy = self.vy
+            self.vx = self.vx
         
     def thrustOn(self, event):
         self.thrust = 1
