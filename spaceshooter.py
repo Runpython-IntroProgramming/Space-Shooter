@@ -72,6 +72,7 @@ class SpaceShip(Sprite):
             self.y = 300
             self.vx = 0
             self.vy = 0
+            self.restartOn
             
             
     def thrustOn(self, event):
