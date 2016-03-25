@@ -153,7 +153,6 @@ class Explosion(Sprite):
     def step(self):
         if self.frame == 8:
             self.destroy()
-            print('hi')
         else:
             self.frame += 1
         self.setImage(self.frame)
@@ -176,6 +175,7 @@ class SpaceGame(App):
             x.step()
         for x in self.getSpritesbyClass(Explosion):
             x.step()
+        print(self.getSpritesbyClass(Bullet))
         
 myapp = SpaceGame()
 myapp.run()
