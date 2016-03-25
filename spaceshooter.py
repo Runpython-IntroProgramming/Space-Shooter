@@ -85,15 +85,13 @@ class Enemy(Sprite):
         super().__init__(Enemy.asset, position)
         self.speed = 1
         self.rotation = randint(0,1000)/500*pi
-        self.velx = -1*self.speed*sin(self.rotation)
-        self.vely = -1*self.speed*cos(self.rotation)
+        self.velx = velCalcX(self.speed, self.rotation)
+        self.vely = velCalcY(self.speed, self.rotation)
         self.fxcenter = self.fycenter = 0.5
         self.dist = 0
         self.frame = 1
     
     def velocitySet(self):
-#        self.velx = -1*self.speed*sin(self.rotation)
-#        self.vely = -1*self.speed*cos(self.rotation)
         self.velx = velCalcX(self.speed, self.rotation)
         self.vely = velCalcY(self.speed, self.rotation)
     
