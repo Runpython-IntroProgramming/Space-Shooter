@@ -69,8 +69,8 @@ class SpaceShip(Sprite):
     def thrustOff(self, event):
         self.thrust = 0
         
-    #def thrustdecel(self, event):
-        #self.thrust = 0.5
+    def thrustdecel(self, event):
+        self.thrust = 0.5
 
 
 class ControlDwon(App):
