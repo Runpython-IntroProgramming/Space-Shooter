@@ -67,8 +67,8 @@ class SpaceShip(Sprite):
             self.explode()
             
         if self.reset == 1:
-            self.x = 0
-            self.y = 0
+            self.x = 300
+            self.y = 300
         elif self.reset == 0:
             self.vy = self.vy
             self.vx = self.vx
