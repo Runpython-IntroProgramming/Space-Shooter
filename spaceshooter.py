@@ -73,7 +73,8 @@ class SpaceShip(Sprite):
             self.x += self.vx
             self.y += self.vy
             self.rotation += self.vr
-            
+        else:
+            self.rotation = self.rotation
             
             
     def thrustOn(self, event):
