@@ -102,7 +102,7 @@ class ExplosionSmall(Sprite):
         self.setImage(self.image//5)  # slow it down
         self.image += 1
         self.boom.play()
-        if self.image == 20:
+        if self.image == 25:
             self.visible = False
             self.destroy()
             
