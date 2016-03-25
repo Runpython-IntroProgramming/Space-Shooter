@@ -65,9 +65,9 @@ class SpaceShip(Sprite):
         if col:
             self.explode()
             
-    if self.reset == 1:
-        self.x = 0
-        self.y = 0
+        if self.reset == 1:
+            self.x = 0
+            self.y = 0
         
     def thrustOn(self, event):
         self.thrust = 1
@@ -87,7 +87,7 @@ class SpaceShip(Sprite):
         self.reset = 1
     
     def restartOff(self, event):
-        self.rot = 0
+        self.reset = 0
     
     def explode(self):
         self.visible = False
