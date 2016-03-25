@@ -74,6 +74,28 @@ class SpaceShip(Sprite):
     def thrustdecel(self, event):
         self.thrust = 0.5
 
+def explode(self):
+        self.visible = False
+        ExplosionSmall(self.position)
+        self.waitspawn = 5
+
+class ExplosionSmall(Sprite):
+    
+    asset = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
+    boomasset = SoundAsset("sounds/explosion1.mp3")
+    
+    def __init__(self, position):
+        super().__init__(ExplosionSmall.asset, position)
+        self.image = 0
+        self.center = (0.5, 0.5)
+        self.boom = Sound(ExplosionSmall.boomasset)
+        self.boom.play()
+        
+    def step(self):
+        self.setImage(self.image//2)  # slow it down
+        self.image = self.image + 1
+        if self.image == 20:
+            self.destroy()
 
 class ControlDwon(App):
     """
