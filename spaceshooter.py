@@ -79,6 +79,9 @@ class SpaceShip(Sprite):
         ExplosionSmall(self.position)
         self.waitspawn = 5
     
+    collide=self.collidingWithSprites(sn)
+        if collide:
+            self.explode()
 
 class ExplosionSmall(Sprite):
     
