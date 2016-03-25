@@ -149,7 +149,7 @@ class Explosion(Sprite):
         
     def step(self):
         if self.frame == 8:
-#            self.destroy()
+            self.destroy()
             print('hi')
         else:
             self.frame += 1
