@@ -36,8 +36,8 @@ class SpaceShip(Sprite):
         ControlDwon.listenKeyEvent("keyup", "w", self.thrustOff)
         ControlDwon.listenKeyEvent("keydown", "a", self.rotationOnLeft)
         ControlDwon.listenKeyEvent("keyup", "a", self.rotationOff)
-        ControlDwon.listenKeyEvent("keyup", "d", self.rotationOnRight)
-        ControlDwon.listenKeyEvent("keydown", "d", self.rotationOff)
+        ControlDwon.listenKeyEvent("keydown", "d", self.rotationOnRight)
+        ControlDwon.listenKeyEvent("keyup", "d", self.rotationOff)
         right_location = 2
         ControlDwon.listenKeyEvent("keyup", "up arrow", self.thrustOff)
         ControlDwon.listenKeyEvent("keydown", "up arrow", self.thrustOn)
