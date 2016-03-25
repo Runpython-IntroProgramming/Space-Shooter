@@ -129,13 +129,13 @@ class Bullet(Sprite):
         self.fxcenter = self.fycenter = 0.5
         for x in SpaceGame.getSpritesbyClass(Player):
             self.rotation = x.rotation
-        self.velx = 5*sin(self.rotation)
-        self.vely = 5*cos(self.rotation)
+        self.velx = 0
+        self.vely = 0
     
     def step(self):
         if 0 <= self.x <= SCREEN_WIDTH and 0 <= self.y <= SCREEN_HEIGHT:
-            self.velx = -5*sin(self.rotation)
-            self.vely = -5*cos(self.rotation)
+            self.velx = velCalcX(5, self.rotation)
+            self.vely = velCalcY(5, self.rotation)
             self.x += self.velx
             self.y += self.vely
         else:
@@ -163,9 +163,6 @@ class SpaceGame(App):
         super().__init__()
         StarBack((0,0))
         Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
-        Enemy((100,100))
-        Enemy((100,100))
-        Enemy((100,100))
         Enemy((100,100))
         self.step()
         
