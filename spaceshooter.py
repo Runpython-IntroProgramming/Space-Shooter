@@ -74,7 +74,7 @@ class SpaceShip(Sprite):
     def thrustdecel(self, event):
         self.thrust = 0.5
     
-    def explode(self):
+    def explode(self, event):
         self.visible = False
         self.x = 300
         self.y = 300
