@@ -106,7 +106,7 @@ class ExplosionSmall(Sprite):
         if self.image == 20:
             self.destroy()
 
-class sun(sprite):
+class sun(Sprite):
     asset = ImageAsset("images/sun.png")
     
     def __init__(self, position):
