@@ -30,7 +30,7 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keydown", "w", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "w", self.thrustOff)
         SpaceGame.listenKeyEvent("keydown", "s", self.UPON)
-        SpaceGame.listenKeyEvent("keyup", "s", self.stop)
+        #SpaceGame.listenKeyEvent("keyup", "s", self.stop)
         SpaceGame.listenKeyEvent("keydown", "a", self.Right)
         SpaceGame.listenKeyEvent("keyup", "a", self.stop)
         SpaceGame.listenKeyEvent("keydown", "d", self.Left)
@@ -72,8 +72,7 @@ class SpaceShip(Sprite):
     def Left(self, event):
         self.vr = -.1
     def stop(self, event):
-        self.vy=0
-        self.vx=0
+        
         self.vr=0
 
 
