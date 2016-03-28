@@ -156,7 +156,7 @@ class ControlDwon(App):
         bg = Sprite(bg_asset, (512,0))
         bg = Sprite(bg_asset, (512,512))
         sun_asset = ImageAsset("images/sun.png")
-        sun = Sprite(sn_asset, (400,300))
+        sun = Sprite(sun_asset, (400,300))
         left_location = 1
         SpaceShip((100,100))
 
