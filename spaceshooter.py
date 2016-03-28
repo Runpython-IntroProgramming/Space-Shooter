@@ -111,12 +111,12 @@ def registerKeys(self, keys):
 
 class Sun(Sprite):
     
-    asset5 = ImageAsset("sun.png")
+    asset5 = ImageAsset("images/sun.png")
     height = 90
     width = 40
     
     def __init__(self, position):
-        super().__init__(Sun.asset, position)
+        super().__init__(Sun.asset5, position)
 
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
