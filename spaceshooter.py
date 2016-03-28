@@ -93,7 +93,7 @@ class SpaceGame(App):
         bg5 = Sprite(bg_asset, (1024, 512))
         bg6 = Sprite(bg_asset, (1024, 0))
         SpaceShip((100,100))
-        Sun((500,500))
+        Sun((300,300))
 
         
 
