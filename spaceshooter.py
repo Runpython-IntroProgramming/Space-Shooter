@@ -20,7 +20,7 @@ class SpaceShip(Sprite):
     Animated space ship
     """
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
-        Frame(227,0,292-227,125), 4, 'vertical')
+        Frame(227,0,292-227,125), 1, 'vertical')
 
     def __init__(self, position):
         super().__init__(SpaceShip.asset, position)
@@ -146,7 +146,6 @@ class SpaceGame(App):
         black = Color(0, 1)
         noline = LineStyle(0, black)
         bg_asset = ImageAsset("images/starfield.jpg")
-        txt_asset = TextAsset(noline, "Press R to restart")
         txt = Sprite(txt_asset, (0,0))
         star0 = Sprite(bg_asset, (0,0))
         star1= Sprite(bg_asset, (512,0))
