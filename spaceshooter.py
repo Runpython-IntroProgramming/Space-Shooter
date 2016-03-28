@@ -174,6 +174,7 @@ class SpaceGame(App):
     def __init__(self):
         super().__init__()
         StarBack((0,0))
+        ScoreControl((0,0))
         Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         Enemy((100,100))
         self.step()
