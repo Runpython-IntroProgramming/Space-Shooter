@@ -72,9 +72,12 @@ class SpaceShip(Sprite):
     def Left(self, event):
         self.vr = -.1
     def stop(self, event):
-        
         self.vr=0
 
+    def explode(x, y):
+        x=self.x
+        y=self.y
+        if x == 1
 
 class SpaceGame(App):
     """
@@ -116,6 +119,8 @@ class Sun(Sprite):
     
     def __init__(self, position):
         super().__init__(Sun.asset5, position)
+        
+    
 
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
