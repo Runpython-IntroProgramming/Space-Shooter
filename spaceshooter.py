@@ -101,7 +101,92 @@ class SpaceShip(Sprite):
         self.vx = 0
         self.vy = 0
         ExplosionSmall(self.position)
+class SpaceShip2(Sprite):
+    """
+    Animated space ship
+    """
+    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
+        Frame(227,0,292-227,125), 4, 'vertical')
+
+    def __init__(self, position):
+        super().__init__(SpaceShip.asset, position)
+        self.visible=True
+        self.vx = 0
+        self.vy = 0
+        self.vr = 0
+        self.rotation = 0
+        self.thrust = 0
+        self.reset = 0
+        self.thrustframe = 1
+        SpaceGame.listenKeyEvent("keydown", "w", self.thrustOn)
+        SpaceGame.listenKeyEvent("keyup", "w", self.thrustOff)
+        SpaceGame.listenKeyEvent("keydown", "a" , self.CCOn)
+        SpaceGame.listenKeyEvent("keyup", "a", self.CCOff)
+        SpaceGame.listenKeyEvent("keydown", "d" , self.CCthing)
+        SpaceGame.listenKeyEvent("keyup", "d", self.CCOff)
+        SpaceGame.listenKeyEvent("keydown", "r", self.restartOn)
+        SpaceGame.listenKeyEvent("keyup", "r", self.restartOff)
+        self.fxcenter = self.fycenter = 0.5
         
+    def step(self):
+        self.x += self.vx
+        self.y += self.vy
+        self.rotation += self.vr
+        if self.thrust == 1:
+            self.setImage(self.thrustframe)
+            self.thrustframe += 1
+            self.vx += .05*math.cos((self.rotation+math.pi/2))
+            self.vy += .05*math.sin((self.rotation-math.pi/2))
+            if self.thrustframe == 4:
+                self.thrustframe = 1
+            else:
+                self.setImage(0)
+        if self.vr == .1:
+            self.rotation += .0001
+        if self.vr == -.1:
+            self.rotation -= .0001
+        if self.vr==0:
+            self.rotation=self.rotation
+            
+        col= self.collidingWithSprites(Sunthing)
+        if col:
+            self.explode()
+            
+        if self.reset == 1:
+            self.visible = True
+            self.x = 300
+            self.y = 300
+            self.rotation = 0
+            self.vx = 0
+            self.vy = 0
+
+            
+            
+    def thrustOn(self, event):
+        self.thrust = 1
+    def thrustOff(self, event):
+        self.thrust = 0
+    def thrustDecel(self, event):
+        self.thrust=-1
+        
+    def CCOn(self, event):
+        self.vr=.1
+    def CCOff(self, event):
+        self.vr=0
+    def CCthing(self, event):
+        self.vr=-.1
+    
+    def restartOn(self,event):
+        self.reset = 1
+    
+    def restartOff(self, event):
+        self.reset = 0
+    
+    def explode(self):
+        self.visible = False
+        self.vx = 0
+        self.vy = 0
+        ExplosionSmall(self.position)        
         
 class ExplosionSmall(Sprite):
     
@@ -153,6 +238,7 @@ class SpaceGame(App):
         txt = Sprite(txt_asset, (0,0))
         Sunthing((500,360))
         SpaceShip((300,300))
+        SpaceShip2((500,500))
         
         
     def step(self):
