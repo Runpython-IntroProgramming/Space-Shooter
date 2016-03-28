@@ -116,7 +116,7 @@ class Sun(Sprite):
     width = 40
     
     def __init__(self, position):
-        super().__init__(Stars.asset, position)
+        super().__init__(Sun.asset, position)
 
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
