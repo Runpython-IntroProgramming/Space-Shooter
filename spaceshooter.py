@@ -93,6 +93,7 @@ class SpaceShip(Sprite):
     
     def restartOff(self, event):
         self.reset = 0
+        print("thing")
     
     def explode(self):
         self.visible = False
