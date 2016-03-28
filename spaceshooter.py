@@ -146,7 +146,7 @@ class SpaceGame(App):
         black = Color(0, 1)
         noline = LineStyle(0, black)
         bg_asset = ImageAsset("images/starfield.jpg")
-        txt_asset = TextAsset(right, "Press R to restart")
+        txt_asset = TextAsset("Press R to restart",right,black,italic 20pt Helvetica)
         txt = Sprite(txt_asset, (0,0))
         star0 = Sprite(bg_asset, (0,0))
         star1= Sprite(bg_asset, (512,0))
