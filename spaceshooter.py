@@ -105,7 +105,7 @@ class ExplosionSmall(Sprite):
         self.image = self.image + 1
         if self.image == 20:
             self.destroy()
-
+"""
 class sn(sprite):
     asset = ImageAsset("images/sun.png")
     
@@ -113,7 +113,7 @@ class sn(sprite):
         super().__init__(sun.png, position)
         self.image = 0
         self.center = (1, 1)
-
+"""
 class ControlDwon(App):
     """
     Tutorial4 space game example.
