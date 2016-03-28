@@ -8,6 +8,8 @@ Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
 """
 
+#improve starback init
+
 from ggame import App, Sprite, ImageAsset, Frame, Color, TextAsset
 from math import sqrt, sin, cos, radians, degrees, pi
 from random import randint
@@ -156,6 +158,10 @@ class Explosion(Sprite):
         super().__init__(Explosion.asset, position)
         self.fxcenter = self.fycenter = 0.5
         self.frame = 0
+        for x in SpaceGame.getSpritesbyClass(Score):
+            x.destroy()
+        for x in SpaceGame.getSpritesbyClass(ScoreControl):
+            x.scoreChange()
         
     def step(self):
         if self.frame == 8:
@@ -201,8 +207,6 @@ class SpaceGame(App):
             x.step()
         for x in self.getSpritesbyClass(Explosion):
             x.step()
-        if len(self.getSpritesbyClass) > 1:
-            
         
 myapp = SpaceGame()
 myapp.run()
