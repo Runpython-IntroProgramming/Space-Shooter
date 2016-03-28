@@ -70,6 +70,8 @@ class SpaceShip(Sprite):
             self.visible = True
             self.x = 300
             self.y = 300
+            self.vx = 0
+            self.vy = 0
 
             
             
@@ -150,6 +152,8 @@ class SpaceGame(App):
         star3= Sprite(bg_asset, (512, 512))
         Sunthing((500,360))
         SpaceShip((300,300))
+        self.tsprites = {k:Sprite(TextAsset(text=v, width=200, align='center',style='20px Arial', fill=Color(0xff2222,1))) 
+            for k, v in Spacewar.strings.items()}
         
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
