@@ -107,7 +107,16 @@ def registerKeys(self, keys):
         self.keymap = dict(zip(keys, commands))
         [self.app.listenKeyEvent("keydown", k, self.controldown) for k in keys]
         [self.app.listenKeyEvent("keyup", k, self.controlup) for k in keys]
-       
+
+
+class Sun(Sprite):
+    
+    asset5 = ImageAsset("sun.png")
+    height = 90
+    width = 40
+    
+    def __init__(self, position):
+        super().__init__(Stars.asset, position)
 
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
