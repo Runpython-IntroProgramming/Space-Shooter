@@ -124,15 +124,15 @@ class SpaceShip2(Sprite):
         SpaceGame.listenKeyEvent("keyup", "left arrow", self.CCOff2)
         SpaceGame.listenKeyEvent("keydown", "right arrow" , self.CCthing2)
         SpaceGame.listenKeyEvent("keyup", "right arrow", self.CCOff2)
-        SpaceGame.listenKeyEvent("keydown", "r", self.restartOn2)
-        SpaceGame.listenKeyEvent("keyup", "r", self.restartOff2)
+        SpaceGame.listenKeyEvent("keydown", "p", self.restartOn2)
+        SpaceGame.listenKeyEvent("keyup", "", self.restartOff2)
         self.fxcenter = self.fycenter = 0.5
         
     def step(self):
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
-        if self.thrust == 1:
+        if self.thrust2 == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
             self.vx += .05*math.cos((self.rotation+math.pi/2))
@@ -141,18 +141,18 @@ class SpaceShip2(Sprite):
                 self.thrustframe = 1
             else:
                 self.setImage(0)
-        if self.vr == .1:
+        if self.vr2 == .1:
             self.rotation += .0001
-        if self.vr == -.1:
+        if self.vr2 == -.1:
             self.rotation -= .0001
-        if self.vr==0:
+        if self.vr2==0:
             self.rotation=self.rotation
             
         col= self.collidingWithSprites(Sunthing)
         if col:
             self.explode()
             
-        if self.reset == 1:
+        if self.reset2 == 1:
             self.visible = True
             self.x = 300
             self.y = 300
@@ -162,25 +162,25 @@ class SpaceShip2(Sprite):
 
             
             
-    def thrustOn(self, event):
-        self.thrust = 1
-    def thrustOff(self, event):
-        self.thrust = 0
-    def thrustDecel(self, event):
-        self.thrust=-1
+    def thrustOn2(self, event):
+        self.thrust2 = 1
+    def thrustOff2(self, event):
+        self.thrust2 = 0
+    def thrustDecel2(self, event):
+        self.thrust2=-1
         
-    def CCOn(self, event):
-        self.vr=.1
-    def CCOff(self, event):
-        self.vr=0
-    def CCthing(self, event):
-        self.vr=-.1
+    def CCOn2(self, event):
+        self.vr2=.1
+    def CCOff2(self, event):
+        self.vr2=0
+    def CCthing2(self, event):
+        self.vr2=-.1
     
-    def restartOn(self,event):
-        self.reset = 1
+    def restartOn2(self,event):
+        self.reset2 = 1
     
-    def restartOff(self, event):
-        self.reset = 0
+    def restartOff2(self, event):
+        self.reset2 = 0
     
     def explode(self):
         self.visible = False
