@@ -8,7 +8,7 @@ Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
 """
 from ggame import App, ImageAsset, RectangleAsset, SoundAsset, Frame
-from ggame import LineStyle, Sprite, Sound, Color
+from ggame import LineStyle, Sprite, Sound, Color, TextAsset
 import math
 
 SCREEN_WIDTH = 640
@@ -146,14 +146,14 @@ class SpaceGame(App):
         black = Color(0, 1)
         noline = LineStyle(0, black)
         bg_asset = ImageAsset("images/starfield.jpg")
+        txt_asset = TextAsset("Press R to restart")
         star0 = Sprite(bg_asset, (0,0))
         star1= Sprite(bg_asset, (512,0))
         star2= Sprite(bg_asset, (0,512))
         star3= Sprite(bg_asset, (512, 512))
         Sunthing((500,360))
         SpaceShip((300,300))
-        self.tsprites = {k:Sprite(TextAsset(text=v, width=200, align='center',style='20px Arial', fill=Color(0xff2222,1))) 
-            for k, v in Spacewar.strings.items()}
+        
         
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
