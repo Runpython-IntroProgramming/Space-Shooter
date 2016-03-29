@@ -19,7 +19,7 @@ SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 600
 SCREEN_DIAG = sqrt(SCREEN_WIDTH**2+SCREEN_HEIGHT**2)
 
-NUM_ENEMIES = 3
+NUM_ENEMIES = 4
 
 velCalcX = lambda speed, rotation: -1*speed*sin(rotation)
 velCalcY = lambda speed, rotation: -1*speed*cos(rotation)
@@ -206,9 +206,8 @@ class SpaceGame(App):
         StarBack((0,0))
         ScoreControl((0,0))
         Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
-#        Enemy((100,100))
         for x in [1/NUM_ENEMIES*x*2*pi for x in list(range(0,NUM_ENEMIES))]:
-            Enemy((-5*sin(x),5*cos(x))
+            Enemy(((SCREEN_HEIGHT*-0.4)*sin(x)+SCREEN_WIDTH/2, (SCREEN_HEIGHT*-0.4)*cos(x)+SCREEN_HEIGHT/2))
         self.step()
         
     def step(self):
@@ -216,8 +215,8 @@ class SpaceGame(App):
             x.step()
         for x in self.getSpritesbyClass(Bullet):
             x.step()
-#        for x in self.getSpritesbyClass(Enemy):
-#            x.step()
+        for x in self.getSpritesbyClass(Enemy):
+            x.step()
         for x in self.getSpritesbyClass(Explosion):
             x.step()
         for x in self.getSpritesbyClass(ScoreControl):
@@ -226,3 +225,17 @@ class SpaceGame(App):
         
 myapp = SpaceGame()
 myapp.run()
+
+'''
+from math import sin, cos, pi
+
+A = 4
+r = 5
+
+a = [1/A*x*2*pi for x in list(range(0,A))]
+print(a)
+
+for x in a:
+    print(int(-5*sin(x)),end=' ')
+    print(int(5*cos(x)))
+'''
