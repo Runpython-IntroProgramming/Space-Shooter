@@ -15,7 +15,7 @@ SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
 
 
-class SpaceShip(Sprite):
+#class SpaceShip(Sprite):
     """
     Animated space ship
     """
