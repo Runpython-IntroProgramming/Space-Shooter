@@ -141,11 +141,11 @@ class SpaceShip2(Sprite):
                 self.thrustframe = 1
             else:
                 self.setImage(0)
-        if self.vr2 == .1:
+        if self.thingy == .1:
             self.rotation += .0001
-        if self.vr2 == -.1:
+        if self.thingy == -.1:
             self.rotation -= .0001
-        if self.vr2==0:
+        if self.thingy==0:
             self.rotation=self.rotation
             
         col= self.collidingWithSprites(Sunthing)
@@ -170,11 +170,11 @@ class SpaceShip2(Sprite):
         self.thrust2=-1
         
     def CCOn2(self, event):
-        self.vr2=.1
+        self.thingy=.1
     def CCOff2(self, event):
-        self.vr2=0
+        self.thingy=0
     def CCthing2(self, event):
-        self.vr2=-.1
+        self.thingy=-.1
     
     def restartOn2(self,event):
         self.reset2 = 1
