@@ -125,7 +125,7 @@ class SpaceShip2(Sprite):
         SpaceGame.listenKeyEvent("keyup", "left arrow", self.CCOff2)
         SpaceGame.listenKeyEvent("keydown", "right arrow" , self.CCthing2)
         SpaceGame.listenKeyEvent("keyup", "right arrow", self.CCOff2)
-        SpaceGame.listenKeyEvent("keydown", "p", self.thrustOn2)
+        SpaceGame.listenKeyEvent("keydown", "p", self.restartOn2)
         SpaceGame.listenKeyEvent("keyup", "p", self.restartOff2)
         self.fxcenter = self.fycenter = 0.5
         
@@ -135,11 +135,11 @@ class SpaceShip2(Sprite):
         self.rotation += self.vr
         if self.thrust2 == 1:
             self.setImage(self.thrustframe)
-            self.thrustframe += 1
+            self.thrustframe2 += 1
             self.vx += .05*math.cos((self.rotation+math.pi/2))
             self.vy += .05*math.sin((self.rotation-math.pi/2))
-            if self.thrustframe == 4:
-                self.thrustframe = 1
+            if self.thrustframe2 == 4:
+                self.thrustframe2 = 1
             else:
                 self.setImage(0)
         if self.thingy == .1:
