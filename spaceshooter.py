@@ -28,6 +28,7 @@ class SpaceShip(Sprite):
         self.thrust = 0
         self.thrustframe = 1
         self. circularCollisionModule()
+        self.imagex = 0
         SpaceGame.listenKeyEvent("keydown", "w", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "w", self.thrustOff)
         SpaceGame.listenKeyEvent("keydown", "s", self.UPON)
