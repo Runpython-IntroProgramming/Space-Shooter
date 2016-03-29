@@ -173,11 +173,14 @@ class ExplosionSmall(Sprite):
 
 class sun(Sprite):
     asset = ImageAsset("images/sun.png")
-    
+    width = 80
+    length = 76
     def __init__(self, position):
-        super().__init__(sun.png, position)
-        self.image = 0
-        self.center = (1, 1)
+        super().__init__(sun.asset, position)
+        self.mass = 30*1000
+        self.fxcenter = .5
+        self.fycenter = .5
+        self.circularCollisionModel()
 
 class ControlDwon(App):
     """
