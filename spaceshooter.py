@@ -19,7 +19,7 @@ SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 600
 SCREEN_DIAG = sqrt(SCREEN_WIDTH**2+SCREEN_HEIGHT**2)
 
-NUM_ENEMIES = 
+NUM_ENEMIES = 4
 
 velCalcX = lambda speed, rotation: -1*speed*sin(rotation)
 velCalcY = lambda speed, rotation: -1*speed*cos(rotation)
@@ -118,6 +118,10 @@ class Enemy(Sprite):
         
     def explode(self):
             Explosion((self.x, self.y))
+            for x in SpaceGame.getSpritesbyClass(Score):
+                x.destroy()
+            for x in SpaceGame.getSpritesbyClass(ScoreControl):
+                x.scoreChange()
             self.destroy()
         
     def step(self):
@@ -172,10 +176,6 @@ class Explosion(Sprite):
         super().__init__(Explosion.asset, position)
         self.fxcenter = self.fycenter = 0.5
         self.frame = 0
-        for x in SpaceGame.getSpritesbyClass(Score):
-            x.destroy()
-        for x in SpaceGame.getSpritesbyClass(ScoreControl):
-            x.scoreChange()
         
     def step(self):
         if self.frame == 8:
