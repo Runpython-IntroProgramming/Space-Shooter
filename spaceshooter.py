@@ -77,7 +77,8 @@ class SpaceShip(Sprite):
     def explode(x, y):
         x=self.x
         y=self.y
-        if x == 1
+        if x == 1:
+            hi
 
 class SpaceGame(App):
     """
