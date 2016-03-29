@@ -14,8 +14,8 @@ import math
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
 
-
-#class SpaceShip(Sprite):
+'''
+class SpaceShip(Sprite):
     """
     Animated space ship
     """
@@ -101,7 +101,7 @@ SCREEN_HEIGHT = 480
         self.vx = 0
         self.vy = 0
         ExplosionSmall(self.position)
-
+'''
 class SpaceShip2(Sprite):
     """
     Animated space ship
