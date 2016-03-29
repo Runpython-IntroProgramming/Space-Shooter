@@ -225,8 +225,8 @@ class ControlDwon(App):
         sun_asset = ImageAsset("images/sun.png")
         sun = Sprite(sun_asset, (400,300))
         left_location = 1
-        SpaceShip((300,300))
-        SpaceShip2((600,300))
+        SpaceShip((300,350))
+        SpaceShip2((600,350))
 
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
