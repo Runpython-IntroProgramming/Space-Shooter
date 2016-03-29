@@ -207,6 +207,7 @@ class SpaceGame(App):
         ScoreControl((0,0))
         Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         Enemy((100,100))
+        for x in [x*(2*pi/NUM_ENEMIES) for x in range(0, NUM_ENEMIES)]:
         self.step()
         
     def step(self):
