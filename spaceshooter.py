@@ -106,6 +106,8 @@ class SpaceGame(App):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
 
+    def explode(self, spx, spy):
+        expl = ImageAsset("images/explosion1.png")
 
 def registerKeys(self, keys):
         commands = ["left", "right", "forward", "fire"]
