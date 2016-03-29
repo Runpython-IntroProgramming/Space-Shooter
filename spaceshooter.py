@@ -92,7 +92,7 @@ class SpaceShip2(Sprite):
         Frame(0,0,86,125), 4, 'vertical')
 
     def __init__(self, position):
-        super().__init__(SpaceShip.asset, position)
+        super().__init__(SpaceShip2.asset, position)
         self.vx = 0
         self.vy = 0
         self.vr = 0.0
