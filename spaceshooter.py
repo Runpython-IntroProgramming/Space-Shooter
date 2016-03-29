@@ -197,6 +197,7 @@ class WinText(Sprite):
     
     def __init__(self, position):
         super().__init__(WinText.asset, position)
+        self.fxcenter = self.fycenter = 0.5
 
 class SpaceGame(App):
         
