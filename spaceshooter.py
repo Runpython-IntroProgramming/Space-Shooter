@@ -83,6 +83,74 @@ class SpaceShip(Sprite):
         self.vx = 0
         self.vy = 0
         ExplosionSmall(self.position)
+
+class SpaceShip2(Sprite):
+    """
+    Animated space ship
+    """
+    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
+        Frame(227,0,292-227,125), 4, 'vertical')
+
+    def __init__(self, position):
+        super().__init__(SpaceShip.asset, position)
+        self.vx = 0
+        self.vy = 0
+        self.vr = 0.0
+        self.thrust = 0
+        self.thrustframe = 1
+        self.rotation = 0
+        left_location = 1
+        ControlDwon.listenKeyEvent("keydown", "up arrow", self.thrustOn)
+        ControlDwon.listenKeyEvent("keyup", "up arrow", self.thrustOff)
+        ControlDwon.listenKeyEvent("keydown", "right arrow", self.rotationOnLeft)
+        ControlDwon.listenKeyEvent("keyup", "right arrow", self.rotationOff)
+        ControlDwon.listenKeyEvent("keydown", "left arrow", self.rotationOnRight)
+        ControlDwon.listenKeyEvent("keyup", "left arrow", self.rotationOff)
+        self.fxcenter = self.fycenter = 0.5
+
+    def step(self):
+        self.x += self.vx
+        self.y += self.vy
+        self.rotation += self.vr
+        if self.thrust == 1:
+            self.setImage(self.thrustframe)
+            self.thrustframe += 1
+            self.vx += .05*math.cos((self.rotation+math.pi/2))
+            self.vy += .05*math.sin((self.rotation-math.pi/2))
+            if self.thrustframe == 4:
+                self.thrustframe = 1
+            else:
+                self.setImage(0)
+        if self.vr == .1:
+            self.rotation = self.rotation +.0001
+        if self.vr == -0.1:
+            self.rotation = self.rotation - 0.0001
+        
+        col=self.collidingWithSprites(sun)
+        if col:
+            self.explode()
+        
+    def rotationOnLeft(self, event):
+        self.vr = -.1
+    def rotationOnRight(self, event):
+        self.vr = .1
+    def rotationOff(self, event):
+        self.vr = 0
+
+    def thrustOn(self, event):
+        self.thrust = 1
+
+    def thrustOff(self, event):
+        self.thrust = 0
+        
+    def thrustdecel(self, event):
+        self.thrust = 0.5
+    
+    def explode(self, event):
+        self.visible = False
+        self.vx = 0
+        self.vy = 0
+        ExplosionSmall(self.position)
     
 
 class ExplosionSmall(Sprite):
@@ -158,9 +226,12 @@ class ControlDwon(App):
         sun = Sprite(sun_asset, (400,300))
         left_location = 1
         SpaceShip((100,100))
+        SpaceShip2((500,500))
 
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
+            ship.step()
+        for ship in self.getSpritesbyClass(SpaceShip2):
             ship.step()
 
 
