@@ -241,10 +241,10 @@ class SpaceGame(App):
         
         
     def step(self):
-        
+        '''
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
-        
+        '''
         for ship in self.getSpritesbyClass(SpaceShip2):
             ship.step()
         
