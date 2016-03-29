@@ -129,6 +129,7 @@ class Enemy(Sprite):
         if len(self.collidingWithSprites(Player)) > 0:
             for x in SpaceGame.getSpritesbyClass(Player):
                 x.loseLife()
+                LoseText((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
                 self.explode()
                 return
         if len(self.collidingWithSprites(Bullet)) > 0:
@@ -209,6 +210,14 @@ class WinText(Sprite):
     
     def __init__(self, position):
         super().__init__(WinText.asset, position)
+        self.fxcenter = self.fycenter = 0.5
+        
+class LoseText(Sprite):
+    
+    asset = TextAsset("You Lose...", fill=white)
+    
+    def __init__(self, position):
+        super().__init__(LoseText.asset, position)
         self.fxcenter = self.fycenter = 0.5
 
 class SpaceGame(App):
