@@ -62,7 +62,7 @@ class SpaceShip(Sprite):
         if self.vr==0:
             self.rotation=self.rotation
             
-        col= self.collidingWithSprites(Sunthing)
+        col= self.collidingWithSprites((Sunthing,Spaceship2))
         if col:
             self.explode()
             
@@ -101,7 +101,7 @@ class SpaceShip(Sprite):
         self.vx = 0
         self.vy = 0
         ExplosionSmall(self.position)
-'''
+
 class SpaceShip2(Sprite):
     """
     Animated space ship
@@ -186,7 +186,7 @@ class SpaceShip2(Sprite):
         self.vx = 0
         self.vy = 0
         ExplosionSmall(self.position)        
-'''       
+       
 class ExplosionSmall(Sprite):
     
     asset = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
@@ -238,18 +238,18 @@ class SpaceGame(App):
         Sunthing((500,360))
         
         SpaceShip((300,300))
-        '''
+        
         SpaceShip2((700,500))
-        '''
+        
         
     def step(self):
         
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
-        '''
+        
         for ship in self.getSpritesbyClass(SpaceShip2):
             ship.step()
-        '''
+        
         explosions = self.getSpritesbyClass(ExplosionSmall)
         for explosion in explosions:
             explosion.step()    
