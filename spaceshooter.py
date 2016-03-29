@@ -121,7 +121,7 @@ class Sun(Sprite):
     
     def __init__(self, position):
         super().__init__(Sun.asset5, position)
-    self.circularCollisionModule()
+        self.circularCollisionModule()
         
     
 
