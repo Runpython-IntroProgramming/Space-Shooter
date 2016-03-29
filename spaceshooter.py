@@ -238,18 +238,20 @@ class SpaceGame(App):
         star3= Sprite(bg_asset, (512, 512))
         txt = Sprite(txt_asset, (0,0))
         Sunthing((500,360))
+        '''
         SpaceShip((300,300))
         '''
         SpaceShip2((500,500))
-        '''
+        
         
     def step(self):
+        '''
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
         '''
         for ship in self.getSpritesbyClass(SpaceShip2):
             ship.step()
-        '''
+        
         explosions = self.getSpritesbyClass(ExplosionSmall)
         for explosion in explosions:
             explosion.step()    
