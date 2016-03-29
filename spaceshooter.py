@@ -151,7 +151,9 @@ class SpaceShip2(Sprite):
             
         col= self.collidingWithSprites(Sunthing)
         col1 = self.collidingWithSprites(Spaceship)
-        if col or col1:
+        if col:
+            self.explode()
+        if col1:
             self.explode()
             
         if self.reset == 1:
