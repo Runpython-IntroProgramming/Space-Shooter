@@ -14,7 +14,7 @@ import math
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
 
-'''
+
 class SpaceShip(Sprite):
     """
     Animated space ship
@@ -101,7 +101,7 @@ class SpaceShip(Sprite):
         self.vx = 0
         self.vy = 0
         ExplosionSmall(self.position)
-'''
+
 class SpaceShip2(Sprite):
     """
     Animated space ship
@@ -236,10 +236,10 @@ class SpaceGame(App):
         star3= Sprite(bg_asset, (512, 512))
         txt = Sprite(txt_asset, (0,0))
         Sunthing((500,360))
-        '''
+        
         SpaceShip((300,300))
-        '''
-        SpaceShip2((500,500))
+        
+        SpaceShip2((700,500))
         
         
     def step(self):
