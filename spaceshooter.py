@@ -118,7 +118,7 @@ class SpaceShip2(Sprite):
         self.rotation = 0
         self.thrust = 0
         self.reset = 0
-        self.thrustframe = 1
+        self.thrustframe2 = 1
         SpaceGame.listenKeyEvent("keydown", "up arrow", self.thrustOn2)
         SpaceGame.listenKeyEvent("keyup", "up arrow", self.thrustOff2)
         SpaceGame.listenKeyEvent("keydown", "left arrow" , self.CCOn2)
