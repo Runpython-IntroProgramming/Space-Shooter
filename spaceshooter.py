@@ -236,7 +236,9 @@ class ControlDwon(App):
             ship.step()
         for ship in self.getSpritesbyClass(SpaceShip2):
             ship.step()
-
+        explosions = self.getSpritesbyClass(ExplosionSmall)
+        for explosion in explosions:
+            explosion.step()
 
 myapp = ControlDwon(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
