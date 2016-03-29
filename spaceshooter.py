@@ -9,6 +9,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 
 #improve starback init
+#sounds
 
 from ggame import App, Sprite, ImageAsset, Frame, Color, TextAsset
 from math import sqrt, sin, cos, radians, degrees, pi
@@ -17,6 +18,8 @@ from random import randint
 SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 600
 SCREEN_DIAG = sqrt(SCREEN_WIDTH**2+SCREEN_HEIGHT**2)
+
+NUM_ENEMIES = 1
 
 velCalcX = lambda speed, rotation: -1*speed*sin(rotation)
 velCalcY = lambda speed, rotation: -1*speed*cos(rotation)
@@ -172,7 +175,7 @@ class Explosion(Sprite):
         
 class ScoreControl(Sprite):
     
-    asset = TextAsset("Score: ", fill=white)
+    asset = TextAsset("Score:", fill=white)
     
     def __init__(self, position):
         super().__init__(ScoreControl.asset, position)
@@ -187,6 +190,13 @@ class Score(Sprite):
     
     def __init__(self, asset, position):
         super().__init__(asset, position)
+        
+class WinText(Sprite):
+    
+    asset = TextAsset("You Win!", fill=white)
+    
+    def __init__(self, position):
+        super().__init__(WinText.asset, position)
 
 class SpaceGame(App):
         
@@ -207,6 +217,9 @@ class SpaceGame(App):
             x.step()
         for x in self.getSpritesbyClass(Explosion):
             x.step()
+        for x in self.getSpritesbyClass(ScoreControl):
+            if x.score == NUM_ENEMIES:
+                WinText((SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
         
 myapp = SpaceGame()
 myapp.run()
