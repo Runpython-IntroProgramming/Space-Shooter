@@ -27,8 +27,8 @@ class SpaceShip(Sprite):
         self.vr = 0.0
         self.thrust = 0
         self.thrustframe = 1
-        self. circularCollisionModule()
-        self.imagex = 0
+        #self. circularCollisionModule()
+        #self.imagex = 0
         SpaceGame.listenKeyEvent("keydown", "w", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "w", self.thrustOff)
         SpaceGame.listenKeyEvent("keydown", "s", self.UPON)
@@ -76,11 +76,11 @@ class SpaceShip(Sprite):
     def stop(self, event):
         self.vr=0
 
-    def explode(x, y):
-        x=self.x
-        y=self.y
-        if x == 1:
-            hi
+    def explode(self, x, y):
+        if (x<525 and x>475):
+            if (y<375 and y>325):
+                SpaceGame.explode(x,y)
+        
 
 class SpaceGame(App):
     """
@@ -122,7 +122,7 @@ class Sun(Sprite):
     
     def __init__(self, position):
         super().__init__(Sun.asset5, position)
-        self.circularCollisionModule()
+        #self.circularCollisionModule()
         
     
 
