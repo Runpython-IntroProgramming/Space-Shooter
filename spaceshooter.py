@@ -57,11 +57,11 @@ class SpaceShip(Sprite):
             self.rotation = self.rotation +.0001
         if self.vr == -0.1:
             self.rotation = self.rotation - 0.0001
-        """
+        
         col=self.collidingWithSprites(sn)
         if col:
             self.explode()
-        """
+        
     def rotationOnLeft(self, event):
         self.vr = -.1
     def rotationOnRight(self, event):
