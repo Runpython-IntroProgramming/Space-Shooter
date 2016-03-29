@@ -81,6 +81,7 @@ class Player(SpaceShip):
     def loseLife(self):
         Explosion((self.x, self.y))
         self.destroy()
+        return#needed????
         
     def step(self):
         if self.thrust == 1:
