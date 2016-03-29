@@ -19,7 +19,7 @@ SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 600
 SCREEN_DIAG = sqrt(SCREEN_WIDTH**2+SCREEN_HEIGHT**2)
 
-NUM_ENEMIES = 4
+NUM_ENEMIES = 
 
 velCalcX = lambda speed, rotation: -1*speed*sin(rotation)
 velCalcY = lambda speed, rotation: -1*speed*cos(rotation)
@@ -78,6 +78,10 @@ class Player(SpaceShip):
     def thrustOff(self, event):
         self.thrust = 0
         
+    def loseLife(self):
+        Explosion((self.x, self.y))
+        self.destroy()
+        
     def step(self):
         if self.thrust == 1:
             if self.thrustframe == 3:
@@ -112,11 +116,18 @@ class Enemy(Sprite):
         self.velocitySet()
         self.dist = 0
         
-    def step(self):
-        collides = self.collidingWithSprites(Bullet)
-        if len(collides) > 0:
+    def explode(self):
             Explosion((self.x, self.y))
             self.destroy()
+        
+    def step(self):
+        if len(self.collidingWithSprites(Player)) > 0:
+            for x in SpaceGame.getSpritesbyClass(Player):
+                x.loseLife()
+                self.explode()
+                return
+        if len(self.collidingWithSprites(Bullet)) > 0:
+            self.explode()
             return
         self.x += self.velx
         self.y += self.vely
