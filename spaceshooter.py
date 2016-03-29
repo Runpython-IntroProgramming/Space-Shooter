@@ -62,7 +62,7 @@ class SpaceShip(Sprite):
         if self.vr==0:
             self.rotation=self.rotation
             
-        col= self.collidingWithSprites(Sunthing)
+        col= self.collidingWithSprites(None)
         if col:
             self.explode()
             
