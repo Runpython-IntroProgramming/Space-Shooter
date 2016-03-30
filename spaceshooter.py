@@ -126,7 +126,7 @@ class SpaceShip2(Sprite):
         if self.vr == -0.1:
             self.rotation = self.rotation - 0.0001
         
-        col=self.collidingWithSprites(sun)
+        col=self.collidingWithSprites(Sun)
         if len(col):
             print("boom")
             self.explode()
@@ -171,12 +171,12 @@ class ExplosionSmall(Sprite):
         if self.image == 20:
             self.destroy()
 
-class sun(Sprite):
+class Sun(Sprite):
     asset = ImageAsset("images/sun.png")
     width = 80
     length = 76
     def __init__(self, position):
-        super().__init__(sun.asset, position)
+        super().__init__(Sun.asset, position)
         self.mass = 30*1000
         self.fxcenter = .5
         self.fycenter = .5
@@ -186,26 +186,6 @@ class ControlDwon(App):
     """
     Tutorial4 space game example.
     """
-    def __init__(self, width, height):
-        super().__init__(width, height)
-        for x in range(self.width//Stars.width + 1):
-            for y in range(self.height//Stars.height + 1):
-                Stars((x*Stars.width, y*Stars.height))
-        self.sun = sun((self.width/2, self.height/2))
-        self.ship1 = Ship1(self, (self.width/2-140,self.height/2), (0,-120), self.sun)
-        self.ship2 = Ship2(self, (self.width/2+140,self.height/2), (0,120), self.sun)
-        self.tsprites = {k:Sprite(TextAsset(text=v, width=200, align='center',style='20px Arial', fill=Color(0xff2222,1))) 
-            for k, v in Spacewar.strings.items()}
-        self.tsprites['winner'].visible = False
-        self.tsprites['winner'].y = self.height/2
-        self.tsprites['tie'].visible = False
-        self.tsprites['tie'].position = (self.width/2 - 100, self.height/2 + 50)
-        self.tsprites['space'].position = (self.width/2 - 100, self.height*3/4)
-        self.tsprites['left'].position = (self.width/4 - 50, self.height/2)
-        self.tsprites['right'].position = (self.width*3/4 - 50, self.height/2)
-        self.state = 'instructions'
-        self.listenKeyEvent('keydown', 'space', self.space)
-
     def space(self, evt):
         if self.state in ['instructions', 'gameover']:
             for t in self.tsprites.values():
@@ -226,7 +206,7 @@ class ControlDwon(App):
         bg = Sprite(bg_asset, (512,512))
         txt=Sprite(txt_asset, (0,0))
         sun_asset = ImageAsset("images/sun.png")
-        sun = Sprite(sun_asset, (400,300))
+        sun = Sun ((400,300))
         left_location = 1
         SpaceShip((300,350))
         SpaceShip2((600,350))
