@@ -15,7 +15,7 @@ from time import time
 SCREEN_WIDTH = 900
 SCREEN_HEIGHT = 650
 
-sun = none
+sun = None
 
 class SpaceShip(Sprite):
     """
