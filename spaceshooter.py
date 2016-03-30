@@ -45,7 +45,7 @@ class SpaceShip(Sprite):
         self.fxcenter = self.fycenter = 0.5
  
     def shoot(self, event):
-        Bullet((self.x,self.y))
+        PlayerBullet(self.rotation, (self.x,self.y))
             
 class Player(SpaceShip):
     
@@ -110,6 +110,7 @@ class Enemy(Sprite):
         self.fxcenter = self.fycenter = 0.5
         self.dist = 0
         self.frame = 1
+        self.scale = 0.75
     
     def velocitySet(self):
         self.velx = velCalcX(self.speed, self.rotation)
@@ -134,7 +135,9 @@ class Enemy(Sprite):
                 x.explode()
             self.explode()
             return
-        if len(self.collidingWithSprites(Bullet)) > 0:
+        if len(self.collidingWithSprites(PlayerBullet)) > 0:
+            for x in self.collidingWithSprites(PlayerBullet):
+                x.destroy()
             self.explode()
             return
         self.x += self.velx
@@ -150,16 +153,14 @@ class Enemy(Sprite):
         elif self.dist > SCREEN_DIAG/5 and randint(0,20) == 0:
             self.changeDirec()
         self.dist += self.speed
-
+#        if randint(0,100) == 0:
+#           Bullet((self.x,self.y))
+            
 class Bullet(Sprite):
     
-    asset = ImageAsset("images/blast.png", Frame(0,0,8,8))
-    
-    def __init__(self, position):
-        super().__init__(Bullet.asset, position)
+    def __init__(self, asset, rotation, position):
+        super().__init__(asset, rotation, position)
         self.fxcenter = self.fycenter = 0.5
-        for x in SpaceGame.getSpritesbyClass(Player):
-            self.rotation = x.rotation
         self.velx = 0
         self.vely = 0
     
@@ -171,6 +172,24 @@ class Bullet(Sprite):
             self.y += self.vely
         else:
             self.destroy()
+
+class PlayerBullet(Bullet):
+    
+    asset = ImageAsset("images/blast.png", Frame(0,0,8,8))
+    
+    def __init__(self, rotation, position):
+        super().__init__(PlayerBullet.asset, rotation, position)
+        for x in SpaceGame.getSpritesbyClass(Player):
+            self.rotation = x.rotation
+            
+class EnemyBullet(Bullet):
+    
+    asset = ImageAsset("images/blast.png", Frame(40,0,8,8))
+    
+    def __init__(self, position):
+        super().__init__(EnemyBullet.asset, position)
+#        for x in SpaceGame.getSpritesbyClass(Player):
+#           self.rotation = x.rotation
             
 class Explosion(Sprite):
     
@@ -260,13 +279,10 @@ class SpaceGame(App):
             Enemy(((SCREEN_HEIGHT*-0.4)*sin(x)+SCREEN_WIDTH/2, (SCREEN_HEIGHT*-0.4)*cos(x)+SCREEN_HEIGHT/2))
         self.step()
         
-    def reset(self):
-        print('hello')
-        
     def step(self):
         for x in self.getSpritesbyClass(Player):
             x.step()
-        for x in self.getSpritesbyClass(Bullet):
+        for x in self.getSpritesbyClass(PlayerBullet):
             x.step()
         for x in self.getSpritesbyClass(Enemy):
             x.step()
@@ -291,6 +307,6 @@ a = [1/A*x*2*pi for x in list(range(0,A))]
 print(a)
 
 for x in a:
-    print(int(-5*sin(x)),end=' ')
-    print(int(5*cos(x)))
+    print(int(-1*r*sin(x)),end=', ')
+    print(int(r*cos(x)))
 '''
