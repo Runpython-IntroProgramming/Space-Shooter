@@ -84,6 +84,7 @@ class Player(SpaceShip):
     def explode(self):
         Explosion((self.x, self.y))
         self.destroy()
+        return
         
     def step(self):
         if self.thrust == 1:
@@ -121,8 +122,6 @@ class Enemy(Sprite):
         
     def explode(self):
             Explosion((self.x, self.y))
-            for x in SpaceGame.getSpritesbyClass(Score):
-                x.destroy()
             for x in SpaceGame.getSpritesbyClass(ScoreControl):
                 x.scoreChange()
             self.destroy()
@@ -130,14 +129,9 @@ class Enemy(Sprite):
     def step(self):
         if len(self.collidingWithSprites(Player)) > 0:
             for x in SpaceGame.getSpritesbyClass(LifeControl):
-                x.lives -= 1
-                for x in SpaceGame.getSpritesbyClass(Player):
-                    x.explode()
-                if x.lives == 0:
-                    LoseText((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
-                else:
-                    sleep(5)
-                    Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
+                x.loseLife()
+            for x in SpaceGame.getSpritesbyClass(Player):
+                x.explode()
             self.explode()
             return
         if len(self.collidingWithSprites(Bullet)) > 0:
@@ -204,6 +198,8 @@ class ScoreControl(Sprite):
         Score(TextAsset(str(self.score), fill=white), (65,0))
         
     def scoreChange(self):
+        for x in SpaceGame.getSpritesbyClass(Score):
+            x.destroy()
         self.score += 1
         Score(TextAsset(str(self.score), fill=white), (65,0))
         
@@ -219,7 +215,18 @@ class LifeControl(Sprite):
     def __init__(self, position):
         super().__init__(LifeControl.asset, position)
         self.lives = 3
-        Lives(TextAsset(str(self.lives), fill=white), (55,0))
+        Lives(TextAsset(str(self.lives), fill=white), (55,15))
+        
+    def loseLife(self):
+        for x in SpaceGame.getSpritesbyClass(Lives):
+            x.destroy()
+        self.lives -= 1
+        Lives(TextAsset(str(self.lives), fill=white), (55,15))
+        if self.lives == 0:
+            LoseText((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
+        else:
+            Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
+            sleep(1)
         
 class Lives(Sprite):
     
@@ -248,11 +255,14 @@ class SpaceGame(App):
         super().__init__()
         StarBack((0,0))
         ScoreControl((0,0))
-        LifeControl((0,10))
+        LifeControl((0,15))
         Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         for x in [1/NUM_ENEMIES*x*2*pi for x in list(range(0,NUM_ENEMIES))]:
             Enemy(((SCREEN_HEIGHT*-0.4)*sin(x)+SCREEN_WIDTH/2, (SCREEN_HEIGHT*-0.4)*cos(x)+SCREEN_HEIGHT/2))
         self.step()
+        
+    def reset(self):
+        print('hello')
         
     def step(self):
         for x in self.getSpritesbyClass(Player):
