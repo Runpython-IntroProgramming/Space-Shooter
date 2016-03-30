@@ -181,7 +181,7 @@ class sun(Sprite):
         self.mass = 30*1000
         self.fxcenter = .5
         self.fycenter = .5
-        self.circularCollisionModel()
+        #self.circularCollisionModel()
 
 class ControlDwon(App):
     """
