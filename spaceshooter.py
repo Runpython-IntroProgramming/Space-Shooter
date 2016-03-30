@@ -127,6 +127,7 @@ class SpaceShip2(Sprite):
             self.rotation = self.rotation - 0.0001
         
         col=self.collidingWithSprites(sun)
+        print(col)
         if col:
             self.explode()
         
