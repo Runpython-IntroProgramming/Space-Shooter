@@ -181,7 +181,7 @@ class sun(Sprite):
         self.mass = 30*1000
         self.fxcenter = .5
         self.fycenter = .5
-        #self.circularCollisionModel()
+        self.circularCollisionModel()
 
 class ControlDwon(App):
     """
@@ -192,7 +192,7 @@ class ControlDwon(App):
         for x in range(self.width//Stars.width + 1):
             for y in range(self.height//Stars.height + 1):
                 Stars((x*Stars.width, y*Stars.height))
-        self.sun = Sun((self.width/2, self.height/2))
+        self.sun = sun((self.width/2, self.height/2))
         self.ship1 = Ship1(self, (self.width/2-140,self.height/2), (0,-120), self.sun)
         self.ship2 = Ship2(self, (self.width/2+140,self.height/2), (0,120), self.sun)
         self.tsprites = {k:Sprite(TextAsset(text=v, width=200, align='center',style='20px Arial', fill=Color(0xff2222,1))) 
