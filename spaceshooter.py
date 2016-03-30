@@ -127,8 +127,8 @@ class SpaceShip2(Sprite):
             self.rotation = self.rotation - 0.0001
         
         col=self.collidingWithSprites(sun)
-        print(col)
-        if col:
+        if len(col):
+            print("boom")
             self.explode()
         
     def rotationOnLeft(self, event):
@@ -151,7 +151,6 @@ class SpaceShip2(Sprite):
         self.visible = False
         self.vx = 0
         self.vy = 0
-        print("boom")
         ExplosionSmall(self.position)
     
 class ExplosionSmall(Sprite):
