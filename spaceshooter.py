@@ -196,17 +196,13 @@ class ExplosionSmall(Sprite):
         super().__init__(ExplosionSmall.asset, position)
         self.image = 0
         self.center = (0.5, 0.5)
-        self.vx = 0
-        self.vy = 0
         self.boom = Sound(ExplosionSmall.boomasset)
         self.boom.play()
         
     def step(self):
         self.setImage(self.image//2)  # slow it down
-        self.image += 1
-        self.boom.play()
-        if self.image == 10:
-            self.visible = False
+        self.image = self.image + 1
+        if self.image == 20:
             self.destroy()
             
 class Sunthing(Sprite):
