@@ -215,18 +215,17 @@ class LifeControl(Sprite):
     def __init__(self, position):
         super().__init__(LifeControl.asset, position)
         self.lives = 3
-        Lives(TextAsset(str(self.lives), fill=white), (55,15))
+        Lives(TextAsset(str(self.lives), fill=white), (55,20))
         
     def loseLife(self):
         for x in SpaceGame.getSpritesbyClass(Lives):
             x.destroy()
         self.lives -= 1
-        Lives(TextAsset(str(self.lives), fill=white), (55,15))
+        Lives(TextAsset(str(self.lives), fill=white), (55,20))
         if self.lives == 0:
             LoseText((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         else:
             Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
-            sleep(1)
         
 class Lives(Sprite):
     
@@ -255,7 +254,7 @@ class SpaceGame(App):
         super().__init__()
         StarBack((0,0))
         ScoreControl((0,0))
-        LifeControl((0,15))
+        LifeControl((0,20))
         Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         for x in [1/NUM_ENEMIES*x*2*pi for x in list(range(0,NUM_ENEMIES))]:
             Enemy(((SCREEN_HEIGHT*-0.4)*sin(x)+SCREEN_WIDTH/2, (SCREEN_HEIGHT*-0.4)*cos(x)+SCREEN_HEIGHT/2))
@@ -275,7 +274,9 @@ class SpaceGame(App):
             x.step()
         for x in self.getSpritesbyClass(ScoreControl):
             if x.score == NUM_ENEMIES:
-                WinText((SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
+                for x in self.getSpritesbyClass(LifeControl):
+                    if x.lives > 0:
+                        WinText((SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
         
 myapp = SpaceGame()
 myapp.run()
