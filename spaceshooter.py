@@ -150,9 +150,9 @@ class SpaceShip2(Sprite):
         self.visible = False
         self.vx = 0
         self.vy = 0
+        print("boom")
         ExplosionSmall(self.position)
     
-
 class ExplosionSmall(Sprite):
     
     asset = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
