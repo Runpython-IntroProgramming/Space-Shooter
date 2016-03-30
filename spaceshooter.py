@@ -201,7 +201,7 @@ class ExplosionSmall(Sprite):
         
     def step(self):
         self.setImage(self.image//2)  # slow it down
-        self.image = self.image + 1
+        self.image += 1
         if self.image == 20:
             self.destroy()
             
