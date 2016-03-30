@@ -10,7 +10,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 from ggame import App, ImageAsset, RectangleAsset, SoundAsset, Frame
 from ggame import LineStyle, Sprite, Sound, Color, TextAsset
 import math
-import time
+
 
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
