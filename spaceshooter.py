@@ -63,10 +63,7 @@ class SpaceShip(Sprite):
         if self.vr==0:
             self.rotation=self.rotation
             
-        col= self.collidingWithSprites(Sunthing)
-        if col:
-            self.explode()
-            self.reset = 1
+        
             
         if self.reset == 1:
             self.visible = True
