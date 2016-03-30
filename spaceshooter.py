@@ -63,8 +63,6 @@ class SpaceShip(Sprite):
         if self.vr==0:
             self.rotation=self.rotation
             
-        
-            
         if self.reset == 1:
             self.visible = True
             self.x = 300
@@ -76,7 +74,7 @@ class SpaceShip(Sprite):
         col= self.collidingWithSprites(Sunthing)
         if col:
             self.explode()
-            self.reset = 1    
+            self.reset = 1   
             
     def thrustOn(self, event):
         self.thrust = 1
