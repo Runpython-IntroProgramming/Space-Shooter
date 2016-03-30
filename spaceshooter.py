@@ -80,9 +80,7 @@ class SpaceShip(Sprite):
         if (x<325 and x>275):
             if (y<325 and y>275):
                 SpaceGame.explode(x,y)
-                self.vr=0
-                self.vx=0
-                self.vy=0
+                
         
 
 class SpaceGame(App):
@@ -109,7 +107,7 @@ class SpaceGame(App):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
 
-    def explode(xx, yy):
+    def explode(self, xx, yy):
         expl = ImageAsset("images/explosion1.png")
         exl=Sprite(expl, (xx-100, yy-60))
 
