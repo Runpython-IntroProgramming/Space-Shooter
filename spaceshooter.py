@@ -1,7 +1,7 @@
 """
 spaceshooter.py
 Author: Daniel Wilson
-Credit: 
+Credit: Ethan Adner, Mr. D
 
 Assignment:
 Write and submit a program that implements the spacewar game:
@@ -109,8 +109,9 @@ class SpaceGame(App):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
 
-    def explode(self, spx, spy):
+    def explode(xx, yy):
         expl = ImageAsset("images/explosion1.png")
+        exl=Sprite(expl, (xx-100, yy-60))
 
 def registerKeys(self, keys):
         commands = ["left", "right", "forward", "fire"]
