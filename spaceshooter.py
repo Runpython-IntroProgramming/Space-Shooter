@@ -76,7 +76,7 @@ class SpaceShip(Sprite):
             self.explode()
             self.reset = 2   
         
-        if self.reset == 12:
+        if self.reset == 2:
             self.visible = True
             self.x = 300
             self.y = 300
