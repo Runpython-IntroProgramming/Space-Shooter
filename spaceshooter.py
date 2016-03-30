@@ -189,7 +189,7 @@ class SpaceShip2(Sprite):
        
 class ExplosionSmall(Sprite):
     
-    asset = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
+    asset = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 1)
     boomasset = SoundAsset("sounds/explosion1.mp3")
     
     def __init__(self, position):
