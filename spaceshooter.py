@@ -1,7 +1,8 @@
 """
 spaceshooter.py
 Author: David Wilson
-Credit: Mr. Dennison ("Space War Source Code" and "Advanced Graphics with Classes")
+Credit: Mr. Dennison ("Space War Source Code" and "Advanced Graphics with Classes"),
+http://brythonserver.github.io/ggame/
 
 Assignment:
 Write and submit a program that implements the spacewar game:
@@ -10,10 +11,12 @@ https://github.com/HHS-IntroProgramming/Spacewar
 
 #improve starback init
 #sounds
+#http://brythonserver.github.io/ggame/
 
 from ggame import App, Sprite, ImageAsset, Frame, Color, TextAsset
 from math import sqrt, sin, cos, radians, degrees, pi
 from random import randint
+from time import sleep
 
 SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 600
@@ -78,10 +81,9 @@ class Player(SpaceShip):
     def thrustOff(self, event):
         self.thrust = 0
         
-    def loseLife(self):
+    def explode(self):
         Explosion((self.x, self.y))
         self.destroy()
-        return#needed????
         
     def step(self):
         if self.thrust == 1:
@@ -127,11 +129,17 @@ class Enemy(Sprite):
         
     def step(self):
         if len(self.collidingWithSprites(Player)) > 0:
-            for x in SpaceGame.getSpritesbyClass(Player):
-                x.loseLife()
-                LoseText((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
-                self.explode()
-                return
+            for x in SpaceGame.getSpritesbyClass(LifeControl):
+                x.lives -= 1
+                for x in SpaceGame.getSpritesbyClass(Player):
+                    x.explode()
+                if x.lives == 0:
+                    LoseText((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
+                else:
+                    sleep(5)
+                    Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
+            self.explode()
+            return
         if len(self.collidingWithSprites(Bullet)) > 0:
             self.explode()
             return
@@ -204,6 +212,20 @@ class Score(Sprite):
     def __init__(self, asset, position):
         super().__init__(asset, position)
         
+class LifeControl(Sprite):
+    
+    asset = TextAsset("Lives:", fill=white)
+    
+    def __init__(self, position):
+        super().__init__(LifeControl.asset, position)
+        self.lives = 3
+        Lives(TextAsset(str(self.lives), fill=white), (55,0))
+        
+class Lives(Sprite):
+    
+    def __init__(self, asset, position):
+        super().__init__(asset, position)
+        
 class WinText(Sprite):
     
     asset = TextAsset("You Win!", fill=white)
@@ -226,6 +248,7 @@ class SpaceGame(App):
         super().__init__()
         StarBack((0,0))
         ScoreControl((0,0))
+        LifeControl((0,10))
         Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         for x in [1/NUM_ENEMIES*x*2*pi for x in list(range(0,NUM_ENEMIES))]:
             Enemy(((SCREEN_HEIGHT*-0.4)*sin(x)+SCREEN_WIDTH/2, (SCREEN_HEIGHT*-0.4)*cos(x)+SCREEN_HEIGHT/2))
