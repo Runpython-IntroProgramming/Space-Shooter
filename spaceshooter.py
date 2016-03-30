@@ -44,6 +44,7 @@ class SpaceShip(Sprite):
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
+        self.explode(self.x, self.y)
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
@@ -107,7 +108,7 @@ class SpaceGame(App):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
 
-    def explode(self, xx, yy):
+    def explode(xx, yy):
         expl = ImageAsset("images/explosion1.png")
         exl=Sprite(expl, (xx-100, yy-60))
 
