@@ -219,7 +219,7 @@ class ControlDwon(App):
     def __init__(self, width, height):
         super().__init__(width, height)
         bg_asset = ImageAsset("images/starfield.jpg")
-        txt_asset = TextAsset("Control Dwon: Drift Mode", width = 300, align ='center', style='40px Times', fill=Color(0xff2222,1)) 
+        txt_asset = TextAsset("Control Dwon 3: Tokyo Drift Mode", width = 300, align ='center', style='40px Times', fill=Color(0xff2222,1)) 
         bg = Sprite(bg_asset, (0,0))
         bg = Sprite(bg_asset, (0,512))
         bg = Sprite(bg_asset, (512,0))
