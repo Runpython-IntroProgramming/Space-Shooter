@@ -83,7 +83,10 @@ class SpaceShip(Sprite):
                 SpaceGame.explode(x,y)
                 
         
-
+class explosion:
+    explosion = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
+    
+    
 class SpaceGame(App):
     """
     Tutorial4 space game example.
