@@ -23,6 +23,7 @@ SCREEN_HEIGHT = 600
 SCREEN_DIAG = sqrt(SCREEN_WIDTH**2+SCREEN_HEIGHT**2)
 
 NUM_ENEMIES = 4
+LIVES = 3
 
 velCalcX = lambda speed, rotation: -1*speed*sin(rotation)
 velCalcY = lambda speed, rotation: -1*speed*cos(rotation)
@@ -242,7 +243,7 @@ class LifeControl(Sprite):
     
     def __init__(self, position):
         super().__init__(LifeControl.asset, position)
-        self.lives = 3
+        self.lives = LIVES
         Lives(TextAsset(str(self.lives), fill=white), (55,20))
         
     def loseLife(self):
