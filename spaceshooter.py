@@ -45,7 +45,7 @@ class SpaceShip(Sprite):
         self.fxcenter = self.fycenter = 0.5
  
     def shoot(self, event):
-        PlayerBullet(self.rotation, (self.x,self.y))
+        PlayerBullet((self.x,self.y))
             
 class Player(SpaceShip):
     
@@ -153,13 +153,13 @@ class Enemy(Sprite):
         elif self.dist > SCREEN_DIAG/5 and randint(0,20) == 0:
             self.changeDirec()
         self.dist += self.speed
-#        if randint(0,100) == 0:
-#           Bullet((self.x,self.y))
+        if randint(0,100) == 0:
+            EnemyBullet((self.x,self.y))
             
 class Bullet(Sprite):
     
-    def __init__(self, asset, rotation, position):
-        super().__init__(asset, rotation, position)
+    def __init__(self, asset, position):
+        super().__init__(asset, position)
         self.fxcenter = self.fycenter = 0.5
         self.velx = 0
         self.vely = 0
@@ -177,8 +177,8 @@ class PlayerBullet(Bullet):
     
     asset = ImageAsset("images/blast.png", Frame(0,0,8,8))
     
-    def __init__(self, rotation, position):
-        super().__init__(PlayerBullet.asset, rotation, position)
+    def __init__(self, position):
+        super().__init__(PlayerBullet.asset, position)
         for x in SpaceGame.getSpritesbyClass(Player):
             self.rotation = x.rotation
             
@@ -188,8 +188,8 @@ class EnemyBullet(Bullet):
     
     def __init__(self, position):
         super().__init__(EnemyBullet.asset, position)
-#        for x in SpaceGame.getSpritesbyClass(Player):
-#           self.rotation = x.rotation
+        for x in SpaceGame.getSpritesbyClass(Player):
+           self.rotation = atan((x.x-self.x)/(x.y-self.y))
             
 class Explosion(Sprite):
     
@@ -285,6 +285,8 @@ class SpaceGame(App):
         for x in self.getSpritesbyClass(PlayerBullet):
             x.step()
         for x in self.getSpritesbyClass(Enemy):
+            x.step()
+        for x in self.getSpritesbyClass(EnemyBullet):
             x.step()
         for x in self.getSpritesbyClass(Explosion):
             x.step()
