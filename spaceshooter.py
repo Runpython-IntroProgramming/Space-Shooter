@@ -39,23 +39,19 @@ class StarBack(Sprite):
         self.scale = 2
 
 class SpaceShip(Sprite):
+    
+    SAsset = SoundAsset("sounds/pew1.mp3")
         
     def __init__(self, asset, position):
         super().__init__(asset, position)
         self.rotSpd = 0.1
         self.fxcenter = self.fycenter = 0.5
-        
-class PlayerShoot(Sound):
-    
-    def __init__(self, asset):
-        super().__init__(PlayerShoot.asset)
+        self.ShootSound = Sound(SpaceShip.SAsset)
             
 class Player(SpaceShip):
     
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(0,0,85,125), 4, 'vertical')
-        
-    SoundAsset = SoundAsset("sounds/pew1.mp3")
     
     def __init__(self, position):
         super().__init__(Player.asset, position)
@@ -69,7 +65,6 @@ class Player(SpaceShip):
         SpaceGame.listenKeyEvent("keydown", "space", self.shoot)
         self.velx = 0
         self.vely = 0
-        self.ShootSound = Sound(Player.SoundAsset)
         
     def rotateRight(self, event):
         self.rotation -= self.rotSpd
@@ -169,6 +164,7 @@ class Enemy(Sprite):
         self.dist += self.speed
         if randint(0,500) == 0:
             EnemyBullet((self.x,self.y))
+            #self.ShootSound.play()
             
 class Bullet(Sprite):
     
