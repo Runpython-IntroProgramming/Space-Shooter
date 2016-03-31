@@ -259,6 +259,8 @@ class LifeControl(Sprite):
         if self.lives == 0:
             LoseText((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         else:
+            for x in SpaceGame.getSpritesbyClass(EnemyBullet):
+                x.destroy()
             Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         
 class Lives(Sprite):
