@@ -14,7 +14,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 #http://brythonserver.github.io/ggame/
 
 from ggame import App, Sprite, ImageAsset, Frame, Color, TextAsset
-from math import sqrt, sin, cos, radians, degrees, pi
+from math import sqrt, sin, cos, radians, degrees, pi, atan
 from random import randint
 from time import sleep
 
@@ -82,6 +82,8 @@ class Player(SpaceShip):
         self.thrust = 0
         
     def explode(self):
+        for x in SpaceGame.getSpritesbyClass(LifeControl):
+            x.loseLife()
         Explosion((self.x, self.y))
         self.destroy()
         return
@@ -95,6 +97,10 @@ class Player(SpaceShip):
             self.setImage(self.thrustframe)
         else:
             self.setImage(0)
+        if len(self.collidingWithSprites(EnemyBullet)) > 0:
+            for x in self.collidingWithSprites(EnemyBullet):
+                x.destroy()
+            self.explode()
 
 class Enemy(Sprite):
     
@@ -129,8 +135,6 @@ class Enemy(Sprite):
         
     def step(self):
         if len(self.collidingWithSprites(Player)) > 0:
-            for x in SpaceGame.getSpritesbyClass(LifeControl):
-                x.loseLife()
             for x in SpaceGame.getSpritesbyClass(Player):
                 x.explode()
             self.explode()
@@ -153,7 +157,7 @@ class Enemy(Sprite):
         elif self.dist > SCREEN_DIAG/5 and randint(0,20) == 0:
             self.changeDirec()
         self.dist += self.speed
-        if randint(0,100) == 0:
+        if randint(0,500) == 0:
             EnemyBullet((self.x,self.y))
             
 class Bullet(Sprite):
@@ -166,8 +170,8 @@ class Bullet(Sprite):
     
     def step(self):
         if 0 <= self.x <= SCREEN_WIDTH and 0 <= self.y <= SCREEN_HEIGHT:
-            self.velx = velCalcX(5, self.rotation)
-            self.vely = velCalcY(5, self.rotation)
+            self.velx = velCalcX(self.speed, self.rotation)
+            self.vely = velCalcY(self.speed, self.rotation)
             self.x += self.velx
             self.y += self.vely
         else:
@@ -179,6 +183,7 @@ class PlayerBullet(Bullet):
     
     def __init__(self, position):
         super().__init__(PlayerBullet.asset, position)
+        self.speed = 5
         for x in SpaceGame.getSpritesbyClass(Player):
             self.rotation = x.rotation
             
@@ -188,8 +193,12 @@ class EnemyBullet(Bullet):
     
     def __init__(self, position):
         super().__init__(EnemyBullet.asset, position)
+        self.speed = 2
+        self.scale = 2
         for x in SpaceGame.getSpritesbyClass(Player):
-           self.rotation = atan((x.x-self.x)/(x.y-self.y))
+            self.rotation = atan((x.x-self.x)/(x.y-self.y))
+            if self.y < x.y:
+                self.rotation += pi
             
 class Explosion(Sprite):
     
