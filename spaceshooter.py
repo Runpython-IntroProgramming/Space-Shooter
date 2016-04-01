@@ -55,9 +55,9 @@ class SpaceShip(Sprite):
             else:
                 self.setImage(0)
         if self.vr == .1:
-            self.rotation = self.rotation +.0001
+            self.rotation = self.rotation +100
         if self.vr == -0.1:
-            self.rotation = self.rotation - 0.0001
+            self.rotation = self.rotation - 100
         
         col=self.collidingWithSprites(Sun)
         if col:
