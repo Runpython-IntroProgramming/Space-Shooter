@@ -17,17 +17,17 @@ from random import randint
 from time import sleep
 
 SCREEN_WIDTH = 1000
-SCREEN_HEIGHT = 600
+SCREEN_HEIGHT = 700
 SCREEN_DIAG = sqrt(SCREEN_WIDTH**2+SCREEN_HEIGHT**2)
 
 NUM_ENEMIES = 4
 LIVES = 3
 AMMO = 5
 
+white = Color(0xffffff, 1.0)
+
 velCalcX = lambda speed, rotation: -1*speed*sin(rotation)
 velCalcY = lambda speed, rotation: -1*speed*cos(rotation)
-
-white = Color(0xffffff, 1.0)
 
 class StarBack(Sprite):
     
