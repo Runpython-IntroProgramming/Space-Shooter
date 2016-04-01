@@ -45,7 +45,7 @@ class SpaceShip(Sprite):
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
-        self.explode(self.x, self.y)
+        #self.explode(self.x, self.y)
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
@@ -126,11 +126,10 @@ class SpaceGame(App):
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
-        explosions=self.getSpritesbyClass(ExplosionSmall)
-        for explosion in expolsions:
-            explosion.step
+        for explosion in self.getSpritesbyClass(ExplosionSmall):
+            explosion.step()
 
-def registerKeys(self, keys):
+    def registerKeys(self, keys):
         commands = ["left", "right", "forward", "fire"]
         self.keymap = dict(zip(keys, commands))
         [self.app.listenKeyEvent("keydown", k, self.controldown) for k in keys]
