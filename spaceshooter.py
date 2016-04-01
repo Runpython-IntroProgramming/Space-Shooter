@@ -86,6 +86,12 @@ class SpaceShip(Sprite):
                 self.vy=0
                 self.vr=0
                 
+    def explode(self):
+        self.visible = False
+        self.vx=0
+        self.vy=0
+        ExplosionBig(self.position)
+        
         
 class ExplosionSmall(Sprite):
     
