@@ -59,7 +59,7 @@ class SpaceShip(Sprite):
         if self.vr == -0.1:
             self.rotation = self.rotation - 0.0001
         
-        col=self.collidingWithSprites(Sun, SpaceShip2)
+        col=self.collidingWithSprites(Sun)
         if col:
             self.explode(self)
         
@@ -129,7 +129,7 @@ class SpaceShip2(Sprite):
         if self.vr == -0.1:
             self.rotation = self.rotation - 0.0001
         
-        col=self.collidingWithSprites(Sun, SpaceShip)
+        col=self.collidingWithSprites(Sun)
         if col:
             self.explode(self)
         
