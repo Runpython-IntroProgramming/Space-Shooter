@@ -78,14 +78,6 @@ class SpaceShip(Sprite):
     def stop(self, event):
         self.vr=0
 
-    def explode(self, x, y):
-        if (x<525 and x>475):
-            if (y<325 and y>275):
-                SpaceGame.explode(x,y)
-                self.vx=0
-                self.vy=0
-                self.vr=0
-                
     def explode(self):
         self.visible = False
         self.vx=0
