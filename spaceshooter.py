@@ -55,11 +55,9 @@ class SpaceShip(Sprite):
                 self.thrustframe = 1
             else:
                 self.setImage(0)
-        """if self.vr == .1:
-            self.rotation = self.rotation - 0.00000001
-        if self.vr == -.1:
-            self.rotation = self.rotation + 0.00000001
-        """
+        col=self.collidingWithSprites(Sun)
+        if col:
+            self.explode(self)
 
     def thrustOn(self, event):
         self.thrust = 1
@@ -82,7 +80,7 @@ class SpaceShip(Sprite):
         self.visible = False
         self.vx=0
         self.vy=0
-        ExplosionBig(self.position)
+        ExplosionSmall(self.position)
         
         
 class ExplosionSmall(Sprite):
