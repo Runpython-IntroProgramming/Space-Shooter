@@ -129,7 +129,6 @@ class SpaceShip2(Sprite):
         
         col=self.collidingWithSprites(Sun)
         if col:
-            print("boom")
             self.explode(self)
         
     def rotationOnLeft(self, event):
@@ -161,7 +160,6 @@ class ExplosionSmall(Sprite):
     
     def __init__(self, position):
         super().__init__(ExplosionSmall.asset, position)
-        print("boom2")
         self.image = 0
         self.center = (0.5, 0.5)
         self.boom = Sound(ExplosionSmall.boomasset)
