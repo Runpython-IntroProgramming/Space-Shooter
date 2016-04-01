@@ -9,8 +9,6 @@ Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
 """
 
-#improve starback init
-#sounds
 #http://brythonserver.github.io/ggame/
 
 from ggame import App, Sprite, ImageAsset, Frame, Color, TextAsset, SoundAsset, Sound
@@ -24,6 +22,7 @@ SCREEN_DIAG = sqrt(SCREEN_WIDTH**2+SCREEN_HEIGHT**2)
 
 NUM_ENEMIES = 4
 LIVES = 3
+AMMO = 5
 
 velCalcX = lambda speed, rotation: -1*speed*sin(rotation)
 velCalcY = lambda speed, rotation: -1*speed*cos(rotation)
@@ -47,6 +46,7 @@ class SpaceShip(Sprite):
         self.rotSpd = 0.1
         self.fxcenter = self.fycenter = 0.5
         self.ShootSound = Sound(SpaceShip.SAsset)
+        self.ShootSound.volume = 10
             
 class Player(SpaceShip):
     
@@ -90,8 +90,9 @@ class Player(SpaceShip):
         return
     
     def shoot(self, event):
-        PlayerBullet((self.x,self.y))
-        self.ShootSound.play()
+        if len(SpaceGame.getSpritesbyClass(PlayerBullet)) < AMMO:
+            PlayerBullet((self.x,self.y))
+            self.ShootSound.play()
         
     def step(self):
         if self.thrust == 1:
@@ -107,7 +108,7 @@ class Player(SpaceShip):
                 x.destroy()
             self.explode()
 
-class Enemy(Sprite):
+class Enemy(SpaceShip):
     
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(227,0,292-227,125), 4, 'vertical')
@@ -118,7 +119,6 @@ class Enemy(Sprite):
         self.rotation = randint(0,1000)/500*pi
         self.velx = velCalcX(self.speed, self.rotation)
         self.vely = velCalcY(self.speed, self.rotation)
-        self.fxcenter = self.fycenter = 0.5
         self.dist = 0
         self.frame = 1
         self.scale = 0.75
@@ -164,7 +164,7 @@ class Enemy(Sprite):
         self.dist += self.speed
         if randint(0,500) == 0:
             EnemyBullet((self.x,self.y))
-            #self.ShootSound.play()
+            self.ShootSound.play()
             
 class Bullet(Sprite):
     
@@ -209,11 +209,14 @@ class EnemyBullet(Bullet):
 class Explosion(Sprite):
     
     asset = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
+    SAsset = SoundAsset("sounds/explosion1.mp3")
     
     def __init__(self, position):
         super().__init__(Explosion.asset, position)
         self.fxcenter = self.fycenter = 0.5
         self.frame = 0
+        self.ExplodeSound = Sound(Explosion.SAsset)
+        self.ExplodeSound.play()
         
     def step(self):
         if self.frame == 8:
@@ -245,11 +248,13 @@ class Score(Sprite):
 class LifeControl(Sprite):
     
     asset = TextAsset("Lives:", fill=white)
+    SAsset = SoundAsset("sounds/reappear.mp3")
     
     def __init__(self, position):
         super().__init__(LifeControl.asset, position)
         self.lives = LIVES
         Lives(TextAsset(str(self.lives), fill=white), (55,20))
+        self.RespawnSound = Sound(LifeControl.SAsset)
         
     def loseLife(self):
         for x in SpaceGame.getSpritesbyClass(Lives):
@@ -262,8 +267,30 @@ class LifeControl(Sprite):
             for x in SpaceGame.getSpritesbyClass(EnemyBullet):
                 x.destroy()
             Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
+            self.RespawnSound.play()
         
 class Lives(Sprite):
+    
+    def __init__(self, asset, position):
+        super().__init__(asset, position)
+        
+class AmmoControl(Sprite):
+    
+    asset = TextAsset("Ammo:", fill=white)
+    
+    def __init__(self, position):
+        super().__init__(AmmoControl.asset, position)
+        self.ammo = AMMO
+        Ammo(TextAsset(str(self.ammo), fill=white), (65,40))
+        
+    def step(self):
+        if AMMO-len(SpaceGame.getSpritesbyClass(PlayerBullet)) != self.ammo:
+            self.ammo = AMMO-len(SpaceGame.getSpritesbyClass(PlayerBullet))
+            for x in SpaceGame.getSpritesbyClass(Ammo):
+                x.destroy()
+            Ammo(TextAsset(str(self.ammo), fill=white), (65,40))
+            
+class Ammo(Sprite):
     
     def __init__(self, asset, position):
         super().__init__(asset, position)
@@ -291,6 +318,7 @@ class SpaceGame(App):
         StarBack((0,0))
         ScoreControl((0,0))
         LifeControl((0,20))
+        AmmoControl((0,40))
         Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         for x in [1/NUM_ENEMIES*x*2*pi for x in list(range(0,NUM_ENEMIES))]:
             Enemy(((SCREEN_HEIGHT*-0.4)*sin(x)+SCREEN_WIDTH/2, (SCREEN_HEIGHT*-0.4)*cos(x)+SCREEN_HEIGHT/2))
@@ -314,6 +342,8 @@ class SpaceGame(App):
                         for x in self.getSpritesbyClass(EnemyBullet):
                             x.destroy()
                         WinText((SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
+        for x in self.getSpritesbyClass(AmmoControl):
+            x.step()
         
 myapp = SpaceGame()
 myapp.run()
