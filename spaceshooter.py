@@ -77,7 +77,7 @@ class SpaceShip(Sprite):
     def stop(self, event):
         self.vr=0
 
-    def explode(self):
+    def explode(self, event):
         self.visible = False
         self.vx=0
         self.vy=0
@@ -145,7 +145,7 @@ class Sun(Sprite):
     
     def __init__(self, position):
         super().__init__(Sun.asset5, position)
-        #self.circularCollisionModule()
+        
         
     
 
