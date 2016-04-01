@@ -84,6 +84,8 @@ class SpaceShip(Sprite):
         self.vx = 0
         self.vy = 0
         ExplosionSmall(self.position)
+    
+    def reset(self, event):
 
 class SpaceShip2(Sprite):
     """
