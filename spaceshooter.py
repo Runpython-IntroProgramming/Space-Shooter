@@ -12,8 +12,8 @@ from ggame import SoundAsset, Sound, TextAsset, Color
 import math
 from time import time
 
-SCREEN_WIDTH = 900
-SCREEN_HEIGHT = 650
+SCREEN_WIDTH = 1200
+SCREEN_HEIGHT = 850
 
 sun = None
 
