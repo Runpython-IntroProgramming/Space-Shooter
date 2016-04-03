@@ -239,6 +239,12 @@ class ScoreControl(Sprite):
             x.destroy()
         self.score += 1
         Score(TextAsset(str(self.score), fill=white), (65,0))
+        if self.score == NUM_ENEMIES:
+            for x in SpaceGame.getSpritesbyClass(LifeControl):
+                if x.lives > 0:
+                    for x in SpaceGame.getSpritesbyClass(EnemyBullet):
+                        x.destroy()
+                    WinText((SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
         
 class Score(Sprite):
     
@@ -335,13 +341,6 @@ class SpaceGame(App):
             x.step()
         for x in self.getSpritesbyClass(Explosion):
             x.step()
-        for x in self.getSpritesbyClass(ScoreControl):
-            if x.score == NUM_ENEMIES:
-                for x in self.getSpritesbyClass(LifeControl):
-                    if x.lives > 0:
-                        for x in self.getSpritesbyClass(EnemyBullet):
-                            x.destroy()
-                        WinText((SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
         for x in self.getSpritesbyClass(AmmoControl):
             x.step()
         
