@@ -10,6 +10,8 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 
 #http://brythonserver.github.io/ggame/
+#respawn
+#movement
 
 from ggame import App, Sprite, ImageAsset, Frame, Color, TextAsset, SoundAsset, Sound
 from math import sqrt, sin, cos, radians, degrees, pi, atan
@@ -17,10 +19,10 @@ from random import randint
 from time import sleep
 
 SCREEN_WIDTH = 1000
-SCREEN_HEIGHT = 700
+SCREEN_HEIGHT = 600
 SCREEN_DIAG = sqrt(SCREEN_WIDTH**2+SCREEN_HEIGHT**2)
 
-NUM_ENEMIES = 4
+NUM_ENEMIES = 8
 LIVES = 3
 AMMO = 5
 
@@ -216,6 +218,7 @@ class Explosion(Sprite):
         self.fxcenter = self.fycenter = 0.5
         self.frame = 0
         self.ExplodeSound = Sound(Explosion.SAsset)
+        self.ExplodeSound.volume = 10
         self.ExplodeSound.play()
         
     def step(self):
@@ -261,6 +264,7 @@ class LifeControl(Sprite):
         self.lives = LIVES
         Lives(TextAsset(str(self.lives), fill=white), (55,20))
         self.RespawnSound = Sound(LifeControl.SAsset)
+        self.RespawnSound.volume = 10
         
     def loseLife(self):
         for x in SpaceGame.getSpritesbyClass(Lives):
@@ -270,10 +274,13 @@ class LifeControl(Sprite):
         if self.lives == 0:
             LoseText((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         else:
+            RespawnText((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
             for x in SpaceGame.getSpritesbyClass(EnemyBullet):
                 x.destroy()
             Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
             self.RespawnSound.play()
+#            for x in SpaceGame.getSpritesbyClass(RespawnText):
+#               x.destroy()
         
 class Lives(Sprite):
     
@@ -300,6 +307,16 @@ class Ammo(Sprite):
     
     def __init__(self, asset, position):
         super().__init__(asset, position)
+        
+class RespawnText(Sprite):
+    
+    asset = TextAsset("Respawning...", fill=white)
+    
+    def __init__(self, position):
+        super().__init__(RespawnText.asset, position)
+        self.fxcenter = self.fycenter = 0.5
+        sleep(2)
+        self.destroy()
         
 class WinText(Sprite):
     
@@ -350,10 +367,10 @@ myapp.run()
 '''
 from math import sin, cos, pi
 
-A = 4
+n = 4
 r = 5
 
-a = [1/A*x*2*pi for x in list(range(0,A))]
+a = [1/n*x*2*pi for x in list(range(0,n))]
 print(a)
 
 for x in a:
