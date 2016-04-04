@@ -12,6 +12,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 #http://brythonserver.github.io/ggame/
 #respawn
 #movement
+#http://stackoverflow.com/questions/2789460/python-add-to-a-function-dynamically
 
 from ggame import App, Sprite, ImageAsset, Frame, Color, TextAsset, SoundAsset, Sound
 from math import sqrt, sin, cos, radians, degrees, pi, atan
@@ -19,10 +20,10 @@ from random import randint
 from time import sleep
 
 SCREEN_WIDTH = 1000
-SCREEN_HEIGHT = 600
+SCREEN_HEIGHT = 700
 SCREEN_DIAG = sqrt(SCREEN_WIDTH**2+SCREEN_HEIGHT**2)
 
-NUM_ENEMIES = 8
+NUM_ENEMIES = 4
 LIVES = 3
 AMMO = 5
 
@@ -135,7 +136,7 @@ class Enemy(SpaceShip):
         self.dist = 0
         
     def explode(self):
-            Explosion((self.x, self.y))
+            PlayerExplosion((self.x, self.y))
             for x in SpaceGame.getSpritesbyClass(ScoreControl):
                 x.scoreChange()
             self.destroy()
@@ -223,10 +224,22 @@ class Explosion(Sprite):
         
     def step(self):
         if self.frame == 8:
-            self.destroy()
+#            self.destroy()
+            print('hello')
         else:
             self.frame += 1
         self.setImage(self.frame)
+        
+class PlayerExplosion(Explosion):
+    
+    def respawn(self):
+        if self.frame == 8:
+            print('hi')
+#        sleep(2)
+#        Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
+#        self.RespawnSound.play()
+#        for x in SpaceGame.getSpritesbyClass(RespawnText):
+#            x.destroy()
         
 class ScoreControl(Sprite):
     
@@ -277,10 +290,6 @@ class LifeControl(Sprite):
             RespawnText((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
             for x in SpaceGame.getSpritesbyClass(EnemyBullet):
                 x.destroy()
-            Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
-            self.RespawnSound.play()
-#            for x in SpaceGame.getSpritesbyClass(RespawnText):
-#               x.destroy()
         
 class Lives(Sprite):
     
@@ -315,8 +324,6 @@ class RespawnText(Sprite):
     def __init__(self, position):
         super().__init__(RespawnText.asset, position)
         self.fxcenter = self.fycenter = 0.5
-        sleep(2)
-        self.destroy()
         
 class WinText(Sprite):
     
@@ -358,6 +365,10 @@ class SpaceGame(App):
             x.step()
         for x in self.getSpritesbyClass(Explosion):
             x.step()
+        for x in self.getSpritesbyClass(PlayerExplosion):
+            x.step()
+#            sleep(2)
+            x.respawn()
         for x in self.getSpritesbyClass(AmmoControl):
             x.step()
         
