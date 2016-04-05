@@ -82,11 +82,12 @@ class SpaceShip(Sprite):
             self.vx = 0
             self.vy = 0
             self.t = time.time()
+            self.reset = 0
             col = False
         
         if time.time() > self.t + 3 and time.time() < self.t + 4:
                 self.reset = 2
-                self.reset = 0
+                
                 
         if self.reset == 0:
             self.x = self.x
