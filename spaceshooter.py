@@ -14,7 +14,7 @@ import time
 
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
-print(time.clock())
+print(int(time.clock()))
 
 
 class SpaceShip(Sprite):
