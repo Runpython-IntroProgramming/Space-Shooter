@@ -78,7 +78,7 @@ class SpaceShip(Sprite):
             self.explode()
             self.t = time.time()
         
-        if time.time() in range(self.t + 5, self.t +6):
+        if time.time()> self.t+5:
                 self.reset = 2
                 
                 
