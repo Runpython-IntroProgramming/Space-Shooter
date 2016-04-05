@@ -88,7 +88,7 @@ class Player(SpaceShip):
     def explode(self):
         for x in SpaceGame.getSpritesbyClass(LifeControl):
             x.loseLife()
-        Explosion((self.x, self.y))
+        PlayerExplosion((self.x, self.y))
         self.destroy()
         return
     
@@ -232,20 +232,13 @@ class Explosion(Sprite):
 class PlayerExplosion(Explosion):
     
     def __init__(self, position):
-        super().__init()
-        RespawnText((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
+        super().__init__(position)
     
     def step(self):
         super().step()
-    
-#    def respawn(self):
-#        if self.frame == 8:
-#            print('hi')
-#        sleep(2)
-#        Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
-#        self.RespawnSound.play()
-#        for x in SpaceGame.getSpritesbyClass(RespawnText):
-#            x.destroy()
+        if self.frame == 8:
+            for x in SpaceGame.getSpritesbyClass(LifeControl):
+                x.respawn()
         
 class ScoreControl(Sprite):
     
@@ -296,6 +289,14 @@ class LifeControl(Sprite):
             RespawnText((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
             for x in SpaceGame.getSpritesbyClass(EnemyBullet):
                 x.destroy()
+                
+    def respawn(self):
+        if len(SpaceGame.getSpritesbyClass(Player)) == 0:
+            sleep(1)
+            for x in SpaceGame.getSpritesbyClass(RespawnText):
+                x.destroy()
+            self.RespawnSound.play()
+            Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         
 class Lives(Sprite):
     
