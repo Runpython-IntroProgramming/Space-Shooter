@@ -118,8 +118,6 @@ class SpaceShip(Sprite):
         self.visible = False
         self.vx = 0
         self.vy = 0
-        self.x = 0
-        self.y = 0
         ExplosionSmall(self.position)
 
 class SpaceShip2(Sprite):
