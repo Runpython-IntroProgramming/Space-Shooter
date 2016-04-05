@@ -76,6 +76,8 @@ class SpaceShip(Sprite):
         col= self.collidingWithSprites(Sunthing)
         if col:
             self.explode()
+            self.x = 300
+            self.y = 300
             self.t = time.time()
         
         if time.time() > self.t + 5 and time.time() < self.t + 6:
@@ -89,8 +91,6 @@ class SpaceShip(Sprite):
             
         if self.reset == 2:
             self.visible = True
-            self.x = 300
-            self.y = 300
             self.rotation = 0
 
             
