@@ -9,10 +9,7 @@ Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
 """
 
-#http://brythonserver.github.io/ggame/
-#respawn
 #movement
-#http://stackoverflow.com/questions/2789460/python-add-to-a-function-dynamically
 
 from ggame import App, Sprite, ImageAsset, Frame, Color, TextAsset, SoundAsset, Sound
 from math import sqrt, sin, cos, radians, degrees, pi, atan
