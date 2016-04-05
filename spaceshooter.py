@@ -224,17 +224,23 @@ class Explosion(Sprite):
         
     def step(self):
         if self.frame == 8:
-#            self.destroy()
-            print('hello')
+            self.destroy()
         else:
             self.frame += 1
         self.setImage(self.frame)
         
 class PlayerExplosion(Explosion):
     
-    def respawn(self):
-        if self.frame == 8:
-            print('hi')
+    def __init__(self, position):
+        super().__init()
+        RespawnText((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
+    
+    def step(self):
+        super().step()
+    
+#    def respawn(self):
+#        if self.frame == 8:
+#            print('hi')
 #        sleep(2)
 #        Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
 #        self.RespawnSound.play()
@@ -367,8 +373,6 @@ class SpaceGame(App):
             x.step()
         for x in self.getSpritesbyClass(PlayerExplosion):
             x.step()
-#            sleep(2)
-            x.respawn()
         for x in self.getSpritesbyClass(AmmoControl):
             x.step()
         
