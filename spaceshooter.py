@@ -14,6 +14,7 @@ import time
 
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
+print(time.clock())
 
 
 class SpaceShip(Sprite):
@@ -73,7 +74,7 @@ class SpaceShip(Sprite):
         
         if time.clock() == t + 5:
                 self.reset = 1
-        print(time.clock())
+                
         col= self.collidingWithSprites(Sunthing)
         if col:
             self.explode()
