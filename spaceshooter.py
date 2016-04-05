@@ -80,8 +80,10 @@ class SpaceShip(Sprite):
         
         if time.time() == t + 5:
                 self.reset = 0
+                
         if self.reset == 0:
             self.x = self.x
+            
         if self.reset == 2:
             self.visible = True
             self.x = 300
