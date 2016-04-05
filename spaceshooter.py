@@ -79,7 +79,7 @@ class SpaceShip(Sprite):
             self.t = time.time()
         
         if time.time() == self.t + 5:
-                self.reset = 0
+                self.reset = 2
                 
                 
         if self.reset == 0:
@@ -92,8 +92,7 @@ class SpaceShip(Sprite):
             self.x = 300
             self.y = 300
             self.rotation = 0
-            self.vx = 0
-            self.vy = 0
+
             
     def thrustOn(self, event):
         self.thrust = 1
