@@ -72,7 +72,7 @@ class SpaceShip(Sprite):
             self.vx = 0
             self.vy = 0
         
-        if time.time() == t + 5:
+        if time.ctime() == t + 5:
                 self.reset = 1
                 
         col= self.collidingWithSprites(Sunthing)
