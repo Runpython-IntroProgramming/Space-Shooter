@@ -79,7 +79,7 @@ class SpaceShip(Sprite):
             self.x = 300
             self.y = 300
             self.t = time.time()
-            col = false
+            col = False
         
         if time.time() > self.t + 5 and time.time() < self.t + 6:
                 self.reset = 2
