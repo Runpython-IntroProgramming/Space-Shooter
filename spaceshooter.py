@@ -91,7 +91,7 @@ class SpaceShip(Sprite):
             
         if self.reset == 2:
             self.visible = True
-            self.rotation = 0
+
 
             
     def thrustOn(self, event):
