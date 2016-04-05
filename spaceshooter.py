@@ -75,7 +75,7 @@ class SpaceShip(Sprite):
         if col:
             self.explode()
             t = time.clock()
-            when time.clock == t +5:
+            if time.clock == t +5:
                 self.reset = 1
         
         if self.reset == 2:
