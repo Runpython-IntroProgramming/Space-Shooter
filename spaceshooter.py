@@ -76,14 +76,7 @@ class SpaceShip(Sprite):
         if col:
             self.explode()
             self.reset = 1
-            t = time.time()
         
-        if time.time() == t + 5:
-                self.reset = 0
-                
-        if self.reset == 0:
-            self.x = self.x
-            
         if self.reset == 2:
             self.visible = True
             self.x = 300
