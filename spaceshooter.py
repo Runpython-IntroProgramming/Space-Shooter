@@ -84,7 +84,7 @@ class SpaceShip(Sprite):
             self.t = time.time()
             col = False
         
-        if time.time() > self.t + 5 and time.time() < self.t + 6:
+        if time.time() > self.t + 3 and time.time() < self.t + 4:
                 self.reset = 2
                 
         if self.reset == 0:
