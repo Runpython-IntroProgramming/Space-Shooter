@@ -78,6 +78,7 @@ class SpaceShip(Sprite):
             self.explode()
             self.x = 300
             self.y = 300
+            self.rotation = 0
             self.t = time.time()
             col = False
         
