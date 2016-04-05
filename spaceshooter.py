@@ -291,7 +291,7 @@ class LifeControl(Sprite):
                 x.destroy()
                 
     def respawn(self):
-        if len(SpaceGame.getSpritesbyClass(Player)) == 0:
+        if len(SpaceGame.getSpritesbyClass(Player)) == 0 and self.lives > 0:
             sleep(1)
             for x in SpaceGame.getSpritesbyClass(RespawnText):
                 x.destroy()
