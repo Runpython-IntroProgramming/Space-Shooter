@@ -43,6 +43,7 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keydown", "r", self.restartOn)
         SpaceGame.listenKeyEvent("keyup", "r", self.restartOff)
         self.fxcenter = self.fycenter = 0.5
+        self.t = 0
         
     def step(self):
         self.x += self.vx
@@ -75,10 +76,11 @@ class SpaceShip(Sprite):
         col= self.collidingWithSprites(Sunthing)
         if col:
             self.explode()
-            t = time.time()
+            self.t = time.time()
         
-        if time.time() == t + 5:
+        if time.time() == self.t + 5:
                 self.reset = 0
+                
                 
         if self.reset == 0:
             self.x = self.x
