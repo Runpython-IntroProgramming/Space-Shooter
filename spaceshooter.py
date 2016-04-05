@@ -74,9 +74,9 @@ class SpaceShip(Sprite):
         col= self.collidingWithSprites(Sunthing)
         if col:
             self.explode()
-            self.reset = 1
             t = time.clock()
-            
+            when time.clock == t +5:
+                self.reset = 1
         
         if self.reset == 2:
             self.visible = True
