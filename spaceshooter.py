@@ -10,6 +10,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 
 #movement
+#enemy spawn radius
 
 from ggame import App, Sprite, ImageAsset, Frame, Color, TextAsset, SoundAsset, Sound
 from math import sqrt, sin, cos, radians, degrees, pi, atan
@@ -344,6 +345,12 @@ class LoseText(Sprite):
     def __init__(self, position):
         super().__init__(LoseText.asset, position)
         self.fxcenter = self.fycenter = 0.5
+        
+class InstructionText(Sprite):
+    
+    def __init__(self, asset, position):
+        super().__init__(asset, position)
+        self.fxcenter = self.fycenter = 0.5
 
 class SpaceGame(App):
         
@@ -357,6 +364,9 @@ class SpaceGame(App):
         for x in [1/NUM_ENEMIES*x*2*pi for x in list(range(0,NUM_ENEMIES))]:
             Enemy(((SCREEN_HEIGHT*-0.4)*sin(x)+SCREEN_WIDTH/2, (SCREEN_HEIGHT*-0.4)*cos(x)+SCREEN_HEIGHT/2))
         self.step()
+        self.instructions = ['Instructions: ', 'Left and Right Arrows to Rotate']
+        for x in self.instructions:
+            InstructionText(TextAsset(x, fill=white), (SCREEN_WIDTH/2, SCREEN_HEIGHT/2+20*self.instructions.index(x)))
         
     def step(self):
         for x in self.getSpritesbyClass(Player):
