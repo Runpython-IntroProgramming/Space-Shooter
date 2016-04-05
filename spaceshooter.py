@@ -73,11 +73,12 @@ class SpaceShip(Sprite):
             self.vy = 0
         
         if time.time() == t + 5:
-                self.reset = 1
+                self.reset = 0
                 
         col= self.collidingWithSprites(Sunthing)
         if col:
             self.explode()
+            self.reset = 1
             t = time.time()
         
         
@@ -87,7 +88,8 @@ class SpaceShip(Sprite):
             self.y = 300
             self.rotation = 0
             self.vx = 0
-            self.vy = 0    
+            self.vy = 0
+            
     def thrustOn(self, event):
         self.thrust = 1
     def thrustOff(self, event):
