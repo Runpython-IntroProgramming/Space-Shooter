@@ -332,7 +332,7 @@ class RespawnText(Sprite):
         
 class WinText(Sprite):
     
-    asset = TextAsset("You Win!", fill=white, align='center', width+SCREEN_WIDTH)
+    asset = TextAsset("You Win!", fill=white, align='center', width=SCREEN_WIDTH)
     
     def __init__(self, position):
         super().__init__(WinText.asset, position)
