@@ -191,7 +191,7 @@ class SpaceShip2(Sprite):
         if self.reset == 0:
             self.x = self.x
             self.y = self.y
-            self.visible = True
+            self.visible = False
             
         if self.reset == 2:
             self.visible = True
