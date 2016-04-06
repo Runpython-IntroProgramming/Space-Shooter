@@ -175,8 +175,8 @@ class SpaceShip2(Sprite):
         col= self.collidingWithSprites(Sunthing)
         if col:
             self.explode()
-            self.x = 300
-            self.y = 300
+            self.x = 500
+            self.y = 500
             self.rotation = 0
             self.vx = 0
             self.vy = 0
