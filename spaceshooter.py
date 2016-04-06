@@ -14,8 +14,6 @@ import time
 
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
-print(time.time())
-
 
 class SpaceShip(Sprite):
     """
@@ -285,10 +283,10 @@ class SpaceGame(App):
         
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
-        
+        '''
         for ship in self.getSpritesbyClass(SpaceShip2):
             ship.step()
-        
+        '''
         explosions = self.getSpritesbyClass(ExplosionSmall)
         for explosion in explosions:
             explosion.step()    
