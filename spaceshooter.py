@@ -277,9 +277,9 @@ class SpaceGame(App):
         Sunthing((500,360))
         
         SpaceShip((300,300))
-        
+        '''
         SpaceShip2((700,500))
-        
+        '''
         
     def step(self):
         
