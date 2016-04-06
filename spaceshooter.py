@@ -85,7 +85,7 @@ class SpaceShip(Sprite):
             self.reset = 0
             col = False
         
-        if time.time() > self.t + 3 and time.time() < self.t + 4:
+        if time.time() > self.t + 2 and time.time() < self.t + 3:
                 self.reset = 2
                 
                 
@@ -192,7 +192,7 @@ class SpaceShip2(Sprite):
             self.reset = 0
             col = False
         
-        if time.time() > self.t2 + 3 and time.time() < self.t2 + 4:
+        if time.time() > self.t2 + 2 and time.time() < self.t2 + 3:
                 self.reset = 2
                 
                 
