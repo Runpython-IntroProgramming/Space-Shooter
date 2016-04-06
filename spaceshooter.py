@@ -332,7 +332,7 @@ class RespawnText(Sprite):
         
 class WinText(Sprite):
     
-    asset = TextAsset("You Win!", fill=white)
+    asset = TextAsset("You Win!", fill=white, align='center')
     
     def __init__(self, position):
         super().__init__(WinText.asset, position)
@@ -340,7 +340,7 @@ class WinText(Sprite):
         
 class LoseText(Sprite):
     
-    asset = TextAsset("You Lose...", fill=white)
+    asset = TextAsset("You Lose...", fill=white, align='center', width=75)
     
     def __init__(self, position):
         super().__init__(LoseText.asset, position)
@@ -366,7 +366,7 @@ class SpaceGame(App):
         self.step()
         self.instructions = ['Instructions: ', 'Left and Right Arrows to Rotate']
         for x in self.instructions:
-            InstructionText(TextAsset(x, fill=white), (SCREEN_WIDTH/2, SCREEN_HEIGHT/2+20*self.instructions.index(x)))
+            InstructionText(TextAsset(x, fill=white, align='center'), (SCREEN_WIDTH/2, SCREEN_HEIGHT/2+20*self.instructions.index(x)))
         
     def step(self):
         for x in self.getSpritesbyClass(Player):
