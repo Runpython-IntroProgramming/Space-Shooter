@@ -150,6 +150,7 @@ class SpaceShip2(Sprite):
         SpaceGame.listenKeyEvent("keydown", "r", self.restartOn)
         SpaceGame.listenKeyEvent("keyup", "r", self.restartOff)
         self.fxcenter = self.fycenter = 0.5
+        self.t2=0
         
     def step(self):
         self.x += self.vx
@@ -179,11 +180,11 @@ class SpaceShip2(Sprite):
             self.rotation = 0
             self.vx = 0
             self.vy = 0
-            self.t = time.time()
+            self.t2 = time.time()
             self.reset = 0
             col = False
         
-        if time.time() > self.t + 3 and time.time() < self.t + 4:
+        if time.time() > self.t2 + 3 and time.time() < self.t2 + 4:
                 self.reset = 2
                 
                 
