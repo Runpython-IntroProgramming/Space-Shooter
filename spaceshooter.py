@@ -363,14 +363,17 @@ class SpaceGame(App):
         Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         for x in [1/NUM_ENEMIES*x*2*pi for x in list(range(0,NUM_ENEMIES))]:
             Enemy(((SCREEN_HEIGHT*-0.4)*sin(x)+SCREEN_WIDTH/2, (SCREEN_HEIGHT*-0.4)*cos(x)+SCREEN_HEIGHT/2))
-        self.listenKeyEvent('keydown', 'down arrow', self.start)
+        self.listenKeyEvent('keyup', 'down arrow', self.start)
         self.instructions = ['Instructions: ', 'Left and Right Arrows to Rotate', 'Up Arrow to Move', 'Space to Shoot']
         for x in self.instructions:
-            InstructionText(TextAsset(x, fill=white, align='center'), (SCREEN_WIDTH/2, SCREEN_HEIGHT/2+20*self.instructions.index(x)))
+            InstructionText(TextAsset(x, fill=white, align='center', width=SCREEN_WIDTH), (SCREEN_WIDTH/2, SCREEN_HEIGHT/2+20*self.instructions.index(x)))
         self.go = False
         
     def start(self, event):
         self.go = True
+        while len(self.getSpritesbyClass(InstructionText)) > 0:
+            for x in self.getSpritesbyClass(InstructionText):
+                x.destroy()
         
     def step(self):
         if self.go == True:
