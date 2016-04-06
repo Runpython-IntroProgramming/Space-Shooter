@@ -178,9 +178,9 @@ class SpaceShip2(Sprite):
             self.x = 700
             self.y = 500
             self.rotation = 0
+            self.t2 = time.time()
             self.vx = 0
             self.vy = 0
-            self.t2 = time.time()
             self.reset = 0
             col = False
         
