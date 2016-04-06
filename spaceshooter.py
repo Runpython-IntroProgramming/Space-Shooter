@@ -340,7 +340,7 @@ class WinText(Sprite):
         
 class LoseText(Sprite):
     
-    asset = TextAsset("You Lose...", fill=white, align='center', width=75)
+    asset = TextAsset("You Lose...", fill=white, align='center', width=SCREEN_WIDTH)
     
     def __init__(self, position):
         super().__init__(LoseText.asset, position)
