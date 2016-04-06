@@ -18,10 +18,10 @@ from random import randint
 from time import sleep
 
 SCREEN_WIDTH = 1000
-SCREEN_HEIGHT = 700
+SCREEN_HEIGHT = 600
 SCREEN_DIAG = sqrt(SCREEN_WIDTH**2+SCREEN_HEIGHT**2)
 
-NUM_ENEMIES = 4
+NUM_ENEMIES = 8
 LIVES = 3
 AMMO = 5
 
@@ -360,7 +360,6 @@ class SpaceGame(App):
         ScoreControl((0,0))
         LifeControl((0,20))
         AmmoControl((0,40))
-        Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         for x in [1/NUM_ENEMIES*x*2*pi for x in list(range(0,NUM_ENEMIES))]:
             Enemy(((SCREEN_HEIGHT*-0.4)*sin(x)+SCREEN_WIDTH/2, 
             (SCREEN_HEIGHT*-0.4)*cos(x)+SCREEN_HEIGHT/2))
@@ -377,6 +376,7 @@ class SpaceGame(App):
         while len(self.getSpritesbyClass(InstructionText)) > 0:
             for x in self.getSpritesbyClass(InstructionText):
                 x.destroy()
+        Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         
     def step(self):
         if self.go == True:
