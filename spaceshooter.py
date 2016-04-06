@@ -11,6 +11,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 
 #movement
 #enemy spawn radius
+#starback init - scale to size of larger side length, then frame to smaller side length
 
 from ggame import App, Sprite, ImageAsset, Frame, Color, TextAsset, SoundAsset, Sound
 from math import sqrt, sin, cos, radians, degrees, pi, atan
@@ -357,6 +358,7 @@ class SpaceGame(App):
     def __init__(self):
         super().__init__()
         StarBack((0,0))
+        Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         ScoreControl((0,0))
         LifeControl((0,20))
         AmmoControl((0,40))
@@ -376,7 +378,6 @@ class SpaceGame(App):
         while len(self.getSpritesbyClass(InstructionText)) > 0:
             for x in self.getSpritesbyClass(InstructionText):
                 x.destroy()
-        Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         
     def step(self):
         if self.go == True:
