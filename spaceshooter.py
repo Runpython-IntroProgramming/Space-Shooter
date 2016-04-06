@@ -332,7 +332,7 @@ class RespawnText(Sprite):
         
 class WinText(Sprite):
     
-    asset = TextAsset("You Win!", fill=white, align='center')
+    asset = TextAsset("You Win!", fill=white, align='center', width+SCREEN_WIDTH)
     
     def __init__(self, position):
         super().__init__(WinText.asset, position)
@@ -369,7 +369,7 @@ class SpaceGame(App):
         'Up Arrow to Move', 'Space to Shoot', 'Press the "1" Key to Begin']
         for x in self.instructions:
             InstructionText(TextAsset(x, fill=white, align='center', width=SCREEN_WIDTH), 
-            (SCREEN_WIDTH/2, SCREEN_HEIGHT/2+-20*(self.instructions.index(x)-len(self.instructions)/2)))
+            (SCREEN_WIDTH/2, SCREEN_HEIGHT/2+30*(self.instructions.index(x)-len(self.instructions)/2)))
         self.go = False
         
     def start(self, event):
