@@ -22,7 +22,7 @@ SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 600
 SCREEN_DIAG = sqrt(SCREEN_WIDTH**2+SCREEN_HEIGHT**2)
 
-NUM_ENEMIES = 8
+NUM_ENEMIES = 4
 LIVES = 3
 AMMO = 5
 
@@ -256,8 +256,9 @@ class ScoreControl(Sprite):
         if self.score == NUM_ENEMIES:
             for x in SpaceGame.getSpritesbyClass(LifeControl):
                 if x.lives > 0:
-                    for x in SpaceGame.getSpritesbyClass(EnemyBullet):
-                        x.destroy()
+                    while len(SpaceGame.getSpritesbyClass(EnemyBullet)) > 0:
+                        for x in SpaceGame.getSpritesbyClass(EnemyBullet):
+                            x.destroy()
                     WinText((SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
         
 class Score(Sprite):
@@ -286,8 +287,9 @@ class LifeControl(Sprite):
             LoseText((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         else:
             RespawnText((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
-            for x in SpaceGame.getSpritesbyClass(EnemyBullet):
-                x.destroy()
+            while len(SpaceGame.getSpritesbyClass(EnemyBullet)):
+                for x in SpaceGame.getSpritesbyClass(EnemyBullet):
+                    x.destroy()
                 
     def respawn(self):
         if len(SpaceGame.getSpritesbyClass(Player)) == 0 and self.lives > 0:
