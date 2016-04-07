@@ -83,15 +83,12 @@ class SpaceShip(Sprite):
         if time.time() > self.t + 2 and time.time() < self.t + 3:
                 self.reset = 2
                 
-                
         if self.reset == 0:
             self.x = self.x
             self.y = self.y
             
         if self.reset == 2:
             self.visible = True
-
-
             
     def thrustOn(self, event):
         self.thrust = 1
@@ -187,14 +184,12 @@ class SpaceShip2(Sprite):
         if time.time() > self.t2 + 2 and time.time() < self.t2 + 3:
                 self.reset = 2
                 
-                
         if self.reset == 0:
             self.x = self.x
             self.y = self.y
             
         if self.reset == 2:
             self.visible = True
-
             
     def thrustOn(self, event):
         self.thrust = 1
