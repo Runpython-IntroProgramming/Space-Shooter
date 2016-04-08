@@ -18,8 +18,8 @@ from math import sqrt, sin, cos, radians, degrees, pi, atan
 from random import randint
 from time import sleep
 
-SCREEN_WIDTH = 1000
-SCREEN_HEIGHT = 600
+SCREEN_WIDTH = 1200
+SCREEN_HEIGHT = 700
 SCREEN_DIAG = sqrt(SCREEN_WIDTH**2+SCREEN_HEIGHT**2)
 
 if SCREEN_WIDTH >= SCREEN_HEIGHT:
