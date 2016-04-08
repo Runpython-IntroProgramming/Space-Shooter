@@ -10,8 +10,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 
 #movement
-#enemy spawn radius
-#starback init - scale to size of larger side length, then frame to smaller side length
+#respawn
 
 from ggame import App, Sprite, ImageAsset, Frame, Color, TextAsset, SoundAsset, Sound
 from math import sqrt, sin, cos, radians, degrees, pi, atan
@@ -37,6 +36,13 @@ white = Color(0xffffff, 1.0)
 
 velCalcX = lambda speed, rotation: -1*speed*sin(rotation)
 velCalcY = lambda speed, rotation: -1*speed*cos(rotation)
+
+def EnemySpawn():
+    for x in SpaceGame.getSpritesbyClass(ScoreControl):
+        score = x.score
+    for x in [1/(NUM_ENEMIES-score)*x*2*pi for x in list(range(0,(NUM_ENEMIES-score)))]:
+        Enemy(((SMALLER_SIDE*-0.4)*sin(x)+SCREEN_WIDTH/2, 
+        (SMALLER_SIDE*-0.4)*cos(x)+SCREEN_HEIGHT/2))
 
 class StarBack(Sprite):
     
@@ -308,6 +314,10 @@ class LifeControl(Sprite):
                 x.destroy()
             self.RespawnSound.play()
             Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
+            while len(SpaceGame.getSpritesbyClass(Enemy)) > 0:
+                for x in SpaceGame.getSpritesbyClass(Enemy):
+                    x.destroy()
+            EnemySpawn()
         
 class Lives(Sprite):
     
@@ -374,7 +384,7 @@ class SpaceGame(App):
         ScoreControl((0,0))
         LifeControl((0,20))
         AmmoControl((0,40))
-        self.EnemySpawn()
+        EnemySpawn()
         self.listenKeyEvent('keyup', '1', self.start)
         self.instructions = ['Instructions: ', 'Left and Right Arrows to Rotate', 
         'Up Arrow to Move', 'Space to Shoot', 'Press the "1" Key to Begin']
@@ -382,11 +392,6 @@ class SpaceGame(App):
             InstructionText(TextAsset(x, fill=white, align='center', width=SCREEN_WIDTH), 
             (SCREEN_WIDTH/2, SCREEN_HEIGHT/2+30*(self.instructions.index(x)-len(self.instructions)/2)))
         self.go = False
-        
-    def EnemySpawn(self):
-        for x in [1/NUM_ENEMIES*x*2*pi for x in list(range(0,NUM_ENEMIES))]:
-            Enemy(((SMALLER_SIDE*-0.4)*sin(x)+SCREEN_WIDTH/2, 
-            (SMALLER_SIDE*-0.4)*cos(x)+SCREEN_HEIGHT/2))
         
     def start(self, event):
         self.go = True
