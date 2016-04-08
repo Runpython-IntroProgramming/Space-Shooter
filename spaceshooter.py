@@ -37,13 +37,6 @@ white = Color(0xffffff, 1.0)
 velCalcX = lambda speed, rotation: -1*speed*sin(rotation)
 velCalcY = lambda speed, rotation: -1*speed*cos(rotation)
 
-def EnemySpawn():
-    for x in SpaceGame.getSpritesbyClass(ScoreControl):
-        score = x.score
-    for x in [1/(NUM_ENEMIES-score)*x*2*pi for x in list(range(0,(NUM_ENEMIES-score)))]:
-        Enemy(((SMALLER_SIDE*-0.4)*sin(x)+SCREEN_WIDTH/2, 
-        (SMALLER_SIDE*-0.4)*cos(x)+SCREEN_HEIGHT/2))
-
 class StarBack(Sprite):
     
     if SCREEN_WIDTH >= SCREEN_HEIGHT:
@@ -384,9 +377,10 @@ class SpaceGame(App):
         ScoreControl((0,0))
         LifeControl((0,20))
         AmmoControl((0,40))
-        EnemySpawn()
         self.listenKeyEvent('keyup', '1', self.start)
-        self.instructions = ['Instructions: ', 'Left and Right Arrows to Rotate', 
+        self.listenKeyEvent('keyup', '2', self.start)
+        self.listenKeyEvent('keyup', '3', self.start)
+        self.instructions = ['Instructions:', 'Left and Right Arrows to Rotate', 
         'Up Arrow to Move', 'Space to Shoot', 'Press the "1" Key to Begin']
         for x in self.instructions:
             InstructionText(TextAsset(x, fill=white, align='center', width=SCREEN_WIDTH), 
@@ -394,10 +388,17 @@ class SpaceGame(App):
         self.go = False
         
     def start(self, event):
+        def EnemySpawn():
+            for x in SpaceGame.getSpritesbyClass(ScoreControl):
+                score = x.score
+            for x in [1/(NUM_ENEMIES-score)*x*2*pi for x in list(range(0,(NUM_ENEMIES-score)))]:
+                Enemy(((SMALLER_SIDE*-0.4)*sin(x)+SCREEN_WIDTH/2, 
+                (SMALLER_SIDE*-0.4)*cos(x)+SCREEN_HEIGHT/2))
         self.go = True
         while len(self.getSpritesbyClass(InstructionText)) > 0:
             for x in self.getSpritesbyClass(InstructionText):
                 x.destroy()
+        EnemySpawn()
         
     def step(self):
         if self.go == True:
