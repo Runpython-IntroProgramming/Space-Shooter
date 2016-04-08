@@ -364,9 +364,6 @@ class SpaceGame(App):
         ScoreControl((0,0))
         LifeControl((0,20))
         AmmoControl((0,40))
-        #for x in [1/NUM_ENEMIES*x*2*pi for x in list(range(0,NUM_ENEMIES))]:
-        #    Enemy(((SCREEN_HEIGHT*-0.4)*sin(x)+SCREEN_WIDTH/2, 
-        #    (SCREEN_HEIGHT*-0.4)*cos(x)+SCREEN_HEIGHT/2))
         self.EnemySpawn()
         self.listenKeyEvent('keyup', '1', self.start)
         self.instructions = ['Instructions: ', 'Left and Right Arrows to Rotate', 
