@@ -22,6 +22,13 @@ SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 600
 SCREEN_DIAG = sqrt(SCREEN_WIDTH**2+SCREEN_HEIGHT**2)
 
+if SCREEN_WIDTH >= SCREEN_HEIGHT:
+    LARGER_SIDE = SCREEN_WIDTH
+    SMALLER_SIDE = SCREEN_HEIGHT
+else:
+    LARGER_SIDE = SCREEN_HEIGHT
+    SMALLER_SIDE = SCREEN_WIDTH
+
 NUM_ENEMIES = 4
 LIVES = 3
 AMMO = 5
@@ -33,11 +40,14 @@ velCalcY = lambda speed, rotation: -1*speed*cos(rotation)
 
 class StarBack(Sprite):
     
-    asset = ImageAsset("images/starfield.jpg", Frame(0,0,SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
+    if SCREEN_WIDTH >= SCREEN_HEIGHT:
+        asset = ImageAsset("images/starfield.jpg", Frame(0,0,512,512*(SMALLER_SIDE/LARGER_SIDE)))
+    else:
+        asset = ImageAsset("images/starfield.jpg", Frame(0,0,512*(SMALLER_SIDE/LARGER_SIDE),512))
     
     def __init__(self, position):
         super().__init__(StarBack.asset, position)
-        self.scale = 2
+        self.scale = LARGER_SIDE/512
 
 class SpaceShip(Sprite):
     
