@@ -37,6 +37,13 @@ white = Color(0xffffff, 1.0)
 velCalcX = lambda speed, rotation: -1*speed*sin(rotation)
 velCalcY = lambda speed, rotation: -1*speed*cos(rotation)
 
+def EnemySpawn(NUM_ENEMIES):
+    for x in SpaceGame.getSpritesbyClass(ScoreControl):
+        score = x.score
+    for x in [1/(NUM_ENEMIES-score)*x*2*pi for x in list(range(0,(NUM_ENEMIES-score)))]:
+        Enemy(((SMALLER_SIDE*-0.4)*sin(x)+SCREEN_WIDTH/2, 
+        (SMALLER_SIDE*-0.4)*cos(x)+SCREEN_HEIGHT/2))
+
 class StarBack(Sprite):
     
     if SCREEN_WIDTH >= SCREEN_HEIGHT:
@@ -310,7 +317,7 @@ class LifeControl(Sprite):
             while len(SpaceGame.getSpritesbyClass(Enemy)) > 0:
                 for x in SpaceGame.getSpritesbyClass(Enemy):
                     x.destroy()
-            EnemySpawn()
+            EnemySpawn(NUM_ENEMIES)
         
 class Lives(Sprite):
     
@@ -388,17 +395,11 @@ class SpaceGame(App):
         self.go = False
         
     def start(self, event):
-        def EnemySpawn():
-            for x in SpaceGame.getSpritesbyClass(ScoreControl):
-                score = x.score
-            for x in [1/(NUM_ENEMIES-score)*x*2*pi for x in list(range(0,(NUM_ENEMIES-score)))]:
-                Enemy(((SMALLER_SIDE*-0.4)*sin(x)+SCREEN_WIDTH/2, 
-                (SMALLER_SIDE*-0.4)*cos(x)+SCREEN_HEIGHT/2))
         self.go = True
         while len(self.getSpritesbyClass(InstructionText)) > 0:
             for x in self.getSpritesbyClass(InstructionText):
                 x.destroy()
-        EnemySpawn()
+        EnemySpawn(NUM_ENEMIES)
         
     def step(self):
         if self.go == True:
