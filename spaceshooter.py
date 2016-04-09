@@ -17,8 +17,8 @@ from math import sqrt, sin, cos, radians, degrees, pi, atan
 from random import randint
 from time import sleep
 
-SCREEN_WIDTH = 1200
-SCREEN_HEIGHT = 700
+SCREEN_WIDTH = 1000#1200
+SCREEN_HEIGHT = 600#700
 SCREEN_DIAG = sqrt(SCREEN_WIDTH**2+SCREEN_HEIGHT**2)
 
 if SCREEN_WIDTH >= SCREEN_HEIGHT:
@@ -384,9 +384,9 @@ class SpaceGame(App):
         ScoreControl((0,0))
         LifeControl((0,20))
         AmmoControl((0,40))
-        self.listenKeyEvent('keyup', '1', self.start)
-        self.listenKeyEvent('keyup', '2', self.start)
-        self.listenKeyEvent('keyup', '3', self.start)
+        self.listenKeyEvent('keyup', '1', self.easy)
+        self.listenKeyEvent('keyup', '2', self.medium)
+        self.listenKeyEvent('keyup', '3', self.hard)
         self.instructions = ['Instructions:', 'Left and Right Arrows to Rotate', 
         'Up Arrow to Move', 'Space to Shoot', 'Press the "1" Key to Begin']
         for x in self.instructions:
@@ -394,12 +394,30 @@ class SpaceGame(App):
             (SCREEN_WIDTH/2, SCREEN_HEIGHT/2+30*(self.instructions.index(x)-len(self.instructions)/2)))
         self.go = False
         
+    def easy(self, event):
+        self.difficulty = 1
+        self.prepare()
+        
+    def medium(self, event):
+        self.difficulty = 2
+        self.prepare()
+        
+    def hard(self, event):
+        self.difficulty = 3
+        self.prepare()
+        
+    def prepare(self):
+        for x in self.getSpritesbyClass(Enemy):
+            x.destroy()
+        NUM_ENEMIES = int((SCREEN_WIDTH*SCREEN_HEIGHT)*self.difficulty/3000000)
+        EnemySpawn(NUM_ENEMIES)
+        self.listenKeyEvent('keyup', '0', self.start)
+        
     def start(self, event):
         self.go = True
         while len(self.getSpritesbyClass(InstructionText)) > 0:
             for x in self.getSpritesbyClass(InstructionText):
                 x.destroy()
-        EnemySpawn(NUM_ENEMIES)
         
     def step(self):
         if self.go == True:
