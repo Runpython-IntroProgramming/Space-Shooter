@@ -410,6 +410,7 @@ class SpaceGame(App):
         for x in self.getSpritesbyClass(Enemy):
             x.destroy()
         NUM_ENEMIES = int((SCREEN_WIDTH*SCREEN_HEIGHT)*self.difficulty/3000000)
+        print(NUM_ENEMIES)
         EnemySpawn(NUM_ENEMIES)
         self.listenKeyEvent('keyup', '0', self.start)
         
