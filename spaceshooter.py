@@ -28,9 +28,6 @@ else:
     LARGER_SIDE = SCREEN_HEIGHT
     SMALLER_SIDE = SCREEN_WIDTH
 
-LIVES = 3
-AMMO = 5
-
 white = Color(0xffffff, 1.0)
 
 velCalcX = lambda speed, rotation: -1*speed*sin(rotation)
@@ -346,7 +343,7 @@ class Ammo(Sprite):
         
 class RespawnText(Sprite):
     
-    asset = TextAsset("Respawning...", fill=white)
+    asset = TextAsset("Respawning...", fill=white, width=SCREEN_WIDTH)
     
     def __init__(self, position):
         super().__init__(RespawnText.asset, position)
@@ -380,9 +377,6 @@ class SpaceGame(App):
         super().__init__()
         StarBack((0,0))
         Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
-        ScoreControl((0,0))
-        LifeControl((0,20))
-        AmmoControl((0,40))
         self.listenKeyEvent('keyup', '1', self.easy)
         self.listenKeyEvent('keyup', '2', self.medium)
         self.listenKeyEvent('keyup', '3', self.hard)
@@ -410,7 +404,14 @@ class SpaceGame(App):
             for x in self.getSpritesbyClass(Enemy):
                 x.destroy()
         global NUM_ENEMIES
+        global LIVES
+        global AMMO
         NUM_ENEMIES = int((SCREEN_WIDTH*SCREEN_HEIGHT)*self.difficulty/300000)
+        LIVES = 5-self.difficulty
+        AMMO = 8-self.difficulty
+        ScoreControl((0,0))
+        LifeControl((0,20))
+        AmmoControl((0,40))
         EnemySpawn(NUM_ENEMIES)
         self.listenKeyEvent('keyup', '0', self.start)
         
@@ -419,9 +420,21 @@ class SpaceGame(App):
         while len(self.getSpritesbyClass(InstructionText)) > 0:
             for x in self.getSpritesbyClass(InstructionText):
                 x.destroy()
+                
+    def classStep(self, sclass):
+        for x in self.getSpritesbyClass(sclass):
+            x.step()
         
     def step(self):
         if self.go == True:
+            self.classStep(Player)
+            self.classStep(PlayerBullet)
+            self.classStep(Enemy)
+            self.classStep(EnemyBullet)
+            self.classStep(Explosion)
+            self.classStep(PlayerExplosion)
+            self.classStep(AmmoControl)
+            '''
             for x in self.getSpritesbyClass(Player):
                 x.step()
             for x in self.getSpritesbyClass(PlayerBullet):
@@ -436,9 +449,9 @@ class SpaceGame(App):
                 x.step()
             for x in self.getSpritesbyClass(AmmoControl):
                 x.step()
+            '''
         
-myapp = SpaceGame()
-myapp.run()
+SpaceGame().run()
 
 '''
 from math import sin, cos, pi
