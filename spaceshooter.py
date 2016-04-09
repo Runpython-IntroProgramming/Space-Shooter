@@ -28,7 +28,6 @@ else:
     LARGER_SIDE = SCREEN_HEIGHT
     SMALLER_SIDE = SCREEN_WIDTH
 
-NUM_ENEMIES = 4
 LIVES = 3
 AMMO = 5
 
@@ -37,10 +36,10 @@ white = Color(0xffffff, 1.0)
 velCalcX = lambda speed, rotation: -1*speed*sin(rotation)
 velCalcY = lambda speed, rotation: -1*speed*cos(rotation)
 
-def EnemySpawn(NUM_ENEMIES):
+def EnemySpawn(NumEnemies):
     for x in SpaceGame.getSpritesbyClass(ScoreControl):
         score = x.score
-    for x in [1/(NUM_ENEMIES-score)*x*2*pi for x in list(range(0,(NUM_ENEMIES-score)))]:
+    for x in [1/(NumEnemies-score)*x*2*pi for x in list(range(0,(NumEnemies-score)))]:
         Enemy(((SMALLER_SIDE*-0.4)*sin(x)+SCREEN_WIDTH/2, 
         (SMALLER_SIDE*-0.4)*cos(x)+SCREEN_HEIGHT/2))
 
@@ -407,10 +406,11 @@ class SpaceGame(App):
         self.prepare()
         
     def prepare(self):
-        for x in self.getSpritesbyClass(Enemy):
-            x.destroy()
-        NUM_ENEMIES = int((SCREEN_WIDTH*SCREEN_HEIGHT)*self.difficulty/3000000)
-        print(NUM_ENEMIES)
+        while len(self.getSpritesbyClass(Enemy)) > 0:
+            for x in self.getSpritesbyClass(Enemy):
+                x.destroy()
+        global NUM_ENEMIES
+        NUM_ENEMIES = int((SCREEN_WIDTH*SCREEN_HEIGHT)*self.difficulty/300000)
         EnemySpawn(NUM_ENEMIES)
         self.listenKeyEvent('keyup', '0', self.start)
         
