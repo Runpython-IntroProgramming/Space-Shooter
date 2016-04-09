@@ -33,6 +33,11 @@ white = Color(0xffffff, 1.0)
 velCalcX = lambda speed, rotation: -1*speed*sin(rotation)
 velCalcY = lambda speed, rotation: -1*speed*cos(rotation)
 
+def classDestroy(sclass):
+    while len(SpaceGame.getSpritesbyClass(sclass)) > 0:
+        for x in SpaceGame.getSpritesbyClass(sclass):
+            x.destroy()
+
 def EnemySpawn(NumEnemies):
     for x in SpaceGame.getSpritesbyClass(ScoreControl):
         score = x.score
@@ -57,7 +62,6 @@ class SpaceShip(Sprite):
         
     def __init__(self, asset, position):
         super().__init__(asset, position)
-        self.rotSpd = 0.1
         self.fxcenter = self.fycenter = 0.5
         self.ShootSound = Sound(SpaceShip.SAsset)
         self.ShootSound.volume = 10
@@ -72,6 +76,7 @@ class Player(SpaceShip):
         self.speed = 5
         self.thrust = 0
         self.thrustframe = 0
+        self.rotSpd = 0.1
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.rotateRight)
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.rotateLeft)
         SpaceGame.listenKeyEvent("keydown", "up arrow", self.thrustOn)
@@ -417,9 +422,12 @@ class SpaceGame(App):
         
     def start(self, event):
         self.go = True
+        '''
         while len(self.getSpritesbyClass(InstructionText)) > 0:
             for x in self.getSpritesbyClass(InstructionText):
                 x.destroy()
+        '''
+        classDestroy(InstructionText)
                 
     def classStep(self, sclass):
         for x in self.getSpritesbyClass(sclass):
