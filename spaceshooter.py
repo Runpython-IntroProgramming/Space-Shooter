@@ -405,9 +405,13 @@ class SpaceGame(App):
         self.prepare()
         
     def prepare(self):
-        while len(self.getSpritesbyClass(Enemy)) > 0:
-            for x in self.getSpritesbyClass(Enemy):
-                x.destroy()
+        classDestroy(Enemy)
+        classDestroy(ScoreControl)
+        classDestroy(Score)
+        classDestroy(LifeControl)
+        classDestroy(Lives)
+        classDestroy(AmmoControl)
+        classDestroy(Ammo)
         global NUM_ENEMIES
         global LIVES
         global AMMO
@@ -422,11 +426,6 @@ class SpaceGame(App):
         
     def start(self, event):
         self.go = True
-        '''
-        while len(self.getSpritesbyClass(InstructionText)) > 0:
-            for x in self.getSpritesbyClass(InstructionText):
-                x.destroy()
-        '''
         classDestroy(InstructionText)
                 
     def classStep(self, sclass):
