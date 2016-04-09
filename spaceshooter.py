@@ -349,7 +349,7 @@ class Ammo(Sprite):
 class WhiteText(TextAsset):
     
     def __init__(self, text):
-        super().__init__(text, fill=white, align='center', width=SCREEN_WIDTH)
+        super().__init__(text)#, fill=white, align='center', width=SCREEN_WIDTH)
         
 class RespawnText(Sprite):
     
