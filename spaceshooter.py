@@ -346,9 +346,14 @@ class Ammo(Sprite):
     def __init__(self, asset, position):
         super().__init__(asset, position)
         
+class WhiteText(TextAsset):
+    
+    def __init__(self, text):
+        super().__init__(text, fill=white, align='center', width=SCREEN_WIDTH)
+        
 class RespawnText(Sprite):
     
-    asset = TextAsset("Respawning...", fill=white, width=SCREEN_WIDTH)
+    asset = TextAsset("Respawning...", fill=white, align='center', width=SCREEN_WIDTH)
     
     def __init__(self, position):
         super().__init__(RespawnText.asset, position)
@@ -356,7 +361,8 @@ class RespawnText(Sprite):
         
 class WinText(Sprite):
     
-    asset = TextAsset("You Win!", fill=white, align='center', width=SCREEN_WIDTH)
+    #asset = TextAsset("You Win!", fill=white, align='center', width=SCREEN_WIDTH)
+    text = 'You Win!'
     
     def __init__(self, position):
         super().__init__(WinText.asset, position)
@@ -441,22 +447,6 @@ class SpaceGame(App):
             self.classStep(Explosion)
             self.classStep(PlayerExplosion)
             self.classStep(AmmoControl)
-            '''
-            for x in self.getSpritesbyClass(Player):
-                x.step()
-            for x in self.getSpritesbyClass(PlayerBullet):
-                x.step()
-            for x in self.getSpritesbyClass(Enemy):
-                x.step()
-            for x in self.getSpritesbyClass(EnemyBullet):
-                x.step()
-            for x in self.getSpritesbyClass(Explosion):
-                x.step()
-            for x in self.getSpritesbyClass(PlayerExplosion):
-                x.step()
-            for x in self.getSpritesbyClass(AmmoControl):
-                x.step()
-            '''
         
 SpaceGame().run()
 
