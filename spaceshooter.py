@@ -135,9 +135,7 @@ class Enemy(SpaceShip):
     def __init__(self, position):
         super().__init__(Enemy.asset, position)
         self.speed = 1
-        self.rotationSet()
-        self.velx = velCalcX(self.speed, self.rotation)
-        self.vely = velCalcY(self.speed, self.rotation)
+        self.changeDirec()
         self.dist = 0
         self.frame = 1
         self.scale = 0.75
@@ -145,12 +143,9 @@ class Enemy(SpaceShip):
     def velocitySet(self):
         self.velx = velCalcX(self.speed, self.rotation)
         self.vely = velCalcY(self.speed, self.rotation)
-        
-    def rotationSet(self):
-        self.rotation = randint(0,1000)/500*pi
     
     def changeDirec(self):
-        self.rotationSet()
+        self.rotation = randint(0,1000)/500*pi
         self.velocitySet()
         self.dist = 0
         
