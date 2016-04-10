@@ -326,6 +326,9 @@ class AmmoControl(Sprite):
     def __init__(self, position):
         super().__init__(AmmoControl.asset, position)
         self.ammo = AMMO
+        self.dispAmmo()
+        
+    def dispAmmo(self):
         Ammo(TextAsset(str(self.ammo), fill=white), (65,40))
         
     def step(self):
@@ -333,7 +336,7 @@ class AmmoControl(Sprite):
             self.ammo = AMMO-len(SpaceGame.getSpritesbyClass(PlayerBullet))
             for x in SpaceGame.getSpritesbyClass(Ammo):
                 x.destroy()
-            Ammo(TextAsset(str(self.ammo), fill=white), (65,40))
+            self.dispAmmo()
             
 class Ammo(Sprite):
     
