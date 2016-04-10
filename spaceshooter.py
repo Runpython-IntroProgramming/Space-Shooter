@@ -263,13 +263,16 @@ class ScoreControl(Sprite):
     def __init__(self, position):
         super().__init__(ScoreControl.asset, position)
         self.score = 0
+        self.dispScore()
+        
+    def dispScore(self):
         Score(TextAsset(str(self.score), fill=white), (65,0))
         
     def scoreChange(self):
         for x in SpaceGame.getSpritesbyClass(Score):
             x.destroy()
         self.score += 1
-        Score(TextAsset(str(self.score), fill=white), (65,0))
+        self.dispScore()
         if self.score == NUM_ENEMIES:
             for x in SpaceGame.getSpritesbyClass(LifeControl):
                 if x.lives > 0:
@@ -289,15 +292,18 @@ class LifeControl(Sprite):
     def __init__(self, position):
         super().__init__(LifeControl.asset, position)
         self.lives = LIVES
-        Lives(TextAsset(str(self.lives), fill=white), (55,20))
+        self.dispLives()
         self.RespawnSound = Sound(LifeControl.SAsset)
         self.RespawnSound.volume = 10
+        
+    def dispLives(self):
+        Lives(TextAsset(str(self.lives), fill=white), (55,20))
         
     def loseLife(self):
         for x in SpaceGame.getSpritesbyClass(Lives):
             x.destroy()
         self.lives -= 1
-        Lives(TextAsset(str(self.lives), fill=white), (55,20))
+        self.dispLives()
         if self.lives == 0:
             LoseText((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         else:
