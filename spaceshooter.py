@@ -224,6 +224,7 @@ class EnemyBullet(Bullet):
             self.rotation = atan((x.x-self.x)/(x.y-self.y))
             if self.y < x.y:
                 self.rotation += pi
+            self.rotation += randint(-50,50)/10
             
 class Explosion(Sprite):
     
@@ -255,6 +256,7 @@ class PlayerExplosion(Explosion):
         if self.frame == 8:
             for x in SpaceGame.getSpritesbyClass(LifeControl):
                 x.respawn()
+            self.destroy()
         
 class ScoreControl(Sprite):
     
@@ -302,9 +304,7 @@ class LifeControl(Sprite):
             LoseText((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         else:
             RespawnText((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
-            while len(SpaceGame.getSpritesbyClass(EnemyBullet)):
-                for x in SpaceGame.getSpritesbyClass(EnemyBullet):
-                    x.destroy()
+            classDestroy(EnemyBullet)
                 
     def respawn(self):
         if self.lives > 0:
@@ -313,9 +313,7 @@ class LifeControl(Sprite):
                 x.destroy()
             self.RespawnSound.play()
             Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
-            while len(SpaceGame.getSpritesbyClass(Enemy)) > 0:
-                for x in SpaceGame.getSpritesbyClass(Enemy):
-                    x.destroy()
+            classDestroy(Enemy)
             EnemySpawn(NUM_ENEMIES)
         
 class Lives(Sprite):
