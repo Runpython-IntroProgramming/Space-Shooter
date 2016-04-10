@@ -224,7 +224,7 @@ class EnemyBullet(Bullet):
             self.rotation = atan((x.x-self.x)/(x.y-self.y))
             if self.y < x.y:
                 self.rotation += pi
-            self.rotation += degrees(randint(-101,100)/10)
+            self.rotation += radians(randint(-101,100)/10)
             
 class Explosion(Sprite):
     
