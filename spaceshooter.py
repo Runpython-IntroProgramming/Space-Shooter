@@ -273,9 +273,7 @@ class ScoreControl(Sprite):
         if self.score == NUM_ENEMIES:
             for x in SpaceGame.getSpritesbyClass(LifeControl):
                 if x.lives > 0:
-                    while len(SpaceGame.getSpritesbyClass(EnemyBullet)) > 0:
-                        for x in SpaceGame.getSpritesbyClass(EnemyBullet):
-                            x.destroy()
+                    classDestroy(EnemyBullet)
                     WinText((SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
         
 class Score(Sprite):
@@ -346,11 +344,6 @@ class Ammo(Sprite):
     def __init__(self, asset, position):
         super().__init__(asset, position)
         
-class WhiteText(TextAsset):
-    
-    def __init__(self, text):
-        super().__init__(text)#, fill=white, align='center', width=SCREEN_WIDTH)
-        
 class RespawnText(Sprite):
     
     asset = TextAsset("Respawning...", fill=white, align='center', width=SCREEN_WIDTH)
@@ -361,8 +354,7 @@ class RespawnText(Sprite):
         
 class WinText(Sprite):
     
-    #asset = TextAsset("You Win!", fill=white, align='center', width=SCREEN_WIDTH)
-    asset = WhiteText('You Win!')
+    asset = TextAsset("You Win!", fill=white, align='center', width=SCREEN_WIDTH)
     
     def __init__(self, position):
         super().__init__(WinText.asset, position)
@@ -392,10 +384,10 @@ class SpaceGame(App):
         self.listenKeyEvent('keyup', '2', self.medium)
         self.listenKeyEvent('keyup', '3', self.hard)
         self.instructions = ['Instructions:', 'Left and Right Arrows to Rotate', 
-        'Up Arrow to Move', 'Space to Shoot', 'Press the "1" Key to Begin']
+        'Up Arrow to Move', 'Space to Shoot', 'Press the Corresponding Number Keys to Switch Between Difficulties']
         for x in self.instructions:
             InstructionText(TextAsset(x, fill=white, align='center', width=SCREEN_WIDTH), 
-            (SCREEN_WIDTH/2, SCREEN_HEIGHT/2+30*(self.instructions.index(x)-len(self.instructions)/2)))
+            (SCREEN_WIDTH/2, SCREEN_HEIGHT/4+30*(self.instructions.index(x)-len(self.instructions)/2)))
         self.go = False
         
     def easy(self, event):
