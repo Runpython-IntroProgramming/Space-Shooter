@@ -385,18 +385,21 @@ class SpaceGame(App):
         self.listenKeyEvent('keyup', '3', self.hard)
         self.instructions = [['Instructions:', 'Left and Right Arrows to Rotate', 
         'Up Arrow to Move', 'Space to Shoot', 'Press the Corresponding Number Keys to Switch Between Difficulties', 
-        'Press "0" to Begin'], ['Easy', 'Medium', 'Hard']]
+        'Press "0" to Begin'], ['Easy', 'Medium', 'Hard'], ['"1"', '"2"', '"3"']
         self.placeInstructions()
         self.go = False
         
     def placeInstructions(self):
         for x in self.instructions[0]:
             InstructionText(TextAsset(x, fill=white, align='center', width=SCREEN_WIDTH), 
-            (SCREEN_WIDTH/2, SCREEN_HEIGHT/4+30*(self.instructions[0].index(x)-len(self.instructions[0])/2)))
+            (SCREEN_WIDTH/2, SCREEN_HEIGHT/4+30*(self.instructions[0].index(x)-(len(self.instructions[0])-1)/2)))
+        def diffInstruction(text):
+                InstructionText(TextAsset(text, fill=white, align='center', width=SCREEN_WIDTH),
+                (SCREEN_WIDTH/2+SCREEN_WIDTH/5*(self.instructions[1].index(x)-(len(self.instructions[1])-1)/2),
+                SCREEN_HEIGHT*3/4))
         for x in self.instructions[1]:
-            InstructionText(TextAsset(x, fill=white, align='center', width=SCREEN_WIDTH),
-            (SCREEN_WIDTH/2+100*(self.instructions[1].index(x)-len(self.instructions[1])/2),
-            SCREEN_HEIGHT*3/4))
+            diffInstruction(x)
+            diffInstruction(self.instructions[2][self.instructions[1].index(x)])
             
     def easy(self, event):
         self.difficulty = 1
