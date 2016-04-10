@@ -399,7 +399,7 @@ class SpaceGame(App):
                 SCREEN_HEIGHT*3/4+lower))
         for x in self.instructions[1]:
             diffInstruction(x, 0)
-            diffInstruction(self.instructions[2][self.instructions[1].index(x)], SCREEN_HEIGHT/10)
+            diffInstruction(self.instructions[2][self.instructions[1].index(x)], 30)
             
     def easy(self, event):
         self.difficulty = 1
