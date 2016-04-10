@@ -2,7 +2,8 @@
 spaceshooter.py
 Author: David Wilson
 Credit: Mr. Dennison ("Space War Source Code" and "Advanced Graphics with Classes"),
-http://brythonserver.github.io/ggame/
+http://brythonserver.github.io/ggame/, 
+http://stackoverflow.com/questions/423379/using-global-variables-in-a-function-other-than-the-one-that-created-them
 
 Assignment:
 Write and submit a program that implements the spacewar game:
@@ -10,7 +11,6 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 
 #movement
-#respawn
 
 from ggame import App, Sprite, ImageAsset, Frame, Color, TextAsset, SoundAsset, Sound
 from math import sqrt, sin, cos, radians, degrees, pi, atan
@@ -383,17 +383,21 @@ class SpaceGame(App):
         self.listenKeyEvent('keyup', '1', self.easy)
         self.listenKeyEvent('keyup', '2', self.medium)
         self.listenKeyEvent('keyup', '3', self.hard)
-        self.instructions = ['Instructions:', 'Left and Right Arrows to Rotate', 
+        self.instructions = [['Instructions:', 'Left and Right Arrows to Rotate', 
         'Up Arrow to Move', 'Space to Shoot', 'Press the Corresponding Number Keys to Switch Between Difficulties', 
-        'Press "0" to Begin']
+        'Press "0" to Begin'], ['Easy', 'Medium', 'Hard']]
         self.placeInstructions()
         self.go = False
         
     def placeInstructions(self):
-        for x in self.instructions:
+        for x in self.instructions[0]:
             InstructionText(TextAsset(x, fill=white, align='center', width=SCREEN_WIDTH), 
-            (SCREEN_WIDTH/2, SCREEN_HEIGHT/4+30*(self.instructions.index(x)-len(self.instructions)/2)))
-        
+            (SCREEN_WIDTH/2, SCREEN_HEIGHT/4+30*(self.instructions[0].index(x)-len(self.instructions[0])/2)))
+        for x in self.instructions[1]:
+            InstructionText(TextAsset(x, fill=white, align='center', width=SCREEN_WIDTH),
+            (SCREEN_WIDTH/2+100*(self.instructions[1].index(x)-len(self.instructions[1])/2),
+            SCREEN_HEIGHT*3/4))
+            
     def easy(self, event):
         self.difficulty = 1
         self.prepare()
@@ -431,6 +435,10 @@ class SpaceGame(App):
     def start(self, event):
         self.go = True
         classDestroy(InstructionText)
+        self.unlistenKeyEvent('keyup', '1', self.easy)
+        self.unlistenKeyEvent('keyup', '2', self.medium)
+        self.unlistenKeyEvent('keyup', '3', self.hard)
+        self.unlistenKeyEvent('keyup', '0', self.start)
                 
     def classStep(self, sclass):
         for x in self.getSpritesbyClass(sclass):
