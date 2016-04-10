@@ -152,7 +152,7 @@ class Enemy(SpaceShip):
         self.dist = 0
         
     def explode(self):
-            PlayerExplosion((self.x, self.y))
+            Explosion((self.x, self.y))
             for x in SpaceGame.getSpritesbyClass(ScoreControl):
                 x.scoreChange()
             self.destroy()
@@ -307,7 +307,7 @@ class LifeControl(Sprite):
                     x.destroy()
                 
     def respawn(self):
-        if len(SpaceGame.getSpritesbyClass(Player)) == 0 and self.lives > 0:
+        if self.lives > 0:
             sleep(1)
             for x in SpaceGame.getSpritesbyClass(RespawnText):
                 x.destroy()
