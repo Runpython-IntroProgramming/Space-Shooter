@@ -384,11 +384,15 @@ class SpaceGame(App):
         self.listenKeyEvent('keyup', '2', self.medium)
         self.listenKeyEvent('keyup', '3', self.hard)
         self.instructions = ['Instructions:', 'Left and Right Arrows to Rotate', 
-        'Up Arrow to Move', 'Space to Shoot', 'Press the Corresponding Number Keys to Switch Between Difficulties']
+        'Up Arrow to Move', 'Space to Shoot', 'Press the Corresponding Number Keys to Switch Between Difficulties', 
+        'Press "0" to Begin']
+        self.placeInstructions()
+        self.go = False
+        
+    def placeInstructions(self):
         for x in self.instructions:
             InstructionText(TextAsset(x, fill=white, align='center', width=SCREEN_WIDTH), 
             (SCREEN_WIDTH/2, SCREEN_HEIGHT/4+30*(self.instructions.index(x)-len(self.instructions)/2)))
-        self.go = False
         
     def easy(self, event):
         self.difficulty = 1
@@ -410,6 +414,7 @@ class SpaceGame(App):
         classDestroy(Lives)
         classDestroy(AmmoControl)
         classDestroy(Ammo)
+        classDestroy(InstructionText)
         global NUM_ENEMIES
         global LIVES
         global AMMO
@@ -420,6 +425,7 @@ class SpaceGame(App):
         LifeControl((0,20))
         AmmoControl((0,40))
         EnemySpawn(NUM_ENEMIES)
+        self.placeInstructions()
         self.listenKeyEvent('keyup', '0', self.start)
         
     def start(self, event):
