@@ -74,7 +74,6 @@ class Player(SpaceShip):
     
     def __init__(self, position):
         super().__init__(Player.asset, position)
-        self.speed = 5
         self.thrust = 0
         self.thrustframe = 0
         self.rotSpd = 0.1
@@ -83,8 +82,8 @@ class Player(SpaceShip):
         SpaceGame.listenKeyEvent("keydown", "up arrow", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "up arrow", self.thrustOff)
         SpaceGame.listenKeyEvent("keydown", "space", self.shoot)
-        self.velx = 0
-        self.vely = 0
+        self.velocity = (0,0)
+        self.magnitude = 0.25
         
     def rotateRight(self, event):
         self.rotation -= self.rotSpd
@@ -94,10 +93,8 @@ class Player(SpaceShip):
         
     def thrustOn(self, event):
         self.thrust = 1
-        self.velx = velCalcX(self.speed, self.rotation)
-        self.vely = velCalcY(self.speed, self.rotation)
-        self.x += self.velx
-        self.y += self.vely
+        self.velocity[0] += -1*self.magnitude*sin(self.rotation)
+        self.velocity[1] += -1*self.magnitude*cos(self.rotation)
         
     def thrustOff(self, event):
         self.thrust = 0
@@ -127,6 +124,8 @@ class Player(SpaceShip):
             for x in self.collidingWithSprites(EnemyBullet):
                 x.destroy()
             self.explode()
+        self.x += self.velocity[0]
+        self.y += self.velocity[1]
 
 class Enemy(SpaceShip):
     
