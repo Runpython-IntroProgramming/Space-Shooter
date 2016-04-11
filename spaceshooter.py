@@ -112,6 +112,8 @@ class Player(SpaceShip):
             self.ShootSound.play()
         
     def step(self):
+        self.x += self.velocity[0]
+        self.y += self.velocity[1]
         if self.thrust == 1:
             if self.thrustframe == 3:
                 self.thrustframe = 1
@@ -124,8 +126,6 @@ class Player(SpaceShip):
             for x in self.collidingWithSprites(EnemyBullet):
                 x.destroy()
             self.explode()
-        self.x += self.velocity[0]
-        self.y += self.velocity[1]
 
 class Enemy(SpaceShip):
     
@@ -216,7 +216,7 @@ class EnemyBullet(Bullet):
     
     def __init__(self, position):
         super().__init__(EnemyBullet.asset, position)
-        self.speed = 2
+        self.speed = 1
         self.scale = 2
         for x in SpaceGame.getSpritesbyClass(Player):
             self.rotation = atan((x.x-self.x)/(x.y-self.y))
