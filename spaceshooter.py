@@ -10,8 +10,6 @@ Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
 """
 
-#http://stackoverflow.com/questions/7366436/importerror-no-module-named-error-doesnt-seem-to-be-related-to-my-code
-
 from ggame import App, Sprite, ImageAsset, Frame, Color, TextAsset, SoundAsset, Sound
 from math import sqrt, sin, cos, radians, degrees, pi, atan
 from random import randint
