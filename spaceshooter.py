@@ -385,14 +385,14 @@ class SpaceGame(App):
     def __init__(self):
         super().__init__()
         StarBack((0,0))
-        Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
+        #Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         self.listenKeyEvent('keyup', '1', self.easy)
         self.listenKeyEvent('keyup', '2', self.medium)
         self.listenKeyEvent('keyup', '3', self.hard)
         self.instructions = [['Instructions:', 'Left and Right Arrows to Rotate', 
         'Up Arrow to Apply Thrust', 'Space to Shoot', 
-        'Press the Corresponding Number Keys to Switch Between Difficulties', 
         'Avoid Enemy Spaceships and Bullets', 'Destroy All Enemies to Win', 
+        'Press the Corresponding Number Keys to Switch Between Difficulties',
         'Once You Select a Difficulty, Press the "0" Number Key to Begin'], 
         ['Easy', 'Medium', 'Hard'], ['"1"', '"2"', '"3"']]
         self.placeInstructions()
@@ -409,6 +409,7 @@ class SpaceGame(App):
         for x in self.instructions[1]:
             diffInstruction(x, 0)
             diffInstruction(self.instructions[2][self.instructions[1].index(x)], 30)
+        InstructionText(Player.asset, (SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
             
     def easy(self, event):
         self.difficulty = 1
@@ -445,12 +446,13 @@ class SpaceGame(App):
         self.listenKeyEvent('keyup', '0', self.start)
         
     def start(self, event):
-        self.go = True
         classDestroy(InstructionText)
         self.unlistenKeyEvent('keyup', '1', self.easy)
         self.unlistenKeyEvent('keyup', '2', self.medium)
         self.unlistenKeyEvent('keyup', '3', self.hard)
         self.unlistenKeyEvent('keyup', '0', self.start)
+        self.go = True
+        Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
                 
     def classStep(self, sclass):
         for x in self.getSpritesbyClass(sclass):
