@@ -125,7 +125,7 @@ class Player(SpaceShip):
             for x in self.collidingWithSprites(EnemyBullet):
                 x.destroy()
             self.explode()
-        if self.x < 0 or self.x > SCREEN_WIDTH or self.y < 0 or self.y > SCREEN_HEIGHT:
+        if self.x < 0 or self.x > SCREEN_WIDTH or self.y < 0 or self.y > SCREEN_HEIGHT and len(SpaceGame.getSpritesbyClass(WinText)) == 0:
             self.explode()
 
 class Enemy(SpaceShip):
