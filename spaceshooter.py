@@ -1,9 +1,30 @@
-"""
-spaceshooter.py
-Author: <your name here>
-Credit: <list sources used, if any>
+from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 
-Assignment:
-Write and submit a program that implements the spacewar game:
-https://github.com/HHS-IntroProgramming/Spacewar
-"""
+
+class Stars(Sprite):
+
+    asset = ImageAsset("images/starfield.jpg")
+    width = 1000
+    height = 600
+
+    def __init__(self, position):
+        super().__init__(Stars.asset, position)
+        
+class Sun(Sprite):
+    
+    asset = ImageAsset("images/sun.png")
+    
+    def __init__(self, position):
+        super().__init__(Sun.asset, position)
+        self.fxcenter = self.fycenter = 0.5
+        
+
+class SpaceGame(App):
+    
+    def __init__(self):
+        super().__init__()
+        Stars((0,0))
+        Sun((256,256))
+    
+SpaceGame().run()
+
