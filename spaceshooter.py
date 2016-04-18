@@ -17,8 +17,8 @@ from math import sqrt, sin, cos, radians, degrees, pi, atan
 from random import randint
 from time import sleep
 
-SCREEN_WIDTH = 1200
-SCREEN_HEIGHT = 700
+SCREEN_WIDTH = 1000#1200
+SCREEN_HEIGHT = 600#700
 SCREEN_DIAG = sqrt(SCREEN_WIDTH**2+SCREEN_HEIGHT**2)
 
 if SCREEN_WIDTH >= SCREEN_HEIGHT:
@@ -400,6 +400,7 @@ class SpaceGame(App):
         self.go = False
         
     def placeInstructions(self):
+        InstructionText(Player.asset, (SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         for x in self.instructions[0]:
             InstructionText(TextAsset(x, fill=white, align='center', width=SCREEN_WIDTH), 
             (SCREEN_WIDTH/2, SCREEN_HEIGHT/4+30*(self.instructions[0].index(x)-(len(self.instructions[0])-1)/2)))
@@ -410,7 +411,6 @@ class SpaceGame(App):
         for x in self.instructions[1]:
             diffInstruction(x, 0)
             diffInstruction(self.instructions[2][self.instructions[1].index(x)], 30)
-        InstructionText(Player.asset, (SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
             
     def easy(self, event):
         self.difficulty = 1
