@@ -103,7 +103,6 @@ class Player(SpaceShip):
             x.loseLife()
         PlayerExplosion((self.x, self.y))
         self.destroy()
-        return
     
     def shoot(self, event):
         if len(SpaceGame.getSpritesbyClass(PlayerBullet)) < AMMO:
@@ -125,8 +124,10 @@ class Player(SpaceShip):
             for x in self.collidingWithSprites(EnemyBullet):
                 x.destroy()
             self.explode()
+            return
         if self.x < 0 or self.x > SCREEN_WIDTH or self.y < 0 or self.y > SCREEN_HEIGHT and len(SpaceGame.getSpritesbyClass(WinText)) == 0:
             self.explode()
+            return
 
 class Enemy(SpaceShip):
     
