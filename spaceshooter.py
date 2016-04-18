@@ -391,8 +391,8 @@ class SpaceGame(App):
         self.listenKeyEvent('keyup', '2', self.medium)
         self.listenKeyEvent('keyup', '3', self.hard)
         self.instructions = [['Instructions:', 'Left and Right Arrows to Rotate', 
-        'Up Arrow to Apply Thrust', 'Space to Shoot', 
-        'Avoid Enemy Spaceships and Bullets', 'Destroy All Enemies to Win', 
+        'Up Arrow to Apply Thrust', 'Space to Shoot', 'Avoid Enemy Spaceships and Bullets', 
+        'Do not Fly off the Screen', 'Destroy All Enemies to Win', 
         'Press the Corresponding Number Keys to Switch Between Difficulties',
         'Once You Select a Difficulty, Press the "0" Number Key to Begin'], 
         ['Easy', 'Medium', 'Hard'], ['"1"', '"2"', '"3"']]
