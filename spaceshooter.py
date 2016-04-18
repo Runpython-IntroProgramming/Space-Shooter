@@ -17,8 +17,8 @@ from math import sqrt, sin, cos, radians, degrees, pi, atan
 from random import randint
 from time import sleep
 
-SCREEN_WIDTH = 1000#1200
-SCREEN_HEIGHT = 600#700
+SCREEN_WIDTH = 1200
+SCREEN_HEIGHT = 700
 SCREEN_DIAG = sqrt(SCREEN_WIDTH**2+SCREEN_HEIGHT**2)
 
 if SCREEN_WIDTH >= SCREEN_HEIGHT:
@@ -101,7 +101,6 @@ class Player(SpaceShip):
     def explode(self):
         for x in SpaceGame.getSpritesbyClass(LifeControl):
             x.loseLife()
-        PlayerExplosion((self.x, self.y))
         self.destroy()
         return
     
@@ -124,6 +123,9 @@ class Player(SpaceShip):
         if len(self.collidingWithSprites(EnemyBullet)) > 0:
             for x in self.collidingWithSprites(EnemyBullet):
                 x.destroy()
+            PlayerExplosion((self.x, self.y))
+            self.explode()
+        if self.x < 0 or self.x > SCREEN_WIDTH or self.y < 0 or self.y > SCREEN_HEIGHT:
             self.explode()
 
 class Enemy(SpaceShip):
