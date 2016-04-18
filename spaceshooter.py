@@ -385,7 +385,6 @@ class SpaceGame(App):
     def __init__(self):
         super().__init__()
         StarBack((0,0))
-        #Player((SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
         self.listenKeyEvent('keyup', '1', self.easy)
         self.listenKeyEvent('keyup', '2', self.medium)
         self.listenKeyEvent('keyup', '3', self.hard)
