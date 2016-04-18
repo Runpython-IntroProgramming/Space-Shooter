@@ -125,9 +125,10 @@ class Player(SpaceShip):
                 x.destroy()
             self.explode()
             return
-        if self.x < 0 or self.x > SCREEN_WIDTH or self.y < 0 or self.y > SCREEN_HEIGHT and len(SpaceGame.getSpritesbyClass(WinText)) == 0:
-            self.explode()
-            return
+        if self.x < 0 or self.x > SCREEN_WIDTH or self.y < 0 or self.y > SCREEN_HEIGHT:
+            if len(SpaceGame.getSpritesbyClass(WinText)) == 0:
+                self.explode()
+                return
 
 class Enemy(SpaceShip):
     
