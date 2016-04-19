@@ -96,7 +96,7 @@ class Bullet(GravitySprite):
         self.circularCollisionModel()
         self.pew = Sound(Bullet.pewasset)
         self.pew.volume = 10
-   def shoot(self, position, velocity, time):
+    def shoot(self, position, velocity, time):
         self.position = position
         self.vx = velocity[0]
         self.vy = velocity[1]
