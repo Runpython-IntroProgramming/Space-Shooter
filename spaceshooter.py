@@ -420,4 +420,4 @@ app = Spacewar(0,0)
 app.run()
                 
                 
-                self.state = 'gameover'
+self.state = 'gameover'
