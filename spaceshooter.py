@@ -7,11 +7,24 @@ Assignment:
 Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
 """
-from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
+from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame, SoundAsset
 import math
 
 SCREEN_WIDTH = 1250
 SCREEN_HEIGHT = 600
+
+class Sun(Sprite):
+    
+    asset = ImageAsset("images/sun.png")
+    width = 80
+    height = 76
+    
+    def __init__(self, position):
+        super().__init__(Sun.asset, position)
+        self.mass = 30*1000
+        self.fxcenter = 0.5
+        self.fycenter = 0.5
+        self.circularCollisionModel()
 
 class SpaceShip(Sprite):
   
@@ -55,6 +68,24 @@ class SpaceShip(Sprite):
             self.velocity = 0
 
 
+class ExplosionBig(Sprite):
+    
+    asset = ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
+    boomasset = SoundAsset("sounds/explosion2.mp3")
+    
+    def __init__(self, position):
+        super().__init__(ExplosionBig.asset, position)
+        self.image = 0
+        self.center = (0.5, 0.5)
+        self.boom = Sound(ExplosionBig.boomasset)
+        self.boom.play()
+        
+    def step(self):
+        self.setImage(self.image//2)  # slow it down
+        self.image = self.image + 1
+        if self.image == 50:
+            self.destroy()
+
 class SpaceGame(App):
  
     def __init__(self, width, height):
@@ -69,6 +100,10 @@ class SpaceGame(App):
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
+    
+    def step(self):
+        for sun in self.getSpritesbyClass(Sun):
+            sun.step()
 
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
