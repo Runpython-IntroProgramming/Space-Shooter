@@ -24,6 +24,8 @@ class SpaceShip(Sprite):
         self.direction = 0
         self.rotation = 0
         
+        self.registerKeys(["a", "d", "w"])
+        
     def step(self):
         self.x += self.velocity
         self.y += self.velocity
