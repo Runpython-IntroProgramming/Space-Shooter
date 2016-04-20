@@ -45,14 +45,14 @@ class SpaceShip(Sprite):
         elif command == "right":
             self.vr = -0.1
         elif command == "forward":
-            self.velocity = 5
+            self.velocity = 7
 
     def controlup(self, event):
         command = self.keymap[event.key]
         if command in ["left", "right"]:
             self.vr = 0
-        # elif command == "forward":
-            # self.velocity = 0
+        elif command == "forward":
+            self.velocity = 0
 
 
 class SpaceGame(App):
