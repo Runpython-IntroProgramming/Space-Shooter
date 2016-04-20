@@ -19,9 +19,9 @@ class SpaceShip(Sprite):
 
     def __init__(self, position):
         super().__init__(SpaceShip.asset, position)
-        self.vx = 1
-        self.vy = 1
-        self.vr = 0.01
+        self.velocity = 0
+        self.direction = 0
+        self.vr = 0
         
     def step(self):
         self.x += self.vx
@@ -37,22 +37,18 @@ class SpaceShip(Sprite):
     def controldown(self, event):
         command = self.keymap[event.key]
         if command == "left":
-            self.rrate = Ship.R
+            self.rotation = -0.1
         elif command == "right":
-            self.rrate = -Ship.R
+            self.rotation = 0.1
         elif command == "forward":
-            self.thrust = 40.0
-            self.imagex = 1 # start the animated rockets
-            self.setImage(self.imagex)
+            self.velocity = 5
 
     def controlup(self, event):
         command = self.keymap[event.key]
         if command in ["left", "right"]:
-            self.rrate = 0.0
+            self.rotation = 0
         elif command == "forward":
-            self.thrust = 0.0
-            self.imagex = 0 # stop the animated rockets
-            self.setImage(self.imagex)
+            self.velocity = 0
 
 
 class SpaceGame(App):
