@@ -35,8 +35,7 @@ class SpaceGame(App):
         super().__init__(width, height)
         black = Color(0, 1)
         noline = LineStyle(0, black)
-        asset = ImageAsset("Space-Shooter/images/starfield.jpg" 
-        #bg_asset = RectangleAsset(SCREEN_WIDTH, SCREEN_HEIGHT, noline, black)
+        bg_asset = ImageAsset("images/starfield.jpg")
         bg = Sprite(bg_asset, (0,0))
         SpaceShip((100,100))
         SpaceShip((150,150))
