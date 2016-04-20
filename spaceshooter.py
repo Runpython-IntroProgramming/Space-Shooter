@@ -18,15 +18,16 @@ class SpaceShip(Sprite):
         Frame(227,0,292-227,125), 4, 'vertical')
 
     def __init__(self, position):
+        # rotation is rate of change for direction
         super().__init__(SpaceShip.asset, position)
         self.velocity = 0
         self.direction = 0
-        self.vr = 0
+        self.rotation = 0
         
     def step(self):
-        self.x += self.vx
-        self.y += self.vy
-        self.rotation += self.vr
+        self.x += self.velocity
+        self.y += self.velocity
+        self.direction += self.rotation
         
     def registerKeys(self, keys):
         commands = ["left", "right", "forward"]
