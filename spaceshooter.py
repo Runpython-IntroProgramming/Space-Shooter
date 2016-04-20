@@ -41,9 +41,9 @@ class SpaceShip(Sprite):
     def controldown(self, event):
         command = self.keymap[event.key]
         if command == "left":
-            self.vr = -0.1
-        elif command == "right":
             self.vr = 0.1
+        elif command == "right":
+            self.vr = -0.1
         elif command == "forward":
             self.velocity = 5
 
