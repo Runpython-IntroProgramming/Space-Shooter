@@ -27,6 +27,32 @@ class SpaceShip(Sprite):
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
+        
+    def registerKeys(self, keys):
+        commands = ["left", "right", "forward"]
+        self.keymap = dict(zip(keys, commands))
+        [self.app.listenKeyEvent("keydown", k, self.controldown) for k in keys]
+        [self.app.listenKeyEvent("keyup", k, self.controlup) for k in keys]
+
+    def controldown(self, event):
+        command = self.keymap[event.key]
+        if command == "left":
+            self.rrate = Ship.R
+        elif command == "right":
+            self.rrate = -Ship.R
+        elif command == "forward":
+            self.thrust = 40.0
+            self.imagex = 1 # start the animated rockets
+            self.setImage(self.imagex)
+
+    def controlup(self, event):
+        command = self.keymap[event.key]
+        if command in ["left", "right"]:
+            self.rrate = 0.0
+        elif command == "forward":
+            self.thrust = 0.0
+            self.imagex = 0 # stop the animated rockets
+            self.setImage(self.imagex)
 
 
 class SpaceGame(App):
@@ -38,8 +64,7 @@ class SpaceGame(App):
         bg_asset = ImageAsset("images/starfield.jpg")
         bg = Sprite(bg_asset, (0,0))
         SpaceShip((100,100))
-        SpaceShip((150,150))
-        SpaceShip((200,50))
+       
         
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
