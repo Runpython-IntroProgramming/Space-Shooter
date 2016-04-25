@@ -36,7 +36,8 @@ class Ship(Sprite):
         self.x += -5*sin(self.rotation)
         self.y += -5*cos(self.rotation)
     def moveDown(self, event):
-        self.rotation += 0.1
+        self.x += 5*sin(self.rotation)
+        self.y += 5*cos(self.rotation)
         
     
 class SpaceGame(App):
