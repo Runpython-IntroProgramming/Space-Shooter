@@ -23,6 +23,13 @@ class Ship(Sprite):
         Frame(227,0,292-227,125), 4, 'vertical')
     def __init__(self, position):
         super().__init__(Ship.asset, position)
+        SpaceGame.listenKeyEvent('keydown', 'right arrow', self.rotateRight)
+        SpaceGame.listenKeyEvent('keydown', 'left arrow', self.rotateLeft)
+        
+    def rotateRight(self, event):
+        self.rotation -= 1
+    def rotateLeft(self, event):
+        self.rotation += 1
     
 class SpaceGame(App):
     
