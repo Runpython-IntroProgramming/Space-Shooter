@@ -44,6 +44,9 @@ class Ship(Sprite):
         
 class Bullet(Sprite):
      asset = ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
+     def __init__(self, position):
+         super().__init__(Bullet.asset, position)
+         
      
     
 class SpaceGame(App):
