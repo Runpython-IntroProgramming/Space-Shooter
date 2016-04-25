@@ -28,6 +28,7 @@ class Ship(Sprite):
         SpaceGame.listenKeyEvent('keydown', 'left arrow', self.rotateLeft)
         SpaceGame.listenKeyEvent('keydown', 'up arrow', self.moveUp)
         SpaceGame.listenKeyEvent('keydown', 'down arrow', self.moveDown)
+        SpaceGame.listenKeyEvent('keydown', 'space', self.fire)
     def rotateRight(self, event):
         self.rotation -= 0.1
     def rotateLeft(self, event):
@@ -38,7 +39,12 @@ class Ship(Sprite):
     def moveDown(self, event):
         self.x += 5*sin(self.rotation)
         self.y += 5*cos(self.rotation)
+    def fire(self, event):
+        Bullet((self.x,self.y))
         
+class Bullet(Sprite):
+     asset = ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
+     
     
 class SpaceGame(App):
     
@@ -47,6 +53,8 @@ class SpaceGame(App):
         Stars((0,0))
         Sun((256,256))
         Ship((100,100))
+        
+
         
 
         
