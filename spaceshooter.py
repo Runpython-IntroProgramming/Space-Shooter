@@ -60,7 +60,8 @@ class SpaceShip(Sprite):
         elif command == "forward":
             self.velocity = 7
         while command == "left" or "right" or "forward":
-            asset = 
+            asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
+                Frame(0,0,86,125), 4, 'vertical')
     
 
     def controlup(self, event):
