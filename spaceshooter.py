@@ -94,6 +94,7 @@ class SpaceGame(App):
         noline = LineStyle(0, black)
         bg_asset = ImageAsset("images/starfield.jpg")
         bg = Sprite(bg_asset, (0,0))
+        bg.scale = 2.75
         SpaceShip((100,100), self)
         Sun((100,100))
        
@@ -102,9 +103,7 @@ class SpaceGame(App):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
     
-    #def step(self):
-        #for sun in self.getSpritesbyClass(Sun):
-            #sun.step()
+ 
 
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
