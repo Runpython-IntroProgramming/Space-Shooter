@@ -95,6 +95,7 @@ class SpaceGame(App):
         bg_asset = ImageAsset("images/starfield.jpg")
         bg = Sprite(bg_asset, (0,0))
         SpaceShip((100,100), self)
+        Sun((100,100))
        
         
     def step(self):
