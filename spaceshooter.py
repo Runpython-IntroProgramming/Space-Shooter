@@ -59,6 +59,9 @@ class SpaceShip(Sprite):
             self.vr = -0.1
         elif command == "forward":
             self.velocity = 7
+        while command == "left" or "right" or "forward":
+            asset = 
+    
 
     def controlup(self, event):
         command = self.keymap[event.key]
