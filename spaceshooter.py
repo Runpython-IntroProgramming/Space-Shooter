@@ -58,6 +58,7 @@ class SpaceShip(Sprite):
         elif command == "right":
             self.vr = -0.1
         elif command == "forward":
+            self.setImage(1)
             self.velocity = 7
     
 
@@ -66,6 +67,7 @@ class SpaceShip(Sprite):
         if command in ["left", "right"]:
             self.vr = 0
         elif command == "forward":
+            self.setImage(0)
             self.velocity = 0
 
 
