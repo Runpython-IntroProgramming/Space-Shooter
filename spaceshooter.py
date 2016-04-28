@@ -1,7 +1,7 @@
 """
 spaceshooter.py
 Author: Nils Kingston
-Credit: <list sources used, if any>
+Credit: Ezekiel's knowledge, original code
 
 Assignment:
 Write and submit a program that implements the spacewar game:
