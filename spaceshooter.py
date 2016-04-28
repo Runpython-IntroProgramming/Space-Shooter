@@ -79,14 +79,11 @@ class SpaceShip(Sprite):
 class ExplosionBig(Sprite):
     
     asset = ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
-    boomasset = SoundAsset("sounds/explosion2.mp3")
     
     def __init__(self, position):
         super().__init__(ExplosionBig.asset, position)
         self.image = 0
         self.center = (0.5, 0.5)
-        self.boom = Sound(ExplosionBig.boomasset)
-        self.boom.play()
         
     def step(self):
         self.setImage(self.image//2)  # slow it down
@@ -105,7 +102,6 @@ class SpaceGame(App):
         bg.scale = 2.75
         SpaceShip((100,100), self)
         Sun((600,260))
-       
         
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
