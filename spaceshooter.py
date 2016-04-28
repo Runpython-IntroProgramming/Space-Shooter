@@ -101,7 +101,7 @@ class SpaceGame(App):
         bg = Sprite(bg_asset, (0,0))
         bg.scale = 2.75
         SpaceShip((100,100), self)
-        Sun((600,260))
+        Sun((550,260))
         
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
