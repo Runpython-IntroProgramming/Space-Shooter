@@ -44,6 +44,10 @@ class SpaceShip(Sprite):
         self.y -= math.cos(self.rotation) * self.velocity
         self.x -= math.sin(self.rotation) * self.velocity
         self.rotation += self.vr
+        collides = self.collidingWithSprites(Sun)
+        if len(collides):
+            self.visible = False
+
         
     def registerKeys(self, keys):
         commands = ["left", "right", "forward"]
