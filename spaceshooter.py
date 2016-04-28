@@ -46,7 +46,8 @@ class SpaceShip(Sprite):
         self.rotation += self.vr
         collides = self.collidingWithSprites(Sun)
         if len(collides):
-            self.visible = False
+            ExplosionBig((self.x, self.y))
+            self.destroy();
 
         
     def registerKeys(self, keys):
