@@ -47,7 +47,7 @@ class SpaceShip(Sprite):
         collides = self.collidingWithSprites(Sun)
         if len(collides):
             ExplosionBig((self.x, self.y))
-            self.destroy();
+            self.destroy()
 
         
     def registerKeys(self, keys):
