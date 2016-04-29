@@ -28,7 +28,11 @@ class Ship(Sprite):
         SpaceGame.listenKeyEvent('keydown', 'left arrow', self.rotateLeft)
         SpaceGame.listenKeyEvent('keydown', 'up arrow', self.moveUp)
         SpaceGame.listenKeyEvent('keydown', 'down arrow', self.moveDown)
+        SpaceGame.listenKeyEvent('keyup', 'up arrow', self.thrustoff)
+        SpaceGame.listenKeyEvent('keyup', 'down arrow', self.thrustoff)
         SpaceGame.listenKeyEvent('keydown', 'space', self.fire)
+        self.thrust = 0
+        self.thrustframe = 0
     def rotateRight(self, event):
         self.rotation -= 0.1
     def rotateLeft(self, event):
@@ -36,9 +40,13 @@ class Ship(Sprite):
     def moveUp(self, event):
         self.x += -5*sin(self.rotation)
         self.y += -5*cos(self.rotation)
+        self.thrust = 1
     def moveDown(self, event):
         self.x += 5*sin(self.rotation)
         self.y += 5*cos(self.rotation)
+        self.thrust = 1
+    def thrustoff(self, event):
+        self.thrust = 0
     def fire(self, event):
         Bullet((self.x,self.y))
         
