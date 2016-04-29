@@ -45,6 +45,14 @@ class Ship(Sprite):
     def step(self):
         if len(self.collidingWithSprites(Sun)) > 0:
             self.destroy()
+        if self.thrust == 1:
+            self.setImage(self.thrustframe)
+            self.thrustframe += 1
+            if self.thrustframe == 4:
+                self.thrustframe = 1
+        else:
+            self.setImage(0)
+
         
 class Bullet(Sprite):
      asset = ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
