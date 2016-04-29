@@ -42,6 +42,10 @@ class Ship(Sprite):
     def fire(self, event):
         Bullet((self.x,self.y))
         
+    def step(self):
+        if len(self.collidingWithSprites(Sun)) > 0:
+            self.destroy()
+        
 class Bullet(Sprite):
      asset = ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
      def __init__(self, position):
@@ -57,7 +61,9 @@ class SpaceGame(App):
         Sun((256,256))
         Ship((100,100))
         
-
+    def step(self):
+        for x in self.getSpritesbyClass(Ship):
+            x.step()
         
 
         
