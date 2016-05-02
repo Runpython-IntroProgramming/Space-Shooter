@@ -164,8 +164,8 @@ class HealthBar:
 
 class Ship(GravitySprite):
 
-    R = 2.0
-    bullets = 6
+    R = 2.0  #This is the speed at which the ship spins
+    bullets = 6  #this is how many bullets the ship can shoot before reloading
     healthcount = 6
     reappearasset = SoundAsset("sounds/reappear.mp3")
     
@@ -196,7 +196,7 @@ class Ship(GravitySprite):
         [self.app.listenKeyEvent("keyup", k, self.controlup) for k in keys]
 
     def shootvector(self):
-        vel = 150
+        vel = 150  # this is the velocity of the bullets
         xv = vel*(-math.sin(self.rotation))
         yv = vel*(-math.cos(self.rotation))
         return xv + self.vx, yv + self.vy
@@ -210,13 +210,13 @@ class Ship(GravitySprite):
             elif command == "right":
                 self.rrate = -Ship.R
             elif command == "forward":
-                self.thrust = 40.0
+                self.thrust = 40.0   #this is the ship thrust
                 self.imagex = 1 # start the animated rockets
                 self.setImage(self.imagex)
             elif command == "fire":
                 for bullet in self.bullets:
                     if bullet.time == 0:
-                        bullet.shoot(self.position, self.shootvector(), 10)
+                        bullet.shoot(self.position, self.shootvector(), 1)  #ten is the number of seconds that a bullet lasts before self destructing and reappearing able to shoot
                         break
                         
             
