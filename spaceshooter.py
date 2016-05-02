@@ -65,7 +65,7 @@ class SpaceShip(Sprite):
             self.vr = -0.1
         elif command == "forward":
             self.setImage(1)
-            self.velocity = 7
+            self.velocity = 10
     
 
     def controlup(self, event):
@@ -74,7 +74,7 @@ class SpaceShip(Sprite):
             self.vr = 0
         elif command == "forward":
             self.setImage(0)
-            self.velocity = 0
+            self.velocity = 5
 
 
 class ExplosionBig(Sprite):
