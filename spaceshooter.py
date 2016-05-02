@@ -24,10 +24,9 @@ else:
     LARGER_SIDE = SCREEN_HEIGHT
     SMALLER_SIDE = SCREEN_WIDTH
     
-white = Color (0x#ffffff, 1.0) 
+white = Color (0xffffff, 1.0) 
 
 velocityOfX = velocity, rotation: -1*speed*sin(rotation)
 velocityOfY = velocity, rotation: -1*speed*cos(rotation)
 
-def RektClass(sclass):
-    whi
+
