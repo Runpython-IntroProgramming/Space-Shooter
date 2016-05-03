@@ -164,8 +164,8 @@ class HealthBar:
 
 class Ship(GravitySprite):
 
-    R = 2.0  #This is the speed at which the ship spins
-    bullets = 6  #this is how many bullets the ship can shoot before reloading
+    R = int(input("What speed do you want the ship to turn? (2.0 is standard)"))  #This is the speed at which the ship spins
+    bullets = int(input("How many bullets can you shoot before relodaing?"))  #this is how many bullets the ship can shoot before reloading
     healthcount = 6
     reappearasset = SoundAsset("sounds/reappear.mp3")
     
@@ -216,7 +216,7 @@ class Ship(GravitySprite):
             elif command == "fire":
                 for bullet in self.bullets:
                     if bullet.time == 0:
-                        bullet.shoot(self.position, self.shootvector(), 1)  #ten is the number of seconds that a bullet lasts before self destructing and reappearing able to shoot
+                        bullet.shoot(self.position, self.shootvector(), 10)  #ten is the number of seconds that a bullet lasts before self destructing and reappearing able to shoot
                         break
                         
             
