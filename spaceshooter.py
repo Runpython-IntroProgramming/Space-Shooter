@@ -26,7 +26,17 @@ else:
     
 white = Color (0xffffff, 1.0) 
 
-velocityOfX = velocity, rotation: -1*speed*sin(rotation)
-velocityOfY = velocity, rotation: -1*speed*cos(rotation)
+velocityOfX = lambda rotation, speed: -1*speed*sin(rotation)
+velocityOfY = lambda rotation, speed: -1*speed*cos(rotation)
+
+def Destroy(Dclass):
+    while len(SpaceGame.getSpritesbyClass(Dclass)) > 0:
+        for foo in SpaceGame.getSpritesbyClass(Dclass):
+            foo.destroy()
+def Opponent(EnemyCount):
+    for foo in SpaceGame.getSpritesbyClass(ScoreMain):
+        score = foo.score
+    for bar in [1/(EnemyCount-score)*bar*2*pi for foo in list(range(0,(EmenyCount-score)))]:
+        Enemy(((SMALLER_SIDE*-0.4)
 
 
