@@ -13,6 +13,8 @@ from ggame import SoundAsset, Sound, TextAsset, Color
 import math
 from time import time
 
+shipThrust = int(input("How poweful do you want your thrust to be? (40 is standard)"))
+
 class Stars(Sprite):
 
     asset = ImageAsset("images/starfield.jpg")
@@ -53,7 +55,7 @@ class Vector:
 
 class GravitySprite(Sprite):
     
-    G = 50.0
+    G = int(input("How strong should gravity be? (50 is standard)"))
 
     def __init__(self, asset, position, velocity, sun):
         super().__init__(asset, position)
@@ -166,7 +168,7 @@ class Ship(GravitySprite):
 
     R = int(input("What speed do you want the ship to turn? (2.0 is standard)"))  #This is the speed at which the ship spins
     bullets = int(input("How many bullets can you shoot before relodaing?"))  #this is how many bullets the ship can shoot before reloading
-    healthcount = 6
+    healthcount = int(input("How many lives should each player have?"))
     reappearasset = SoundAsset("sounds/reappear.mp3")
     
     def __init__(self, asset, app, position, velocity, sun):
@@ -200,7 +202,6 @@ class Ship(GravitySprite):
         xv = vel*(-math.sin(self.rotation))
         yv = vel*(-math.cos(self.rotation))
         return xv + self.vx, yv + self.vy
-        
 
     def controldown(self, event):
         if self.visible:
@@ -210,7 +211,7 @@ class Ship(GravitySprite):
             elif command == "right":
                 self.rrate = -Ship.R
             elif command == "forward":
-                self.thrust = 40.0   #this is the ship thrust
+                self.thrust = shipThrust   #this is the ship thrust
                 self.imagex = 1 # start the animated rockets
                 self.setImage(self.imagex)
             elif command == "fire":
