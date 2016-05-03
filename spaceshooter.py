@@ -50,6 +50,31 @@ class SpaceShip(Sprite):
             self.setImage(self.thrustframe)
             self.thrustframe += 1
             self.vx += 0.5*math.cos((self.rotation+math.pi/2))
+            self.vy += 0.5*math.sin((self.rotation-math.pi/2))
+            if self.thrustframe == 4:
+                self.thrustframe=1
+            else:
+                self.setImage(0)
+        if self.vr==.1:
+            self.rotation=self.rotation + 0.0001
+        if self.vr == -0.1:
+            self.rotation = self.rotation -0.0001
+            
+        col=self.collidingWithSprites(Sun)
+        if col:
+            self.explode(self)
+            
+    def rotationOnLeft(self, event):
+        self.vr=-0.1
+    def rotationOnRight(self, event):
+        self.vr=0.1
+    def rotationOff(self, event):
+        self.vr=0
+        
+    def thrustOn(self, event):
+        self.thrust=1
+    def thrustOff(self, event):
+        
 
 #HWWWWW:
 #    Find out who walter Payton was
