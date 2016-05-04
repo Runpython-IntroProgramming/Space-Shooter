@@ -170,6 +170,7 @@ class Ship(GravitySprite):
     bullets = int(input("How many bullets can you shoot before relodaing?"))  #this is how many bullets the ship can shoot before reloading
     healthcount = int(input("How many lives should each player have?"))
     reappearasset = SoundAsset("sounds/reappear.mp3")
+    hitCount = 0
     
     def __init__(self, asset, app, position, velocity, sun):
         self.bullets = []
@@ -245,6 +246,8 @@ class Ship(GravitySprite):
             super().step(T, dT)
             self.rotation = self.rotation + self.rrate * dT
             if self.collidingWith(self.sun):
+                hitcount = hitCount + 1
+            if hitcount >= 3:
                 self.explode()
             if self.thrust != 0.0:
                 self.imagex = self.imagex + 1    # animate the rockets
@@ -254,7 +257,6 @@ class Ship(GravitySprite):
             if (self.x < -100 or self.x > self.app.width + 100 or
                 self.y < -100 or self.y > self.app.height + 100):
                 self.explode()
-        
 
     def explode(self):
         self.visible = False
