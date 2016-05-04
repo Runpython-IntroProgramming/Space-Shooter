@@ -10,7 +10,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 #Imports
 from ggame import math, App, Sprite, ImageAsset, Frame
 from ggame import SoundAsset, Sound, TextAsset, Color
-import math
+from math import Math
 from time import time
 
 #ScreenSize
