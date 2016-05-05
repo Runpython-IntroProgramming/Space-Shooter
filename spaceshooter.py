@@ -122,7 +122,7 @@ class Bullet(GravitySprite):
                 if len(ships):
                     if not self.firing and ships[0].visible:
                         self.hitCount = self.hitCount + 1
-                    if self.hitCount >= 3    
+                    if self.hitCount >= 3:
                         ships[0].explode()
                         self.visible = False
                 elif self.firing:
