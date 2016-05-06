@@ -37,6 +37,5 @@ def Opponent(EnemyCount):
     for foo in SpaceGame.getSpritesbyClass(ScoreMain):
         score = foo.score
     for bar in [1/(EnemyCount-score)*bar*2*pi for foo in list(range(0,(EmenyCount-score)))]:
-        Enemy(((SMALLER_SIDE*-0.4)
-
-
+        Enemy(SMALLER_SIDE*-0.4)*sin(foo)+SCREEN_WIDTH/2,
+        (SMALLER_SIDE*-0.4)*cos(x)+SCORE
