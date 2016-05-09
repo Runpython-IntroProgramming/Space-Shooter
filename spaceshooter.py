@@ -286,8 +286,8 @@ class Ship(GravitySprite):
         self.dead = False
         self.reset()
     
-    if ships[0].explode():
-        ships[0].hitCount = 0      
+    if self.explode():
+        self.hitCount = 0      
            
 class Ship1(Ship):
     
