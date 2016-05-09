@@ -179,8 +179,8 @@ class ExplosionSmall(Sprite):
             
 class Sun(Sprite):
     asset=ImageAsset("images/sun.png")
-    width=85 #80
-    length=80 #76
+    width=105 #80
+    length=100 #76
     
     def __init__(self, position):
         super().__init__(Sun.asset, position)
@@ -204,17 +204,15 @@ class eighties(App):
         global sun
         super().__init__(width, height)
         bg_asset=ImageAsset("images/starfield.jpg")
-        txt_asset=TextAsset("Blizzard: RnR", width = 9000, align ='center', style='47px Times', fill=Color(0xff2222,1)) 
         bg=Sprite(bg_asset, (0,0))
         bg=Sprite(bg_asset, (0,512))
         bg=Sprite(bg_asset, (512,0))
         bg=Sprite(bg_asset, (512,512))
-        txt=Sprite(txt_asset, (0,0))
         sun_asset=ImageAsset("images/sun.png")
-        sun=Sun ((400,300))
+        sun=Sun ((475,300))
         left_location=1
-        SpaceShip((300,350))
-        SpaceShip2((600,350))
+        SpaceShip((50,690))
+        SpaceShip2((920,690))
         
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
