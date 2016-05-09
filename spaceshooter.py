@@ -34,12 +34,12 @@ class SpaceShip(Sprite):
         self.thrustframe=1
         self.rotation=0
         left_location=1
-        ControlDown.listenKeyEvent("keydown", ",", self.thrustOn)
-        ControlDown.listenKeyEvent("keyup", ",", self.thrustOff)
-        ControlDown.listenKeyEvent("keydown", "e", self.rotationOnLeft)
-        ControlDown.listenKeyEvent("keyup", "e", self.rotationOff)
-        ControlDown.listenKeyEvent("keydown", "a", self.rotationOnRight)
-        ControlDown.listenKeyEvent("keyup", "a", self.rotationOff)
+        eighties.listenKeyEvent("keydown", ",", self.thrustOn)
+        eighties.listenKeyEvent("keyup", ",", self.thrustOff)
+        eighties.listenKeyEvent("keydown", "e", self.rotationOnLeft)
+        eighties.listenKeyEvent("keyup", "e", self.rotationOff)
+        eighties.listenKeyEvent("keydown", "a", self.rotationOnRight)
+        eighties.listenKeyEvent("keyup", "a", self.rotationOff)
         self.fxcenter=self.fycenter=0.5
     def step(self):
         self.x+=self.vx
@@ -99,12 +99,12 @@ class SpaceShip2(Sprite):
         self.thrustframe=1
         self.rotation=0
         left_location=1
-        ControlDown.listenKeyEvent("keydown", "up arrow", self.thrustOn)
-        ControlDown.listenKeyEvent("keyup", "up arrow", self.thrustOff)
-        ControlDown.listenKeyEvent("keydown", "right arrow", self.rotationOnLeft)
-        ControlDown.listenKeyEvent("keyup", "right arrow", self.rotationOff)
-        ControlDown.listenKeyEvent("keydown", "left arrow", self.rotationOnRight)
-        ControlDown.listenKeyEvent("keyup", "left arrow", self.rotationOff)
+        eighties.listenKeyEvent("keydown", "up arrow", self.thrustOn)
+        eighties.listenKeyEvent("keyup", "up arrow", self.thrustOff)
+        eighties.listenKeyEvent("keydown", "right arrow", self.rotationOnLeft)
+        eighties.listenKeyEvent("keyup", "right arrow", self.rotationOff)
+        eighties.listenKeyEvent("keydown", "left arrow", self.rotationOnRight)
+        eighties.listenKeyEvent("keyup", "left arrow", self.rotationOff)
         self.fxcenter=self.fycenter=0.5
     def step(self):
         self.x+=self.vx
@@ -175,7 +175,7 @@ class Sun(Sprite):
         self.fxcenter=.5
         self.fycenter=.5
 
-class ControlDown(App):
+class eighties(App):
    
     def space(self, evt):
         if self.state in ['instructions', 'gameover']:
@@ -209,5 +209,5 @@ class ControlDown(App):
         explosions=self.getSpritesbyClass(ExplosionSmall)
         for explosion in explosions:
             explosion.step()
-myapp = ControlDown(SCREEN_WIDTH, SCREEN_HEIGHT)
+myapp = eighties(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
