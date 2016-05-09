@@ -121,7 +121,9 @@ class Bullet(GravitySprite):
                 ships.extend(self.collidingWithSprites(Ship2))
                 if len(ships):
                     if not self.firing and ships[0].visible:
-                        ships[0].hitCount = ships[0].hitCount + 1   #breaks game, fix it tomorrow
+                        ships[0].hitCount = ships[0].hitCount + 1
+                        self.visible = False
+                        ExplosionSmall(self.position)
                     if ships[0].hitCount >= 3:
                         ships[0].explode()
                         if ships[0].explode():
