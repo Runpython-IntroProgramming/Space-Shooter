@@ -130,8 +130,6 @@ class Bullet(GravitySprite):
                         self.visible = False
                     if ships[0].hitCount >= 2:
                         ships[0].shipThrust = int(shipThrust)/2
-                    if ships[0].explode():
-                        ships[0].hitCount = 0  
                         
                 elif self.firing:
                     self.firing = False
@@ -287,6 +285,9 @@ class Ship(GravitySprite):
         self.health.restart()
         self.dead = False
         self.reset()
+    
+    if ships[0].explode():
+        ships[0].hitCount = 0      
            
 class Ship1(Ship):
     
