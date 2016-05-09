@@ -31,10 +31,10 @@ class SpaceShip(Sprite):
         self.thrustframe=1
         self.rotation=0
         left_location=1
-        ControlDwon.listenKeyEvent("keydown", "w", self.thrustOn)
-        ControlDwon.listenKeyEvent("keyup", "w", self.thrustOff)
-        ControlDwon.listenKeyEvent("keydown", "d", self.rotationOnLeft)
-        ControlDwon.listenKeyEvent("keyup", "d", self.rotationOff)
+        ControlDwon.listenKeyEvent("keydown", ",", self.thrustOn)
+        ControlDwon.listenKeyEvent("keyup", ",", self.thrustOff)
+        ControlDwon.listenKeyEvent("keydown", "e", self.rotationOnLeft)
+        ControlDwon.listenKeyEvent("keyup", "e", self.rotationOff)
         ControlDwon.listenKeyEvent("keydown", "a", self.rotationOnRight)
         ControlDwon.listenKeyEvent("keyup", "a", self.rotationOff)
         self.fxcenter=self.fycenter=0.5
