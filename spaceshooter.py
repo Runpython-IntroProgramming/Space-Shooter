@@ -256,6 +256,7 @@ class Ship(GravitySprite):
             self.rotation = self.rotation + self.rrate * dT
             if self.collidingWith(self.sun):     
                 self.explode()
+                self.hitCount = 0
             if self.thrust != 0.0:
                 self.imagex = self.imagex + 1    # animate the rockets
                 if self.imagex == 4:
@@ -357,9 +358,6 @@ class ExplosionBig(Sprite):
         self.image = self.image + 1
         if self.image == 50:
             self.destroy()
-
-if ships[0].explode():
-    ships[0].hitCount = 0      
 
 class Spacewar(App):
     
