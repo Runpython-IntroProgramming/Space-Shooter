@@ -13,8 +13,6 @@ from ggame import SoundAsset, Sound, TextAsset, Color
 import math
 from time import time
 
-shipThrust = int(input("How poweful do you want your thrust to be? (40 is standard)"))
-
 class Stars(Sprite):
 
     asset = ImageAsset("images/starfield.jpg")
@@ -200,6 +198,7 @@ class Ship(GravitySprite):
         self.health = HealthBar(asset, Ship.healthcount, healthpos, app)
         self.dead = False
         self.hitCount = 0
+        shipThrust = int(input("How poweful do you want your thrust to be? (40 is standard)"))
 
     def registerKeys(self, keys):
         commands = ["left", "right", "forward", "fire"]
