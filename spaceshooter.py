@@ -37,10 +37,16 @@ def Opponent(EnemyCount):
     for foo in SpaceGame.getSpritesbyClass(ScoreMain):
         score = foo.score
     for bar in [1/(EnemyCount-score)*bar*2*pi for foo in list(range(0,(EmenyCount-score)))]:
-        Enemy(SMALLER_SIDE*-0.4)*sin(foo)+SCREEN_WIDTH/2,
+        Enemy(((SMALLER_SIDE*-0.4)*sin(foo)+SCREEN_WIDTH/2,
         (SMALLER_SIDE*-0.4)*cos(x)+SCREEN_HIEGHT/2))
 
 class Background(Sprite):
     
     if SCREEN_WIDTH >= SCREEN_HIEGHT:
         asset = ImageAsset("images/starfield.jpg", Frame(0,0,512,512,*(SMALLER_SIDE/LARGER_SIDE)))
+    else:
+        asset = ImageAsset("images/starfield.jpg", Frame(0,0,512*(SMALLER_SIDE/LARGER_SIDE),512))
+    
+    def __init__(self, position):
+        super().__init__(StarBack.asset, position)
+        self.scale = LARGER_SIDE/512
