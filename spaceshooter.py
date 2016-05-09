@@ -129,7 +129,7 @@ class Bullet(GravitySprite):
                         ships[0].hitCount = 0
                         self.visible = False
                     if ships[0].hitCount >= 2:
-                        ships[0].shipThrust = int(shipThrust)/2
+                        ships[0].shipThrust = int(ships[0].shipThrust)/2
                         
                 elif self.firing:
                     self.firing = False
@@ -256,7 +256,6 @@ class Ship(GravitySprite):
             self.rotation = self.rotation + self.rrate * dT
             if self.collidingWith(self.sun):     
                 self.explode()
-                self.hitCount = 0
             if self.thrust != 0.0:
                 self.imagex = self.imagex + 1    # animate the rockets
                 if self.imagex == 4:
@@ -270,6 +269,7 @@ class Ship(GravitySprite):
         self.visible = False
         ExplosionBig(self.position)
         self.waitspawn = 5
+        self.hitCount = 0
 
     def reset(self):
         if not self.health.dead():
