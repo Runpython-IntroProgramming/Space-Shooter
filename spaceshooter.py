@@ -285,9 +285,6 @@ class Ship(GravitySprite):
         self.health.restart()
         self.dead = False
         self.reset()
-    
-    if self.explode():
-        self.hitCount = 0      
            
 class Ship1(Ship):
     
@@ -360,6 +357,9 @@ class ExplosionBig(Sprite):
         self.image = self.image + 1
         if self.image == 50:
             self.destroy()
+
+if ships[0].explode():
+    ships[0].hitCount = 0      
 
 class Spacewar(App):
     
