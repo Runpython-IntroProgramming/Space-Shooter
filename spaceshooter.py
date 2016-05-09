@@ -34,12 +34,12 @@ class SpaceShip(Sprite):
         self.thrustframe=1
         self.rotation=0
         left_location=1
-        ControlDwon.listenKeyEvent("keydown", ",", self.thrustOn)
-        ControlDwon.listenKeyEvent("keyup", ",", self.thrustOff)
-        ControlDwon.listenKeyEvent("keydown", "e", self.rotationOnLeft)
-        ControlDwon.listenKeyEvent("keyup", "e", self.rotationOff)
-        ControlDwon.listenKeyEvent("keydown", "a", self.rotationOnRight)
-        ControlDwon.listenKeyEvent("keyup", "a", self.rotationOff)
+        ControlDown.listenKeyEvent("keydown", ",", self.thrustOn)
+        ControlDown.listenKeyEvent("keyup", ",", self.thrustOff)
+        ControlDown.listenKeyEvent("keydown", "e", self.rotationOnLeft)
+        ControlDown.listenKeyEvent("keyup", "e", self.rotationOff)
+        ControlDown.listenKeyEvent("keydown", "a", self.rotationOnRight)
+        ControlDown.listenKeyEvent("keyup", "a", self.rotationOff)
         self.fxcenter=self.fycenter=0.5
     def step(self):
         self.x+=self.vx
@@ -99,12 +99,12 @@ class SpaceShip2(Sprite):
         self.thrustframe=1
         self.rotation=0
         left_location=1
-        ControlDwon.listenKeyEvent("keydown", "up arrow", self.thrustOn)
-        ControlDwon.listenKeyEvent("keyup", "up arrow", self.thrustOff)
-        ControlDwon.listenKeyEvent("keydown", "right arrow", self.rotationOnLeft)
-        ControlDwon.listenKeyEvent("keyup", "right arrow", self.rotationOff)
-        ControlDwon.listenKeyEvent("keydown", "left arrow", self.rotationOnRight)
-        ControlDwon.listenKeyEvent("keyup", "left arrow", self.rotationOff)
+        ControlDown.listenKeyEvent("keydown", "up arrow", self.thrustOn)
+        ControlDown.listenKeyEvent("keyup", "up arrow", self.thrustOff)
+        ControlDown.listenKeyEvent("keydown", "right arrow", self.rotationOnLeft)
+        ControlDown.listenKeyEvent("keyup", "right arrow", self.rotationOff)
+        ControlDown.listenKeyEvent("keydown", "left arrow", self.rotationOnRight)
+        ControlDown.listenKeyEvent("keyup", "left arrow", self.rotationOff)
         self.fxcenter=self.fycenter=0.5
     def step(self):
         self.x+=self.vx
@@ -174,11 +174,9 @@ class Sun(Sprite):
         self.mass=30*1000
         self.fxcenter=.5
         self.fycenter=.5
-        #self.circularCollisionModel()
-class ControlDwon(App):
-    """
-    Tutorial4 space game example.
-    """
+
+class ControlDown(App):
+   
     def space(self, evt):
         if self.state in ['instructions', 'gameover']:
             for t in self.tsprites.values():
@@ -211,5 +209,5 @@ class ControlDwon(App):
         explosions=self.getSpritesbyClass(ExplosionSmall)
         for explosion in explosions:
             explosion.step()
-myapp = ControlDwon(SCREEN_WIDTH, SCREEN_HEIGHT)
+myapp = ControlDown(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
