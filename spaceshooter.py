@@ -74,7 +74,7 @@ class SpaceShip(Sprite):
             self.vr = 0
         elif command == "forward":
             self.setImage(0)
-            self.velocity = 5
+            self.velocity = 0
 
 
 class ExplosionBig(Sprite):
@@ -104,7 +104,7 @@ class SpaceGame(App):
         SpaceShip((100,100), self)
         Sun((550,260))
         
-    def step(self)
+    def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
         for explosion in self.getSpritesbyClass(ExplosionBig):
