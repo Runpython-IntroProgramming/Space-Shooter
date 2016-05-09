@@ -126,9 +126,8 @@ class Bullet(GravitySprite):
                         ExplosionSmall(self.position)
                     if ships[0].hitCount >= 3:
                         ships[0].explode()
-                        if ships[0].explode():
-                            ships[0].hitCount = 0
-                            self.visible = False
+                        ships[0].hitCount = 0
+                        self.visible = False
                 elif self.firing:
                     self.firing = False
             
