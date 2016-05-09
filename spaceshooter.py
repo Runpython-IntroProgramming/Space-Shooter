@@ -17,7 +17,7 @@ from ggame import SoundAsset, Sound, TextAsset, Color
 from time import time
 
 #ScreenSize
-SCREEN_WIDTH=1200
+SCREEN_WIDTH=1400
 SCREEN_HEIGHT=850
 
 sun = None
@@ -41,6 +41,7 @@ class SpaceShip(Sprite):
         eighties.listenKeyEvent("keydown", "a", self.rotationOnRight)
         eighties.listenKeyEvent("keyup", "a", self.rotationOff)
         self.fxcenter=self.fycenter=0.5
+        
     def step(self):
         self.x+=self.vx
         self.y+=self.vy
@@ -65,12 +66,16 @@ class SpaceShip(Sprite):
         
     def rotationOnLeft(self, event):
         self.vr=-.1
+        
     def rotationOnRight(self, event):
         self.vr=.1
+        
     def rotationOff(self, event):
         self.vr=0
+        
     def thrustOn(self, event):
         self.thrust=1
+        
     def thrustOff(self, event):
         self.thrust=0
         
@@ -83,13 +88,14 @@ class SpaceShip(Sprite):
         self.vy=0
         ExplosionSmall(self.position)
     
-    #def reset(self, event):
+    
 class SpaceShip2(Sprite):
     """
     Animated space ship
     """
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(0,0,86,125), 4, 'vertical')
+        
     def __init__(self, position):
         super().__init__(SpaceShip2.asset, position)
         self.vx=0
@@ -106,6 +112,7 @@ class SpaceShip2(Sprite):
         eighties.listenKeyEvent("keydown", "left arrow", self.rotationOnRight)
         eighties.listenKeyEvent("keyup", "left arrow", self.rotationOff)
         self.fxcenter=self.fycenter=0.5
+        
     def step(self):
         self.x+=self.vx
         self.y+=self.vy
@@ -130,12 +137,16 @@ class SpaceShip2(Sprite):
         
     def rotationOnLeft(self, event):
         self.vr=-.1
+        
     def rotationOnRight(self, event):
         self.vr=.1
+        
     def rotationOff(self, event):
         self.vr=0
+        
     def thrustOn(self, event):
         self.thrust=1
+        
     def thrustOff(self, event):
         self.thrust=0
         
@@ -165,10 +176,12 @@ class ExplosionSmall(Sprite):
         self.image=self.image + 1
         if self.image==20:
             self.destroy()
+            
 class Sun(Sprite):
     asset=ImageAsset("images/sun.png")
     width=85 #80
     length=80 #76
+    
     def __init__(self, position):
         super().__init__(Sun.asset, position)
         self.mass=30*1000
@@ -186,6 +199,7 @@ class eighties(App):
             evt.consumed=True
             self.ship1.newgame()
             self.ship2.newgame()
+            
     def __init__(self, width, height):
         global sun
         super().__init__(width, height)
@@ -201,6 +215,7 @@ class eighties(App):
         left_location=1
         SpaceShip((300,350))
         SpaceShip2((600,350))
+        
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
@@ -209,5 +224,6 @@ class eighties(App):
         explosions=self.getSpritesbyClass(ExplosionSmall)
         for explosion in explosions:
             explosion.step()
+            
 myapp = eighties(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
