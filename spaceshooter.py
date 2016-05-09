@@ -8,10 +8,11 @@ Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
 """
 #Imports
-from ggame import math, App, Sprite, ImageAsset, Frame
+import math
+
+from ggame import App, Sprite, ImageAsset, Frame
 from ggame import SoundAsset, Sound, TextAsset, Color
 
-import math
 
 from time import time
 
@@ -191,7 +192,7 @@ class ControlDwon(App):
         global sun
         super().__init__(width, height)
         bg_asset=ImageAsset("images/starfield.jpg")
-        txt_asset=TextAsset("Control Dwon 3: Tokyo Drift Mode", width = 300, align ='center', style='40px Times', fill=Color(0xff2222,1)) 
+        txt_asset=TextAsset("Blizzard: RnR", width = 9000, align ='center', style='47px Times', fill=Color(0xff2222,1)) 
         bg=Sprite(bg_asset, (0,0))
         bg=Sprite(bg_asset, (0,512))
         bg=Sprite(bg_asset, (512,0))
