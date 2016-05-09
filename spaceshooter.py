@@ -129,7 +129,7 @@ class Bullet(GravitySprite):
                         ships[0].hitCount = 0
                         self.visible = False
                     if ships[0].hitCount >= 2:
-                        ships[0].shipThrust = shipThrust / 2  
+                        ships[0].shipThrust = int(shipThrust)/2  
                         
                 elif self.firing:
                     self.firing = False
