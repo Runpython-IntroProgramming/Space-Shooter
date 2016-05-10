@@ -126,9 +126,10 @@ class Bullet(GravitySprite):
                         ships[0].explode()
                         ships[0].hitCount = 0
                         self.visible = False
+                        
                     if ships[0].hitCount >= 2:
                         ships[0].shipThrust = int(ships[0].shipThrust)/2
-                        
+                  
                 elif self.firing:
                     self.firing = False
             
@@ -178,7 +179,7 @@ class Ship(GravitySprite):
     reappearasset = SoundAsset("sounds/reappear.mp3")
 
     
-    def __init__(self, asset, app, position, velocity, sun):
+    def __init__(self, asset, app, position, velocity, sun, thrust):
         self.bullets = []
         for i in range(Ship.bullets):
             self.bullets.append(Bullet(app, sun))
@@ -198,7 +199,7 @@ class Ship(GravitySprite):
         self.health = HealthBar(asset, Ship.healthcount, healthpos, app)
         self.dead = False
         self.hitCount = 0
-        shipThrust = int(input("How poweful do you want your thrust to be? (40 is standard)"))
+        self.shipThrust = thrust
 
     def registerKeys(self, keys):
         commands = ["left", "right", "forward", "fire"]
@@ -207,7 +208,7 @@ class Ship(GravitySprite):
         [self.app.listenKeyEvent("keyup", k, self.controlup) for k in keys]
 
     def shootvector(self):
-        vel = 150  # this is the velocity of the bullets
+        vel = 200  # this is the velocity of the bullets normally 150
         xv = vel*(-math.sin(self.rotation))
         yv = vel*(-math.cos(self.rotation))
         return xv + self.vx, yv + self.vy
@@ -220,7 +221,7 @@ class Ship(GravitySprite):
             elif command == "right":
                 self.rrate = -Ship.R
             elif command == "forward":
-                self.thrust = shipThrust   #this is the ship thrust
+                self.thrust = self.shipThrust   #this is the ship thrust
                 self.imagex = 1 # start the animated rockets
                 self.setImage(self.imagex)
             elif command == "fire":
@@ -291,8 +292,8 @@ class Ship1(Ship):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(227,0,292-227,125), 4, 'vertical')
         
-    def __init__(self, app, position, velocity, sun):
-        super().__init__(Ship1.asset, app, position, velocity, sun)
+    def __init__(self, app, position, velocity, sun, thrust):
+        super().__init__(Ship1.asset, app, position, velocity, sun, thrust)
         self.registerKeys(["a", "d", "w", "space"])
         
     def step(self, T, dT):
@@ -309,8 +310,8 @@ class Ship2(Ship):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(0,0,86,125), 4, 'vertical')
         
-    def __init__(self, app, position, velocity, sun):
-        super().__init__(Ship2.asset, app, position, velocity, sun)
+    def __init__(self, app, position, velocity, sun, thrust):
+        super().__init__(Ship2.asset, app, position, velocity, sun, thrust)
         self.registerKeys(["left arrow", "right arrow", "up arrow", "enter"])
 
     def step(self, T, dT):
@@ -373,8 +374,9 @@ class Spacewar(App):
             for y in range(self.height//Stars.height + 1):
                 Stars((x*Stars.width, y*Stars.height))
         self.sun = Sun((self.width/2, self.height/2))
-        self.ship1 = Ship1(self, (self.width/2-140,self.height/2), (0,-120), self.sun)
-        self.ship2 = Ship2(self, (self.width/2+140,self.height/2), (0,120), self.sun)
+        shipThrust = int(input("How poweful do you want your thrust to be? (40 is standard)"))
+        self.ship1 = Ship1(self, (self.width/2-140,self.height/2), (0,-120), self.sun, shipThrust)
+        self.ship2 = Ship2(self, (self.width/2+140,self.height/2), (0,120), self.sun, shipThrust)
         self.tsprites = {k:Sprite(TextAsset(text=v, width=200, align='center',style='20px Arial', fill=Color(0xff2222,1))) 
             for k, v in Spacewar.strings.items()}
         self.tsprites['winner'].visible = False
