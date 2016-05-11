@@ -50,3 +50,25 @@ class Background(Sprite):
     def __init__(self, position):
         super().__init__(StarBack.asset, position)
         self.scale = LARGER_SIDE/512
+
+class Spaceship(Sprite):
+    
+    ShipAssest = SoundAsset("sound/pew1.mp3")
+    
+    def __init__(self, asset, position):
+        super().__init__(asset, position)
+        self.fxcenter = self.fycenter = 0.5
+        self.ShootSound = Sound(SpaceShip.asset)
+        self.ShootSound = 40
+        
+class Pawn(ShaceShip):
+    
+    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png")
+    
+    Frame(0,0,85,125),4, 'vertical')
+    
+    def __init__(self,position):
+        super().__init__(Pawn.asset, position)
+        self.thrust = 0 
+        self.thrustFrame = 0
+        self.xSpeed
