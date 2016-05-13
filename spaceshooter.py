@@ -42,10 +42,10 @@ def Opponent(EnemyCount):
 
 class Background(Sprite):
     
-    if SCREEN_WIDTH >= SCREEN_HIEGHT:
+    if SCREEN_WIDTH >= SCREEN_HEIGHT:
         asset = ImageAsset("images/starfield.jpg", Frame(0,0,512,512,*(SMALLER_SIDE/LARGER_SIDE)))
     else:
-        asset = ImageAsset("images/starfield.jpg", Frame(0,0,512*(SMALLER_SIDE/LARGER_SIDE),512))
+        asset = ImageAsset("images/starfield.jpg", Frame(0,0,512*(SMALLER_SIDE/LARGER_SIDE),512)))
     
     def __init__(self, position):
         super().__init__(StarBack.asset, position)
@@ -63,12 +63,66 @@ class Spaceship(Sprite):
         
 class Pawn(ShaceShip):
     
-    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png")
+    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
     
-    Frame(0,0,85,125),4, 'vertical')
+    Frame(0,0,85,125), 4, 'vertical')
     
     def __init__(self,position):
         super().__init__(Pawn.asset, position)
         self.thrust = 0 
         self.thrustFrame = 0
-        self.xSpeed
+        self.xSpeed = 0.1
+        SpaceGame.listenKeyEvent("keydown", "right arrow", self.rotateRight)
+        SpaceGame.listenKeyEvent("keydown", "left arrow", self.rotateLeft)
+        SpaceGame.listenKeyEvent("keydown", "up arrow", self.thrustOn)
+        SpaceGame.listenKeyEvent("keyup", "up arrow", self.thrustOff)
+        SpaceGame.listenKeyEvent("keydown", "space", self.shoot)
+        self.velocity = (0,0)
+        self.magnitude = 0.25
+        
+    def rotateRight(self, event):
+        self.rotation -= self.rotSpd
+        
+    def rotateLeft(self, event):
+        self.rotation += self.rotSpd
+        
+    def thrustOn(self, event):
+        self.thrust = 1
+        self.velocity[0] += -1*self.magnitude*sin(self.rotation)
+        self.velocity[1] += -1*self.magnitude*cos(self.rotation)
+        
+    def thrustOff(self, event):
+        self.thrust = 0
+        
+    def explode(self):
+        for x in SpaceGame.getSpritesbyClass(LifeControl):
+            x.loseLife()
+        PlayerExplosion((self.x, self.y))
+        self.destroy()
+    
+    def fire(self, event):
+        if len(SpaceGame.getSpritesByClass(PlayBullet)) < AMMO:
+            PlayBullet((self.x, self.y))
+            self.ShootSound.play()
+            
+    def step(self):
+        self.x += self.velocity[0]
+        self.y += self.velocity[1]
+        if self.thrust == 1:
+            if self.thrustframe == 3:
+                self.thrustframe = 1
+            else:
+                self.thrustframe += 1
+            self.setImage(self.thrustframe)
+        else:
+            self.setImage(0)
+        if len(self.collidingWithSprites(EnemyBullet)) > 0:
+            for x in self.collidingWithSprites(EnemyBullet):
+                x.destroy()
+            self.explode()
+            return
+        if self.x < 0 or self.x > SCREEN_WIDTH or self.y < 0 or self.y > SCREEN_HEIGHT:
+            if len(SpaceGame.getSpritesbyClass(WinText)) == 0:
+                self.explode()
+                return
+            
