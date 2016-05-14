@@ -45,7 +45,7 @@ class Background(Sprite):
     if SCREEN_WIDTH >= SCREEN_HEIGHT:
         asset = ImageAsset("images/starfield.jpg", Frame(0,0,512,512,*(SMALLER_SIDE/LARGER_SIDE)))
     else:
-        asset = ImageAsset("images/starfield.jpg", Frame(0,0,512*(SMALLER_SIDE/LARGER_SIDE),512)))
+        asset = ImageAsset("images/starfield.jpg", Frame(0,0,512*(SMALLER_SIDE/LARGER_SIDE),512))
     
     def __init__(self, position):
         super().__init__(StarBack.asset, position)
@@ -125,4 +125,32 @@ class Pawn(ShaceShip):
             if len(SpaceGame.getSpritesbyClass(WinText)) == 0:
                 self.explode()
                 return
+   
+    class Enemy(SpaceShip):
+    
+    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
+        Frame(227,0,292-227,125), 4, 'vertical')
+    
+    def __init__(self, position):
+        super().__init__(Enemy.asset, position)
+        self.speed = 1
+        self.changeDirec()
+        self.dist = 0
+        self.frame = 1
+        self.scale = 0.75
+    
+    def velocitySet(self):
+        self.velx = velCalcX(self.speed, self.rotation)
+        self.vely = velCalcY(self.speed, self.rotation)
+    
+    def changeDirec(self):
+        self.rotation = randint(0,1000)/500*pi
+        self.velocitySet()
+        self.dist = 0
+        
+    def explode(self):
+            Explosion((self.x, self.y))
+            for x in SpaceGame.getSpritesbyClass(ScoreControl):
+                x.scoreChange()
+            self.destroy()
             
