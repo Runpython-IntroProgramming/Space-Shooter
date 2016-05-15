@@ -249,23 +249,7 @@ class Bullet(Sprite):
         if self.x < 0 or self.x > SCREEN_WIDTH or self.y < 0 or self.y >SCREEN_HEIGHT:
             self.destroy()
     
-class HealthBar:
-    
-    def __init__(self, indicatorasset, initvalue, position, app):
-        self.sprites = [Sprite(indicatorasset, (0,app.height-75)) for i in range(initvalue)]
-        for s in self.sprites:
-            s.scale = 0.4
-        width = self.sprites[0].width
-        if position == 'left':
-            x = 50
-            step = width+5
-        else:
-            x = app.width - 50 - width
-            step = -width-5
-        for s in self.sprites:
-            s.x = x
-            x += step
-        self.restart()
+
         
     def restart(self):
         for s in self.sprites:
