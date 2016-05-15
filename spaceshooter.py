@@ -329,7 +329,7 @@ class SpaceGame(App):
         bg5 = Sprite(bg_asset, (1024,0))
         Ship1((250,250))
         Ship2((1000,1000))
-        Sun((400,400))
+        Sun((500,500))
         
     def step(self):
         for ship in self.getSpritesbyClass(Ship1):
