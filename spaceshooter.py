@@ -88,16 +88,7 @@ class Ship1(Sprite):
                 collides[0].explode()
                 self.explode()
     
-    def move(self):
-        self.X = math.sin(self.rotation)
-        self.Y = math.cos(self.rotation)
-        self.vx = self.X/math.sqrt(self.X*self.X + self.Y*self.Y)
-        self.vy = self.Y/math.sqrt(self.X*self.X + self.Y*self.Y)
     
-    def explode(self):
-        self.visible = False
-        ExplosionBig(self.position)
-        self.waitspawn = 5
     
     def thrustOn(self, event):
         self.thrust = 1
