@@ -144,7 +144,52 @@ class Ship2(Sprite):
         self.fxcenter = self.fycenter = 0.5
         self.bullet = None
     
+    def step(self):
+        self.rotation += 1.5*self.vr
+        self.move()
+        if self.thrust == 1:
+            self.VX += self.vx
+            self.VY += self.vy
+        if 0 <= self.x <= SCREEN_WIDTH:
+            self.x -= 0.1*self.VX
+        elif self.x < 0:
+            self.x += SCREEN_WIDTH
+            self.x -= 0.1*self.VX
+        else:    
+            self.x -= (0.1*self.VX + SCREEN_WIDTH)
+        if 0 <= self.y <= SCREEN_HEIGHT:    
+            self.y -= 0.1*self.VY
+        elif self.y < 0:
+            self.y += SCREEN_HEIGHT
+            self.y -= 0.1*self.VY
+        else:
+            self.y -= (0.1*self.VY + SCREEN_HEIGHT)
     
+        if self.thrust == 1:
+            self.setImage(self.thrustframe)
+            self.thrustframe += 1
+            if self.thrustframe == 4:
+                self.thrustframe = 1
+        else:
+            self.setImage(0)
+        
+        collides = self.collidingWithSprites(Ship1)
+        if len(collides):
+            if collides[0].visible:
+                collides[0].explode()
+                self.explode()
+                
+    
+    def move(self):
+        self.X = math.sin(self.rotation)
+        self.Y = math.cos(self.rotation)
+        self.vx = self.X/math.sqrt(self.X*self.X + self.Y*self.Y)
+        self.vy = self.Y/math.sqrt(self.X*self.X + self.Y*self.Y)
+    
+    def explode(self):
+        self.visible = False
+        ExplosionBig(self.position)
+        self.waitspawn = 5
     
     def thrustOn(self, event):
         self.thrust = 1
