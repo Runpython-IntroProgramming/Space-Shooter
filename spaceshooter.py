@@ -1,296 +1,483 @@
 """
 spaceshooter.py
 Author: Hagin
-Credit: myself
+Credit: myself, Morgan, Mr. Dennison
 
 Assignment:
 Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
 """
-from ggame import App, Sprite, ImageAsset, Frame, Color, TextAsset, SoundAsset, Sound
-from math import sqrt, sin, cos, radians, degrees, pi, atan
-from random import randint
-from time import sleep
+from ggame import App, RectangleAsset, ImageAsset, SoundAsset, Sprite, Sound, LineStyle, Color, Frame
 
-SCREEN_WIDTH = 1000 #1200
-SCREEN_HEIGHT = 600 #700
-SCREEN_DIAG = sqrt(SCREEN_WIDTH**2+SCREEN_HEIGHT**2)
+import math
 
+import time
 
-if SCREEN_WIDTH >= SCREEN_HEIGHT:
-    LARGER_SIDE = SCREEN_WIDTH
-    SMALLER_SIDE = SCREEN_HEIGHT
-else:
-    LARGER_SIDE = SCREEN_HEIGHT
-    SMALLER_SIDE = SCREEN_WIDTH
+SCREEN_WIDTH = 1536
+
+SCREEN_HEIGHT = 1024
+
+class Sun(Sprite):
+
     
-white = Color (0xffffff, 1.0) 
 
-velocityOfX = lambda rotation, speed: -1*speed*sin(rotation)
-velocityOfY = lambda rotation, speed: -1*speed*cos(rotation)
+    asset = ImageAsset("images/sun.png")
 
-def Destroy(Dclass):
-    while len(SpaceGame.getSpritesbyClass(Dclass)) > 0:
-        for foo in SpaceGame.getSpritesbyClass(Dclass):
-            foo.destroy()
-def Opponent(EnemyCount):
-    for foo in SpaceGame.getSpritesbyClass(ScoreMain):
-        score = foo.score
-    for bar in [1/(EnemyCount-score)*bar*2*pi for foo in list(range(0,(EmenyCount-score)))]:
-        Enemy(((SMALLER_SIDE*-0.4)*sin(foo)+SCREEN_WIDTH/2,
-        (SMALLER_SIDE*-0.4)*cos(x)+SCREEN_HIEGHT/2))
+    width = 80
 
-    class Background(Sprite):
+    height = 76
+
     
-        if SCREEN_WIDTH >= SCREEN_HEIGHT:
-            asset = ImageAsset("images/starfield.jpg", Frame(0,0,512,512,*(SMALLER_SIDE/LARGER_SIDE)))
-        else:
-            asset = ImageAsset("images/starfield.jpg", Frame(0,0,512*(SMALLER_SIDE/LARGER_SIDE),512))
-    
+
     def __init__(self, position):
-        super().__init__(StarBack.asset, position)
-        self.scale = LARGER_SIDE/512
 
-class Spaceship(Sprite):
+        super().__init__(Sun.asset, position)
+
+        self.fxcenter = 0.5
+
+        self.fycenter = 0.5
+
+        self.circularCollisionModel()
+
+
+
+
+
+
+
+class Ship1(Sprite):
+
     
-    ShipAssest = SoundAsset("sound/pew1.mp3")
-    
-    def __init__(self, asset, position):
-        super().__init__(asset, position)
-        self.fxcenter = self.fycenter = 0.5
-        self.ShootSound = Sound(SpaceShip.asset)
-        self.ShootSound = 40
-        
-class Player(SpaceShip):
-    
+
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
-    
-    Frame(0,0,85,125), 4, 'vertical')
-    
-    def __init__(self,position):
-        super().__init__(Player.asset, position)
-        self.thrust = 0 
-        self.thrustFrame = 0
-        self.xSpeed = 0.1
-        SpaceGame.listenKeyEvent("keydown", "right arrow", self.rotateRight)
-        SpaceGame.listenKeyEvent("keydown", "left arrow", self.rotateLeft)
-        SpaceGame.listenKeyEvent("keydown", "up arrow", self.thrustOn)
-        SpaceGame.listenKeyEvent("keyup", "up arrow", self.thrustOff)
-        SpaceGame.listenKeyEvent("keydown", "space", self.shoot)
-        self.velocity = (0,0)
-        self.magnitude = 0.25
-        
-    def rotateRight(self, event):
-        self.rotation -= self.rotSpd
-        
-    def rotateLeft(self, event):
-        self.rotation += self.rotSpd
-        
-    def thrustOn(self, event):
-        self.thrust = 1
-        self.velocity[0] += -1*self.magnitude*sin(self.rotation)
-        self.velocity[1] += -1*self.magnitude*cos(self.rotation)
-        
-    def thrustOff(self, event):
+
+        Frame(227,0,292-227,125), 4, 'vertical')
+
+
+
+
+    def __init__(self, position):
+
+        super().__init__(Ship1.asset, position)
+
+        self.vr = 0.00
+
         self.thrust = 0
-        
-    def explode(self):
-        for x in SpaceGame.getSpritesbyClass(LifeControl):
-            x.loseLife()
-        PlayerExplosion((self.x, self.y))
-        self.destroy()
+
+        self.thrustframe = 1
+
+        self.VX = 0
+
+        self.VY = 0   
+
+        self.vx = 0
+
+        self.vy = 0
+
+        self.turn = 0
+
+        SpaceGame.listenKeyEvent("keydown", "up arrow", self.thrustOn)
+
+        SpaceGame.listenKeyEvent("keyup", "up arrow", self.thrustOff)
+
+        SpaceGame.listenKeyEvent("keydown", "left arrow", self.rotateLeft)
+
+        SpaceGame.listenKeyEvent("keyup", "left arrow", self.lrOff)
+
+        SpaceGame.listenKeyEvent("keydown", "right arrow", self.rotateRight)
+
+        SpaceGame.listenKeyEvent("keyup", "right arrow", self.rrOff)
+
+        SpaceGame.listenKeyEvent("keypress", "enter", self.fire)
+
+        self.fxcenter = self.fycenter = 0.5
+
+        self.bullet = None
+
     
-    def fire(self, event):
-        if len(SpaceGame.getSpritesByClass(PlayBullet)) < AMMO:
-            PlayBullet((self.x, self.y))
-            self.ShootSound.play()
-            
+
     def step(self):
-        self.x += self.velocity[0]
-        self.y += self.velocity[1]
+
+        self.rotation += 1.5*self.vr
+
+        self.move()
+
         if self.thrust == 1:
-            if self.thrustframe == 3:
-                self.thrustframe = 1
-            else:
-                self.thrustframe += 1
+
+            self.VX += self.vx
+
+            self.VY += self.vy
+
+        if 0 <= self.x <= SCREEN_WIDTH:
+
+            self.x -= 0.1*self.VX
+
+        elif self.x < 0:
+
+            self.x += SCREEN_WIDTH
+
+            self.x -= 0.1*self.VX
+
+        else:    
+
+            self.x -= (0.1*self.VX + SCREEN_WIDTH)
+
+        if 0 <= self.y <= SCREEN_HEIGHT:    
+
+            self.y -= 0.1*self.VY
+
+        elif self.y < 0:
+
+            self.y += SCREEN_HEIGHT
+
+            self.y -= 0.1*self.VY
+
+        else:
+
+            self.y -= (0.1*self.VY + SCREEN_HEIGHT)
+
+    
+
+        if self.thrust == 1:
+
             self.setImage(self.thrustframe)
+
+            self.thrustframe += 1
+
+            if self.thrustframe == 4:
+
+                self.thrustframe = 1
+
+        else:
+
+            self.setImage(0)
+
+            
+
+        collides = self.collidingWithSprites(Ship2)
+
+        collides.extend(self.collidingWithSprites(Bullet))
+
+        if len(collides):
+
+            if collides[0].visible:
+
+                collides[0].explode()
+
+                self.explode()
+
+    
+
+    def move(self):
+
+        self.X = math.sin(self.rotation)
+
+        self.Y = math.cos(self.rotation)
+
+        self.vx = self.X/math.sqrt(self.X*self.X + self.Y*self.Y)
+
+        self.vy = self.Y/math.sqrt(self.X*self.X + self.Y*self.Y)
+
+    
+
+    def explode(self):
+
+        self.visible = False
+
+        ExplosionBig(self.position)
+
+        self.waitspawn = 5
+
+    
+
+    def thrustOn(self, event):
+
+        self.thrust = 1
+
+        
+
+    def thrustOff(self, event):
+
+        self.thrust = 0
+
+        
+
+    def rotateLeft(self, event):
+
+        self.vr = 0.05
+
+        
+
+    def lrOff(self,  event):
+
+        self.vr = 0
+
+        
+
+    def rotateRight(self, event):
+
+        self.vr = -0.05
+
+        
+
+    def rrOff(self,  event):
+
+        self.vr = 0
+
+    
+
+    def fire(self, event):
+
+        self.bullet= Bullet(self.position, self.vx, self.vy)
+
+
+
+
+class Ship2(Sprite):
+
+    
+
+    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
+
+        Frame(0,0,86,125), 4, 'vertical')
+
+
+
+
+    def __init__(self, position):
+
+        super().__init__(Ship2.asset, position)
+
+        self.vr = 0.00
+
+        self.thrust = 0
+
+        self.thrustframe = 1
+
+        self.VX = 0
+
+        self.VY = 0   
+
+        self.vx = 0
+
+        self.vy = 0
+
+        self.turn = 0
+
+        SpaceGame.listenKeyEvent("keydown", "w", self.thrustOn)
+
+        SpaceGame.listenKeyEvent("keyup", "w", self.thrustOff)
+
+        SpaceGame.listenKeyEvent("keydown", "a", self.rotateLeft)
+
+        SpaceGame.listenKeyEvent("keyup", "a", self.lrOff)
+
+        SpaceGame.listenKeyEvent("keydown", "d", self.rotateRight)
+        SpaceGame.listenKeyEvent("keyup", "d", self.rrOff)
+        SpaceGame.listenKeyEvent("keypress", "e", self.fire)
+        self.fxcenter = self.fycenter = 0.5
+        self.bullet = None
+    
+    def step(self):
+        self.rotation += 1.5*self.vr
+        self.move()
+        if self.thrust == 1:
+            self.VX += self.vx
+            self.VY += self.vy
+        if 0 <= self.x <= SCREEN_WIDTH:
+            self.x -= 0.1*self.VX
+        elif self.x < 0:
+            self.x += SCREEN_WIDTH
+            self.x -= 0.1*self.VX
+        else:    
+            self.x -= (0.1*self.VX + SCREEN_WIDTH)
+        if 0 <= self.y <= SCREEN_HEIGHT:    
+            self.y -= 0.1*self.VY
+        elif self.y < 0:
+            self.y += SCREEN_HEIGHT
+            self.y -= 0.1*self.VY
+        else:
+            self.y -= (0.1*self.VY + SCREEN_HEIGHT)
+    
+        if self.thrust == 1:
+            self.setImage(self.thrustframe)
+            self.thrustframe += 1
+            if self.thrustframe == 4:
+                self.thrustframe = 1
         else:
             self.setImage(0)
-        if len(self.collidingWithSprites(EnemyBullet)) > 0:
-            for x in self.collidingWithSprites(EnemyBullet):
-                x.destroy()
-            self.explode()
-            return
-        if self.x < 0 or self.x > SCREEN_WIDTH or self.y < 0 or self.y > SCREEN_HEIGHT:
-            if len(SpaceGame.getSpritesbyClass(WinText)) == 0:
-                self.explode()
-                return
-   
-class Enemy(SpaceShip):
-    
-     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
-     Frame(227,0,292-227,125), 4, 'vertical')
-    
-def __init__(self, position):
-        super().__init__(Enemy.asset, position)
-        self.speed = 1
-        self.changeDirec()
-        self.dist = 0
-        self.frame = 1
-        self.scale = 0.75
-    
-    def velocitySet(self):
-        self.velx = velCalcX(self.speed, self.rotation)
-        self.vely = velCalcY(self.speed, self.rotation)
-    
-    def changeDirec(self):
-        self.rotation = randint(0,1000)/500*pi
-        self.velocitySet()
-        self.dist = 0
         
+        collides = self.collidingWithSprites(Ship1)
+        if len(collides):
+            if collides[0].visible:
+                collides[0].explode()
+                self.explode()
+                
+    
+    def move(self):
+        self.X = math.sin(self.rotation)
+        self.Y = math.cos(self.rotation)
+        self.vx = self.X/math.sqrt(self.X*self.X + self.Y*self.Y)
+        self.vy = self.Y/math.sqrt(self.X*self.X + self.Y*self.Y)
+    
     def explode(self):
-            Explosion((self.x, self.y))
-            for x in SpaceGame.getSpritesbyClass(ScoreControl):
-                x.scoreChange()
-            self.destroy()
-    def step(self):
-        if len(self.collidingWithSprites(Player)) > 0:
-            for x in SpaceGame.getSpritesbyClass(Player):
-                x.explode()
-            self.explode()
-            return
-        if len(self.collidingWithSprites(PlayerBullet)) > 0:
-            for x in self.collidingWithSprites(PlayerBullet):
-                x.destroy()
-            self.explode()
-            return
-        self.x += self.velx
-        self.y += self.vely
-        if self.frame == 3:
-            self.frame = 1
-        else:
-            self.frame += 1
-        self.setImage(self.frame)
-        if self.x > SCREEN_WIDTH or self.x < 0 or self.y > SCREEN_HEIGHT or self.y < 0:
-            self.rotation += pi
-            self.velocitySet()
-        elif self.dist > SCREEN_DIAG/5 and randint(0,20) == 0:
-            self.changeDirec()
-        self.dist += self.speed
-        if randint(0,500) == 0:
-            EnemyBullet((self.x,self.y))
-            self.ShootSound.play()
-            
+        self.visible = False
+        ExplosionBig(self.position)
+        self.waitspawn = 5
+    
+    def thrustOn(self, event):
+        self.thrust = 1
+    def thrustOff(self, event):
+        self.thrust = 0
+    def rotateLeft(self, event):
+        self.vr = 0.05
+    def lrOff(self,  event):
+        self.vr = 0
+    def rotateRight(self, event):
+        self.vr = -0.05
+    def rrOff(self,  event):
+        self.vr = 0
+    
+    def fire(self, event):
+        self.bullet= Bullet(self.position, self.vx, self.vy)
+        
 class Bullet(Sprite):
     
-    def __init__(self, asset, position):
-        super().__init__(asset, position)
-        self.fxcenter = self.fycenter = 0.5
-        self.velx = 0
-        self.vely = 0
+    asset = ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
+    pewasset = SoundAsset("sounds/pew1.mp3")
+    
+    def __init__(self, position, vx, vy):
+        super().__init__(Bullet.asset, position)
+        self.exist = True
+        self.circularCollisionModel()
+        self.pew = Sound(Bullet.pewasset)
+        self.pew.play()
+        self.appear = 1
+        self.fxcenter = 0.5
+        self.fycenter = 0
+        self.X = vx
+        self.Y = vy
+        
     
     def step(self):
-        if 0 <= self.x <= SCREEN_WIDTH and 0 <= self.y <= SCREEN_HEIGHT:
-            self.velx = velCalcX(self.speed, self.rotation)
-            self.vely = velCalcY(self.speed, self.rotation)
-            self.x += self.velx
-            self.y += self.vely
+        self.visible = True
+        if self.exist:
+            self.setImage(self.appear)
+            self.appear += 1
+            if self.appear == 8:
+                self.appear = 1
         else:
+            self.setImage(0)
+        
+        self.x -= 15*self.X
+        self.y -= 15*self.Y
+        
+        collides = self.collidingWithSprites(Ship2)
+        collides.extend(self.collidingWithSprites(Ship1))
+        if len(collides):
+            if collides[0].visible:
+                self.visible = False
+        else:
+            self.visible = True
+        
+        if self.x < 0 or self.x > SCREEN_WIDTH or self.y < 0 or self.y >SCREEN_HEIGHT:
             self.destroy()
-
-class PlayerBullet(Bullet):
     
-    asset = ImageAsset("images/blast.png", Frame(0,0,8,8))
+class HealthBar:
     
-    def __init__(self, position):
-        super().__init__(PlayerBullet.asset, position)
-        self.speed = 5
-        for x in SpaceGame.getSpritesbyClass(Player):
-            self.rotation = x.rotation
-            
-class EnemyBullet(Bullet):
-    
-    asset = ImageAsset("images/blast.png", Frame(40,0,8,8))
-    
-    def __init__(self, position):
-        super().__init__(EnemyBullet.asset, position)
-        self.speed = 1
-        self.scale = 2
-        for x in SpaceGame.getSpritesbyClass(Player):
-            self.rotation = atan((x.x-self.x)/(x.y-self.y))
-            if self.y < x.y:
-                self.rotation += pi
-            self.rotation += radians(randint(-101,100)/10)
-class Explosion(Sprite):
+    def __init__(self, indicatorasset, initvalue, position, app):
+        self.sprites = [Sprite(indicatorasset, (0,app.height-75)) for i in range(initvalue)]
+        for s in self.sprites:
+            s.scale = 0.4
+        width = self.sprites[0].width
+        if position == 'left':
+            x = 50
+            step = width+5
+        else:
+            x = app.width - 50 - width
+            step = -width-5
+        for s in self.sprites:
+            s.x = x
+            x += step
+        self.restart()
+        
+    def restart(self):
+        for s in self.sprites:
+            s.visible = True
+        self.count = len(self.sprites)
+        
+    def dead(self):
+        return self.count == 0
+        
+    def killone(self):
+        if self.count > 0:
+            self.count -= 1
+            self.sprites[self.count].visible = False
+class ExplosionSmall(Sprite):
     
     asset = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
-    SAsset = SoundAsset("sounds/explosion1.mp3")
+    boomasset = SoundAsset("sounds/explosion1.mp3")
     
     def __init__(self, position):
-        super().__init__(Explosion.asset, position)
-        self.fxcenter = self.fycenter = 0.5
-        self.frame = 0
-        self.ExplodeSound = Sound(Explosion.SAsset)
-        self.ExplodeSound.volume = 10
-        self.ExplodeSound.play()
+        super().__init__(ExplosionSmall.asset, position)
+        self.image = 0
+        self.center = (0.5, 0.5)
+        self.boom = Sound(ExplosionSmall.boomasset)
+        self.boom.play()
         
     def step(self):
-        if self.frame == 8:
+        self.setImage(self.image//2)
+        self.image += 1
+        if self.image == 20:
             self.destroy()
-        else:
-            self.frame += 1
-        self.setImage(self.frame)
-        
-class PlayerExplosion(Explosion):
+
+
+class ExplosionBig(Sprite):
     
+    asset = ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
+    boomasset = SoundAsset("sounds/explosion2.mp3")
+
     def __init__(self, position):
-        super().__init__(position)
-    
+        super().__init__(ExplosionBig.asset, position)
+        self.image = 0
+        self.center = (0.5, 0.5)
+        self.boom = Sound(ExplosionBig.boomasset)
+        self.boom.play()
+        
     def step(self):
-        super().step()
-        if self.frame == 8:
-            for x in SpaceGame.getSpritesbyClass(LifeControl):
-                x.respawn()
+        self.setImage(self.image//2)
+        self.image += 1
+        if self.image == 50:
             self.destroy()
+class SpaceGame(App):
+    def __init__(self, width, height)
+        super().__init__(width, height)
+        black = Color(0, 1)
+        noline = LineStyle(0, black)
+        bg_asset = ImageAsset("images/starfield.jpg")
+        bg = Sprite(bg_asset, (0,0))
+        bg1 = Sprite(bg_asset, (512,512))
+        bg2 = Sprite(bg_asset, (0,512))
+        bg3 = Sprite(bg_asset, (512,0))
+        bg4 = Sprite(bg_asset, (1024,512))
+        bg5 = Sprite(bg_asset, (1024,0))
+        Ship1((250,250))
+        Ship2((400,400))
+        Sun((750,450))
         
-class ScoreControl(Sprite):
-    
-    asset = TextAsset("Score:", fill=white)
-    
-    def __init__(self, position):
-        super().__init__(ScoreControl.asset, position)
-        self.score = 0
-        self.dispScore()
-        
-    def dispScore(self):
-        Score(TextAsset(str(self.score), fill=white), (65,0))
-        
-    def scoreChange(self):
-        for x in SpaceGame.getSpritesbyClass(Score):
-            x.destroy()
-        self.score += 1
-        self.dispScore()
-        if self.score == NUM_ENEMIES:
-            for x in SpaceGame.getSpritesbyClass(LifeControl):
-                if x.lives > 0:
-                    classDestroy(EnemyBullet)
-                    WinText((SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
-        
-class Score(Sprite):
-    
-    def __init__(self, asset, position):
-        super().__init__(asset, position)
-        
-class LifeControl(Sprite):
-    
-    asset = TextAsset("Lives:", fill=white)
-    SAsset = SoundAsset("sounds/reappear.mp3")
-    
-    def __init__(self, position):
-        super().__init__(LifeControl.asset, position)
-        self.lives = LIVES
-        self.dispLives()
-        self.RespawnSound = Sound(LifeControl.SAsset)
-        self.RespawnSound.volume = 10
-        
-            
+    def step(self):
+        for ship in self.getSpritesbyClass(Ship1):
+            ship.step()
+        for ship in self.getSpritesbyClass(Ship2):
+            ship.step()
+        explosions = self.getSpritesbyClass(ExplosionSmall)
+        for explosion in explosions:
+            explosion.step()
+        explosions = self.getSpritesbyClass(ExplosionBig)
+        for explosion in explosions:
+            explosion.step()
+        for bullets in self.getSpritesbyClass(Bullet):
+            bullets.step()
+myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
+
+myapp.run()
