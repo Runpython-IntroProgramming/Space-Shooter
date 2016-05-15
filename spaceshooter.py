@@ -225,7 +225,29 @@ class Bullet(Sprite):
         self.Y = vy
         
     
-   
+    def step(self):
+        self.visible = True
+        if self.exist:
+            self.setImage(self.appear)
+            self.appear += 1
+            if self.appear == 8:
+                self.appear = 1
+        else:
+            self.setImage(0)
+        
+        self.x -= 15*self.X
+        self.y -= 15*self.Y
+        
+        collides = self.collidingWithSprites(Ship2)
+        collides.extend(self.collidingWithSprites(Ship1))
+        if len(collides):
+            if collides[0].visible:
+                self.visible = False
+        else:
+            self.visible = True
+        
+        if self.x < 0 or self.x > SCREEN_WIDTH or self.y < 0 or self.y >SCREEN_HEIGHT:
+            self.destroy()
     
 class HealthBar:
     
