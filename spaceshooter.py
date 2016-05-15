@@ -298,29 +298,7 @@ class ExplosionSmall(Sprite):
             self.destroy()
 
 
-class ExplosionBig(Sprite):
-    
-    asset = ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
-    boomasset = SoundAsset("sounds/explosion2.mp3")
 
-    def __init__(self, position):
-        super().__init__(ExplosionBig.asset, position)
-        self.image = 0
-        self.center = (0.5, 0.5)
-        self.boom = Sound(ExplosionBig.boomasset)
-        self.boom.play()
-        
-    def step(self):
-        self.setImage(self.image//2)
-        self.image += 1
-        if self.image == 50:
-            self.destroy()
-class SpaceGame(App):
-    def __init__(self, width, height):
-        super().__init__(width, height)
-        black = Color(0, 1)
-        noline = LineStyle(0, black)
-        bg_asset = ImageAsset("images/starfield.jpg")
         bg = Sprite(bg_asset, (0,0))
         bg1 = Sprite(bg_asset, (512,512))
         bg2 = Sprite(bg_asset, (0,512))
