@@ -118,31 +118,7 @@ class Ship1(Sprite):
     def fire(self, event):
         self.bullet= Bullet(self.position, self.vx, self.vy)
 
-class Ship2(Sprite):
 
-    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
-        Frame(0,0,86,125), 4, 'vertical')
-
-
-    def __init__(self, position):
-        super().__init__(Ship2.asset, position)
-        self.vr = 0.00
-        self.thrust = 0
-        self.thrustframe = 1
-        self.VX = 0
-        self.VY = 0   
-        self.vx = 0
-        self.vy = 0
-        self.turn = 0
-        SpaceGame.listenKeyEvent("keydown", "w", self.thrustOn)
-        SpaceGame.listenKeyEvent("keyup", "w", self.thrustOff)
-        SpaceGame.listenKeyEvent("keydown", "a", self.rotateLeft)
-        SpaceGame.listenKeyEvent("keyup", "a", self.lrOff)
-        SpaceGame.listenKeyEvent("keydown", "d", self.rotateRight)
-        SpaceGame.listenKeyEvent("keyup", "d", self.rrOff)
-        SpaceGame.listenKeyEvent("keypress", "e", self.fire)
-        self.fxcenter = self.fycenter = 0.5
-        self.bullet = None
     
     def step(self):
         self.rotation += 1.5*self.vr
