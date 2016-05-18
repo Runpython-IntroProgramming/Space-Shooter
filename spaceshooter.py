@@ -34,6 +34,8 @@ class Sun(Sprite):
         self.fxcenter = 0.5
         self.fycenter = 0.5
         self.circularCollisionModel()
+        
+
 
 class Vector:
     
