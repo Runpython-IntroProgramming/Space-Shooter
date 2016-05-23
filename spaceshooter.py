@@ -186,7 +186,7 @@ class Ship(GravitySprite):
         self.bullets = []
         for i in range(Ship.bullets):
             self.bullets.append(Bullet(app, sun, sun2))
-        super().__init__(asset, position, velocity, sun)
+        super().__init__(asset, position, velocity, sun, sun2)
         self.initposition = position
         self.initvelocity = self.vx, self.vy
         self.initrotation = self.rotation
@@ -373,7 +373,7 @@ class Spacewar(App):
 
     def __init__(self, width, height):
         super().__init__(width, height)
-        for x in range(self.width//Stars.width + 1):
+        for x in range(self.width, self.width//Stars.width + 1):
             for y in range(self.height//Stars.height + 1):
                 Stars((x*Stars.width, y*Stars.height))
         self.sun = Sun((self.width/2 - 280, self.height/2))
