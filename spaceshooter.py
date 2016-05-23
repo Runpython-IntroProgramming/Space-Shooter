@@ -375,7 +375,8 @@ class Spacewar(App):
         for x in range(self.width//Stars.width + 1):
             for y in range(self.height//Stars.height + 1):
                 Stars((x*Stars.width, y*Stars.height))
-        self.sun = Sun((self.width/2, self.height/2))
+        self.sun = Sun((self.width/2 - 300, self.height/2))
+        self.sun2 = Sun((self.width/2 - 300, self.height/2))
         shipThrust = int(input("How poweful do you want your thrust to be? (40 is standard)"))
         self.ship1 = Ship1(self, (self.width/2-140,self.height/2), (0,-120), self.sun, shipThrust)
         self.ship2 = Ship2(self, (self.width/2+140,self.height/2), (0,120), self.sun, shipThrust)
