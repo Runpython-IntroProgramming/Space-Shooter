@@ -62,7 +62,7 @@ class GravitySprite(Sprite):
         self.vx = velocity[0]
         self.vy = velocity[1]
         self.sun = sun
-        self.sun2 = sun
+        self.sun2 = sun2
         self.fxcenter = 0.5
         self.fycenter = 0.5
         self.rrate = 0.0
@@ -92,7 +92,7 @@ class Bullet(GravitySprite):
     pewasset = SoundAsset("sounds/pew1.mp3")
     
     def __init__(self, app, sun):
-        super().__init__(Bullet.asset, (0,0), (0,0), sun)
+        super().__init__(Bullet.asset, (0,0), (0,0), sun, sun2)
         self.visible = False
         self.firing = False
         self.time = 0
@@ -182,7 +182,7 @@ class Ship(GravitySprite):
     reappearasset = SoundAsset("sounds/reappear.mp3")
 
     
-    def __init__(self, asset, app, position, velocity, sun, thrust):
+    def __init__(self, asset, app, position, velocity, sun, sun2, thrust):
         self.bullets = []
         for i in range(Ship.bullets):
             self.bullets.append(Bullet(app, sun))
@@ -295,8 +295,8 @@ class Ship1(Ship):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(227,0,292-227,125), 4, 'vertical')
         
-    def __init__(self, app, position, velocity, sun, thrust):
-        super().__init__(Ship1.asset, app, position, velocity, sun, thrust)
+    def __init__(self, app, position, velocity, sun, sun2, thrust):
+        super().__init__(Ship1.asset, app, position, velocity, sun, sun2, thrust)
         self.registerKeys(["a", "d", "w", "space"])
         
     def step(self, T, dT):
@@ -379,8 +379,8 @@ class Spacewar(App):
         self.sun = Sun((self.width/2 - 280, self.height/2))
         self.sun2 = Sun((self.width/2 - 280, self.height/2))
         shipThrust = int(input("How poweful do you want your thrust to be? (40 is standard)"))
-        self.ship1 = Ship1(self, (self.width/2-140,self.height/2), (0,-120), self.sun, shipThrust)
-        self.ship2 = Ship2(self, (self.width/2+140,self.height/2), (0,120), self.sun, shipThrust)
+        self.ship1 = Ship1(self, (self.width/2-140,self.height/2), (0,-120), self.sun, self.sun2, shipThrust)
+        self.ship2 = Ship2(self, (self.width/2+140,self.height/2), (0,120), self.sun, self.sun2, shipThrust)
         self.tsprites = {k:Sprite(TextAsset(text=v, width=200, align='center',style='20px Arial', fill=Color(0xff2222,1))) 
             for k, v in Spacewar.strings.items()}
         self.tsprites['winner'].visible = False
