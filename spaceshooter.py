@@ -57,7 +57,7 @@ class GravitySprite(Sprite):
     
     G = int(input("How strong should gravity be? (50 is standard)"))
 
-    def __init__(self, asset, position, velocity, sun):
+    def __init__(self, asset, position, velocity, sun, sun2):
         super().__init__(asset, position)
         self.vx = velocity[0]
         self.vy = velocity[1]
@@ -91,7 +91,7 @@ class Bullet(GravitySprite):
     asset = ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
     pewasset = SoundAsset("sounds/pew1.mp3")
     
-    def __init__(self, app, sun):
+    def __init__(self, app, sun, sun2):
         super().__init__(Bullet.asset, (0,0), (0,0), sun, sun2)
         self.visible = False
         self.firing = False
@@ -185,7 +185,7 @@ class Ship(GravitySprite):
     def __init__(self, asset, app, position, velocity, sun, sun2, thrust):
         self.bullets = []
         for i in range(Ship.bullets):
-            self.bullets.append(Bullet(app, sun))
+            self.bullets.append(Bullet(app, sun, sun2))
         super().__init__(asset, position, velocity, sun)
         self.initposition = position
         self.initvelocity = self.vx, self.vy
