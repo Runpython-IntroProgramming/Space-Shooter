@@ -62,6 +62,7 @@ class GravitySprite(Sprite):
         self.vx = velocity[0]
         self.vy = velocity[1]
         self.sun = sun
+        self.sun2 = sun
         self.fxcenter = 0.5
         self.fycenter = 0.5
         self.rrate = 0.0
