@@ -313,8 +313,8 @@ class Ship2(Ship):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(0,0,86,125), 4, 'vertical')
         
-    def __init__(self, app, position, velocity, sun, thrust):
-        super().__init__(Ship2.asset, app, position, velocity, sun, thrust)
+    def __init__(self, app, position, velocity, sun, sun2, thrust):
+        super().__init__(Ship2.asset, app, position, velocity, sun, sun2, thrust)
         self.registerKeys(["left arrow", "right arrow", "up arrow", "enter"])
 
     def step(self, T, dT):
