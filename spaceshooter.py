@@ -76,10 +76,12 @@ class GravitySprite(Sprite):
         #Ur = R.unit()
         r = R.mag()
         Ux, Uy = R.x/r, R.y/r
+        r2 = R2.mag()
+        Ux2, Uy2 = R2.x/r2, R2.y/r2
         ag = GravitySprite.G*self.sun.mass/R.mag()**2
         ag2 = GravitySprite.G*self.sun2.mass/R2.mag()**2
         Agx, Agy = Ux*ag, Uy*ag
-        Agx2, Agy2 = Ux*ag2, Uy*ag2
+        Agx2, Agy2 = Ux2*ag2, Uy2*ag2
         vx, vy = self.vx, self.vy
         At = self.thrust/self.mass
         dt2o2 = dT*dT*0.5
