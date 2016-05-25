@@ -72,10 +72,12 @@ class GravitySprite(Sprite):
     def step(self, T, dT):
         #dt = 0.033
         R = Vector(self.sun.x-self.x, self.sun.y-self.y)
+        R = Vector(self.sun2.x-self.x, self.sun2.y-self.y)
         #Ur = R.unit()
         r = R.mag()
         Ux, Uy = R.x/r, R.y/r
         ag = GravitySprite.G*self.sun.mass/R.mag()**2
+        ag = GravitySprite.G*self.sun2.mass/R.mag()**2
         Agx, Agy = Ux*ag, Uy*ag
         vx, vy = self.vx, self.vy
         At = self.thrust/self.mass
