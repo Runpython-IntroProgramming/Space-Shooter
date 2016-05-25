@@ -118,6 +118,8 @@ class Bullet(GravitySprite):
                 super().step(T, dT)
                 if self.collidingWith(self.sun):
                     self.visible = False
+                if self.collidingWith(self.sun2):
+                    self.visible = False    
                     ExplosionSmall(self.position)
                 ships = []
                 ships = self.collidingWithSprites(Ship1)
