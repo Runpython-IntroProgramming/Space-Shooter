@@ -263,6 +263,8 @@ class Ship(GravitySprite):
             self.rotation = self.rotation + self.rrate * dT
             if self.collidingWith(self.sun):     
                 self.explode()
+            if self.collidingWith(self.sun2):     
+                self.explode()    
             if self.thrust != 0.0:
                 self.imagex = self.imagex + 1    # animate the rockets
                 if self.imagex == 4:
