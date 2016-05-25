@@ -1,7 +1,7 @@
 """
 spaceshooter.py
 Author: Billy
-Credit: <list sources used, if any>
+Credit: Mr Dennison
 
 Assignment:
 Write and submit a program that implements the spacewar game:
