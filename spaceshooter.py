@@ -21,5 +21,7 @@ class Stars(Sprite):
     def __init__(self, position):
         super().__init__(Stars.asset, position)
 
-
+class SpaceGame(App):
+    
+    
 
