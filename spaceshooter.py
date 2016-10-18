@@ -38,10 +38,10 @@ class SpaceShip(Sprite):
         self.thrustframe = 1
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
-        SpaceGame.listenKeyEvent("keydown", "left key", self.thrustLeft)
-        SpaceGame.listenKeyEvent("keyup", "right key", self.thrustRightoff)
-        SpaceGame.listenKeyEvent("keyup", "left key", self.thrustLeftoff)
-        SpaceGame.listenKeyEvent("keydown", "right key", self.thrustRight)
+        SpaceGame.listenKeyEvent("keydown", "left arrow", self.thrustLeft)
+        SpaceGame.listenKeyEvent("keyup", "right arrow", self.thrustRightoff)
+        SpaceGame.listenKeyEvent("keyup", "left arrow", self.thrustLeftoff)
+        SpaceGame.listenKeyEvent("keydown", "right arrow", self.thrustRight)
     def step(self):
         if self.sideThrust == 1:
             self.vAddedx += 1
