@@ -42,7 +42,7 @@ class SpaceGame(App):
         for x in range(self.width//Stars.width + 1):
             for y in range(self.height//Stars.height + 1):
                 Stars((x*Stars.width, y*Stars.height))
-        SpaceShip((500,500))
+        SpaceShip((800,350))
                     
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
