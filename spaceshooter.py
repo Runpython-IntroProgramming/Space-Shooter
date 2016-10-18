@@ -28,13 +28,27 @@ class SpaceShip(Sprite):
 
     def __init__(self, position):
         super().__init__(SpaceShip.asset, position)
+        
+    def step(self):
+        self.x += self.vx
+        self.y += self.vy
+        self.rotation += self.vr
+        self.setImage(0)
 
 
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
-            for x in range(self.width//Stars.width + 1):
-               for y in range(self.height//Stars.height + 1):
-                    Stars((x*Stars.width, y*Stars.height))
+        for x in range(self.width//Stars.width + 1):
+            for y in range(self.height//Stars.height + 1):
+                Stars((x*Stars.width, y*Stars.height))
+        SpaceShip((500,500))
+                    
+    def step(self):
+        for ship in self.getSpritesbyClass(SpaceShip):
+            ship.step()
+            
+app = SpaceGame(0,0)
+app.run()
     
 
