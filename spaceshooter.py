@@ -44,9 +44,9 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.thrustRight)
     def step(self):
         if self.sideThrust == 1:
-            self.vAddedx += 1
+            self.vAddedx += 0.5
         if self.sideThrust == -1:
-            self.vAddedx -= 1
+            self.vAddedx -= 0.5
         if self.sideThrust == 0:
             self.vAddedx += 0
         self.x += self.vAddedx
