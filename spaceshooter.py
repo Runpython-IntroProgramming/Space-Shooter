@@ -22,33 +22,54 @@ ball_asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
 spaceship = Sprite(ball_asset, (0, 0))
 # Movement
 spaceship.dir = 1
-spaceship.go = True
+spaceship.go = False
 def reverse(b):
     b.dir *= -1
 def left(b):
     spaceship.dir=-1
 def right(b):
     spaceship.dir=1
-# Turn around
+def up(b):
+    spaceship.dir=1
+def down(b):
+    spaceship.dir=-1
+# Step
 def step():
     if spaceship.go:
         spaceship.x += spaceship.dir
         if spaceship.x + spaceship.width > SCREEN_WIDTH or spaceship.x < 0:
             spaceship.x -= spaceship.dir
             reverse(spaceship)
+def ystep():
+    if spaceship.go:
+        spaceship.y += spaceship.dir
+        if spaceship.y +spaceship.height > SCREEN_HEIGHT or spaceship.y < 0:
+            spaceship.y -= spaceship.dir
+            reverse(spaceship)
 # Handle the space key
 def spaceKey(event):
-    spaceship.go = not spaceship.go
+    spaceship.go = spaceship.go
 
 # Handle the "reverse" key
 def reverseKey(event):
+    spaceship.go = not spaceship.go
     reverse(spaceship)
     
 def leftKey(event):
+    spaceship.go = not spaceship.go
     left(spaceship)
     
 def rightKey(event):
+    spaceship.go = not spaceship.go
     right(spaceship)
+    
+def upKey(event):
+    spaceship.go = not spaceship.go
+    up(spaceship)
+    
+def downKey (event):
+    spaceship.go = not spaceship.go
+    down(spaceship)
 
 # Handle the mouse click
 def mouseClick(event):
@@ -60,4 +81,7 @@ myapp.listenKeyEvent('keydown', 'r', reverseKey)
 myapp.listenMouseEvent('click', mouseClick)
 myapp.listenKeyEvent('keydown', 'a', leftKey)
 myapp.listenKeyEvent('keydown', 'd', rightKey)
+myapp.listenKeyEvent('keydown', 'w', upKey)
+myapp.listenKeyEvent('keydown', 's', downKey)
+
 myapp.run(step)
