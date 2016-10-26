@@ -23,6 +23,7 @@ spaceship = Sprite(ball_asset, (0, 0))
 # Movement
 spaceship.dir = 1
 spaceship.go = False
+spaceship.ygo= False
 def reverse(b):
     b.dir *= -1
 def left(b):
@@ -41,7 +42,7 @@ def step():
             spaceship.x -= spaceship.dir
             reverse(spaceship)
 def ystep():
-    if spaceship.go:
+    if spaceship.ygo:
         spaceship.y += spaceship.dir
         if spaceship.y +spaceship.height > SCREEN_HEIGHT or spaceship.y < 0:
             spaceship.y -= spaceship.dir
@@ -64,11 +65,11 @@ def rightKey(event):
     right(spaceship)
     
 def upKey(event):
-    spaceship.go = not spaceship.go
+    spaceship.ygo = not spaceship.ygo
     up(spaceship)
     
 def downKey (event):
-    spaceship.go = not spaceship.go
+    spaceship.ygo = not spaceship.ygo
     down(spaceship)
 
 # Handle the mouse click
