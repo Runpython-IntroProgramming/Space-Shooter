@@ -31,17 +31,21 @@ def left(b):
 def right(b):
     spaceship.dir=1
 def up(b):
-    spaceship.dir=1
-def down(b):
     spaceship.dir=-1
+def down(b):
+    spaceship.dir=1
 # Step
 def step():
+    print("step")
     if spaceship.go:
         spaceship.x += spaceship.dir
         if spaceship.x + spaceship.width > SCREEN_WIDTH or spaceship.x < 0:
             spaceship.x -= spaceship.dir
             reverse(spaceship)
+    ystep()
+    
 def ystep():
+    print("ystep")
     if spaceship.ygo:
         spaceship.y += spaceship.dir
         if spaceship.y +spaceship.height > SCREEN_HEIGHT or spaceship.y < 0:
@@ -49,28 +53,37 @@ def ystep():
             reverse(spaceship)
 # Handle the space key
 def spaceKey(event):
-    spaceship.go = spaceship.go
+    if spaceship.go==True:
+        spaceship.go=not spaceship.go
+        if spaceship.ygo==True:
+            spaceship.ygp=not spaceship.ygo
+    if spaceship.ygo==True:
+        spaceship.ygo=not spaceship.ygo
 
-# Handle the "reverse" key
-def reverseKey(event):
-    spaceship.go = not spaceship.go
-    reverse(spaceship)
-    
+# Handle Keys
 def leftKey(event):
-    spaceship.go = not spaceship.go
+    spaceship.go = True
     left(spaceship)
+def LeftUp(event):
+    spaceship.go=False
     
 def rightKey(event):
-    spaceship.go = not spaceship.go
+    spaceship.go = True
     right(spaceship)
+def RightUp(event):
+    spaceship.go=False
     
 def upKey(event):
-    spaceship.ygo = not spaceship.ygo
+    spaceship.ygo = True
     up(spaceship)
+def UpUp(event):
+    spaceship.go=False
     
 def downKey (event):
-    spaceship.ygo = not spaceship.ygo
+    spaceship.ygo = True
     down(spaceship)
+def DownUp(event):
+    spaceship.go=False
 
 # Handle the mouse click
 def mouseClick(event):
@@ -78,11 +91,14 @@ def mouseClick(event):
     spaceship.y = event.y
 myapp = App(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.listenKeyEvent('keydown', 'space', spaceKey)
-myapp.listenKeyEvent('keydown', 'r', reverseKey)
 myapp.listenMouseEvent('click', mouseClick)
 myapp.listenKeyEvent('keydown', 'a', leftKey)
+myapp.listenKeyEvent('keyup', 'a', LeftUp)
 myapp.listenKeyEvent('keydown', 'd', rightKey)
+myapp.listenKeyEvent('keyup', 'd', RightUp)
 myapp.listenKeyEvent('keydown', 'w', upKey)
+myapp.listenKeyEvent('keyup', 'w', UpUp)
 myapp.listenKeyEvent('keydown', 's', downKey)
-myapp.run(ystep)
+myapp.listenKeyEvent('keyup', 's', DownUp)
+#myapp.run(ystep)
 myapp.run(step)
