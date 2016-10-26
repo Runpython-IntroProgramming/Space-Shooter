@@ -83,7 +83,7 @@ def downKey (event):
     spaceship.ygo = True
     down(spaceship)
 def DownUp(event):
-    spaceship.go=False
+    spaceship.ygo=False
 
 # Handle the mouse click
 def mouseClick(event):
