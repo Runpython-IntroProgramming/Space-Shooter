@@ -83,5 +83,5 @@ myapp.listenKeyEvent('keydown', 'a', leftKey)
 myapp.listenKeyEvent('keydown', 'd', rightKey)
 myapp.listenKeyEvent('keydown', 'w', upKey)
 myapp.listenKeyEvent('keydown', 's', downKey)
-
+myapp.run(ystep)
 myapp.run(step)
