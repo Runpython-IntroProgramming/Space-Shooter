@@ -77,7 +77,7 @@ def upKey(event):
     spaceship.ygo = True
     up(spaceship)
 def UpUp(event):
-    spaceship.go=False
+    spaceship.ygo=False
     
 def downKey (event):
     spaceship.ygo = True
