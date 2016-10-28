@@ -17,7 +17,7 @@ SCREEN_HEIGHT = 900
 
 class SpaceShip(Sprite):
     #Animated space ship
-    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
+    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
         Frame(227,0,292-227,125), 4, 'vertical')
     def __init__(self, position):
         super().__init__(SpaceShip.asset, position)
@@ -63,8 +63,9 @@ class SpaceGame(App):
         super().__init__(width, height)
         black = Color(0, 1)
         noline = LineStyle(0, black)
-        bg_asset = RectangleAsset(SCREEN_WIDTH, SCREEN_HEIGHT, noline, black)
+        bg_asset = ImageAsset("images/kSQdCxM.jpg")
         bg = Sprite(bg_asset, (0,0))
+        bg.scale = 0.6
         SpaceShip((100,100))
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
