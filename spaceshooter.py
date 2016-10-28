@@ -34,20 +34,34 @@ class SpaceShip(Sprite):
         self.vAddedy = 0
         self.vr = 0
         self.sideThrust = 0
+        self.vertThrust = 0
         self.thrust = 0
         self.thrustframe = 1
+        self.vr = 0.01
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.thrustLeft)
         SpaceGame.listenKeyEvent("keyup", "right arrow", self.thrustRightoff)
         SpaceGame.listenKeyEvent("keyup", "left arrow", self.thrustLeftoff)
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.thrustRight)
+        
+        SpaceGame.listenKeyEvent("keydown", "up arrow", self.thrustUp)
+        SpaceGame.listenKeyEvent("keyup", "down arrow", self.thrustDownoff)
+        SpaceGame.listenKeyEvent("keyup", "up arrow", self.thrustUpoff)
+        SpaceGame.listenKeyEvent("keydown", "down arrow", self.thrustDown)
+        self.fxcenter = self.fycenter = 0.5
     def step(self):
         if self.sideThrust == 1:
             self.vAddedx += 0.1
         if self.sideThrust == -1:
             self.vAddedx -= 0.1
         if self.sideThrust == 0:
+            self.vAddedx += 0
+        if self.vertThrust == 1:
+            self.vAddedx += 0.1
+        if self.vertThrust == -1:
+            self.vAddedx -= 0.1
+        if self.vertThrust == 0:
             self.vAddedx += 0
         self.x += self.vAddedx
         self.y += self.vAddedy
@@ -78,6 +92,19 @@ class SpaceShip(Sprite):
     def thrustLeftoff(self, event):
         self.sideThrust = 0
         
+    
+    def thrustUp(self, event):
+        self.vertThrust = -1
+
+    def thrustDown(self, event):
+        self.vertThrust = 1
+    
+    def thrustDownoff(self, event):
+        self.vertThrust = 0
+    
+    def thrustUpoff(self, event):
+        self.vertThrust = 0
+
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
@@ -90,7 +117,7 @@ class SpaceGame(App):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
             
-app = SpaceGame(0,0)
+app = SpaceGame(1900,935)
 app.run()
     
 
