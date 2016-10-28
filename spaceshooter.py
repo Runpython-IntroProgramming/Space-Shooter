@@ -58,11 +58,11 @@ class SpaceShip(Sprite):
         if self.sideThrust == 0:
             self.vAddedx += 0
         if self.vertThrust == 1:
-            self.vAddedx += 0.1
+            self.vAddedy += 0.1
         if self.vertThrust == -1:
-            self.vAddedx -= 0.1
+            self.vAddedy -= 0.1
         if self.vertThrust == 0:
-            self.vAddedx += 0
+            self.vAddedy += 0
         self.x += self.vAddedx
         self.y += self.vAddedy
         self.rotation += self.vr
