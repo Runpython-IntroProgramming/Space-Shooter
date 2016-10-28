@@ -52,15 +52,15 @@ class SpaceShip(Sprite):
         self.fxcenter = self.fycenter = 0.5
     def step(self):
         if self.sideThrust == 1:
-            self.vAddedx += 0.1
+            self.vAddedx += 0.05
         if self.sideThrust == -1:
-            self.vAddedx -= 0.1
+            self.vAddedx -= 0.05
         if self.sideThrust == 0:
             self.vAddedx += 0
         if self.vertThrust == 1:
-            self.vAddedy += 0.1
+            self.vAddedy += 0.05
         if self.vertThrust == -1:
-            self.vAddedy -= 0.1
+            self.vAddedy -= 0.05
         if self.vertThrust == 0:
             self.vAddedy += 0
         self.x += self.vAddedx
