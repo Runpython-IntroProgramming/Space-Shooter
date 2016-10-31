@@ -59,10 +59,9 @@ class SpaceShip(Sprite):
         self.rx = -5
     def moveR(self,event):
         self.rx = 5
-    def nMoveL(self,event):
-        self.rx = -2
-    def nMoveR(self,event):
+    def nMoveLR(self,event):
         self.rx = 2
+    #def nMoveR(self,event):
     
 
 class SpaceGame(App):
