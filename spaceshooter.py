@@ -1,7 +1,7 @@
 """
 spaceshooter.py
 Author: Liam
-Credit: 
+Credit: http://stackoverflow.com/questions/16442923/how-to-insert-an-image-in-python
 
 Assignment:
 Write and submit a program that implements the spacewar game:
@@ -13,7 +13,6 @@ from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Fra
 SCREEN_WIDTH = 1800
 SCREEN_HEIGHT = 900
 
-# Background
 
 class SpaceShip(Sprite):
     #Animated space ship
@@ -21,21 +20,24 @@ class SpaceShip(Sprite):
         Frame(227,0,292-227,125), 4, 'vertical')
     def __init__(self, position):
         super().__init__(SpaceShip.asset, position)
-        self.vx = 1
-        self.vy = 1
+        self.vx = 0
+        self.vy = 0
         self.vr = 0.01
         self.thrust = 0
         self.thrustframe = 1
         self.rx = 1
+        self.ry = -1
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.moveL)
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.moveR)
+        SpaceGame.listenKeyEvent("keyup", "left arrow", n_self.moveL) #stop moving to the left
+        SpaceGame.listenKeyEvent("keydown", "right arrow", n_self.moveR) #stop moving to the right
         self.fxcenter = self.fycenter = 0.5
     def step(self):
         self.x += self.vx
         self.y += self.vy
-        self.rotation += self.vr
+        #self.rotation += self.vr
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
@@ -47,6 +49,8 @@ class SpaceShip(Sprite):
             self.x=self.x-10
         elif self.rx == 5:
             self.x=self.x+10
+        else
+            self.x=self
     def thrustOn(self, event):
         self.thrust = 1
     def thrustOff(self, event):
@@ -55,6 +59,10 @@ class SpaceShip(Sprite):
         self.rx = -5
     def moveR(self,event):
         self.rx = 5
+    def nmoveL(self,event):
+        self.rx = -2
+    def nmoveR(self,event):
+        self.rx = 2
     
 
 class SpaceGame(App):
@@ -67,6 +75,7 @@ class SpaceGame(App):
         bg = Sprite(bg_asset, (0,0))
         bg.scale = 0.6
         SpaceShip((100,100))
+        #Spaceship((300,200))
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
