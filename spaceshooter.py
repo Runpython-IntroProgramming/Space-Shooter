@@ -16,11 +16,16 @@ green = Color(0x00ff00, 1)
 black = Color(0, 1)
 noline = LineStyle(0, black)
 space_asset= ImageAsset("images/starfield.jpg",)
-space_asset2=ImageAsset("images/starfield.jpg",Frame(0,0,250,250))
+space_asset2=ImageAsset("images/starfield.jpg",)
 space=Sprite(space_asset, (0,0))
-space2=Sprite(space_asset,)
+space2=Sprite(space_asset, (512,0))
+space3=Sprite(space_asset,(1024,0))
+space4=Sprite(space_asset, (0,512))
+space5=Sprite(space_asset, (512,512))
+space6=Sprite(space_asset, (1024, 512))
 spaceship_asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
-        Frame(0,0,292-227,125), 4, 'vertical')
+        Frame(227,0,292-227,125), 4, 'vertical')
+
 spaceship = Sprite(spaceship_asset, (0, 0))
 # Movement
 spaceship.dir = 1
