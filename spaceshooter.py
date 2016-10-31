@@ -15,14 +15,30 @@ from time import time
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
 
-class Star(Sprite):
+class Background(Sprite):
     asset = ImageAsset("images/starfield.jpg")
+    height=280
+    width=240
     
-    def _init_ (self, position):
-        super().__init__(Star.asset, position)
+    def __init__(self, position):
+        super().__init__(Background.asset, position)
 
 class SpaceGame(App):
-    Star(100,100)
+    def __init__(self, width, height):
+        super().__init__(width, height)
+        Background((0, 0))
 
 app = SpaceGame(0,0)
 app.run()
+"""
+def __init__(self, width, height):
+        super().__init__(width, height)
+        for x in range(self.width//Stars.width + 1):
+            for y in range(self.height//Stars.height + 1):
+                Stars((x*Stars.width, y*Stars.height))
+
+super().__init__(width, height)
+    for x in range(self.width//Background.width + 1):
+        for y in range(self.height//Background.height + 1):
+            Background((x*Background.width, y*Background.height))
+"""
