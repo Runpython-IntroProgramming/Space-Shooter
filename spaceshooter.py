@@ -37,7 +37,6 @@ class SpaceShip(Sprite):
         self.vertThrust = 0
         self.thrust = 0
         self.thrustframe = 1
-        self.vr = 0.01
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.thrustLeft)
@@ -71,6 +70,12 @@ class SpaceShip(Sprite):
             self.vAddedy -= 0.05
         if self.vertThrust == 0:
             self.vAddedy += 0
+        if self.RotThrust == 1:
+            self.vr += 0.05
+        if self.RotThrust == -1:
+            self.vr -= 0.05
+        if self.RotThrust == 0:
+            self.vr += 0
         self.x += self.vAddedx
         self.y += self.vAddedy
         self.rotation += self.vr
@@ -113,13 +118,26 @@ class SpaceShip(Sprite):
     def thrustUpoff(self, event):
         self.vertThrust = 0
 
+    
+    def thrustCounterClock(self, event):
+        self.RotThrust = -1
+
+    def thrustClock(self, event):
+        self.RotThrust = 1
+    
+    def thrustClockoff(self, event):
+        self.RotThrust = 0
+    
+    def thrustCounterClockoff(self, event):
+        self.RotThrust = 0
+
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
         for x in range(self.width//Stars.width + 1):
             for y in range(self.height//Stars.height + 1):
                 Stars((x*Stars.width, y*Stars.height))
-        SpaceShip((400,400))
+        SpaceShip(400,400)
                     
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
