@@ -143,7 +143,7 @@ class SpaceGame(App):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
             
-app = SpaceGame(1900, 935)
+app = SpaceGame(1900,935)
 app.run()
     
 
