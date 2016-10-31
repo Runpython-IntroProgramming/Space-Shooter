@@ -18,6 +18,11 @@ SCREEN_HEIGHT = 480
 class Star(Sprite):
     asset = ImageAsset("images/starfield.jpg")
     
-    def _init_ (self, width, height, positioning)
-    self.w = width
-    self.h = height
+    def _init_ (self, position):
+        super().__init__(Star.asset, position)
+
+class SpaceGame(App):
+    Star(100,100)
+
+app = SpaceGame(0,0)
+app.run()
