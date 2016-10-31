@@ -32,8 +32,8 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.moveL)
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.moveR)
-        SpaceGame.listenKeyEvent("keyup", "left arrow", self.nMoveLR) #stop moving to the left
-        SpaceGame.listenKeyEvent("keyup", "right arrow", self.nMoveLR) #stop moving to the right
+        SpaceGame.listenKeyEvent("keyup", "left arrow", self.nMoveL) #stop moving to the left
+        SpaceGame.listenKeyEvent("keyup", "right arrow", self.nMoveR) #stop moving to the right
         self.fxcenter = self.fycenter = 0.5
     def step(self):
         self.x += self.vx
@@ -46,10 +46,14 @@ class SpaceShip(Sprite):
                 self.thrustframe = 1
         else:
             self.setImage(0)
-        while self.rx == -5:
-            self.x=self.x-10
-        while self.rx == 5:
-            self.x=self.x+10
+        if self.rxa == 2 and self.rxb == 2:
+            self.x=self.x
+        else:
+            if self.rx == -5:
+                self.x=self.x-10
+            if self.rx == 5:
+                self.x=self.x+10
+        
         #else self.x=self
     def thrustOn(self, event):
         self.thrust = 1
@@ -57,13 +61,15 @@ class SpaceShip(Sprite):
         self.thrust = 0
     def moveL(self,event):
         self.rx = -5
+        self.rxa=0
     def moveR(self,event):
         self.rx = 5
-    def nMoveLR(self,event):
-        self.rx = 2
-        print(event)
-    #def nMoveR(self,event):
-    
+        self.rxb=0
+    def nMoveL(self,event):
+        self.rxa = 2
+        #print(event)
+    def nMoveR(self,event):
+        self.rxb = 2
 
 class SpaceGame(App):
     #Tutorial4 space game example.
