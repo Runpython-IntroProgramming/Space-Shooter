@@ -28,6 +28,8 @@ class SpaceShip(Sprite):
         self.thrustframe = 1
         self.rx = 1
         self.ry = -1
+        self.rxa = 0
+        self.rxb = 0
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.moveL)
@@ -46,6 +48,7 @@ class SpaceShip(Sprite):
                 self.thrustframe = 1
         else:
             self.setImage(0)
+        
         if self.rxa == 2 and self.rxb == 2:
             self.x=self.x
         else:
