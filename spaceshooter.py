@@ -20,7 +20,7 @@ from time import time
 #Hintergrund
 class Stars(Sprite):
 
-    asset = ImageAsset("images/Stars, background.jpg")
+    asset = ImageAsset("images/Stars,\ background.jpg")
     width = 1920
     height = 1080
 
@@ -72,10 +72,7 @@ class SpaceGame(App):
     """
     def __init__(self, width, height):
         super().__init__(width, height)
-#        black = Color(0, 1)
-#        noline = LineStyle(0, black)
-#        bg_asset = RectangleAsset(width, height, noline, black)
-#        bg = Sprite(bg_asset, (0,0))
+        Stars((0,0))
         SpaceShip((100,100))
 
 
