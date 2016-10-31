@@ -20,7 +20,7 @@ from time import time
 #Hintergrund
 class Stars(Sprite):
 
-    asset = ImageAsset("images/starfield.jpg")
+    asset = ImageAsset("images/starswithoutspace.jpg")
     width = 1920
     height = 1080
 
