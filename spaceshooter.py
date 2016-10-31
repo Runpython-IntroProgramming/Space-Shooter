@@ -32,7 +32,7 @@ class SpaceShip(Sprite):
         self.vy = 1
         self.vAddedx = 0
         self.vAddedy = 0
-        self.vr = 0
+        self.vAddedr = 0
         self.sideThrust = 0
         self.vertThrust = 0
         self.thrust = 0
@@ -71,14 +71,14 @@ class SpaceShip(Sprite):
         if self.vertThrust == 0:
             self.vAddedy += 0
         if self.RotThrust == 1:
-            self.vr += 0.05
+            self.vAddedr += 0.05
         if self.RotThrust == -1:
-            self.vr -= 0.05
+            self.vAddedr -= 0.05
         if self.RotThrust == 0:
-            self.vr += 0
+            self.vAddedr += 0
         self.x += self.vAddedx
         self.y += self.vAddedy
-        self.rotation += self.vr
+        self.rotation += self.vAddedr
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
@@ -118,7 +118,6 @@ class SpaceShip(Sprite):
     def thrustUpoff(self, event):
         self.vertThrust = 0
 
-    
     def thrustCounterClock(self, event):
         self.RotThrust = -1
 
@@ -137,7 +136,7 @@ class SpaceGame(App):
         for x in range(self.width//Stars.width + 1):
             for y in range(self.height//Stars.height + 1):
                 Stars((x*Stars.width, y*Stars.height))
-        SpaceShip(400,400)
+        SpaceShip((400,400))
                     
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
