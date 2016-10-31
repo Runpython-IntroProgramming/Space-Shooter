@@ -51,6 +51,12 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keydown", "down arrow", self.thrustDown)
         
         
+        SpaceGame.listenKeyEvent("keydown", "i", self.thrustCounterClock)
+        SpaceGame.listenKeyEvent("keyup", "p", self.thrustClockoff)
+        SpaceGame.listenKeyEvent("keyup", "i", self.thrustCounterClockoff)
+        SpaceGame.listenKeyEvent("keydown", "p", self.thrustClock)
+        
+        
         self.fxcenter = self.fycenter = 0.5
     def step(self):
         if self.sideThrust == 1:
