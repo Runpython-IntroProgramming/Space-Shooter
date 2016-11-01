@@ -107,9 +107,9 @@ class Asteroid(Sprite):
      asset = ImageAsset("https://github.com/liama482/Space-Shooter/blob/master/images/Asteroid1%20spritesht.png",
         Frame(227,0,292-227,125), 8, 'horizontal')
     for a in range(1,8):
-        x=random.random()
+        x=random()
         x=x*1400 + 100
-        y=random.random)
+        y=random()
         y=y*800 + 100
 """
     
