@@ -102,8 +102,8 @@ class SpaceShip(Sprite):
         self.ryb = 2    
 
 class Asteroid(Sprite):
-     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
-        Frame(227,0,292-227,125), 4, 'vertical')
+     asset = ImageAsset("https://github.com/liama482/Space-Shooter/blob/master/images/Asteroid1%20spritesht.png",
+        Frame(227,0,292-227,125), 8, 'horizontal')
 
     
 class SpaceGame(App):
