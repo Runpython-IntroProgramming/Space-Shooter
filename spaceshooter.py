@@ -96,7 +96,7 @@ class SpaceShip(Sprite):
         #print(event)
     def nMoveR(self,event):
         self.rxb = 2
-    def nMoveD=(self,event):
+    def nMoveD(self,event):
         self.rya = 2
     def nMoveU(self,event):
         self.ryb = 2    
