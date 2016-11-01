@@ -35,6 +35,7 @@ class SpaceShip(Sprite):
         self.vAddedr = 0
         self.sideThrust = 0
         self.vertThrust = 0
+        self.RotThrust = 0
         self.thrust = 0
         self.thrustframe = 1
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
@@ -71,9 +72,9 @@ class SpaceShip(Sprite):
         if self.vertThrust == 0:
             self.vAddedy += 0
         if self.RotThrust == 1:
-            self.vAddedr += 0.05
+            self.vAddedr += 0.005
         if self.RotThrust == -1:
-            self.vAddedr -= 0.05
+            self.vAddedr -= 0.005
         if self.RotThrust == 0:
             self.vAddedr += 0
         self.x += self.vAddedx
