@@ -12,31 +12,37 @@ from ggame import SoundAsset, Sound, TextAsset, Color
 import math
 from time import time
 
-SCREEN_WIDTH = 640
-SCREEN_HEIGHT = 480
+SCREEN_WIDTH = 512
+SCREEN_HEIGHT = 512
 
 class Background(Sprite):
     asset = ImageAsset("images/starfield.jpg")
-    height=280
-    width=240
+    height= 512
+    width= 512
     
     def __init__(self, position):
         super().__init__(Background.asset, position)
 
+class Spaceship(Sprite):
+    
+    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
+        Frame(227,0,292-227,125), 4, 'vertical')
+            
+    def __init__(self, position):
+        super().__init__(Spaceship.asset, position)
+
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
+        for x in range(self.width//Background.width + 1):
+            for y in range(self.height//Background.height + 1):
+                Background((x*Background.width, y*Background.height))
         Background((0, 0))
+        Spaceship((0, 0))
 
-app = SpaceGame(0,0)
+app = SpaceGame(1897, 935)
 app.run()
 """
-def __init__(self, width, height):
-        super().__init__(width, height)
-        for x in range(self.width//Stars.width + 1):
-            for y in range(self.height//Stars.height + 1):
-                Stars((x*Stars.width, y*Stars.height))
-
 super().__init__(width, height)
     for x in range(self.width//Background.width + 1):
         for y in range(self.height//Background.height + 1):
