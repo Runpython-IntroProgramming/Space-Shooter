@@ -10,6 +10,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
+from random import random
 
 SCREEN_WIDTH = 1530
 SCREEN_HEIGHT = 930
@@ -105,10 +106,10 @@ class SpaceShip(Sprite):
 class Asteroid(Sprite):
      asset = ImageAsset("https://github.com/liama482/Space-Shooter/blob/master/images/Asteroid1%20spritesht.png",
         Frame(227,0,292-227,125), 8, 'horizontal')
-    For(1,8):
-        x=random()
+    for a in range(1,8):
+        x=random.random()
         x=x*1400 + 100
-        y=random()
+        y=random.random)
         y=y*800 + 100
 """
     
