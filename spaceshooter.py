@@ -30,12 +30,20 @@ class SpaceShip(Sprite):
         self.ry = -1
         self.rxa = 0
         self.rxb = 0
+        self.rya = 0
+        self.ryb = 0
+        
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.moveL)
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.moveR)
+        SpaceGame.listenKeyEvent("keydown", "down arrow", self.moveD)
+        SpaceGame.listenKeyEvent("keydown", "up arrow", self.moveU)
+        
         SpaceGame.listenKeyEvent("keyup", "left arrow", self.nMoveL) #stop moving to the left
         SpaceGame.listenKeyEvent("keyup", "right arrow", self.nMoveR) #stop moving to the right
+        SpaceGame.listenKeyEvent("keyup", "down arrow", self.nMoveD) #stop moving down
+        SpaceGame.listenKeyEvent("keyup", "up arrow", self.nMoveU) #stop moving up
         self.fxcenter = self.fycenter = 0.5
     def step(self):
         self.x += self.vx
@@ -49,6 +57,7 @@ class SpaceShip(Sprite):
         else:
             self.setImage(0)
         
+        #x motion
         if self.rxa == 2 and self.rxb == 2:
             self.x=self.x
         else:
@@ -56,8 +65,15 @@ class SpaceShip(Sprite):
                 self.x=self.x-10
             if self.rx == 5:
                 self.x=self.x+10
-        
-        #else self.x=self
+        #y motion
+        if self.rya == 2 and self.ryb == 2:
+            self.y=self.y
+        else:
+            if self.ry == -5:
+                self.y=self.y-10
+            if self.ry == 5:
+                self.y=self.y+10
+
     def thrustOn(self, event):
         self.thrust = 1
     def thrustOff(self, event):
@@ -68,11 +84,22 @@ class SpaceShip(Sprite):
     def moveR(self,event):
         self.rx = 5
         self.rxb=0
+    def moveD(self,event):
+        self.rx = -5
+        self.rxa=0
+    def moveU(self,event):
+        self.rx = 5
+        self.rxb=0
+    
     def nMoveL(self,event):
         self.rxa = 2
         #print(event)
     def nMoveR(self,event):
         self.rxb = 2
+    def nMoveD=(self,event):
+        self.rya = 2
+    def nMoveU(self,event):
+        self.ryb = 2    
 
 class SpaceGame(App):
     #Tutorial4 space game example.
