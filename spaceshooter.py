@@ -85,10 +85,10 @@ class SpaceShip(Sprite):
         self.rx = 5
         self.rxb=0
     def moveD(self,event):
-        self.ry = -5
+        self.ry = 5
         self.rya=0
     def moveU(self,event):
-        self.ry = 5
+        self.ry = -5
         self.ryb=0
     
     def nMoveL(self,event):
