@@ -3,6 +3,8 @@ spaceshooter.py
 Author: Liam
 Credit: http://stackoverflow.com/questions/16442923/how-to-insert-an-image-in-python,
 http://stackoverflow.com/questions/28553439/python-pygame-how-would-i-get-my-sprite-to-rotate-in-the-direction-its-moving
+https://upload.wikimedia.org/wikipedia/commons/8/86/Asteroid1.png
+https://docs.python.org/3/library/random.html#random.random
 
 Assignment:
 Write and submit a program that implements the spacewar game:
