@@ -11,8 +11,8 @@ https://github.com/HHS-IntroProgramming/Spacewar
 
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 
-SCREEN_WIDTH = 1800
-SCREEN_HEIGHT = 900
+SCREEN_WIDTH = 1530
+SCREEN_HEIGHT = 930
 
 
 class SpaceShip(Sprite):
@@ -101,6 +101,11 @@ class SpaceShip(Sprite):
     def nMoveU(self,event):
         self.ryb = 2    
 
+class Asteroid(Sprite):
+     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
+        Frame(227,0,292-227,125), 4, 'vertical')
+
+    
 class SpaceGame(App):
     #Tutorial4 space game example.
     def __init__(self, width, height):
