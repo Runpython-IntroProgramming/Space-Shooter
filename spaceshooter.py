@@ -5,6 +5,7 @@ Credit: http://stackoverflow.com/questions/16442923/how-to-insert-an-image-in-py
 http://stackoverflow.com/questions/28553439/python-pygame-how-would-i-get-my-sprite-to-rotate-in-the-direction-its-moving
 https://upload.wikimedia.org/wikipedia/commons/8/86/Asteroid1.png
 https://docs.python.org/3/library/random.html#random.random
+http://people.mozilla.org/~jmuizelaar/webgl-worse/asteroid.png
 
 Assignment:
 Write and submit a program that implements the spacewar game:
@@ -108,11 +109,16 @@ class SpaceShip(Sprite):
 class Asteroid(Sprite):
      asset = ImageAsset("https://github.com/liama482/Space-Shooter/blob/master/images/Asteroid1%20spritesht.png",
         Frame(227,0,292-227,125), 8, 'horizontal')
+    def __init__(self):
+        position=(2,300)
+        super().__init__(SpaceShip.asset, position)
+
     for a in range(1,8):
         x=random()
         x=x*1400 + 100
         y=random()
         y=y*800 + 100
+
 """
     
 class SpaceGame(App):
