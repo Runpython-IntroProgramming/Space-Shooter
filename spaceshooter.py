@@ -24,7 +24,7 @@ class Stars(Sprite):
 class SpaceShip(Sprite):
 
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
-        Frame(227,0,292-227,125), 4, 'vertical')
+        Frame(0,0,230,125), 4, 'vertical')
 
     def __init__(self, position):
         super().__init__(SpaceShip.asset, position)
@@ -134,7 +134,7 @@ class SpaceShip(Sprite):
 class SpaceShip2(Sprite):
 
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
-        Frame(0,0,86,125), 4, 'vertical')
+        Frame(0,0,230,125), 4, 'vertical')
 
     def __init__(self, position):
         super().__init__(SpaceShip2.asset, position)
@@ -248,7 +248,7 @@ class SpaceGame(App):
             for y in range(self.height//Stars.height + 1):
                 Stars((x*Stars.width, y*Stars.height))
         SpaceShip((400,400))
-        SpaceShip2((1000,400))
+        SpaceShip2((600,400))
                     
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
