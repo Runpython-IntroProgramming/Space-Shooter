@@ -1,7 +1,7 @@
 """
 spaceshooter.py
 Author: Bauti Gallino
-Credit: none
+Credit: Liam S.
 
 Assignment:
 Write and submit a program that implements the spacewar game:
@@ -27,10 +27,21 @@ class Spaceship(Sprite):
     
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(227,0,292-227,125), 4, 'vertical')
-            
+    
     def __init__(self, position):
         super().__init__(Spaceship.asset, position)
-
+        self.Engineframe=1
+        self.Thrust=1
+        def Engineon(self, event):
+            self.Thrust=1
+        SpaceGame.listenKeyEvent("keydown", "space", self.Engineon)
+        """
+        SpaceGame.listenKeyEvent("keyup", "space", self.Engineoff) #This is for the action to stop once it has begun
+        """
+        if self.Thrust == 1:
+                self.Engineframe = self.Engineframe + 1
+                if self.Engineframe == 4:
+                    self.Engineframe = 1
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
