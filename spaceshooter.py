@@ -38,20 +38,31 @@ class SpaceShip(Sprite):
 
     def __init__(self, position):
         super().__init__(SpaceShip.asset, position)
-        self.vx = 0
+        self.vx = 1
         self.vy = 0
-        self.vr = 0.02
-        self.thrust = 0
+        self.vr = 0
+        self.thrustL = 0
+        self.thrustR = 0
         self.thrustframe = 1
-        SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
-        SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
+        SpaceGame.listenKeyEvent("keydown", "left arrow", self.thrustLOn)
+        SpaceGame.listenKeyEvent("keyup", "left arrow", self.thrustLOff)
+        SpaceGame.listenKeyEvent("keydown", "right arrow", self.thrustROn)
+        SpaceGame.listenKeyEvent("keyup", "right arrow", self.thrustROff)
         self.fxcenter = self.fycenter = 0.5
 
     def step(self):
+        if self.thrustL == 1:
+            self.vx -= 0.01
+        if self.thrustL == -1:
+            self.vx += 0.01
+        if self.thrustR == 1:
+            self.vx -= -0.01
+        if self.thrustR == -1:
+            self.vx += 0.01
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
-        if self.thrust == 1:
+        if self.thrustL == 1 or self.thrustR == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
             if self.thrustframe == 4:
@@ -59,12 +70,17 @@ class SpaceShip(Sprite):
         else:
             self.setImage(0)
 
-    def thrustOn(self, event):
-        self.thrust = 1
+    def thrustLOn(self, event):
+        self.thrustL = 1
 
-    def thrustOff(self, event):
-        self.thrust = 0
-
+    def thrustLOff(self, event):
+        self.thrustL = -1
+    
+    def thrustROn(self, event):
+        self.thrustR = 1
+        
+    def thrustROff(self, event):
+        self.thrustR = -1
 
 
 class SpaceGame(App):
@@ -74,7 +90,7 @@ class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
         Stars((0,0))
-        SpaceShip((100,100))
+        SpaceShip((500,500))
 
 
     def step(self):
