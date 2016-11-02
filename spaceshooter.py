@@ -27,6 +27,7 @@ spaceship_asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png"
         Frame(227,0,292-227,125), 4, 'vertical')
 
 spaceship = Sprite(spaceship_asset, (0, 0))
+spaceship.fxcenter = spaceship.fycenter = 0.5
 # Movement
 spaceship.dir = 1
 spaceship.bob=1
@@ -42,9 +43,11 @@ def up(b):
     spaceship.bob=-1
 def down(b):
     spaceship.bob=1
+    
+
+
 # Step
 def step():
-    print("step")
     if spaceship.go:
         spaceship.x += spaceship.dir
         if spaceship.x + spaceship.width > SCREEN_WIDTH or spaceship.x < 0:
@@ -53,7 +56,6 @@ def step():
     ystep()
     
 def ystep():
-    print("ystep")
     if spaceship.ygo:
         spaceship.y += spaceship.bob
         if spaceship.y +spaceship.height > SCREEN_HEIGHT or spaceship.y < 0:
@@ -71,27 +73,32 @@ def spaceKey(event):
 # Handle Keys
 def leftKey(event):
     spaceship.go = True
+    if spaceship.up==True:
+        spaceship.rotation=3.141592653589793238462643383/4
+    else: 
+        if  spaceship.up==False:
+            spaceship.rotation=(3.141592653589793238462643383*3)/4
+        else:
+            spaceship.rotation=3.141592653589793238462643383/2
     left(spaceship)
-def LeftUp(event):
-    spaceship.go=False
-    
 def rightKey(event):
     spaceship.go = True
+    spaceship.rotation=(3.141592653589793238462643383*3)/2
     right(spaceship)
-def RightUp(event):
-    spaceship.go=False
     
 def upKey(event):
     spaceship.ygo = True
+    spaceship.up=True
+    spaceship.rotation=0
     up(spaceship)
-def UpUp(event):
-    spaceship.ygo=False
     
 def downKey (event):
     spaceship.ygo = True
+    spaceship.up=False
+    spaceship.rotation=3.141592653589793238462643383
     down(spaceship)
-def DownUp(event):
-    spaceship.ygo=False
+
+
 
 # Handle the mouse click
 def mouseClick(event):
