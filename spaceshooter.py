@@ -43,26 +43,34 @@ class SpaceShip(Sprite):
         self.vr = 0
         self.thrustL = 0
         self.thrustR = 0
+        self.thrustU = 0
         self.thrustframe = 1
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.thrustLOn)
         SpaceGame.listenKeyEvent("keyup", "left arrow", self.thrustLOff)
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.thrustROn)
         SpaceGame.listenKeyEvent("keyup", "right arrow", self.thrustROff)
+        
+        SpaceGame.listenKeyEvent("keydown", "up arrow", self.thrustUOn)
+        SpaceGame.listenKeyEvent("keyup", "up arrow", self.thrustUOff)
+        SpaceGame.listenKeyEvent("keyup", "down arrow", self.thrustDOn)
+        SpaceGame.listenKeyEvent("keyup", "down arrow", self.thrustDOff)
+
+
         self.fxcenter = self.fycenter = 0.5
 
     def step(self):
         if self.thrustL == 1:
-            self.vx -= 0.01
-        if self.thrustL == -1:
-            self.vx -= -0.01
+            self.vx -= 0.03
         if self.thrustR == 1:
-            self.vx -= -0.01
-        if self.thrustR == -1:
-            self.vx -= 0.01
+            self.vx += 0.03
+        if self.thrustU == 1:
+            self.vy -= 0.03
+        if self.thrustD == 1:
+            self.vy += 0.03
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
-        if self.thrustL == 1 or self.thrustR == 1:
+        if self.thrustL == 1 or self.thrustR == 1 or self.thrustU == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
             if self.thrustframe == 4:
@@ -81,6 +89,18 @@ class SpaceShip(Sprite):
         
     def thrustROff(self, event):
         self.thrustR = -1
+
+    def thrustUOn(self, event):
+        self.thrustU = 1
+
+    def thrustUOff(self, event):
+        self.thrustU = -1
+        
+    def thrustDOn(self, event):
+        self.thrustD = 1
+    
+    def thrstDOff(self, event):
+        self.thrustD = -1
 
 
 class SpaceGame(App):
