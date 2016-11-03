@@ -38,7 +38,7 @@ class SpaceShip(Sprite):
 
     def __init__(self, position):
         super().__init__(SpaceShip.asset, position)
-        self.vx = 1
+        self.vx = 0
         self.vy = 0
         self.vr = 0
         self.thrustL = 0
@@ -54,7 +54,7 @@ class SpaceShip(Sprite):
         if self.thrustL == 1:
             self.vx -= 0.01
         if self.thrustL == -1:
-            self.vx += 0.01
+            self.vx -= -0.01
         if self.thrustR == 1:
             self.vx -= -0.01
         if self.thrustR == -1:
