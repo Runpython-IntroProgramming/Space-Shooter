@@ -44,6 +44,7 @@ class SpaceShip(Sprite):
         self.thrustL = 0
         self.thrustR = 0
         self.thrustU = 0
+        self.thrustD = 0
         self.thrustframe = 1
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.thrustLOn)
         SpaceGame.listenKeyEvent("keyup", "left arrow", self.thrustLOff)
@@ -52,7 +53,7 @@ class SpaceShip(Sprite):
         
         SpaceGame.listenKeyEvent("keydown", "up arrow", self.thrustUOn)
         SpaceGame.listenKeyEvent("keyup", "up arrow", self.thrustUOff)
-        SpaceGame.listenKeyEvent("keyup", "down arrow", self.thrustDOn)
+        SpaceGame.listenKeyEvent("keydown", "down arrow", self.thrustDOn)
         SpaceGame.listenKeyEvent("keyup", "down arrow", self.thrustDOff)
 
 
@@ -70,7 +71,7 @@ class SpaceShip(Sprite):
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
-        if self.thrustL == 1 or self.thrustR == 1 or self.thrustU == 1:
+        if self.thrustL == 1 or self.thrustR == 1 or self.thrustU == 1 or self.thrustD == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
             if self.thrustframe == 4:
@@ -99,7 +100,7 @@ class SpaceShip(Sprite):
     def thrustDOn(self, event):
         self.thrustD = 1
     
-    def thrstDOff(self, event):
+    def thrustDOff(self, event):
         self.thrustD = -1
 
 
