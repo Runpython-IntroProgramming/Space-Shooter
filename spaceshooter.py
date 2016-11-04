@@ -33,16 +33,18 @@ spaceship.dir = 1
 spaceship.bob=1
 spaceship.go = False
 spaceship.ygo= False
+spaceship.thrust = 0
+spaceship.thrustframe = 1
 def reverse(b):
     b.dir *= -1
 def left(b):
-    spaceship.dir=-1
+    spaceship.dir=-3
 def right(b):
-    spaceship.dir=1
+    spaceship.dir=3
 def up(b):
-    spaceship.bob=-1
+    spaceship.bob=-3
 def down(b):
-    spaceship.bob=1
+    spaceship.bob=3
     
 
 
@@ -53,6 +55,13 @@ def step():
         if spaceship.x + spaceship.width > SCREEN_WIDTH or spaceship.x < 0:
             spaceship.x -= spaceship.dir
             reverse(spaceship)
+        if spaceship.thrust == 1:
+            spaceship.setImage(spaceship.thrustframe)
+            spaceship.thrustframe += 1
+            if spaceship.thrustframe == 4:
+                spaceship.thrustframe = 1
+        if spaceship.thrust == 0:
+            spaceship.setImage(0)
     ystep()
     
 def ystep():
@@ -61,8 +70,19 @@ def ystep():
         if spaceship.y +spaceship.height > SCREEN_HEIGHT or spaceship.y < 0:
             spaceship.y -= spaceship.bob
             reverse(spaceship)
+        if spaceship.thrust == 1:
+            spaceship.setImage(spaceship.thrustframe)
+            spaceship.thrustframe += 1
+            if spaceship.thrustframe == 4:
+                spaceship.thrustframe = 1
+        if spaceship.thrust == 0:
+            spaceship.setImage(0)
+
 # Handle the space key
 def spaceKey(event):
+    spaceship.thrust = 0
+    spaceship.thrustframe=1
+    spaceship.setImage(0)
     if spaceship.go==True:
         spaceship.go=not spaceship.go
         if spaceship.ygo==True:
@@ -73,47 +93,30 @@ def spaceKey(event):
 # Handle Keys
 def leftKey(event):
     spaceship.go = True
-    spaceship.left=True
-    if spaceship.up==True:
-        spaceship.rotation=3.141592653589793238462643383/4
-    if  spaceship.up==False:
-        spaceship.rotation=(3.141592653589793238462643383*3)/4
-    else: 
-        spaceship.rotation=(3.141592653589793238462643383/2)
+    spaceship.ygo= False
+    spaceship.thrust = 1
+    spaceship.rotation=(3.141592653589793238462643383/2)
     left(spaceship)
+
 def rightKey(event):
     spaceship.go = True
-    spaceship.left=False
-    if spaceship.up==True:
-        spaceship.rotation=(3.141592653589793238462643383*7)/4
-    else: 
-        if  spaceship.up==False:
-            spaceship.rotation=(3.141592653589793238462643383*5)/4
-        else:
-            spaceship.rotation=(3.141592653589793238462643383*3)/2
+    spaceship.ygo=False
+    spaceship.thrust = 1
+    spaceship.rotation=(3.141592653589793238462643383*3)/2
     right(spaceship)
     
 def upKey(event):
     spaceship.ygo = True
-    spaceship.up=True
-    if spaceship.left==True:
-        spaceship.rotation=3.141592653589793238462643383/4
-    else: 
-        if  spaceship.left==False:
-            spaceship.rotation=(3.141592653589793238462643383*7)/4
-        else: spaceship.rotation=0
+    spaceship.go=False
+    spaceship.thrust = 1
+    spaceship.rotation=0
     up(spaceship)
     
 def downKey (event):
     spaceship.ygo = True
-    spaceship.up=False
-    if spaceship.left==True:
-        spaceship.rotation=(3.141592653589793238462643383*3)/4
-    else: 
-        if  spaceship.left==False:
-            spaceship.rotation=(3.141592653589793238462643383*5)/4
-        else:
-            spaceship.rotation=3.141592653589793238462643383
+    spaceship.go = False
+    spaceship.thrust = 1
+    spaceship.rotation=3.141592653589793238462643383
     down(spaceship)
 
 
