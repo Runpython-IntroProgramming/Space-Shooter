@@ -31,18 +31,18 @@ class Spaceship(Sprite):
     def __init__(self, position):
         super().__init__(Spaceship.asset, position)
         self.Engineframe=1
-        self.Thrust=1
+        self.Thrust=0
         SpaceGame.listenKeyEvent("keydown", "space", self.Engineon)
-        def Engineon(self, event):
-            self.Thrust=1
-        """
-        SpaceGame.listenKeyEvent("keyup", "space", self.Engineoff) #This is for the action to stop once it has begun
-        """
+        SpaceGame.listenKeyEvent("keyup", "space", self.Engineoff)
     def step(self):
         if self.Thrust == 1:
                 self.Engineframe = self.Engineframe + 1
                 if self.Engineframe == 4:
                     self.Engineframe = 1
+    def Engineon(self, event):
+        self.Thrust=1
+    def Engineoff(self, event):
+        self.Thrust=0
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
@@ -51,6 +51,9 @@ class SpaceGame(App):
                 Background((x*Background.width, y*Background.height))
         Background((0, 0))
         Spaceship((0, 0))
+    def step(self):
+        for ship in self.getSpritesbyClass(Spaceship):
+            ship.step()
 
 app = SpaceGame(1897, 935)
 app.run()
