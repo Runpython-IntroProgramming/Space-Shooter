@@ -105,21 +105,14 @@ class SpaceShip(Sprite):
     def nMoveU(self,event):
         self.ryb = 2    
 
-"""
+#"""
 class Asteroid(Sprite):
-     asset = ImageAsset("https://github.com/liama482/Space-Shooter/blob/master/images/Asteroid1%20spritesht.png",
-        Frame(227,0,292-227,125), 8, 'horizontal')
-    def __init__(self):
-        position=(2,300)
-        super().__init__(SpaceShip.asset, position)
+    asset = ImageAsset("image/Asteroid2 spritesht.png",
+        Frame(227,0,128,128), 8, 'horizontal')
+    def __init__(self,im_num,position):
+        super().__init__(Asteroid.asset, position)
+        self.setImage(im_num)
 
-    for a in range(1,8):
-        x=random()
-        x=x*1400 + 100
-        y=random()
-        y=y*800 + 100
-
-"""
     
 class SpaceGame(App):
     #Tutorial4 space game example.
@@ -135,6 +128,13 @@ class SpaceGame(App):
         SpaceShip((25,200))
         SpaceShip((175,150))
         SpaceShip((75,150))
+        
+        for a in range(8):
+            x=random()
+            x=x*1400 + 100
+            y=random()
+            y=y*800 + 100
+            Asteroid(a,(x,y))
 
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
