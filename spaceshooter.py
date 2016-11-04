@@ -366,7 +366,7 @@ class SpaceGame(App):
             ship.step()
         for ship in self.getSpritesbyClass(SpaceShip2):
             ship.step()
-        for ship in self.getSpritesbyClass(SpaceShip2):
+        for ship in self.getSpritesbyClass(SpaceShip3):
             ship.step()
             
 app = SpaceGame(1900,935)
