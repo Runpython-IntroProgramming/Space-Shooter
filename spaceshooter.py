@@ -97,7 +97,6 @@ class SpaceShip(Sprite):
     
     def nMoveL(self,event):
         self.rxa = 2
-        #print(event)
     def nMoveR(self,event):
         self.rxb = 2
     def nMoveD(self,event):
@@ -107,7 +106,7 @@ class SpaceShip(Sprite):
 
 #"""
 class Asteroid(Sprite):
-    asset = ImageAsset("image/Asteroid2_spritesht.png",
+    asset = ImageAsset("images/Asteroid2_spritesht.png",
         Frame(227,0,128,128), 8, 'horizontal')
     def __init__(self,im_num,position):
         super().__init__(Asteroid.asset, position)
@@ -128,14 +127,15 @@ class SpaceGame(App):
         SpaceShip((25,200))
         SpaceShip((175,150))
         SpaceShip((75,150))
-        
+        #Asteroid(1,(200,400))
         for a in range(8):
             x=random()
             x=x*1400 + 100
             y=random()
             y=y*800 + 100
-            Asteroid(a,(x,y))
-
+            pos=(x,y)
+            Asteroid(a,pos)
+            print("Aster(" + str(x) + " " + str(y) + ")")
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
