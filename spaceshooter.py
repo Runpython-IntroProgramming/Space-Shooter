@@ -107,7 +107,7 @@ class SpaceShip(Sprite):
 
 #"""
 class Asteroid(Sprite):
-    asset = ImageAsset("image/Asteroid2 spritesht.png",
+    asset = ImageAsset("image/Asteroid2_spritesht.png",
         Frame(227,0,128,128), 8, 'horizontal')
     def __init__(self,im_num,position):
         super().__init__(Asteroid.asset, position)
