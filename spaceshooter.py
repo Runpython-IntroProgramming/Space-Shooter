@@ -103,7 +103,7 @@ class SpaceShip(Sprite):
                     self.rotation=(3/4)*pi
                 else:
                     self.rotation=pi/2
-            if self.c==2: #if it's moving right
+            elif self.c==2: #if it's moving right
                 if self.d==1: #moving up
                     self.rotation=(7/4)*pi
                 elif self.d==2: #down
