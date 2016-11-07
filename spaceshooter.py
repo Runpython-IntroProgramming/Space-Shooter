@@ -40,6 +40,8 @@ class Spaceship(Sprite):
             self.Engineframe = self.Engineframe + 1
             if self.Engineframe == 4:
                 self.Engineframe = 1
+        else:
+            self.setImage(0)
     def Engineon(self, event):
         self.Thrust=1
     def Engineoff(self, event):
