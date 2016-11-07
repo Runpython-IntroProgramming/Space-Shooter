@@ -87,7 +87,7 @@ class SpaceShip(Sprite):
                 self.d = 2
         
         #thrust
-        if self.rxa == 2 and self.rxb == 2 and self.rya == 2 and self.ryb == 2:
+        if self.c == 0 and self.d == 0:
             self.thrust = 0
         else:
             self.thrust = 1
