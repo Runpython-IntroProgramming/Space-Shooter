@@ -49,6 +49,7 @@ class Moon(Sprite):
         self.counter += 1
         self.x += self.vx
         self.y += self.vy
+        self.rotation += 0.1
 class SpaceShip(Sprite):
 
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
