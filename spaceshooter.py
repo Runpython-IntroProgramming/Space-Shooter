@@ -34,7 +34,7 @@ class SpaceShip(Sprite):
     Animated space ship
     """
     asset = ImageAsset("images/UFO2.png", 
-        Frame(145,0,145-145,145), 6, 'vertical')
+        Frame(0,0,485,485), 7, 'vertical')
 
     def __init__(self, position):
         super().__init__(SpaceShip.asset, position)
@@ -74,7 +74,7 @@ class SpaceShip(Sprite):
         if self.thrustL == 1 or self.thrustR == 1 or self.thrustU == 1 or self.thrustD == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
-            if self.thrustframe == 6:
+            if self.thrustframe == 7:
                 self.thrustframe = 1
         else:
             self.setImage(0)
