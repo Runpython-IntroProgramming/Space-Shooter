@@ -36,13 +36,15 @@ class Spaceship(Sprite):
         SpaceGame.listenKeyEvent("keyup", "space", self.Engineoff)
     def step(self):
         if self.Thrust == 1:
-                self.Engineframe = self.Engineframe + 1
-                if self.Engineframe == 4:
-                    self.Engineframe = 1
+            self.setImage(self.Engineframe)
+            self.Engineframe = self.Engineframe + 1
+            if self.Engineframe == 4:
+                self.Engineframe = 1
     def Engineon(self, event):
         self.Thrust=1
     def Engineoff(self, event):
         self.Thrust=0
+        self.Engineframe=1
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
