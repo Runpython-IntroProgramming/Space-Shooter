@@ -32,19 +32,19 @@ class Moon(Sprite):
         self.fxcenter = self.fycenter = 0.5
         
     def step(self):
-        if self.counter >= 0 and self.counter <= 120:
+        if self.counter >= 0 and self.counter <= 1200:
             self.vx = 1
             self.vy = 0
-        if self.counter >= 120 and self.counter <= 200:
+        if self.counter >= 1200 and self.counter <= 1800:
             self.vx = 0
             self.vy = 1
-        if self.counter >= 200 and self.counter <= 320:
+        if self.counter >= 1800 and self.counter <= 3000:
             self.vx = -1
             self.vy = 0
-        if self.counter >= 320 and self.counter <= 400:
+        if self.counter >= 3000 and self.counter <= 3600:
             self.vx = 0
             self.vy = -1
-        if self.counter == 401:
+        if self.counter == 3601:
             self.counter = 0
         self.counter += 1
         self.x += self.vx
