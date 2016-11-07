@@ -37,7 +37,8 @@ class SpaceShip(Sprite):
         self.rxb = 0
         self.rya = 0
         self.ryb = 0
-        
+        self.c = 0
+        self.d = 0
         #SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         #SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.moveL)
@@ -65,46 +66,47 @@ class SpaceShip(Sprite):
         #x motion
         if self.rxa == 2 and self.rxb == 2:
             self.x=self.x
-            c = 0 #don't set rotation based on x motion
+            self.c = 0 #don't set rotation based on x motion
         else:
             if self.rx == -5: #moving left
                 self.x=self.x-10
-                c=1
+                self.c=1
             if self.rx == 5: #moving right
                 self.x=self.x+10
-                c=2
+                self.c=2
         #y motion
         if self.rya == 2 and self.ryb == 2:
             self.y=self.y
-            d = 0 #don't set rotation based on y motion
+            self.d = 0 #don't set rotation based on y motion
         else:
             if self.ry == -5: #moving up
                 self.y=self.y-10
-                d = 1
+                self.d = 1
             if self.ry == 5: #moving down
                 self.y=self.y+10
-                d = 2
+                self.d = 2
         
         #thrust
         if self.rxa == 2 and self.rxb == 2 and self.rya == 2 and self.ryb == 2:
-            self.thrust = 1
-        else:
             self.thrust = 0
+        else:
+            self.thrust = 1
         #rotation
-        if c==0 and d==0:
+        
+        if self.c==0 and self.d==0:
             self.rotation = 0
         else:
-            if c==1: #if it's moving left
-                if d==1: #moving up
+            if self.c==1: #if it's moving left
+                if self.d==1: #moving up
                     self.rotation=(1/4)*pi
-                elif d==2: #down
+                elif self.d==2: #down
                     self.rotation=(3/4)*pi
                 else:
                     self.rotation=pi/2
-            if c==2: #if it's moving right
-                if d==1: #moving up
+            if self.c==2: #if it's moving right
+                if self.d==1: #moving up
                     self.rotation=(7/4)*pi
-                elif d==2: #down
+                elif self.d==2: #down
                     self.rotation=(5/4)*pi
                 else:
                     self.rotation=(3/2)*pi
@@ -113,7 +115,7 @@ class SpaceShip(Sprite):
                     self.rotation=0
                 elif d==2: #down
                     self.rotation=pi
-
+    
     def thrustOn(self, event):
         self.thrust = 1
     def thrustOff(self, event):
