@@ -32,19 +32,19 @@ class Moon(Sprite):
         self.fxcenter = self.fycenter = 0.5
         
     def step(self):
-        if self.counter >= 0 and self.counter <= 25:
+        if self.counter >= 0 and self.counter <= 120:
             self.vx = 1
             self.vy = 0
-        if self.counter >= 25 and self.counter <= 40:
+        if self.counter >= 120 and self.counter <= 200:
             self.vx = 0
             self.vy = 1
-        if self.counter >= 40 and self.counter <= 65:
+        if self.counter >= 200 and self.counter <= 320:
             self.vx = -1
             self.vy = 0
-        if self.counter >= 65 and self.counter <= 80:
+        if self.counter >= 320 and self.counter <= 400:
             self.vx = 0
             self.vy = -1
-        if self.counter == 81:
+        if self.counter == 401:
             self.counter = 0
         self.counter += 1
         self.x += self.vx
@@ -397,6 +397,8 @@ class SpaceGame(App):
         for ship in self.getSpritesbyClass(SpaceShip2):
             ship.step()
         for ship in self.getSpritesbyClass(SpaceShip3):
+            ship.step()
+        for ship in self.getSpritesbyClass(Moon):
             ship.step()
             
 app = SpaceGame(1900,935)
