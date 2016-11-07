@@ -17,6 +17,7 @@ from random import random
 
 SCREEN_WIDTH = 1530
 SCREEN_HEIGHT = 930
+pi = 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679
 
 
 class SpaceShip(Sprite):
@@ -37,8 +38,8 @@ class SpaceShip(Sprite):
         self.rya = 0
         self.ryb = 0
         
-        SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
-        SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
+        #SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
+        #SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.moveL)
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.moveR)
         SpaceGame.listenKeyEvent("keydown", "down arrow", self.moveD)
@@ -52,7 +53,7 @@ class SpaceShip(Sprite):
     def step(self):
         self.x += self.vx
         self.y += self.vy
-        #self.rotation += self.vr
+        self.rotation = 0
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
@@ -64,19 +65,49 @@ class SpaceShip(Sprite):
         #x motion
         if self.rxa == 2 and self.rxb == 2:
             self.x=self.x
+            c = 0 #don't set rotation based on x motion
         else:
-            if self.rx == -5:
+            if self.rx == -5: #moving left
                 self.x=self.x-10
-            if self.rx == 5:
+                c=1
+            if self.rx == 5: #moving right
                 self.x=self.x+10
+                c=2
         #y motion
         if self.rya == 2 and self.ryb == 2:
             self.y=self.y
+            d = 0 #don't set rotation based on y motion
         else:
-            if self.ry == -5:
+            if self.ry == -5: #moving up
                 self.y=self.y-10
-            if self.ry == 5:
+                d = 1
+            if self.ry == 5: #moving down
                 self.y=self.y+10
+                d = 2
+        
+        #thrust
+        if self.rxa == 2 and self.rxb == 2 and self.rya == 2 and self.ryb == 2:
+            self.thrust = 1
+        else:
+            self.thrust = 0
+        #rotation
+        if c==0 and d==0:
+            self.rotation = 0
+        else:
+            if c==1: #if it's moving left
+                if d==1: #moving up
+                    self.rotation=(3/4)*pi
+                elif d==2: #down
+                    self.rotation=(5/4)*pi
+                else:
+                    self.rotation=pi
+            if c==2: #if it's moving right
+                if d==1: #moving up
+                    self.rotation=(3/4)*pi
+                elif d==2: #down
+                    self.rotation=(5/4)*pi
+                else:
+                    self.rotation=pi
 
     def thrustOn(self, event):
         self.thrust = 1
