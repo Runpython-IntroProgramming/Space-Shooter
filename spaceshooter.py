@@ -1,7 +1,7 @@
 """
 spaceshooter.py
 Author: Liam S
-Credit: Mr. Dennison's Spacewar source code
+Credit: Mr. Dennison's Spacewar source code Vinzent for Photoshop Help
 
 Assignment:
 Write and submit a program that implements the spacewar game:
@@ -23,10 +23,30 @@ class Stars(Sprite):
 
 class Moon(Sprite):
 
-    asset = ImageAsset("images/Le_Voyage_dans_la_lune_transparant.jpg")
+    asset = ImageAsset("images/Le_Voyage_dans_la_lune_Transparent.png")
     def __init__(self, position):
         super().__init__(Moon.asset, position)
-
+        self.counter = 0
+        self.vx = 0
+        self.vy = 0
+        self.fxcenter = self.fycenter = 0.5
+        
+    def step(self):
+        if self.counter >= 0 and self.counter <= 25:
+            self.vx = 1
+            self.vy = 0
+        if self.counter >= 25 and self.counter <= 40:
+            self.vx = 0
+            self.vy = 1
+        if self.counter >= 40 and self.counter <= 65:
+            self.vx = -1
+            self.vy = 0
+        if self.counter >= 65 and self.counter <= 80:
+            self.vx = 0
+            self.vy = -1
+        if self.counter == 81:
+            self.counter = 0
+        self.counter += 1
 class SpaceShip(Sprite):
 
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
