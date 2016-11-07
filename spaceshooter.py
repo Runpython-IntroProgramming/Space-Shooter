@@ -23,7 +23,7 @@ class Stars(Sprite):
 
 class Moon(Sprite):
 
-    asset = ImageAsset("images/Le_Voyage_dans_la_lune.jpg")
+    asset = ImageAsset("images/Le_Voyage_dans_la_lune_transparant.jpg")
     def __init__(self, position):
         super().__init__(Moon.asset, position)
 
