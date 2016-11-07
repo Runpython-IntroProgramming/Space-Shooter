@@ -92,7 +92,7 @@ class SpaceShip(Sprite):
         else:
             self.thrust = 1
         #rotation
-        
+    
         if self.c==0 and self.d==0:
             self.rotation = 0
         else:
