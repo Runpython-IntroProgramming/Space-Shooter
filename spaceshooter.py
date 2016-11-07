@@ -385,7 +385,7 @@ class SpaceGame(App):
         for x in range(self.width//Stars.width + 1):
             for y in range(self.height//Stars.height + 1):
                 Stars((x*Stars.width, y*Stars.height))
-        Moon((400,400))
+        Moon((200,200))
         SpaceShip((400,400))
         SpaceShip2((630,400))
         SpaceShip3((860,400))
