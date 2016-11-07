@@ -96,17 +96,22 @@ class SpaceShip(Sprite):
         else:
             if c==1: #if it's moving left
                 if d==1: #moving up
-                    self.rotation=(3/4)*pi
+                    self.rotation=(1/4)*pi
                 elif d==2: #down
-                    self.rotation=(5/4)*pi
+                    self.rotation=(3/4)*pi
                 else:
-                    self.rotation=pi
+                    self.rotation=pi/2
             if c==2: #if it's moving right
                 if d==1: #moving up
-                    self.rotation=(3/4)*pi
+                    self.rotation=(7/4)*pi
                 elif d==2: #down
                     self.rotation=(5/4)*pi
                 else:
+                    self.rotation=(3/2)*pi
+            else:
+                if d==1: #moving up
+                    self.rotation=0
+                elif d==2: #down
                     self.rotation=pi
 
     def thrustOn(self, event):
