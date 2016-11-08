@@ -73,13 +73,13 @@ class SpaceShip(Sprite):
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
+        imagenumber = 0
         if self.thrustL == 1 or self.thrustR == 1 or self.thrustU == 1 or self.thrustD == 1:
             self.setImage(self.thrustframe)
-            imagenumber = 0
-                self.thrustframe += 1
-            if imagenumber == 10:
-                imagenumber = 0
             imagenumber += 1
+            if imagenumber == 3:
+                self.thrustframe += 1
+                imagenumber = 0
             if self.thrustframe == 7:
                 self.thrustframe = 1
         else:
