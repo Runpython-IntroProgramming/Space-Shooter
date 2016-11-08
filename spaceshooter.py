@@ -39,7 +39,7 @@ class SpaceShip(Sprite):
 
     def __init__(self, position):
         super().__init__(SpaceShip.asset, position)
-        self.scale = 0.2
+        self.scale = 0.15
         self.vx = 0
         self.vy = 0
         self.vr = 0
@@ -64,20 +64,20 @@ class SpaceShip(Sprite):
 
     def step(self):
         if self.thrustL == 1:
-            self.vx -= 0.03
+            self.vx -= 0.06
         if self.thrustR == 1:
-            self.vx += 0.03
+            self.vx += 0.06
         if self.thrustU == 1:
-            self.vy -= 0.03
+            self.vy -= 0.06
         if self.thrustD == 1:
-            self.vy += 0.03
+            self.vy += 0.06
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
         if self.thrustL == 1 or self.thrustR == 1 or self.thrustU == 1 or self.thrustD == 1:
             self.setImage(self.thrustframe)
             self.imagenumber += 1
-            if self.imagenumber == 10:
+            if self.imagenumber == 9:
                 self.thrustframe += 1
                 self.imagenumber = 0
                 if self.thrustframe == 7:
