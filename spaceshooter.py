@@ -46,7 +46,7 @@ class Spaceship(Sprite):
         else:
             self.x=self.x
         if self.Velocityspaceshipleft==1:
-            self.x=self.x+1
+            self.x=self.x-1
         else:
             self.x=self.x
         if self.Thrust == 1:
