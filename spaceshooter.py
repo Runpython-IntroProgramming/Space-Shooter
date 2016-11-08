@@ -130,6 +130,9 @@ class SpaceShip(Sprite):
                     self.rotation=0
                 elif self.d==2: #down
                     self.rotation=pi
+        sprcols = self.collidingWithSprites(Asteroid)
+        if len(sprcols) > 0:
+            destroy
 
     def thrustOn(self, event):
         self.thrust = 1
@@ -155,7 +158,7 @@ class SpaceShip(Sprite):
     def nMoveD(self,event):
         self.rya = 2
     def nMoveU(self,event):
-        self.ryb = 2    
+        self.ryb = 2
 
 class Asteroid(Sprite):
     asset = ImageAsset("images/Asteroid2_spritesht.png",
@@ -175,8 +178,8 @@ class SpaceGame(App):
         bg = Sprite(bg_asset, (0,0))
         bg.scale = 0.6
         SpaceShip((125,100))
-        SpaceShip((225,200))
-        SpaceShip((25,200))
+        #SpaceShip((225,200))
+        #SpaceShip((25,200))
         SpaceShip((175,150))
         SpaceShip((75,150))
         Asteroid(1,(200,400))
