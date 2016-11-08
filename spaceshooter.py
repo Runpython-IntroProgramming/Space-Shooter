@@ -32,13 +32,20 @@ class Spaceship(Sprite):
         super().__init__(Spaceship.asset, position)
         self.Engineframe=1
         self.Thrust=0
-        self.Velocityspaceship=0
+        self.Velocityspaceshipright=0
+        self.Velocityspaceshipleft=0
         SpaceGame.listenKeyEvent("keydown", "space", self.Engineon)
         SpaceGame.listenKeyEvent("keyup", "space", self.Engineoff)
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.Velocityright)
         SpaceGame.listenKeyEvent("keyup", "right arrow", self.Velocityrightstop)
+        SpaceGame.listenKeyEvent("keydown", "left arrow", self.Velocityleft)
+        SpaceGame.listenKeyEvent("keydown", "left arrow", self.Velocityleftstop)
     def step(self):
         if self.Velocityspaceshipright==1:
+            self.x=self.x+1
+        else:
+            self.x=self.x
+        if self.Velocityspaceshipleft==1:
             self.x=self.x+1
         else:
             self.x=self.x
@@ -58,6 +65,10 @@ class Spaceship(Sprite):
         self.Velocityspaceshipright=1
     def Velocityrightstop(self, event):
         self.Velocityspaceshipright=0
+    def Velocityleft(self, event):
+        self.Velocityspaceshipleft=1
+    def Velocityleftstop(self, event):
+        self.Velocityspaceshipleft=0
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
