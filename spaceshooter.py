@@ -26,7 +26,8 @@ space6=Sprite(space_asset, (1024, 512))
 spaceship_asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(227,0,292-227,125), 4, 'vertical')
 asteroid_asset=ImageAsset("images/asteroid_for_program.png",)
-asteroid=Sprite(asteroid_asset, (300,300))
+asteroid1=Sprite(asteroid_asset, (300,300))
+asteroid1.scale=.5
 
 spaceship = Sprite(spaceship_asset, (740, 405))
 spaceship.fxcenter = spaceship.fycenter = 0.5
