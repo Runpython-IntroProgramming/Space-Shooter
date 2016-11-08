@@ -59,6 +59,7 @@ class SpaceShip(Sprite):
         self.ryb = 0
         self.c = 0
         self.d = 0
+        self.visible = True
         #SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         #SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.moveL)
@@ -132,7 +133,7 @@ class SpaceShip(Sprite):
                     self.rotation=pi
         sprcols = self.collidingWithSprites(Asteroid)
         if len(sprcols) > 0:
-            destroy
+            self.visible=False
 
     def thrustOn(self, event):
         self.thrust = 1
