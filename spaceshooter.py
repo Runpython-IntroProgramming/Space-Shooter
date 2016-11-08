@@ -10,7 +10,29 @@ http://people.mozilla.org/~jmuizelaar/webgl-worse/asteroid.png
 Assignment:
 Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
-"""
+
+        else:
+            self.thrust=1
+            if self.rx==-5: #if it's moving left
+                if self.ry==-5: #moving up
+                    self.rotation=(1/4)*pi
+                elif self.ry==5: #down
+                    self.rotation=(3/4)*pi
+                else:
+                    self.rotation=pi/2
+            elif self.rx==5: #if it's moving right
+                if self.ry==-5: #moving up
+                    self.rotation=(7/4)*pi
+                elif self.ry==5: #down
+                    self.rotation=(5/4)*pi
+                else:
+                    self.rotation=(3/2)*pi
+            else:
+                if self.ry==-5: #moving up
+                    self.rotation=0
+                elif self.ry==5: #down
+                    self.rotation=pi
+        """
 
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 from random import random
@@ -26,8 +48,6 @@ class SpaceShip(Sprite):
         Frame(227,0,292-227,125), 4, 'vertical')
     def __init__(self, position):
         super().__init__(SpaceShip.asset, position)
-        self.vx = 0
-        self.vy = 0
         self.vr = 0.01
         self.thrust = 0
         self.thrustframe = 1
@@ -52,8 +72,6 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keyup", "up arrow", self.nMoveU) #stop moving up
         self.fxcenter = self.fycenter = 0.5
     def step(self):
-        self.x += self.vx
-        self.y += self.vy
         self.rotation = 0
         if self.thrust == 1:
             self.setImage(self.thrustframe)
@@ -86,16 +104,13 @@ class SpaceShip(Sprite):
                 self.y=self.y+10
                 self.d = 2
         
-        #thrust
-        if self.c == 0 and self.d == 0:
-            self.thrust = 0
-        else:
-            self.thrust = 1
-        #rotation
+        #rotation and thrust
     
         if self.c==0 and self.d==0:
             self.rotation = 0
+            self.thrust = 0
         else:
+            self.thrust=1
             if self.c==1: #if it's moving left
                 if self.d==1: #moving up
                     self.rotation=(1/4)*pi
@@ -111,11 +126,11 @@ class SpaceShip(Sprite):
                 else:
                     self.rotation=(3/2)*pi
             else:
-                if d==1: #moving up
+                if self.d==1: #moving up
                     self.rotation=0
-                elif d==2: #down
+                elif self.d==2: #down
                     self.rotation=pi
-    
+
     def thrustOn(self, event):
         self.thrust = 1
     def thrustOff(self, event):
