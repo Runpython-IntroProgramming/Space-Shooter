@@ -67,8 +67,6 @@ class SpaceShip(Sprite):
         self.RotThrust = 0
         self.thrust = 0
         self.thrustframe = 1
-        SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
-        SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.thrustLeft)
         SpaceGame.listenKeyEvent("keyup", "right arrow", self.thrustRightoff)
         SpaceGame.listenKeyEvent("keyup", "left arrow", self.thrustLeftoff)
@@ -116,49 +114,57 @@ class SpaceShip(Sprite):
                 self.thrustframe = 1
         else:
             self.setImage(0)
-    
-    def thrustOn(self, event):
-        self.thrust = 1
 
     def thrustOff(self, event):
         self.thrust = 0
         
     def thrustLeft(self, event):
         self.sideThrust = -1
+        self.thrust = 1
 
     def thrustRight(self, event):
         self.sideThrust = 1
+        self.thrust = 1
     
     def thrustRightoff(self, event):
         self.sideThrust = 0
+        self.thrust = 0
     
     def thrustLeftoff(self, event):
         self.sideThrust = 0
-        
+        self.thrust = 0
     
     def thrustUp(self, event):
         self.vertThrust = -1
+        self.thrust = 1
 
     def thrustDown(self, event):
         self.vertThrust = 1
+        self.thrust = 1
     
     def thrustDownoff(self, event):
         self.vertThrust = 0
+        self.thrust = 0
     
     def thrustUpoff(self, event):
         self.vertThrust = 0
+        self.thrust = 0
 
     def thrustCounterClock(self, event):
         self.RotThrust = -1
+        self.thrust = 1
 
     def thrustClock(self, event):
         self.RotThrust = 1
+        self.thrust = 1
     
     def thrustClockoff(self, event):
         self.RotThrust = 0
+        self.thrust = 0
     
     def thrustCounterClockoff(self, event):
         self.RotThrust = 0
+        self.thrust = 0
 
 class SpaceShip2(Sprite):
 
@@ -177,8 +183,6 @@ class SpaceShip2(Sprite):
         self.RotThrust = 0
         self.thrust = 0
         self.thrustframe = 1
-        SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
-        SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.thrustLeft)
         SpaceGame.listenKeyEvent("keyup", "right arrow", self.thrustRightoff)
         SpaceGame.listenKeyEvent("keyup", "left arrow", self.thrustLeftoff)
@@ -227,48 +231,56 @@ class SpaceShip2(Sprite):
         else:
             self.setImage(0)
     
-    def thrustOn(self, event):
-        self.thrust = 1
-
     def thrustOff(self, event):
         self.thrust = 0
         
     def thrustLeft(self, event):
         self.sideThrust = -1
+        self.thrust = 1
 
     def thrustRight(self, event):
         self.sideThrust = 1
+        self.thrust = 1
     
     def thrustRightoff(self, event):
         self.sideThrust = 0
+        self.thrust = 0
     
     def thrustLeftoff(self, event):
         self.sideThrust = 0
-        
+        self.thrust = 0
     
     def thrustUp(self, event):
         self.vertThrust = -1
+        self.thrust = 1
 
     def thrustDown(self, event):
         self.vertThrust = 1
+        self.thrust = 1
     
     def thrustDownoff(self, event):
         self.vertThrust = 0
+        self.thrust = 0
     
     def thrustUpoff(self, event):
         self.vertThrust = 0
+        self.thrust = 0
 
     def thrustCounterClock(self, event):
         self.RotThrust = -1
+        self.thrust = 1
 
     def thrustClock(self, event):
         self.RotThrust = 1
+        self.thrust = 1
     
     def thrustClockoff(self, event):
         self.RotThrust = 0
+        self.thrust = 0
     
     def thrustCounterClockoff(self, event):
         self.RotThrust = 0
+        self.thrust = 0
 
 class SpaceShip3(Sprite):
 
@@ -287,8 +299,6 @@ class SpaceShip3(Sprite):
         self.RotThrust = 0
         self.thrust = 0
         self.thrustframe = 1
-        SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
-        SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.thrustLeft)
         SpaceGame.listenKeyEvent("keyup", "right arrow", self.thrustRightoff)
         SpaceGame.listenKeyEvent("keyup", "left arrow", self.thrustLeftoff)
@@ -337,48 +347,56 @@ class SpaceShip3(Sprite):
         else:
             self.setImage(0)
     
-    def thrustOn(self, event):
-        self.thrust = 1
-
     def thrustOff(self, event):
         self.thrust = 0
         
     def thrustLeft(self, event):
         self.sideThrust = -1
+        self.thrust = 1
 
     def thrustRight(self, event):
         self.sideThrust = 1
+        self.thrust = 1
     
     def thrustRightoff(self, event):
         self.sideThrust = 0
+        self.thrust = 0
     
     def thrustLeftoff(self, event):
         self.sideThrust = 0
-        
+        self.thrust = 0
     
     def thrustUp(self, event):
         self.vertThrust = -1
+        self.thrust = 1
 
     def thrustDown(self, event):
         self.vertThrust = 1
+        self.thrust = 1
     
     def thrustDownoff(self, event):
         self.vertThrust = 0
+        self.thrust = 0
     
     def thrustUpoff(self, event):
         self.vertThrust = 0
+        self.thrust = 0
 
     def thrustCounterClock(self, event):
         self.RotThrust = -1
+        self.thrust = 1
 
     def thrustClock(self, event):
         self.RotThrust = 1
+        self.thrust = 1
     
     def thrustClockoff(self, event):
         self.RotThrust = 0
+        self.thrust = 0
     
     def thrustCounterClockoff(self, event):
         self.RotThrust = 0
+        self.thrust = 0
 
 class SpaceGame(App):
     def __init__(self, width, height):
