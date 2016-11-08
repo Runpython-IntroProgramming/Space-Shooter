@@ -53,8 +53,8 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keyup", "left arrow", self.thrustLOff)
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.thrustROn)
         SpaceGame.listenKeyEvent("keyup", "right arrow", self.thrustROff)
-        SpaceGame.listenKeyEvent("keydown", "P", self.panicOn)
-        SpaceGame.listenKeyEvent("keyup", "P", self.panicOff)
+        SpaceGame.listenKeyEvent("keydown", "p", self.panicOn)
+        SpaceGame.listenKeyEvent("keyup", "p", self.panicOff)
         SpaceGame.listenKeyEvent("keydown", "up arrow", self.thrustUOn)
         SpaceGame.listenKeyEvent("keyup", "up arrow", self.thrustUOff)
         SpaceGame.listenKeyEvent("keydown", "down arrow", self.thrustDOn)
@@ -72,7 +72,10 @@ class SpaceShip(Sprite):
             self.vy -= 0.06
         if self.thrustD == 1:
             self.vy += 0.06
-        if self.panic == 1
+        if self.panic == 1:
+            self.vx = 0
+            self.vy = 0
+        if self.panic == -1:
             self.vx = 0
             self.vy = 0
         self.x += self.vx
