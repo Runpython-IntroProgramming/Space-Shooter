@@ -1,7 +1,8 @@
 """
 spaceshooter.py
 Author: vinzentmoesch
-Credit: <list sources used, if any>
+Credit: 
+http://freegameassets.blogspot.com/2013/09/asteroids-and-planets-if-you-needed-to.html
 
 Assignment:
 Write and submit a program that implements the spacewar game:
@@ -16,7 +17,8 @@ from ggame import App, Sprite, ImageAsset, Frame
 from ggame import SoundAsset, Sound, TextAsset, Color
 import math
 from time import time
-
+import random
+zufaellig = round((random.random())*100)
 #Hintergrund
 class Stars(Sprite):
 
@@ -47,6 +49,7 @@ class SpaceShip(Sprite):
         self.thrustR = 0
         self.thrustU = 0
         self.thrustD = 0
+        self.panic = 0
         self.thrustframe = 1
         self.imagenumber = 0
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.thrustLOn)
@@ -75,9 +78,11 @@ class SpaceShip(Sprite):
         if self.panic == 1:
             self.vx = 0
             self.vy = 0
+            self.panic = 0
         if self.panic == -1:
             self.vx = 0
             self.vy = 0
+            self.panic = 0
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
