@@ -36,6 +36,8 @@ class Spaceship(Sprite):
         self.Velocityspaceshipleft=0
         self.Velocityspaceshipdown=0
         self.Velocityspaceshipup=0
+        self.Rotaterightspaceship=0
+        self.Rotateleftspaceship=0
         SpaceGame.listenKeyEvent("keydown", "space", self.Engineon)
         SpaceGame.listenKeyEvent("keyup", "space", self.Engineoff)
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.Velocityright)
@@ -46,8 +48,15 @@ class Spaceship(Sprite):
         SpaceGame.listenKeyEvent("keyup", "down arrow", self.Velocitydownstop)
         SpaceGame.listenKeyEvent("keydown", "up arrow", self.Velocityup)
         SpaceGame.listenKeyEvent("keyup", "up arrow", self.Velocityupstop)
-
+        SpaceGame.listenKeyEvent("keydown", "p", self.Rotateright)
+        SpaceGame.listenKeyEvent("keyup", "p", self.Rotaterightstop)
+        SpaceGame.listenKeyEvent("keydown", "o", self.Rotateleft)
+        SpaceGame.listenKeyEvent("keyup", "o", self.Rotateleftstop)
     def step(self):
+        if self.Rotaterightspaceship:
+            self.rotation=self.rotation+.3
+        else:
+            self.rotation=self.rotation
         if self.Velocityspaceshipup==1:
             self.y=self.y+2
         else:
@@ -92,6 +101,14 @@ class Spaceship(Sprite):
         self.Velocityspaceshipdown=1
     def Velocityupstop(self, event):
         self.Velocityspaceshipdown=0
+    def Rotateright(self, event):
+        self.Rotaterightspaceship=1
+    def Rotaterightstop(self, event):
+        self.Rotaterightspaceship=0
+    def Rotateleft(self, event):
+        self.Rotateleftspaceship=1
+    def Rotateleft(self, event):
+        self.Rotateleftspaceship=0
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
