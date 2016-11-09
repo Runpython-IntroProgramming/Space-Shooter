@@ -60,8 +60,6 @@ class SpaceShip(Sprite):
         self.c = 0
         self.d = 0
         self.visible = True
-        #SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
-        #SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.moveL)
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.moveR)
         SpaceGame.listenKeyEvent("keydown", "down arrow", self.moveD)
