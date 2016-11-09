@@ -42,10 +42,10 @@ class Spaceship(Sprite):
         SpaceGame.listenKeyEvent("keyup", "right arrow", self.Velocityrightstop)
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.Velocityleft)
         SpaceGame.listenKeyEvent("keyup", "left arrow", self.Velocityleftstop)
-        SpaceGame.listenKeyEvent("keydown", "up arrow", self.Velocitydown)
-        SpaceGame.listenKeyEvent("keyup", "up arrow", self.Velocitydownstop)
-        SpaceGame.listenKeyEvent("keydown", "down arrow", self.Velocityup)
-        SpaceGame.listenKeyEvent("keyup", "down arrow", self.Velocityupstop)
+        SpaceGame.listenKeyEvent("keydown", "down arrow", self.Velocitydown)
+        SpaceGame.listenKeyEvent("keyup", "down arrow", self.Velocitydownstop)
+        SpaceGame.listenKeyEvent("keydown", "up arrow", self.Velocityup)
+        SpaceGame.listenKeyEvent("keyup", "up arrow", self.Velocityupstop)
 
     def step(self):
         if self.Velocityspaceshipup==1:
