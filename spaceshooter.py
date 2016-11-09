@@ -106,9 +106,3 @@ class SpaceGame(App):
 
 app = SpaceGame(1897, 935)
 app.run()
-"""
-super().__init__(width, height)
-    for x in range(self.width//Background.width + 1):
-        for y in range(self.height//Background.height + 1):
-            Background((x*Background.width, y*Background.height))
-"""
