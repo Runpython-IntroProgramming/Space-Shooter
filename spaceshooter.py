@@ -116,6 +116,9 @@ class SpaceShip(Sprite):
         else:
             self.setImage(0)
 
+    def explode(self):
+        self.visible = False
+        ExplosionBig(self.position)
     def thrustOff(self, event):
         self.thrust = 0
         
