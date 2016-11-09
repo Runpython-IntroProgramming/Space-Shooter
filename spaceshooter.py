@@ -39,8 +39,9 @@ class astroid(Sprite):
         self.avx = 0
         self.avy = 0
         self.avr = 1
-        
-        
+        self.zufaellig = round((random.random())*100)
+    def step(self):
+        self.avx = zufaellig
         
 class SpaceShip(Sprite):
     """
@@ -48,7 +49,7 @@ class SpaceShip(Sprite):
     """
     asset = ImageAsset("images/UFO2.png", 
         Frame(0,0,485,490), 6, 'vertical')
-        
+    
 
     def __init__(self, position):
         super().__init__(SpaceShip.asset, position)
