@@ -27,13 +27,19 @@ spaceship_asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png"
         Frame(227,0,292-227,125), 4, 'vertical')
 asteroid_asset=ImageAsset("images/asteroid_for_program.png",)
 asteroid1=Sprite(asteroid_asset, (300,300))
+asteroid2=Sprite(asteroid_asset, (1120,300))
 asteroid1.scale=.5
+asteroid1.xmov=10
+asteroid1.ymov=10
+asteroid2.scale=.5
+asteroid2.x2mov=-10
+asteroid2.y2mov=-10
 
 spaceship = Sprite(spaceship_asset, (740, 405))
 spaceship.fxcenter = spaceship.fycenter = 0.5
 # Movement
-spaceship.dir = 1
-spaceship.bob=1
+spaceship.dir = 3
+spaceship.bob=3
 spaceship.go = False
 spaceship.ygo= False
 spaceship.thrust = 0
@@ -41,17 +47,63 @@ spaceship.thrustframe = 1
 def reverse(b):
     b.dir *= -1
     b.bob *= -1
-def left(b):
-    spaceship.dir=-3
-def right(b):
-    spaceship.dir=3
-def up(b):
-    spaceship.bob=-3
-def down(b):
-    spaceship.bob=3
+
+def astryturn1(b):
+    asteroid1.ymov *= -1
+
+def astrxturn1(b):
+    asteroid1.xmov *= -1
+
+def astryturn2(b):
+    asteroid1.x2mov *= -1
+
+def astrxturn2(b):
+    asteroid2.x2mov *= -1
     
-
-
+    
+def left(b):
+    spaceship.dir=-4
+def right(b):
+    spaceship.dir=4
+def up(b):
+    spaceship.bob=-4
+def down(b):
+    spaceship.bob=4
+    
+def astr():
+    asteroid1.x+=asteroid1.xmov
+    asteroid1.y+=asteroid1.ymov
+    if asteroid1.x + asteroid1.width > SCREEN_WIDTH:
+        asteroid1.x -= asteroid1.xmov
+        astrxturn1(asteroid1)
+    if asteroid1.x < 0:
+        asteroid1.x -= asteroid1.xmov
+        astrxturn1(asteroid1)
+    if asteroid1.y + asteroid1.height > SCREEN_HEIGHT:
+        asteroid1.y -= asteroid1.ymov
+        astryturn1(asteroid1)
+    if asteroid1.y < 0:
+        asteroid1.y-= asteroid1.ymov
+        astryturn1(asteroid1)
+    step()
+    astr2()
+    
+    
+def astr2():
+    asteroid2.x+=asteroid2.x2mov
+    asteroid2.y+=asteroid2.y2mov
+    if asteroid2.x + asteroid2.width > SCREEN_WIDTH:
+        asteroid2.x -= asteroid2.x2mov
+        astrxturn1(asteroid1)
+    if asteroid2.x < 0:
+        asteroid2.x -= asteroid2.x2mov
+        astrxturn2(asteroid1)
+    if asteroid2.y + asteroid2.height > SCREEN_HEIGHT:
+        asteroid2.y -= asteroid2.y2mov
+        astryturn2(asteroid1)
+    if asteroid2.y < 0:
+        asteroid2.y-= asteroid2.y2mov
+        astryturn2(asteroid1)
 # Step
 def step():
     if spaceship.go:
@@ -147,4 +199,4 @@ myapp.listenKeyEvent('keydown', 'd', rightKey)
 myapp.listenKeyEvent('keydown', 'w', upKey)
 myapp.listenKeyEvent('keydown', 's', downKey)
 #myapp.run(ystep)
-myapp.run(step)
+myapp.run(astr)
