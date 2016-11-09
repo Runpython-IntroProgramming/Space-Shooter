@@ -30,7 +30,7 @@ class Moon(Sprite):
         self.vx = 0
         self.vy = 0
         self.fxcenter = self.fycenter = 0.5
-        
+        self.circularCollisionModel()
     def step(self):
         if self.counter >= 0 and self.counter <= 1200:
             self.vx = 1
@@ -67,6 +67,7 @@ class SpaceShip(Sprite):
         self.RotThrust = 0
         self.thrust = 0
         self.thrustframe = 1
+        self.circularCollisionModel()
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.thrustLeft)
         SpaceGame.listenKeyEvent("keyup", "right arrow", self.thrustRightoff)
         SpaceGame.listenKeyEvent("keyup", "left arrow", self.thrustLeftoff)
