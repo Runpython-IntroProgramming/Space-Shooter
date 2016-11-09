@@ -105,6 +105,9 @@ class SpaceShip(Sprite):
             self.vAddedr = 0.03
         if self.RotThrust == 0:
             self.vAddedr = 0
+        booming = self.collidingWithSprites(Moon)
+        if len(booming):
+            self.explode
         self.x += self.vAddedx
         self.y += self.vAddedy
         self.rotation += self.vAddedr
