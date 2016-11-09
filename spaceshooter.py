@@ -29,8 +29,19 @@ class Stars(Sprite):
     def __init__(self, position):
         super().__init__(Stars.asset, position)
         self.scale = 0.23
-
-
+        
+class astroid(Sprite):
+    asset = ImageAsset("images/asteroid1.png",
+        Frame(0,0.72,72), 4, 'vertical')
+    
+    def __init__(self, position):
+        super().__init__(astroid.asset, position)    
+        self.avx = 0
+        self.avy = 0
+        self.avr = 1
+        
+        
+        
 class SpaceShip(Sprite):
     """
     Animated space ship
@@ -136,11 +147,14 @@ class SpaceGame(App):
         super().__init__(width, height)
         Stars((0,0))
         SpaceShip((500,500))
+        astroid((0,0))
 
 
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
+        for astroid in self.getSpritesbyClass(astroid):
+            astroid.step()
 
 
 myapp = SpaceGame(1900, 950)
