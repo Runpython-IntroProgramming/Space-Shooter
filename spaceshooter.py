@@ -106,7 +106,6 @@ class SpaceShip(Sprite):
                 self.d = 2
         
         #rotation and thrust
-    
         if self.c==0 and self.d==0:
             self.rotation = 0
             self.thrust = 0
@@ -167,7 +166,6 @@ class Asteroid(Sprite):
     def __init__(self,im_num,position):
         super().__init__(Asteroid.asset, position)
         self.setImage(im_num)
-
     
 class SpaceGame(App):
     #Tutorial4 space game example.
@@ -191,7 +189,6 @@ class SpaceGame(App):
             y=y*800 + 100
             pos=(x,y)
             Asteroid(a,pos)
-            #print("Aster(" + str(x) + " " + str(y) + ")")
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
