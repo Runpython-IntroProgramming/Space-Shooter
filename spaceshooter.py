@@ -34,19 +34,34 @@ class Spaceship(Sprite):
         self.Thrust=0
         self.Velocityspaceshipright=0
         self.Velocityspaceshipleft=0
+        self.Velocityspaceshipdown=0
+        self.Velocityspaceshipup=0
         SpaceGame.listenKeyEvent("keydown", "space", self.Engineon)
         SpaceGame.listenKeyEvent("keyup", "space", self.Engineoff)
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.Velocityright)
         SpaceGame.listenKeyEvent("keyup", "right arrow", self.Velocityrightstop)
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.Velocityleft)
         SpaceGame.listenKeyEvent("keyup", "left arrow", self.Velocityleftstop)
+        SpaceGame.listenKeyEvent("keydown", "up arrow", self.Velocitydown)
+        SpaceGame.listenKeyEvent("keyup", "up arrow", self.Velocitydownstop)
+        SpaceGame.listenKeyEvent("keydown", "down arrow", self.Velocityup)
+        SpaceGame.listenKeyEvent("keyup", "down arrow", self.Velocityupstop)
+
     def step(self):
+        if self.Velocityspaceshipup==1:
+            self.y=self.y+2
+        else:
+            self.y=self.y
+        if self.Velocityspaceshipdown==1:
+            self.y=self.y-2
+        else:
+            self.y=self.y
         if self.Velocityspaceshipright==1:
-            self.x=self.x+1
+            self.x=self.x+2
         else:
             self.x=self.x
         if self.Velocityspaceshipleft==1:
-            self.x=self.x-1
+            self.x=self.x-2
         else:
             self.x=self.x
         if self.Thrust == 1:
@@ -69,6 +84,14 @@ class Spaceship(Sprite):
         self.Velocityspaceshipleft=1
     def Velocityleftstop(self, event):
         self.Velocityspaceshipleft=0
+    def Velocitydown(self, event):
+        self.Velocityspaceshipup=1
+    def Velocitydownstop(self, event):
+        self.Velocityspaceshipup=0
+    def Velocityup(self, event):
+        self.Velocityspaceshipdown=1
+    def Velocityupstop(self, event):
+        self.Velocityspaceshipdown=0
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
