@@ -30,3 +30,4 @@ class SpaceShip(Sprite):
         self.c = 0
         self.d = 0
         self.visible = True
+
