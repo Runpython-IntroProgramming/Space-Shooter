@@ -1,7 +1,7 @@
 """
 spaceshooter.py
-Author: <your name here>
-Credit: <list sources used, if any>
+Author: Marcus Helble
+Credit: None
 
 Assignment:
 Write and submit a program that implements the spacewar game:
