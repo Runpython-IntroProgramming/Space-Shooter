@@ -13,14 +13,7 @@ from random import random
 SCREEN_WIDTH = 1500
 SCREEN_HEIGHT = 910
 pi = 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679
-class Stars(Sprite):
 
-    asset = ImageAsset("images/starfield.jpg")
-    width = 1550
-    height = 920
-
-    def __init__(self, position):
-        super().__init__(Stars.asset, position)
         
 class SpaceShip(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
@@ -73,8 +66,10 @@ class SpaceGame(App):
         super().__init__(width, height)
         black = Color(0, 1)
         noline = LineStyle(0, black)
-        bg_asset = RectangleAsset(width, height, noline, black)
+        bg_asset =ImageAsset("images/starfield.jpg")
         bg = Sprite(bg_asset, (0,0))
+        width = 1550
+        height = 930
         SpaceShip((100,100))
         SpaceShip((150,150))
         SpaceShip((200,50))
