@@ -11,27 +11,6 @@ Assignment:
 Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
 
-        else:
-            self.thrust=1
-            if self.rx==-5: #if it's moving left
-                if self.ry==-5: #moving up
-                    self.rotation=(1/4)*pi
-                elif self.ry==5: #down
-                    self.rotation=(3/4)*pi
-                else:
-                    self.rotation=pi/2
-            elif self.rx==5: #if it's moving right
-                if self.ry==-5: #moving up
-                    self.rotation=(7/4)*pi
-                elif self.ry==5: #down
-                    self.rotation=(5/4)*pi
-                else:
-                    self.rotation=(3/2)*pi
-            else:
-                if self.ry==-5: #moving up
-                    self.rotation=0
-                elif self.ry==5: #down
-                    self.rotation=pi
         """
 
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
