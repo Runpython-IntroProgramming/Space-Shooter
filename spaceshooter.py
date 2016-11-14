@@ -40,8 +40,11 @@ class astroid(Sprite):
         self.avy = 0
         self.avr = 1
         self.zufaellig = round((random.random())*100)
+        self.zufaellig = round((random.random())*100)
     def step(self):
-        self.avx = zufaellig
+        if number == zufaellig1:
+            self.avx = zufaellig
+            zufaellig1 += 12
         
 class SpaceShip(Sprite):
     """
@@ -154,8 +157,8 @@ class SpaceGame(App):
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
-        for astroid in self.getSpritesbyClass(astroid):
-            astroid.step()
+        for Bstroid in self.getSpritesbyClass(astroid):
+            Bstroid.step()
 
 
 myapp = SpaceGame(1900, 950)
