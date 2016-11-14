@@ -10,8 +10,8 @@ https://github.com/HHS-IntroProgramming/Spacewar
 import ggame
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 from random import random
-SCREEN_WIDTH = 1530
-SCREEN_HEIGHT = 930
+SCREEN_WIDTH = 1500
+SCREEN_HEIGHT = 910
 pi = 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679
 class SpaceShip(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
