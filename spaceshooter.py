@@ -32,7 +32,7 @@ class Stars(Sprite):
         
 class astroid(Sprite):
     asset = ImageAsset("images/asteroid1.png",
-        Frame(0,0.72,72), 4, 'vertical')
+        Frame(0,0,72,72), 4, 'vertical')
     
     def __init__(self, position):
         super().__init__(astroid.asset, position)    
