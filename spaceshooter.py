@@ -39,12 +39,14 @@ class astroid(Sprite):
         self.avx = 0
         self.avy = 0
         self.avr = 1
-        self.zufaellig = round((random.random())*100)
-        self.zufaellig = round((random.random())*100)
+        self.random1 = round((random.random())*100)
+        self.ranom2 = round((random.random())*10)
+        number = 0
     def step(self):
-        if number == zufaellig1:
-            self.avx = zufaellig
-            zufaellig1 += 12
+        if number >= random1:
+            self.avx = random1
+            number = 0
+        number += 12
         
 class SpaceShip(Sprite):
     """
