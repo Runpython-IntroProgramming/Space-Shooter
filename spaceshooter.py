@@ -48,8 +48,8 @@ class astroid(Sprite):
         self.fxcenter = self.fycenter = 0.5
         
     def step(self):
-    randomx = zufaellig(0, 3)
-    randomy = zufaelllig(0, 3)
+        randomx = zufaellig(0, 3)
+        randomy = zufaelllig(0, 3)
         if number >= 12:
             number = 0
             self.avx = randomx
