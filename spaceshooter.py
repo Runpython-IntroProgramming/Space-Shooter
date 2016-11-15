@@ -21,10 +21,9 @@ import random
 
 # zufallszahl
 def zufaellig(stellen, komma):
-    zufaelligout = round((random.random(), komma)*10**stellen)
+    zufaelligout = round((random.random())*(10**stellen), komma)
     return zufaelligout
-test = zufaellig(1, 3)
-print(test)
+
 #Hintergrund
 class Stars(Sprite):
 
@@ -37,10 +36,8 @@ class Stars(Sprite):
         self.scale = 0.23
          
 class astroid(Sprite):
-    asset = ImageAsset("images/asteroid1.png",
-        Frame(0,0,72,72), 4, 'vertical')
-    test1 = zufaellig(0)
-    print(test1)
+    asset = ImageAsset("images/asteroid1.png", 
+    Frame(0,0,72,72), 4, 'vertical')
     
     def __init__(self, position):
         super().__init__(astroid.asset, position)    
@@ -51,14 +48,12 @@ class astroid(Sprite):
         self.fxcenter = self.fycenter = 0.5
         
     def step(self):
-        #if number >= random1:
-        #    self.avx = random1
-        #    number = 0
-        #number += 12
-       # if number <= random1:
-       #     self.avx = random2
-       #     number = 0
-      #  number += 11
+    randomx = zufaellig(0, 3)
+    randomy = zufaelllig(0, 3)
+        if number >= 12
+            number = 0
+            self.avx = randomx
+            self.avy = randomy
 
  
         self.rotation += self.avr
