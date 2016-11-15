@@ -37,6 +37,7 @@ class Spaceship(Sprite):
         self.Velocityspaceshipdown=0
         self.Velocityspaceshipup=0
         self.Rotatespaceship=0
+        self.Truerotation=0
         SpaceGame.listenKeyEvent("keydown", "space", self.Engineon)
         SpaceGame.listenKeyEvent("keyup", "space", self.Engineoff)
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.Velocityright)
@@ -53,11 +54,12 @@ class Spaceship(Sprite):
         SpaceGame.listenKeyEvent("keyup", "o", self.Rotateleftstop)
     def step(self):
         if self.Rotatespaceship==1:
-            self.rotation=self.rotation+.3
+            self.Truerotation=.3
         elif self.Rotationspaceship==-1:
-            self.rotation=self.rotation-.3
+            self.Truerotation=-.3
         else:
-            self.rotation=self.rotation
+            self.Truerotation=0
+        self.rotation+=self.Truerotation
         if self.Velocityspaceshipup==1:
             self.y=self.y+2
         else:
