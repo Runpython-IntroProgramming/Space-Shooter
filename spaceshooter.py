@@ -50,10 +50,11 @@ class astroid(Sprite):
     def step(self):
     randomx = zufaellig(0, 3)
     randomy = zufaelllig(0, 3)
-        if number >= 12
+        if number >= 12:
             number = 0
             self.avx = randomx
             self.avy = randomy
+        number += 5
 
  
         self.rotation += self.avr
