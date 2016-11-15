@@ -31,6 +31,10 @@ class Moon(Sprite):
         self.vy = 0
         self.fxcenter = self.fycenter = 0.5
         self.circularCollisionModel()
+    def explode(self):
+        self.visible = False
+        ExplosionBig(self.position)
+        self.waitspawn = 5
     def step(self):
         if self.counter >= 0 and self.counter <= 1200:
             self.vx = 1
@@ -107,7 +111,9 @@ class SpaceShip(Sprite):
             self.vAddedr = 0
         booming = self.collidingWithSprites(Moon)
         if len(booming):
-            self.explode
+            if collides[0].visible:
+                    collides[0].explode()
+                    self.explode()
         self.x += self.vAddedx
         self.y += self.vAddedy
         self.rotation += self.vAddedr
@@ -118,10 +124,12 @@ class SpaceShip(Sprite):
                 self.thrustframe = 1
         else:
             self.setImage(0)
-
+        if (self.x < 3000 or self.y < -100):
+                self.explode()
     def explode(self):
         self.visible = False
         ExplosionBig(self.position)
+        self.waitspawn = 5
     def thrustOff(self, event):
         self.thrust = 0
         
@@ -207,4 +215,3 @@ class SpaceGame(App):
 app = SpaceGame(1900,935)
 app.run()
     
-
