@@ -20,11 +20,11 @@ from time import time
 import random
 
 # zufallszahl
-def zufaellig(stellen):
-    zufaelligout = round((random.random())*10**stellen)
+def zufaellig(stellen, komma):
+    zufaelligout = round((random.random(), komma)*10**stellen)
     return zufaelligout
-test1 = zufaellig(2)
-print(test1)
+test = zufaellig(1, 3)
+print(test)
 #Hintergrund
 class Stars(Sprite):
 
@@ -39,15 +39,14 @@ class Stars(Sprite):
 class astroid(Sprite):
     asset = ImageAsset("images/asteroid1.png",
         Frame(0,0,72,72), 4, 'vertical')
-      
+    test1 = zufaellig(0)
+    print(test1)
+    
     def __init__(self, position):
         super().__init__(astroid.asset, position)    
         self.avx = 0
         self.avy = 0
         self.avr = 0.05
-        self.random1 = round((random.random())*100)
-        self.ranom2 = round((random.random())*10)
-        self.random2 = round((random.random())*10)
         number = 0
         self.fxcenter = self.fycenter = 0.5
         
