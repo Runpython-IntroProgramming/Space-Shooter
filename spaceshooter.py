@@ -129,53 +129,53 @@ class SpaceShip(Sprite):
     def thrustLOn(self, event):
         self.thrustL = 1
  
-     def thrustLOff(self, event):
-         self.thrustL = -1
+    def thrustLOff(self, event):
+        self.thrustL = -1
      
-     def thrustROn(self, event):
-         self.thrustR = 1
+    def thrustROn(self, event):
+        self.thrustR = 1
          
-     def thrustROff(self, event):
-         self.thrustR = -1
+    def thrustROff(self, event):
+        self.thrustR = -1
  
-     def thrustUOn(self, event):
-         self.thrustU = 1
+    def thrustUOn(self, event):
+        self.thrustU = 1
  
-     def thrustUOff(self, event):
-         self.thrustU = -1
+    def thrustUOff(self, event):
+        self.thrustU = -1
          
-     def thrustDOn(self, event):
-         self.thrustD = 1
+    def thrustDOn(self, event):
+        self.thrustD = 1
      
-     def thrustDOff(self, event):
-         self.thrustD = -1
+    def thrustDOff(self, event):
+        self.thrustD = -1
      
-     def panicOn(self, event):
-         self.panic = 1
+    def panicOn(self, event):
+        self.panic = 1
          
-     def panicOff(self, event):
-         self.panic = -1
+    def panicOff(self, event):
+        self.panic = -1
      
  
- class SpaceGame(App):
-     """
-     Tutorial4 space game example.
-     """
-     def __init__(self, width, height):
-          super().__init__(width, height)
-          Stars((0,0))
-          SpaceShip((500,500))
- -        astroid((0,0))
- +        astroid((200,150))
+class SpaceGame(App):
+    """
+    Tutorial4 space game example.
+    """
+    def __init__(self, width, height):
+        super().__init__(width, height)
+        Stars((0,0))
+        SpaceShip((500,500))
+        astroid((0,0))
+        astroid((200,150))
   
   
-      def step(self):
-          for ship in self.getSpritesbyClass(SpaceShip):
-              ship.step()
-          for Bstroid in self.getSpritesbyClass(astroid):
-              Bstroid.step()
- -
- -
- +            
-  myapp = SpaceGame(1900, 950)
-  myapp.run() 
+    def step(self):
+        for ship in self.getSpritesbyClass(SpaceShip):
+            ship.step()
+        for Bstroid in self.getSpritesbyClass(astroid):
+            Bstroid.step()
+ 
+ 
+             
+myapp = SpaceGame(1900, 950)
+myapp.run() 
