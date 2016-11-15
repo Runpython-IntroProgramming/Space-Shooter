@@ -18,7 +18,13 @@ from ggame import SoundAsset, Sound, TextAsset, Color
 import math
 from time import time
 import random
-zufaellig = round((random.random())*100)
+
+# zufallszahl
+def zufaellig(stellen):
+    zufaelligout = round((random.random())*10**stellen)
+    return zufaelligout
+test1 = zufaellig(2)
+print(test1)
 #Hintergrund
 class Stars(Sprite):
 
@@ -37,9 +43,7 @@ class astroid(Sprite):
     def __init__(self, position):
         super().__init__(astroid.asset, position)    
         self.avx = 0
-        self.avx = 1
         self.avy = 0
-        self.avr = 1
         self.avr = 0.05
         self.random1 = round((random.random())*100)
         self.ranom2 = round((random.random())*10)
@@ -48,10 +52,10 @@ class astroid(Sprite):
         self.fxcenter = self.fycenter = 0.5
         
     def step(self):
-        if number >= random1:
-            self.avx = random1
-            number = 0
-        number += 12
+        #if number >= random1:
+        #    self.avx = random1
+        #    number = 0
+        #number += 12
        # if number <= random1:
        #     self.avx = random2
        #     number = 0
@@ -165,7 +169,6 @@ class SpaceGame(App):
         super().__init__(width, height)
         Stars((0,0))
         SpaceShip((500,500))
-        astroid((0,0))
         astroid((200,150))
   
   
