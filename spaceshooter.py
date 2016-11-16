@@ -36,8 +36,8 @@ class Spaceship(Sprite):
         self.Velocityspaceshipleft=0
         self.Velocityspaceshipdown=0
         self.Velocityspaceshipup=0
-        self.Rotatespaceship=0
-        self.Truerotation=0
+        self.Spin=0
+        self.Spinning=0
         SpaceGame.listenKeyEvent("keydown", "space", self.Engineon)
         SpaceGame.listenKeyEvent("keyup", "space", self.Engineoff)
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.Velocityright)
@@ -48,18 +48,18 @@ class Spaceship(Sprite):
         SpaceGame.listenKeyEvent("keyup", "down arrow", self.Velocitydownstop)
         SpaceGame.listenKeyEvent("keydown", "up arrow", self.Velocityup)
         SpaceGame.listenKeyEvent("keyup", "up arrow", self.Velocityupstop)
-        SpaceGame.listenKeyEvent("keydown", "p", self.Rotateright)
-        SpaceGame.listenKeyEvent("keyup", "p", self.Rotaterightstop)
-        SpaceGame.listenKeyEvent("keydown", "o", self.Rotateleft)
-        SpaceGame.listenKeyEvent("keyup", "o", self.Rotateleftstop)
+        SpaceGame.listenKeyEvent("keydown", "o", self.Rotateclock)
+        SpaceGame.listenKeyEvent("keyup", "o", self.Rotateclockstop)
+        SpaceGame.listenKeyEvent("keydown", "p", self.Rotatecounterclock)
+        SpaceGame.listenKeyEvent("keyup", "p", self.Rotatecounterclockstop)
     def step(self):
-        if self.Rotatespaceship==1:
-            self.Truerotation=.3
-        elif self.Rotationspaceship==-1:
-            self.Truerotation=-.3
-        else:
-            self.Truerotation=0
-        self.rotation+=self.Truerotation
+        if self.Spin==1:
+            self.Spinning=.3
+        if self.Spin==-1:
+            self.Spinning=-.3
+        if self.Spin==0:
+            self.Spinning=0
+        self.rotation+=self.Spinning
         if self.Velocityspaceshipup==1:
             self.y=self.y+2
         else:
@@ -104,14 +104,14 @@ class Spaceship(Sprite):
         self.Velocityspaceshipdown=1
     def Velocityupstop(self, event):
         self.Velocityspaceshipdown=0
-    def Rotateright(self, event):
-        self.Rotatespaceship=1
-    def Rotaterightstop(self, event):
-        self.Rotatespaceship=0
-    def Rotateleft(self, event):
-        self.Rotatespaceship=-1
-    def Rotateleftstop(self, event):
-        self.Rotatespaceship=0
+    def Rotateclock(self, event):
+        self.Spin=1
+    def Rotateclockstop(self, event):
+        self.Spin=0
+    def Rotatecounterclock(self, event):
+        self.Spin=-1
+    def Rotatecounterclockstop(self, event):
+        self.Spin=0
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
