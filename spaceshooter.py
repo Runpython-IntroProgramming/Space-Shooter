@@ -114,6 +114,8 @@ class Spaceship(Sprite):
         self.Spin=-1
     def Rotatecounterclockstop(self, event):
         self.Spin=0
+class Star(Sprite):
+    
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
@@ -121,7 +123,7 @@ class SpaceGame(App):
             for y in range(self.height//Background.height + 1):
                 Background((x*Background.width, y*Background.height))
         Background((0, 0))
-        Spaceship((0, 0))
+        Spaceship((100, 100))
     def step(self):
         for ship in self.getSpritesbyClass(Spaceship):
             ship.step()
