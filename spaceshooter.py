@@ -186,6 +186,21 @@ class SpaceGame(App):
         astroid((500,500))
         astroid((500,500))
         astroid((500,500))
+        astroid((500,500))
+        astroid((500,500))
+        astroid((500,500))
+        astroid((500,500))
+        astroid((500,500))
+        astroid((500,500))
+        astroid((500,500))
+        astroid((500,500))
+        astroid((500,500))
+        astroid((500,500))
+        astroid((500,500))
+        astroid((500,500))
+        astroid((500,500))
+        astroid((500,500))
+        astroid((500,500))
 
   
     def step(self):
