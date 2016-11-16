@@ -51,12 +51,23 @@ class astroid(Sprite):
         self.randomxn = 0
         self.randomyn = 0
         
+        if self.randomxn >= 0.6:
+                self.avx = (self.randomx*-1)*3
+            else:
+                self.avx = self.randomx*3
+            if self.randomyn >= 0.6:
+                self.avy = (self.randomy*-1)*3
+            else:
+                self.avy = self.randomy*3
+        
     def step(self):
         self.randomx = zufaellig(0, 3)
         self.randomy = zufaellig(0, 3)
         self.randomxn = zufaellig(0,1)
         self.randomyn = zufaellig(0, 1)
-        if self.number >= 50:
+        #completely random movement
+        
+        """if self.number >= 50:
             self.number = 0
             if self.randomxn >= 0.6:
                 self.avx = (self.randomx*-1)*3
@@ -67,7 +78,8 @@ class astroid(Sprite):
             else:
                 self.avy = self.randomy*3
         self.number += 1
-
+        """
+        
  
         self.rotation += self.avr
         self.x += self.avx
