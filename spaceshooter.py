@@ -180,12 +180,12 @@ class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
         Stars((0,0))
-        SpaceShip((500,500))
-        astroid((200,150))
-        astroid((1000,1000))
-        astroid((1000,1000))
-        astroid((1000,1000))
-        astroid((1000,1000))
+        SpaceShip((700,500))
+        astroid((500,500))
+        astroid((500,500))
+        astroid((500,500))
+        astroid((500,500))
+        astroid((500,500))
 
   
     def step(self):
