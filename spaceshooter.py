@@ -59,7 +59,7 @@ class astroid(Sprite):
         self.randomyn = zufaellig(0, 1)
         
         #completely random movement
-        if self.number >= 200:
+        if self.number >= 100:
             self.number = 0
             if self.randomxn >= 0.6:
                 self.avx = (self.randomx*-1)*3
