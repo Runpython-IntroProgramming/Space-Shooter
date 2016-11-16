@@ -182,7 +182,11 @@ class SpaceGame(App):
         Stars((0,0))
         SpaceShip((500,500))
         astroid((200,150))
-  
+        astroid((1000,1000))
+        astroid((1000,1000))
+        astroid((1000,1000))
+        astroid((1000,1000))
+
   
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
