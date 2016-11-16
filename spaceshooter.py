@@ -56,7 +56,7 @@ class astroid(Sprite):
         self.randomy = zufaellig(0, 3)
         self.randomxn = zufaellig(0,1)
         self.randomyn = zufaellig(0, 1)
-        if self.number >= 12:
+        if self.number >= 25:
             self.number = 0
             if self.randomxn >= 0.4:
                 self.avx = (self.randomx*-1)
