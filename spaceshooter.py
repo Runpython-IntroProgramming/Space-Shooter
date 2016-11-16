@@ -56,7 +56,7 @@ class astroid(Sprite):
         self.randomy = zufaellig(0, 3)
         self.randomxn = zufaellig(0,1)
         self.randomyn = zufaellig(0, 1)
-        print(randomxn)
+        print(self.randomxn)
         if self.number >= 12:
             self.number = 0
             self.avx = self.randomx
@@ -67,6 +67,7 @@ class astroid(Sprite):
         self.rotation += self.avr
         self.x += self.avx
         self.y += self.avy
+
 class SpaceShip(Sprite):
     """
     Animated space ship
