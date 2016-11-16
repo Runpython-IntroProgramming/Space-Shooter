@@ -52,11 +52,13 @@ class Spaceship(Sprite):
         SpaceGame.listenKeyEvent("keyup", "o", self.Rotateclockstop)
         SpaceGame.listenKeyEvent("keydown", "p", self.Rotatecounterclock)
         SpaceGame.listenKeyEvent("keyup", "p", self.Rotatecounterclockstop)
+        
+        self.fxcenter=self.fycenter=.5
     def step(self):
         if self.Spin==1:
-            self.Spinning=.3
+            self.Spinning=.1
         if self.Spin==-1:
-            self.Spinning=-.3
+            self.Spinning=-.1
         if self.Spin==0:
             self.Spinning=0
         self.rotation+=self.Spinning
