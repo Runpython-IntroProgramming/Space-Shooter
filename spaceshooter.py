@@ -139,7 +139,7 @@ class SpaceShip(Sprite):
                     self.thrustframe = 1
                 self.thrustframe += 1
                 self.imagenumber = 0
-                print(thrustframe)
+        print(thrustframe)
 
         else:
             self.setImage(0)
