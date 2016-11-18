@@ -139,7 +139,7 @@ class SpaceShip(Sprite):
                 if self.thrustframe >= 7:
                     self.thrustframe = 2
                 print(self.thrustframe)
-                self.imagenumber = 0
+                self.imagenumber = 1
 
 
         else:
