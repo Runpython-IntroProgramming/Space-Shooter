@@ -139,11 +139,13 @@ class SpaceShip(Sprite):
                     self.thrustframe = 1
                 self.thrustframe += 1
                 self.imagenumber = 0
-        print(thrustframe)
+
 
         else:
             self.setImage(0)
- 
+        print(thrustframe)
+        
+        
     def thrustLOn(self, event):
         self.thrustL = 1
  
