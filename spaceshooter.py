@@ -135,10 +135,11 @@ class SpaceShip(Sprite):
             self.setImage(self.thrustframe)
             self.imagenumber += 1
             if self.imagenumber == 9:
-                if self.thrustframe == 8:
-                    self.thrustframe = 2
+                if self.thrustframe == 7:
+                    self.thrustframe = 1
                 self.thrustframe += 1
                 self.imagenumber = 0
+                print(thrustframe)
 
         else:
             self.setImage(0)
