@@ -144,8 +144,6 @@ class SpaceShip(Sprite):
 
         else:
             self.setImage(0)
-            print(self.thrustframe)
-
         
         
     def thrustLOn(self, event):
