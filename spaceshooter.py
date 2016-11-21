@@ -123,7 +123,7 @@ class SpaceShip(Sprite):
                 self.thrustframe = 1
         else:
             self.setImage(0)
-        if (self.x > 1000 or self.y < -100):
+        if (self.x > 0 or self.y < -100):
                 self.explode()
     def explode(self):
         self.visible = False
