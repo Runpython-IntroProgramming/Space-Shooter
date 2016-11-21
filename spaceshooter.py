@@ -115,7 +115,33 @@ class Spaceship(Sprite):
     def Rotatecounterclockstop(self, event):
         self.Spin=0
 class Star(Sprite):
+    asset=ImageAsset("images/sun.png")
+    height=300
+    width=300
+    def __init__(self, position):
+        super().__init__(Star.asset, position)
+    self.counter=0
+    self.Starx=0
+    self.Stary=0
     
+    def step(self):
+        if self.counter>=0 and self.counter<=1200:
+            self.Starx=1
+            self.Stary=0
+        if self.counter>=1201 and self.counter<=2400:
+            self.Starx=0
+            self.Stary=-1
+        if self.counter>=2401 and self.counter<=3600:
+            self.Starx=-1
+            self.Stary=0
+        if self.counter>=3601 and self.counter<=4800:
+            self.Starx=0
+            self.Stary=1
+        if self.counter==4801:
+            self.counter=0
+        self.counter+=1
+        self.x=self.x+self.Starx
+        self.y=self.y+self.Stary
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
@@ -124,6 +150,7 @@ class SpaceGame(App):
                 Background((x*Background.width, y*Background.height))
         Background((0, 0))
         Spaceship((100, 100))
+        Star((800, 450))
     def step(self):
         for ship in self.getSpritesbyClass(Spaceship):
             ship.step()
