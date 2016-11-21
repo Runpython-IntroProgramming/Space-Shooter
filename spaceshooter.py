@@ -125,6 +125,8 @@ class SpaceShip(Sprite):
             self.setImage(0)
         if (self.x > 1000 or self.y < -100):
                 self.explode()
+        if (self.x<=1000):
+            self.visible = True
     def explode(self):
         self.visible = False
         ExplosionBig(self.position)
