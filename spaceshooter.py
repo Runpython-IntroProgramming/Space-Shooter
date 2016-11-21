@@ -203,6 +203,10 @@ class SpaceGame(App):
                 Stars((x*Stars.width, y*Stars.height))
         Moon((200,200))
         SpaceShip((400,400))
+        SpaceShip((600,400))
+        SpaceShip((600,600))
+        SpaceShip((400,600))
+        SpaceShip((500,500))
         
                     
     def step(self):
