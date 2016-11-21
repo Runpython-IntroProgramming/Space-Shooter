@@ -51,28 +51,32 @@ class astroid(Sprite):
         self.randomxn = 0
         self.randomyn = 0
         
-        
-    def step(self):
         self.randomx = zufaellig(0, 3)
         self.randomy = zufaellig(0, 3)
         self.randomxn = zufaellig(0,1)
         self.randomyn = zufaellig(0, 1)
+        self.avx = (self.randomx*-1)*6
+        self.avy = (self.randomy*-1)*6
+        
+    def step(self):
+        
         
         #completely random movement
-        if self.number >= 100:
-            self.number = 0
-            if self.randomxn >= 0.6:
-                self.avx = (self.randomx*-1)*3
-            else:
-                self.avx = self.randomx*3
-            if self.randomyn >= 0.6:
-                self.avy = (self.randomy*-1)*3
-            else:
-                self.avy = self.randomy*3
+        """if self.number >= 200:
+            self.number = 0"""
+       
         self.number += 1
-        
-        
- 
+        # abfrage
+        if self.x > 1695:
+            self.avx = self.avx*-1
+        elif self.x < 30:
+            self.avx = self.avx*-1
+        elif self.y < 30:
+            self.avy = self.avy*-1
+        elif self.y > 850:
+            self.avy = self.avy*-1
+            
+            
         self.rotation += self.avr
         self.x += self.avx
         self.y += self.avy
@@ -136,9 +140,8 @@ class SpaceShip(Sprite):
             self.imagenumber += 1
             if self.imagenumber == 9:
                 self.thrustframe += 1
-                if self.thrustframe >= 7:
+                if self.thrustframe >= 6:
                     self.thrustframe = 2
-                print(self.thrustframe)
                 self.imagenumber = 0
 
 
@@ -185,12 +188,13 @@ class SpaceGame(App):
         super().__init__(width, height)
         Stars((0,0))
         SpaceShip((700,500))
-        astroid((500,500))
-        astroid((500,500))
-        astroid((500,500))
-        astroid((500,500))
-        astroid((500,500))
-
+        astroid((234,423))
+        astroid((572,245))
+        astroid((424,523))
+        astroid((234,240))
+        astroid((123,345))
+        astroid((234,423))
+        astroid((572,245))
 
   
     def step(self):
@@ -201,5 +205,5 @@ class SpaceGame(App):
  
  
              
-myapp = SpaceGame(1900, 950)
+myapp = SpaceGame(0, 0)
 myapp.run() 
