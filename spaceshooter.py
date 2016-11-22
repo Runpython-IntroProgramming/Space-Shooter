@@ -71,6 +71,7 @@ class SpaceShip(Sprite):
         self.vertThrust = 0
         self.RotThrust = 0
         self.thrust = 0
+        self.exploded = False
         self.thrustframe = 1
         self.circularCollisionModel()
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.thrustLeft)
@@ -124,7 +125,8 @@ class SpaceShip(Sprite):
                 self.thrustframe = 1
         else:
             self.setImage(0)
-        if (self.x > 1000 or self.y < -100):
+        if (self.x >= 1000 and self.exploded == False):
+                self.exploded == True
                 self.explode()
         if (self.x<=1000):
             self.visible = True
@@ -182,6 +184,7 @@ class SpaceShip(Sprite):
     def thrustCounterClockoff(self, event):
         self.RotThrust = 0
         self.thrust = 0
+
 class ExplosionBig(Sprite):
     
     asset = ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
@@ -193,9 +196,9 @@ class ExplosionBig(Sprite):
         self.center = (0.5, 0.5)
     
     def step(self):
-        self.setImage(self.image//2)
+        self.setImage(self.image)
         self.image += 1
-        if self.image == 50:
+        if self.image == 1:
             self.destroy()
 
 class SpaceGame(App):
