@@ -62,13 +62,13 @@ class astroid(Sprite):
         
     def step(self):
         # abfrage
-        if self.x > 1695:
+        if self.x > self.widthscreen-30:
             self.avx = self.avx*-1
         elif self.x < 30:
             self.avx = self.avx*-1
         elif self.y < 30:
             self.avy = self.avy*-1
-        elif self.y > 850:
+        elif self.y > self.heightscreen-30:
             self.avy = self.avy*-1
             
             
@@ -144,6 +144,15 @@ class SpaceShip(Sprite):
 
         else:
             self.setImage(0)
+            
+        if self.x > self.widthscreen-30:
+            self.vx = self.vx*-1
+        elif self.x < 30:
+            self.vx = self.vx*-1
+        elif self.y < 30:
+            self.vy = self.vy*-1
+        elif self.y > self.heightscreen-30:
+            self.vy = self.vy*-1
         
         
     def thrustLOn(self, event):
