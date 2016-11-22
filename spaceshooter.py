@@ -29,6 +29,7 @@ class Moon(Sprite):
         self.counter = 0
         self.vx = 0
         self.vy = 0
+        self.scale = 0.7
         self.fxcenter = self.fycenter = 0.5
         self.circularCollisionModel()
     def explode(self):
