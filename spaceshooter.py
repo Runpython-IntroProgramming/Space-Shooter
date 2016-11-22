@@ -114,13 +114,13 @@ class SpaceShip(Sprite):
  
     def step(self):
         if self.thrustL == 1:
-            self.vx -= 0.06
+            self.vx -= 0.08
         if self.thrustR == 1:
-            self.vx += 0.06
+            self.vx += 0.08
         if self.thrustU == 1:
-            self.vy -= 0.06
+            self.vy -= 0.08
         if self.thrustD == 1:
-            self.vy += 0.06
+            self.vy += 0.08
         if self.panic == 1:
             self.vx = 0
             self.vy = 0
@@ -201,13 +201,21 @@ class SpaceGame(App):
         astroid((123,345), self.width, self.height)
         astroid((234,423), self.width, self.height)
         astroid((572,245), self.width, self.height)
-
+        self.counterstep = 0
+        self.countersecond = 0
   
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
         for Bstroid in self.getSpritesbyClass(astroid):
             Bstroid.step()
+        
+        #punktestand
+        self.counterstep += 1
+        if self.counterstep == 60:
+            self.countersecond += 1
+            print(self.countersecond)
+            self.counterstep = 0
  
  
              
