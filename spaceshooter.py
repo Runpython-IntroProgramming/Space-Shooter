@@ -192,8 +192,8 @@ class ExplosionBig(Sprite):
         self.center = (0.5, 0.5)
     
     def step(self):
-        self.setImage(self.image//2)  # slow it down
-        self.image = self.image + 1
+        self.setImage(self.image//2)
+        self.image += 1
         if self.image == 50:
             self.destroy()
 
