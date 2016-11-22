@@ -39,12 +39,14 @@ class astroid(Sprite):
     asset = ImageAsset("images/asteroid1.png", 
     Frame(0,0,72,72), 4, 'vertical')
     
-    def __init__(self, position):
+    def __init__(self, position, width, height):
         super().__init__(astroid.asset, position)    
         self.avx = 0
+        self.widthscreen = width
+        self.heightscreen = height
         self.avy = 0
         self.avr = 0.05
-        self.number = 0
+
         self.randomx = 0
         self.randomy = 0
         self.fxcenter = self.fycenter = 0.5
@@ -59,13 +61,6 @@ class astroid(Sprite):
         self.avy = (self.randomy*-1)*6
         
     def step(self):
-        
-        
-        #completely random movement
-        """if self.number >= 200:
-            self.number = 0"""
-       
-        self.number += 1
         # abfrage
         if self.x > 1695:
             self.avx = self.avx*-1
@@ -89,9 +84,11 @@ class SpaceShip(Sprite):
         Frame(0,0,485,490), 6, 'vertical')
      
  
-    def __init__(self, position):
+    def __init__(self, position, width, height):
         super().__init__(SpaceShip.asset, position)
         self.scale = 0.15
+        self.widthscreen = width
+        self.heightscreen = height
         self.vx = 0
         self.vy = 0
         self.vr = 0
@@ -187,14 +184,14 @@ class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
         Stars((0,0))
-        SpaceShip((700,500))
-        astroid((234,423))
-        astroid((572,245))
-        astroid((424,523))
-        astroid((234,240))
-        astroid((123,345))
-        astroid((234,423))
-        astroid((572,245))
+        SpaceShip((700,500), self.width, self.height)
+        astroid((234,423), self.width, self.height)
+        astroid((572,245), self.width, self.height)
+        astroid((424,523), self.width, self.height)
+        astroid((234,240), self.width, self.height)
+        astroid((123,345), self.width, self.height)
+        astroid((234,423), self.width, self.height)
+        astroid((572,245), self.width, self.height)
 
   
     def step(self):
