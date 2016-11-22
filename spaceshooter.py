@@ -126,7 +126,7 @@ class SpaceShip(Sprite):
         else:
             self.setImage(0)
         if (self.x >= 1000 and self.exploded == False):
-                self.exploded == True
+                self.exploded = True
                 self.explode()
         if (self.x<=1000):
             self.visible = True
@@ -198,7 +198,7 @@ class ExplosionBig(Sprite):
     def step(self):
         self.setImage(self.image)
         self.image += 1
-        if self.image == 1:
+        if self.image == 50:
             self.destroy()
 
 class SpaceGame(App):
