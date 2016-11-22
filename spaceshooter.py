@@ -79,5 +79,55 @@ class SpaceGame(App):
             ship.step()
 
 
+        SpaceGame.listenKeyEvent("keydown", "left arrow", self.moveL)
+        SpaceGame.listenKeyEvent("keydown", "right arrow", self.moveR)
+        SpaceGame.listenKeyEvent("keydown", "down arrow", self.moveD)
+        SpaceGame.listenKeyEvent("keydown", "up arrow", self.moveU)
+       
+        SpaceGame.listenKeyEvent("keyup", "left arrow", self.nMoveL) 
+        SpaceGame.listenKeyEvent("keyup", "right arrow", self.nMoveR) 
+        SpaceGame.listenKeyEvent("keyup", "down arrow", self.nMoveD) 
+        SpaceGame.listenKeyEvent("keyup", "up arrow", self.nMoveU) 
+        self.fxcenter = self.fycenter = 0.5
+    def step(self):
+        self.rotation = 0
+        if self.thrust == 1:
+            self.setImage(self.thrustframe)
+            self.thrustframe += 1
+            if self.thrustframe == 4:
+                self.thrustframe = 1
+        else:
+            self.setImage(0)
+        if self.rxa == 2 and self.rxb == 2:
+            self.x=self.x
+            self.c=0
+        else:
+            self.c=1
+        if self.rx=5
+        self.x=self.x+10
+        self.c=2
+        if self 
+
+        if self.rya == 2 and self.ryb == 2:
+            self.y=self.y
+            self.d=0
+        else:
+            if self.ry == -5:
+                self.y=self.y-10
+                self.d=1
+            if self.ry == 5:
+                self.y=self.y+10
+                self.d = 10
+            if self.c==0 and self.d==0:
+                self.rotation = 0
+                self.thrust = 0
+            else:
+                self.thrust=1
+            
+            
+
+
+
+
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
