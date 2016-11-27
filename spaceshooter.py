@@ -14,7 +14,15 @@ SCREEN_WIDTH = 1500
 SCREEN_HEIGHT = 910
 pi = 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679
 
-        
+
+
+space_asset= ImageAsset("images/starfield.jpg",)
+space=Sprite(space_asset, (0,0))
+space2=Sprite(space_asset, (512,0))
+space3=Sprite(space_asset,(1024,0))
+space4=Sprite(space_asset, (0,512))
+space5=Sprite(space_asset, (512,512))
+space6=Sprite(space_asset, (1024, 512))
 class SpaceShip(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
         Frame(227,0,292-227,125), 4, 'vertical')
@@ -61,18 +69,21 @@ class SpaceShip(Sprite):
     def thrustOff(self, event):
         self.thrust = 0
 class SpaceGame(App):
-   
     def __init__(self, width, height):
         super().__init__(width, height)
         black = Color(0, 1)
         noline = LineStyle(0, black)
-        bg_asset =ImageAsset("images/starfield.jpg")
+        bg_asset = RectangleAsset(width, height, noline, black)
         bg = Sprite(bg_asset, (0,0))
-        width = 1550
-        height = 930
         SpaceShip((100,100))
         SpaceShip((150,150))
         SpaceShip((200,50))
+
+
+    def step(self):
+        for ship in self.getSpritesbyClass(SpaceShip):
+            ship.step()
+
 
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
@@ -103,11 +114,9 @@ class SpaceGame(App):
             self.c=0
         else:
             self.c=1
-        if self.rx=5
-        self.x=self.x+10
-        self.c=2
-        if self 
-
+        if self.rx == 5:
+            self.x=self.x+10
+            self.c=2
         if self.rya == 2 and self.ryb == 2:
             self.y=self.y
             self.d=0
