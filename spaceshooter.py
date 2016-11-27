@@ -132,8 +132,50 @@ class SpaceGame(App):
                 self.thrust = 0
             else:
                 self.thrust=1
-            
-            
+
+
+    def __init__(self, width, height):
+        super().__init__(width, height)
+        black = Color(0, 1)
+        noline = LineStyle(0, black)
+        bg_asset = ImageAsset("images/kSQdCxM.jpg")
+        bg = Sprite(bg_asset, (0,0))
+        bg.scale = 0.6
+        SpaceShip((125,100))
+        SpaceShip((175,150))
+        SpaceShip((75,150))
+
+   
+
+def leftKey(event):
+   spaceship.go = True
+   spaceship.ygo= False
+   spaceship.thrust = 1
+   spaceship.rotation=(3.141592653589793238462643383/2)
+   left(spaceship)
+
+
+
+def rightKey(event):
+   spaceship.go = True
+   spaceship.ygo=False
+   spaceship.thrust = 1
+   spaceship.rotation=(3.141592653589793238462643383*3)/2
+   right(spaceship)
+  
+def upKey(event):
+   spaceship.ygo = True
+   spaceship.go=False
+   spaceship.thrust = 1
+   spaceship.rotation=0
+   up(spaceship)
+  
+def downKey (event):
+   spaceship.ygo = True
+   spaceship.go = False
+   spaceship.thrust = 1
+   spaceship.rotation=3.141592653589793238462643383
+   down(spaceship)
 
 
 
