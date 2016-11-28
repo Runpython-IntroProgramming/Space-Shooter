@@ -12,6 +12,16 @@ https://github.com/HHS-IntroProgramming/Spacewar
 tutorial4.py
 by E. Dennison
 """
+
+
+"""
+WASD = movement
+R = relode
+P = panic stop button
+
+points only count when you're moving
+
+"""
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 from ggame import App, Sprite, ImageAsset, Frame
 from ggame import SoundAsset, Sound, TextAsset, Color
