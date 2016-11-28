@@ -1,7 +1,7 @@
 """
 spaceshooter.py
 Author: vinzentmoesch
-Credit: 
+Credit: Liam
 http://freegameassets.blogspot.com/2013/09/asteroids-and-planets-if-you-needed-to.html
 
 Assignment:
