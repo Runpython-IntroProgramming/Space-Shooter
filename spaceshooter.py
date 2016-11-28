@@ -36,6 +36,10 @@ class SpaceShip(Sprite):
         self.thrustframe = 1
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
+        SpaceGame.listenKeyEvent("keydown", "a", self.leftKey)
+        SpaceGame.listenKeyEvent("keydown", "d", self.rightKey)
+        SpaceGame.listenKeyEvent("keydown", "w", self.upKey)
+        SpaceGame.listenKeyEvent("keydown", "s", self.downKey)
         self.fxcenter = self.fycenter = 0.5
 
     def step(self):
@@ -55,7 +59,39 @@ class SpaceShip(Sprite):
 
     def thrustOff(self, event):
         self.thrust = 0
+    
 
+   
+
+    def leftKey(self, event):
+        SpaceShip.go = True
+        SpaceShip.ygo= False
+        SpaceShip.thrust = 1
+        SpaceShip.rotation=(pi/2)
+        left(SpaceShip)
+
+
+
+    def rightKey(self, event):
+        SpaceShip.go = True
+        SpaceShip.ygo=False
+        SpaceShip.thrust = 1
+        SpaceShip.rotation=(pi/2)
+        right(SpaceShip)
+  
+    def upKey(self, event):
+        SpaceShip.ygo = True
+        SpaceShip.go=False
+        SpaceShip.thrust = 1
+        SpaceShip.rotation=0
+        up(SpaceShip)
+  
+    def downKey (self, event):
+        SpaceShip.ygo = True
+        SpaceShip.go = False
+        SpaceShip.thrust = 1
+        SpaceShip.rotation=pi
+        down(SpaceShip)
 
 
 class SpaceGame(App):
@@ -68,15 +104,9 @@ class SpaceGame(App):
         SpaceShip((100,100))
         SpaceShip((150,150))
         SpaceShip((200,50))
-
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
-
-
-
-
-
     def __init__(self, width, height):
         super().__init__(width, height)
         black = Color(0, 1)
@@ -87,39 +117,5 @@ class SpaceGame(App):
         SpaceShip((125,100))
         SpaceShip((175,150))
         SpaceShip((75,150))
-
-   
-
-    def leftKey(event):
-        spaceship.go = True
-        spaceship.ygo= False
-        spaceship.thrust = 1
-        spaceship.rotation=(pi/2)
-        left(spaceship)
-
-
-
-    def rightKey(event):
-        spaceship.go = True
-        spaceship.ygo=False
-        spaceship.thrust = 1
-        spaceship.rotation=(pi/2)
-        right(spaceship)
-  
-    def upKey(event):
-        spaceship.ygo = True
-        spaceship.go=False
-        spaceship.thrust = 1
-        spaceship.rotation=0
-        up(spaceship)
-  
-    def downKey (event):
-        spaceship.ygo = True
-        spaceship.go = False
-        spaceship.thrust = 1
-        spaceship.rotation=pi
-        down(spaceship)
-
-    
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
