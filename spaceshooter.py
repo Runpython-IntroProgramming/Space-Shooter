@@ -46,6 +46,7 @@ class astroid(Sprite):
         self.heightscreen = height
         self.avy = 0
         self.avr = 0.05
+        self.circularCollisionModel()
 
         self.randomx = 0
         self.randomy = 0
@@ -99,6 +100,9 @@ class SpaceShip(Sprite):
         self.panic = 0
         self.thrustframe = 1
         self.imagenumber = 0
+        self.boom = 0
+        self.circularCollisionModel()
+        
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.thrustLOn)
         SpaceGame.listenKeyEvent("keyup", "left arrow", self.thrustLOff)
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.thrustROn)
@@ -109,6 +113,9 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keyup", "up arrow", self.thrustUOff)
         SpaceGame.listenKeyEvent("keydown", "down arrow", self.thrustDOn)
         SpaceGame.listenKeyEvent("keyup", "down arrow", self.thrustDOff)
+        SpaceGame.listenKeyEvent("keydown", "r", self.explosionOff)
+        SpaceGame.listenKeyEvent("keyup", "r", self.explosionOff)
+        
 
         self.fxcenter = self.fycenter = 0.5
  
@@ -140,8 +147,6 @@ class SpaceShip(Sprite):
                 if self.thrustframe >= 6:
                     self.thrustframe = 2
                 self.imagenumber = 0
-
-
         else:
             self.setImage(0)
             
@@ -153,6 +158,12 @@ class SpaceShip(Sprite):
             self.vy = self.vy*-1
         elif self.y > self.heightscreen-30:
             self.vy = self.vy*-1
+        
+        collidingwith = self.collidingWithSprites(astroid)
+        if len(collidingwith) > 0:
+            self.boom = 1
+            self.explosionOn(self.x, self.y)
+            
         
         
     def thrustLOn(self, event):
@@ -185,6 +196,12 @@ class SpaceShip(Sprite):
     def panicOff(self, event):
         self.panic = -1
      
+     
+    def explosionOn(self, x, y):
+        self.visible = False
+        
+    def explosionOff(self, event):
+        self.visible = True
  
 class SpaceGame(App):
     """
