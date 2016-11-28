@@ -101,6 +101,8 @@ class SpaceShip(Sprite):
         self.thrustframe = 1
         self.imagenumber = 0
         self.boom = 0
+        self.counterstep = 0
+        self.countersecond = 0
         self.circularCollisionModel()
         
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.thrustLOn)
@@ -164,6 +166,14 @@ class SpaceShip(Sprite):
             self.boom = 1
             self.explosionOn(self.x, self.y)
             
+        if self.boom == 0:
+            if self.vx != 0 or self.vy != 0:
+                self.counterstep += 1
+                if self.counterstep == 20:
+                    self.countersecond += 1
+                    print(self.countersecond)
+                    self.counterstep = 0
+ 
         
         
     def thrustLOn(self, event):
@@ -218,8 +228,7 @@ class SpaceGame(App):
         astroid((123,345), self.width, self.height)
         astroid((234,423), self.width, self.height)
         astroid((572,245), self.width, self.height)
-        self.counterstep = 0
-        self.countersecond = 0
+
   
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
@@ -228,12 +237,7 @@ class SpaceGame(App):
             Bstroid.step()
         
         #punktestand
-        self.counterstep += 1
-        if self.counterstep == 60:
-            self.countersecond += 1
-            print(self.countersecond)
-            self.counterstep = 0
- 
+
  
              
 myapp = SpaceGame(0, 0)
