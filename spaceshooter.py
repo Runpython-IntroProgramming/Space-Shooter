@@ -32,10 +32,6 @@ class Moon(Sprite):
         self.scale = 0.7
         self.fxcenter = self.fycenter = 0.5
         self.circularCollisionModel()
-    def explode(self):
-        self.visible = False
-        ExplosionBig(self.position)
-        self.waitspawn = 5
     def step(self):
         if self.counter >= 0 and self.counter <= 1200:
             self.vx = 1
@@ -71,7 +67,6 @@ class SpaceShip(Sprite):
         self.vertThrust = 0
         self.RotThrust = 0
         self.thrust = 0
-        self.exploded = False
         self.thrustframe = 1
         self.circularCollisionModel()
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.thrustLeft)
@@ -111,10 +106,8 @@ class SpaceShip(Sprite):
         if self.RotThrust == 0:
             self.vAddedr = 0
         booming = self.collidingWithSprites(Moon)
-        if len(booming):
-            if collides[0].visible:
-                    collides[0].explode()
-                    self.explode()
+        if len(booming) > 0:
+            self.visible = False
         self.x += self.vAddedx
         self.y += self.vAddedy
         self.rotation += self.vAddedr
@@ -125,15 +118,6 @@ class SpaceShip(Sprite):
                 self.thrustframe = 1
         else:
             self.setImage(0)
-        if (self.x >= 1000 and self.exploded == False):
-                self.exploded = True
-                self.explode()
-        if (self.x<=1000):
-            self.visible = True
-    def explode(self):
-        self.visible = False
-        ExplosionBig(self.position)
-        self.waitspawn = 5
     def thrustOff(self, event):
         self.thrust = 0
         
@@ -184,7 +168,7 @@ class SpaceShip(Sprite):
     def thrustCounterClockoff(self, event):
         self.RotThrust = 0
         self.thrust = 0
-
+"""
 class ExplosionBig(Sprite):
     
     asset = ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
@@ -200,7 +184,7 @@ class ExplosionBig(Sprite):
         self.image = self.image + 1
         if self.image == 50:
             self.destroy()
-
+"""
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__(width, height)
@@ -209,11 +193,6 @@ class SpaceGame(App):
                 Stars((x*Stars.width, y*Stars.height))
         Moon((200,200))
         SpaceShip((400,400))
-        SpaceShip((600,400))
-        SpaceShip((600,600))
-        SpaceShip((400,600))
-        SpaceShip((500,500))
-        
                     
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
