@@ -55,6 +55,10 @@ class Spaceship(Sprite):
         
         self.fxcenter=self.fycenter=.5
     def step(self):
+        crash=self.collidingWithSprites(Star)
+        if len(crash)>0:
+            self.visible= False
+            
         if self.Spin==1:
             self.Spinning=.1
         if self.Spin==-1:
