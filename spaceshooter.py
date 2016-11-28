@@ -193,8 +193,10 @@ class SpaceGame(App):
                 Stars((x*Stars.width, y*Stars.height))
         Moon((200,200))
         Moon((200,0))
+        Moon((200,300))
         Moon((200,100))
-        SpaceShip((400,400))
+        Moon((200,400))
+        SpaceShip((400,600))
                     
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
