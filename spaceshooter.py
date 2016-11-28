@@ -29,7 +29,7 @@ class Moon(Sprite):
         self.counter = 0
         self.vx = 0
         self.vy = 0
-        self.scale = 0.7
+        self.scale = 0.4
         self.fxcenter = self.fycenter = 0.5
         self.circularCollisionModel()
     def step(self):
@@ -192,6 +192,8 @@ class SpaceGame(App):
             for y in range(self.height//Stars.height + 1):
                 Stars((x*Stars.width, y*Stars.height))
         Moon((200,200))
+        Moon((200,0))
+        Moon((200,100))
         SpaceShip((400,400))
                     
     def step(self):
