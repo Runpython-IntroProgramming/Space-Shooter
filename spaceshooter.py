@@ -24,9 +24,6 @@ space4=Sprite(space_asset, (0,512))
 space5=Sprite(space_asset, (512,512))
 space6=Sprite(space_asset, (1024, 512))
 class SpaceShip(Sprite):
-    """
-    Animated space ship
-    """
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(227,0,292-227,125), 4, 'vertical')
 
@@ -62,9 +59,6 @@ class SpaceShip(Sprite):
 
 
 class SpaceGame(App):
-    """
-    Tutorial4 space game example.
-    """
     def __init__(self, width, height):
         super().__init__(width, height)
         black = Color(0, 1)
