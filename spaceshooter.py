@@ -119,11 +119,7 @@ class SpaceGame(App):
         spaceship.thrust = 1
         spaceship.rotation=pi
         down(spaceship)
-   
-    def registerKeys(self, keys):
-        commands = ["left", "right", "forward", "fire"]
-        self.keymap = dict(zip(keys, commands))
-        [self.app.listenKeyEvent("keydown", k, self.controldown) for k in keys]
-        [self.app.listenKeyEvent("keyup", k, self.controlup) for k in keys]
+
+    
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
