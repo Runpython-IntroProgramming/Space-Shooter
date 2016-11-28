@@ -90,35 +90,35 @@ class SpaceGame(App):
 
    
 
-def leftKey(event):
-   spaceship.go = True
-   spaceship.ygo= False
-   spaceship.thrust = 1
-   spaceship.rotation=(pi/2)
-   left(spaceship)
+    def leftKey(event):
+        spaceship.go = True
+        spaceship.ygo= False
+        spaceship.thrust = 1
+        spaceship.rotation=(pi/2)
+        left(spaceship)
 
 
 
-def rightKey(event):
-   spaceship.go = True
-   spaceship.ygo=False
-   spaceship.thrust = 1
-   spaceship.rotation=(pi/2)
-   right(spaceship)
+    def rightKey(event):
+        spaceship.go = True
+        spaceship.ygo=False
+        spaceship.thrust = 1
+        spaceship.rotation=(pi/2)
+        right(spaceship)
   
-def upKey(event):
-   spaceship.ygo = True
-   spaceship.go=False
-   spaceship.thrust = 1
-   spaceship.rotation=0
-   up(spaceship)
+    def upKey(event):
+        spaceship.ygo = True
+        spaceship.go=False
+        spaceship.thrust = 1
+        spaceship.rotation=0
+        up(spaceship)
   
-def downKey (event):
-   spaceship.ygo = True
-   spaceship.go = False
-   spaceship.thrust = 1
-   spaceship.rotation=pi
-   down(spaceship)
+    def downKey (event):
+        spaceship.ygo = True
+        spaceship.go = False
+        spaceship.thrust = 1
+        spaceship.rotation=pi
+        down(spaceship)
    
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
