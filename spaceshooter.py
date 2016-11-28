@@ -52,13 +52,11 @@ class Spaceship(Sprite):
         SpaceGame.listenKeyEvent("keyup", "o", self.Rotateclockstop)
         SpaceGame.listenKeyEvent("keydown", "p", self.Rotatecounterclock)
         SpaceGame.listenKeyEvent("keyup", "p", self.Rotatecounterclockstop)
-        
         self.fxcenter=self.fycenter=.5
     def step(self):
         crash=self.collidingWithSprites(Star)
         if len(crash)>0:
-            self.visible= False
-            
+            self.visible=False
         if self.Spin==1:
             self.Spinning=.1
         if self.Spin==-1:
