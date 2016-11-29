@@ -1,7 +1,7 @@
 """
 spaceshooter.py
 Author: Marcus Helble
-Credit: None
+Credit: Wilson Rimberg
 
 Assignment:
 Write and submit a program that implements the spacewar game:
@@ -17,40 +17,52 @@ pi = 3.1415926535897932384626433832795028841971693993751058209749445923078164062
 
 
 space_asset= ImageAsset("images/starfield.jpg",)
-space=Sprite(space_asset, (0,0))
-space2=Sprite(space_asset, (512,0))
-space3=Sprite(space_asset,(1024,0))
-space4=Sprite(space_asset, (0,512))
-space5=Sprite(space_asset, (512,512))
-space6=Sprite(space_asset, (1024, 512))
+backg=Sprite(space_asset, (0,0))
+backg2=Sprite(space_asset, (512,0))
+backg3=Sprite(space_asset,(1024,0))
+backg4=Sprite(space_asset, (0,512))
+backg5=Sprite(space_asset, (512,512))
+backg6=Sprite(space_asset, (1024, 512))
 class SpaceShip(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(227,0,292-227,125), 4, 'vertical')
 
     def __init__(self, position):
         super().__init__(SpaceShip.asset, position)
-        self.vx = 1
-        self.vy = 1
         self.vr = 0.01
         self.thrust = 0
         self.thrustframe = 1
+        self.rx = 1
+        self.ry = -1
+        self.rxa = 0
+        self.rxb = 0
+        self.rya = 0
+        self.ryb = 0
+        self.c = 0
+        self.d = 0
+        self.visible = True
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
-        SpaceGame.listenKeyEvent("keydown", "a", self.leftKey)
-        SpaceGame.listenKeyEvent("keydown", "d", self.rightKey)
-        SpaceGame.listenKeyEvent("keydown", "w", self.upKey)
-        SpaceGame.listenKeyEvent("keydown", "s", self.downKey)
+        SpaceGame.listenKeyEvent("keydown", "left arrow", self.left)
+        SpaceGame.listenKeyEvent("keyup", "left arrow", self.stopleft)
+        SpaceGame.listenKeyEvent("keydown", "right arrow", self.right)
+        SoaceGame.listenKeyEvent("keyup", "right arrow", self.stopright)
+        SpaceGame.listenKeyEvent("keydown", "up arrow", self.up)
+        SpaceGame.listenKeyEvent("keyup", "up arrow", self.stopup)
+        SpaceGame.listenKeyEvent("keydown", "down arrow", self.down)
+        Game.listenKeyEvent("keyup", "down arrow", self.stopdown)
+        
         self.fxcenter = self.fycenter = 0.5
 
     def step(self):
-        self.x += self.vx
-        self.y += self.vy
-        self.rotation += self.vr
+        self.rotation = 0
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
-            if self.thrustframe == 4:
-                self.thrustframe = 1
+        if self.thrustframe == 4:
+            self.thrustframe = 1
+        
+
         else:
             self.setImage(0)
 
@@ -59,39 +71,8 @@ class SpaceShip(Sprite):
 
     def thrustOff(self, event):
         self.thrust = 0
+
     
-
-   
-
-    def leftKey(self, event):
-        SpaceShip.go = True
-        SpaceShip.ygo= False
-        SpaceShip.thrust = 1
-        SpaceShip.rotation=(pi/2)
-        left(SpaceShip)
-
-
-
-    def rightKey(self, event):
-        SpaceShip.go = True
-        SpaceShip.ygo=False
-        SpaceShip.thrust = 1
-        SpaceShip.rotation=(pi/2)
-        right(SpaceShip)
-  
-    def upKey(self, event):
-        SpaceShip.ygo = True
-        SpaceShip.go=False
-        SpaceShip.thrust = 1
-        SpaceShip.rotation=0
-        up(SpaceShip)
-  
-    def downKey (self, event):
-        SpaceShip.ygo = True
-        SpaceShip.go = False
-        SpaceShip.thrust = 1
-        SpaceShip.rotation=pi
-        down(SpaceShip)
 
 
 class SpaceGame(App):
