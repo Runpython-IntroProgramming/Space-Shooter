@@ -170,5 +170,6 @@ class SpaceGame(App):
         SpaceShip((175,150))
         SpaceShip((75,150))
         Star((600,600))
+        Star((850,300))
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
