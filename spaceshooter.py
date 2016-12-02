@@ -146,33 +146,16 @@ class SpaceShip(Sprite):
         self.rya=2
     
 
-
 class Star(Sprite):
-   asset=ImageAsset("images/sun.png")
-   height=300
-   width=300
-
-def __init__(self,im_num,position):
+    asset=ImageAsset("images/sun.png")
+    height=300
+    width=300
+    def __init__(self, position):
         super().__init__(Star.asset, position)
-        self.setImage(im_num)
-        Star(300,300)
-
-
-        
-
-    
-
-
+        self.fxcenter = 0.5
+        self.fycenter = 0.5
+        self.circularCollisionModel()
 class SpaceGame(App):
-    def __init__(self, width, height):
-        super().__init__(width, height)
-        black = Color(0, 1)
-        noline = LineStyle(0, black)
-        bg_asset = RectangleAsset(width, height, noline, black)
-        bg = Sprite(bg_asset, (0,0))
-        SpaceShip((100,100))
-        SpaceShip((150,150))
-        SpaceShip((200,50))
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
@@ -186,5 +169,6 @@ class SpaceGame(App):
         SpaceShip((125,100))
         SpaceShip((175,150))
         SpaceShip((75,150))
+        Star((600,600))
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
