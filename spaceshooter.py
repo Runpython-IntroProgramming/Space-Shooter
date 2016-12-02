@@ -10,8 +10,8 @@ https://github.com/HHS-IntroProgramming/Spacewar
 import ggame
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 from random import random
-SCREEN_WIDTH = 1500
-SCREEN_HEIGHT = 910
+SCREEN_WIDTH = 600
+SCREEN_HEIGHT = 600
 pi = 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679
 
 
@@ -115,7 +115,7 @@ class SpaceShip(Sprite):
             
                                         if self.d==2: 
                                             self.rotation=pi
-                                            collision = self.collidingWithSprites(Asteroid)
+                                            collision = self.collidingWithSprites(Star)
                                             if len(collision) > 0:
                                                     self.visible=False
                                                     
@@ -145,6 +145,19 @@ class SpaceShip(Sprite):
     def stopdown(self, event):
         self.rya=2
     
+
+
+class Star(Sprite):
+   asset=ImageAsset("images/sun.png")
+   height=300
+   width=300
+
+def __init__(self,im_num,position):
+        super().__init__(Star.asset, position)
+        self.setImage(im_num)
+        Star(300,300)
+
+
         
 
     
