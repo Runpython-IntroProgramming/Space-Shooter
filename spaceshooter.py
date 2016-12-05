@@ -160,11 +160,6 @@ class SpaceGame(App):
             ship.step()
     def __init__(self, width, height):
         super().__init__(width, height)
-        black = Color(0, 1)
-        noline = LineStyle(0, black)
-        bg_asset = ImageAsset("images/kSQdCxM.jpg")
-        bg = Sprite(bg_asset, (0,0))
-        bg.scale = 0.6
         SpaceShip((125,100))
         SpaceShip((175,150))
         SpaceShip((75,150))
