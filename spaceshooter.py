@@ -38,8 +38,8 @@ class SpaceShip(Sprite):
         self.rxb = 0
         self.rya = 0
         self.ryb = 0
-        self.c = 0
-        self.d = 0
+        self.hm = 0
+        self.vm = 0
         self.visible = True
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
@@ -68,50 +68,50 @@ class SpaceShip(Sprite):
 
         if self.rxa == 2 and self.rxb == 2:
             self.x=self.x
-            self.c = 0
+            self.hm = 0
         
         else:
             if self.rx == -5: 
                 self.x=self.x-10
-                self.c=1
+                self.hm=1
             if self.rx == 5: 
                 self.x=self.x+10
-                self.c=2
+                self.hm=2
       
         if self.rya == 2 and self.ryb == 2:
                 self.y=self.y
-                self.d = 0
+                self.vm = 0
             
         else: 
             if self.ry == -5: 
                     self.y=self.y-10
-                    self.d = 1
+                    self.vm = 1
             if self.ry == 5: 
                     self.y=self.y+10
-                    self.d = 2
-        if self.c==0 and self.d==0:
+                    self.vm = 2
+        if self.hm==0 and self.vm==0:
             self.rotation = 0
             self.thrust = 0
         else:
             self.thrust=1
-            if self.c==1: 
-                if self.d==1:
+            if self.hm==1: 
+                if self.vm==1:
                     self.rotation=(1/4)*pi
-                elif self.d==2: 
+                elif self.vm==2: 
                     self.rotation=(3/4)*pi
                 else:
                     self.rotation=pi/2
-            elif self.c==2: 
-                if self.d==1: 
+            elif self.hm==2: 
+                if self.vm==1: 
                     self.rotation=(7/4)*pi
-                elif self.d==2: 
+                elif self.vm==2: 
                     self.rotation=(5/4)*pi
                 else:
                     self.rotation=(3/2)*pi
             else:                           
-                if self.d==1: 
+                if self.vm==1: 
                     self.rotation=0
-                elif self.d==2:
+                elif self.vm==2:
                     self.rotation=pi                  
         collision = self.collidingWithSprites(Star)
         if len(collision) > 0:
