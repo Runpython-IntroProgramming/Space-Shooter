@@ -1,7 +1,7 @@
 """
 spaceshooter.py
 Author: Marcus Helble
-Credit: Wilson Rimberg
+Credit: Liam Abbate, Wilson Rimberg
 
 Assignment:
 Write and submit a program that implements the spacewar game:
@@ -59,8 +59,8 @@ class SpaceShip(Sprite):
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
-        if self.thrustframe == 4:
-            self.thrustframe = 1
+            if self.thrustframe == 4:
+                self.thrustframe = 1
         
 
         else:
@@ -78,46 +78,44 @@ class SpaceShip(Sprite):
                 self.x=self.x+10
                 self.c=2
       
-            if self.rya == 2 and self.ryb == 2:
+        if self.rya == 2 and self.ryb == 2:
                 self.y=self.y
                 self.d = 0
             
-            else: 
-                if self.ry == -5: 
+        else: 
+            if self.ry == -5: 
                     self.y=self.y-10
                     self.d = 1
-                if self.ry == 5: 
+            if self.ry == 5: 
                     self.y=self.y+10
                     self.d = 2
-                if self.c==0 and self.d==0:
-                    self.rotation = 0
-                    self.thrust = 0
+        if self.c==0 and self.d==0:
+            self.rotation = 0
+            self.thrust = 0
+        else:
+            self.thrust=1
+            if self.c==1: 
+                if self.d==1:
+                    self.rotation=(1/4)*pi
+                elif self.d==2: 
+                    self.rotation=(3/4)*pi
                 else:
-                    self.thrust=1
-                    if self.c==1: 
-                        if self.d==1:
-                            self.rotation=(1/4)*pi
-                    else:
-                        if self.d==2: 
-                            self.rotation=(3/4)*pi
-                        else:
-                            self.rotation=pi/2
-                            if self.c==2: 
-                                if self.d==1: 
-                                    self.rotation=(7/4)*pi
-                                else:
-                                    if self.d==2: 
-                                        self.rotation=(5/4)*pi
-                                    else:
-                                        self.rotation=(3/2)*pi
-                                        if self.d==1: 
-                                                 self.rotation=0
-            
-                                        if self.d==2: 
-                                            self.rotation=pi
-                                            collision = self.collidingWithSprites(Star)
-                                            if len(collision) > 0:
-                                                    self.visible=False
+                    self.rotation=pi/2
+            elif self.c==2: 
+                if self.d==1: 
+                    self.rotation=(7/4)*pi
+                elif self.d==2: 
+                    self.rotation=(5/4)*pi
+                else:
+                    self.rotation=(3/2)*pi
+            else:                           
+                if self.d==1: 
+                    self.rotation=0
+                elif self.d==2:
+                    self.rotation=pi                  
+        collision = self.collidingWithSprites(Star)
+        if len(collision) > 0:
+            self.visible=False
                                                     
     def thrustOn(self, event):
         self.thrust = 1
