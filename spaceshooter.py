@@ -13,10 +13,7 @@ from random import random
 SCREEN_WIDTH = 1500
 SCREEN_HEIGHT = 910
 pi = 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679
-
-
-
-space_asset= ImageAsset("images/starfield.jpg",)
+backg_asset= ImageAsset("images/starfield.jpg",)
 backg=Sprite(space_asset, (0,0))
 backg2=Sprite(space_asset, (512,0))
 backg3=Sprite(space_asset,(1024,0))
