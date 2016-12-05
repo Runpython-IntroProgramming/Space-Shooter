@@ -14,12 +14,12 @@ SCREEN_WIDTH = 1500
 SCREEN_HEIGHT = 910
 pi = 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679
 backg_asset= ImageAsset("images/starfield.jpg",)
-backg=Sprite(space_asset, (0,0))
-backg2=Sprite(space_asset, (512,0))
-backg3=Sprite(space_asset,(1024,0))
-backg4=Sprite(space_asset, (0,512))
-backg5=Sprite(space_asset, (512,512))
-backg6=Sprite(space_asset, (1024, 512))
+backg=Sprite(backg_asset, (0,0))
+backg2=Sprite(backg_asset, (512,0))
+backg3=Sprite(backg_asset,(1024,0))
+backg4=Sprite(backg_asset, (0,512))
+backg5=Sprite(backg_asset, (512,512))
+backg6=Sprite(backg_asset, (1024, 512))
 class SpaceShip(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(227,0,292-227,125), 4, 'vertical')
