@@ -20,7 +20,6 @@ SCREEN_WIDTH = 1530
 SCREEN_HEIGHT = 930
 pi = 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679
 
-
 class SpaceShip(Sprite):
     #Animated space ship
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
@@ -43,7 +42,6 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.moveR)
         SpaceGame.listenKeyEvent("keydown", "down arrow", self.moveD)
         SpaceGame.listenKeyEvent("keydown", "up arrow", self.moveU)
-        
         SpaceGame.listenKeyEvent("keyup", "left arrow", self.nMoveL) #stop moving to the left
         SpaceGame.listenKeyEvent("keyup", "right arrow", self.nMoveR) #stop moving to the right
         SpaceGame.listenKeyEvent("keyup", "down arrow", self.nMoveD) #stop moving down
@@ -58,7 +56,6 @@ class SpaceShip(Sprite):
                 self.thrustframe = 1
         else:
             self.setImage(0)
-        
         #x motion
         if self.rxa == 2 and self.rxb == 2:
             self.x=self.x
