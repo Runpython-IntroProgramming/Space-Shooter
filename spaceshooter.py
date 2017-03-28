@@ -16,7 +16,8 @@ class StarField(Sprite):
     field=ImageAsset("images/starfield.jpg")
 
 class SpaceShip(Sprite):
-    ship=ImageAsset
+    ship=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,292-227,125), 4, "vertical")
+    
     
 #class Explosions(Sprite):
     
