@@ -17,7 +17,12 @@ class StarField(Sprite):
 
 class SpaceShip(Sprite):
     ship=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,292-227,125), 4, "vertical")
-    
+    def __init__(self, position):
+        super().__init__(SpaceShip.ship, position)
+        self.vx=1
+        self.vy=1
+        self.vr=0
+        
     
 #class Explosions(Sprite):
     
