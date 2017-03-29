@@ -1,7 +1,7 @@
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 
-SCREEN_WIDTH = 500
-SCREEN_HEIGHT = 400
+SCREEN_WIDTH = 1000
+SCREEN_HEIGHT = 500
 
 
 class SpaceField(Sprite):
@@ -104,6 +104,7 @@ class SpaceGame(App):
         bg_asset = RectangleAsset(SCREEN_WIDTH, SCREEN_HEIGHT, noline, black)
         bg = Sprite(bg_asset, (0,0))
         SpaceField((0,0))
+        SpaceField((500,0))
         SpaceShip((100,100))
         SpaceShip((150,150))
         SpaceShip((200,50))
