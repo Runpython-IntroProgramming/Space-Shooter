@@ -15,6 +15,16 @@ class SpaceField(Sprite):
          self.vy=1
          self.vr=0
 
+class Sun(Sprite):
+    sun=ImageAsset("images/sun.png")
+    
+    def __init__(self, position):
+        super().__init__(Sun.sun, position)
+        self.vx=1
+        self.vy=1
+        self.vr=0
+    
+    
 
 class SpaceShip(Sprite):
     """
@@ -41,6 +51,11 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keydown", "s", self.Down)
         SpaceGame.listenKeyEvent("keydown", "a", self.Left)
         SpaceGame.listenKeyEvent("keydown", "d", self.Right)
+        SpaceGame.listenKeyEvent("keyup", "w", self.StopMovement)
+        SpaceGame.listenKeyEvent("keyup", "a", self.StopMovement)
+        SpaceGame.listenKeyEvent("keyup", "s", self.StopMovement)
+        SpaceGame.listenKeyEvent("keyup", "d", self.StopMovement)
+        
        
         
         self.fxcenter = self.fycenter = 0.5
@@ -66,14 +81,20 @@ class SpaceShip(Sprite):
         self.vr -=0.1
     def Stop(self, event):
         self.vr = 0.0
+    def StopMovement(self, event):
+        self.thrust = 0
     def Up(self, event):
         self.vy -= 0.5
+        self.thrust = 1
     def Down(self, event):
         self.vy += 0.5
+        self.thrust = 1
     def Left(self, event):
         self.vx -= 0.5
+        self.thrust = 1
     def Right(self, event):
         self.vx += 0.5
+        self.thrust = 1
 """
 class SpaceBlasts(Sprite):
     blast=ImageAsset("images/bunny.png")
@@ -108,6 +129,7 @@ class SpaceGame(App):
         SpaceShip((100,100))
         SpaceShip((150,150))
         SpaceShip((200,50))
+        Sun((460, 200))
         
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
