@@ -73,7 +73,7 @@ class SpaceShip(Sprite):
             self.setImage(0)
         collidingWith = self.collidingWithSprites(Sun)
         if len(collidingWith) > 0:
-            print("Boom!")
+            
             
             
         
