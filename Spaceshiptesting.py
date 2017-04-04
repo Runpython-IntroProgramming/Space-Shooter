@@ -172,7 +172,9 @@ class SpaceGame(App):
         #SpaceShip((200,50))
         Sun((460, 200))
         Bounce((800, 300))
-        Bounce((600, 400))
+        Bounce((600, 200))
+        Bounce((300, 400))
+        
         
         
     def step(self):
