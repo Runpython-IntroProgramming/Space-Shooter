@@ -58,6 +58,7 @@ class SpaceShip(Sprite):
        
         
         self.fxcenter = self.fycenter = 0.5
+        
     def step(self):
         self.x += self.vx
         self.y += self.vy
@@ -72,8 +73,15 @@ class SpaceShip(Sprite):
             self.setImage(0)
         collidingWith = self.collidingWithSprites(Sun)
         if len(collidingWith) > 0:
-            self.visibility(False)
-            
+            self.visible = False
+        if (self.x < 0):
+            self.vx += 1
+        if (self.x > SCREEN_WIDTH):
+            self.vx -= 0.75
+        if (self.y < 0):
+            self.vy += 0.75
+        if (self.y > SCREEN_HEIGHT):
+            self.vy -= 0.75
             
         
     def thrustOn(self, event):
@@ -119,6 +127,7 @@ class SpaceBlasts(Sprite):
         self.blast=True
          
 """
+
 class SpaceGame(App):
     """
     Tutorial4 space game example.
