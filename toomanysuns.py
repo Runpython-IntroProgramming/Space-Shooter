@@ -1,7 +1,8 @@
-    """
+"""
 spaceshooter.py
 Author: Kyle Postans
 Credit: SpaceWar Source Code, Mr. Dennison
+
 Assignment:
 Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
@@ -181,14 +182,13 @@ class SpaceGame(App):
         Bounce((800, 300))
         Bounce((600, 200))
         Bounce((300, 400))
-        Bounce((500, 100))
-        Bounce((200, 500))
-        Bounce((700, 150))
-        Bounce((500, 300))
-        Bounce((900, 500))
-        Bounce((850, 400))
-        Bounce((100, 100))
-        Bounce((100, 150))
+        Bounce((700, 500))
+        Bounce((100, 300))
+        Bounce((200, 350))
+        Bounce((400, 359))
+        Bounce((900, 100))
+        Bounce((250, 450))
+        
         
         
     def step(self):
