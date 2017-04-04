@@ -20,9 +20,32 @@ class Sun(Sprite):
     
     def __init__(self, position):
         super().__init__(Sun.sun, position)
-        self.vx=1
-        self.vy=1
+        self.vx=0.5
+        self.vy=0.5
         self.vr=0
+    
+class Bounce(Sprite):
+    
+    sun=ImageAsset("images/sun.png")
+    
+    def __init__(self, position):
+        super().__init__(Bounce.sun, position)
+        self.vx=4
+        self.vy=4
+        self.vr=5
+        self.fxcenter = self.fycenter = 0.5
+    def step(self):
+        self.x += self.vx
+        self.y += self.vy
+        self.rotation += self.vr
+        if (self.x < 0):
+            self.vx += 5
+        if (self.x > SCREEN_WIDTH):
+            self.vx -= 5
+        if (self.y < 0):
+            self.vy += 5
+        if (self.y > SCREEN_HEIGHT):
+            self.vy -= 5
     
 class SpaceShip(Sprite):
     """
@@ -74,6 +97,9 @@ class SpaceShip(Sprite):
         collidingWith = self.collidingWithSprites(Sun)
         if len(collidingWith) > 0:
             self.visible = False
+        bouncingCollision = self.collidingWithSprites(Bounce)
+        if len(bouncingCollision) > 0:
+            self.visible = False
         if (self.x < 0):
             self.vx += 1
         if (self.x > SCREEN_WIDTH):
@@ -108,6 +134,7 @@ class SpaceShip(Sprite):
     def Right(self, event):
         self.vx += 0.5
         self.thrust = 1
+        
 """
 class SpaceBlasts(Sprite):
     blast=ImageAsset("images/bunny.png")
@@ -141,13 +168,18 @@ class SpaceGame(App):
         SpaceField((0,0))
         SpaceField((500,0))
         SpaceShip((100,100))
-        SpaceShip((150,150))
-        SpaceShip((200,50))
+        #SpaceShip((150,150))
+        #SpaceShip((200,50))
         Sun((460, 200))
+        Bounce((800, 300))
+        Bounce((600, 400))
+        
         
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
+        for death in self.getSpritesbyClass(Bounce):
+            death.step()
 
     
     
