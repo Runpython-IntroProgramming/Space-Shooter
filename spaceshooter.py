@@ -12,11 +12,7 @@ from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Fra
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
 
-# Background
 class SpaceShip(Sprite):
-    """
-    Animated space ship
-    """
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(227,0,292-227,125), 4, 'vertical')
 
@@ -49,9 +45,6 @@ class SpaceShip(Sprite):
         self.thrust = 0
 
 class SpaceGame(App):
-    """
-    Tutorial4 space game example.
-    """
     def __init__(self, width, height):
         super().__init__(width, height)
         black = Color(0, 1)
