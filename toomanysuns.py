@@ -85,6 +85,8 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keyup", "a", self.StopMovement)
         SpaceGame.listenKeyEvent("keyup", "s", self.StopMovement)
         SpaceGame.listenKeyEvent("keyup", "d", self.StopMovement)
+        SpaceGame.listenKeyEvent("keydown", "r", self.Respawn)
+        
         
        
         
@@ -117,7 +119,10 @@ class SpaceShip(Sprite):
         if (self.y > SCREEN_HEIGHT):
             self.vy -= 0.75
             
-        
+    def Respawn(self, event):
+        self.x=1
+        self.y=1
+        self.visible=True
     def thrustOn(self, event):
         self.thrust = 1
     def thrustOff(self, event):
