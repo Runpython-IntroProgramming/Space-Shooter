@@ -193,6 +193,11 @@ class SpaceGame(App):
         Bounce((400, 359))
         Bounce((900, 100))
         Bounce((250, 450))
+        Bounce((50, 450))
+        Bounce((550, 550))
+        Bounce((650, 350))
+        Bounce((40, 250))
+        
         
         
         
