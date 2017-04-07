@@ -21,6 +21,19 @@ class Stars(Sprite):
     def __init__(self, position):
         super().__init__(Stars.asset, position)
 
+class Sun(Sprite):
+    
+    asset = ImageAsset("images/sun.png")
+    width = 80
+    height = 76
+    
+    def __init__(self, position):
+        super().__init__(Sun.asset, position)
+        self.mass = 30*1000
+        self.fxcenter = 0.5
+        self.fycenter = 0.5
+        self.circularCollisionModel()
+
 class SpaceShip(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(227,0,292-227,125), 4, 'vertical')
@@ -62,6 +75,7 @@ class SpaceGame(App):
         bg = Sprite(bg_asset, (0,0))
         Stars((0,0))
         SpaceShip((100,100))
+        Sun((100,100))
         
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
