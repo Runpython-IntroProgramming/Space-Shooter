@@ -69,11 +69,9 @@ class SpaceShip(Sprite):
 class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__()
-        black = Color(0, 1)
-        noline = LineStyle(0, black)
-        bg_asset = RectangleAsset(SCREEN_WIDTH, SCREEN_HEIGHT, noline, black)
-        bg = Sprite(bg_asset, (0,0))
-        Stars((0,0))
+        stars = Stars((0,0))
+        stars.width = self.width
+        stars.height = self.height
         SpaceShip((100,100))
         Sun((100,100))
         
