@@ -26,11 +26,19 @@ from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Fra
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
 
+"""
+class Stars(Sprite):
+    asset = ImageAsset("images/starfield.jpg",
+        Frame(SCREEN_WIDTH, SCREEN_HEIGHT, 0, 'vertical')   
+"""   
+    """
+    width = SCREEN_WIDTH
+    height = SCREEN_HEIGHT
+    """
+    def __init__(self, position):
+        super().__init__(Stars.asset, position)
 
 class SpaceShip(Sprite):
-    """
-    Animated space ship
-    """
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(227,0,292-227,125), 4, 'vertical')
 
