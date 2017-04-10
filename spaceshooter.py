@@ -70,10 +70,9 @@ class SpaceGame(App):
     def __init__(self, width, height):
         super().__init__()
         stars = Stars((0,0))
-        stars.width = self.width
-        stars.height = self.height
+        stars.scale = self.width/stars.width
         SpaceShip((100,100))
-        Sun((100,100))
+        Sun((500,200))
         
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
