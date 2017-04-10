@@ -72,7 +72,7 @@ class SpaceGame(App):
         stars = Stars((0,0))
         stars.scale = self.width/stars.width
         SpaceShip((100,100))
-        Sun((500,200))
+        Sun((self.width/2,self.height/2))
         
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
