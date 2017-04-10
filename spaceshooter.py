@@ -86,5 +86,5 @@ class SpaceGame(App):
             ship.step()
 
 
-myapp = SpaceGame(0,0)
-myapp.run()
+app = SpaceGame(0,0)
+app.run()
