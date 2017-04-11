@@ -32,4 +32,6 @@ class Sun(Sprite):
         self.mass = 30*1000
         self.fxcenter = 0.5
         self.fycenter = 0.5
-        self.circularCollisionModel()
+
+
+app.run()
