@@ -42,11 +42,13 @@ class SpaceShip(Sprite):
         super().__init__(SpaceShip.asset, position)
         self.vx = 1
         self.vy = 1
-        self.vr = 0.01
+        self.vr = 0
         self.thrust = 0
         self.thrustframe = 1
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
+        SpaceGame.listenKeyEvent("keydown", "left arrow", self.turnleft)
+        SpaceGame.listenKeyEvent("keyup", "left arrow", self.turnoff)
         self.fxcenter = self.fycenter = 0.5
     
     def step(self):
@@ -65,6 +67,15 @@ class SpaceShip(Sprite):
         
     def thrustOff(self, event):
         self.thrust = 0
+        
+    def turnleft(self, event):
+        self.vr = 0.01
+    
+    def turnoff(self, event):
+        self.vr = 0
+        
+    def turnrifht(self, event):
+        self.vr = -0.01
 
 class SpaceGame(App):
     def __init__(self, width, height):
