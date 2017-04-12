@@ -76,7 +76,7 @@ class SpaceShip(Sprite):
     def turnoff(self, event):
         self.vr = 0
         
-    def turnrifht(self, event):
+    def turnright(self, event):
         self.vr = -0.01
 
 class SpaceGame(App):
