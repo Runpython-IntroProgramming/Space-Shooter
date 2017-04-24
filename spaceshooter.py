@@ -33,6 +33,25 @@ class Stars(Sprite):
     def __init__(self, position):
         super().__init__(Stars.asset, position)
         
+
+class Ship1(Ship):
+    
+    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
+        Frame(227,0,292-227,125), 4, 'vertical')
+        
+    def __init__(self, app, position, velocity, sun):
+        super().__init__(Ship1.asset, app, position, velocity, sun)
+        self.registerKeys(["a", "d", "w", "space"])
+        
+    def step(self, T, dT):
+        super().step(T, dT)
+        if self.visible:
+            collides = self.collidingWithSprites(Ship2)
+            if len(collides):
+                if collides[0].visible:
+                    collides[0].explode()
+                    self.explode()
+        
 class SpaceShip(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(227,0,292-227,125), 4, 'vertical')
@@ -71,6 +90,7 @@ class Spacewar(App):
         for x in range(self.width//Stars.width + 1):
             for y in range(self.height//Stars.height + 1):
                 Stars((x*Stars.width, y*Stars.height))
+        self.ship1 = Ship1(self, (self.width/2-140,self.height/2), (0,-120), self.sun)
         self.listenKeyEvent('keydown', 'space', self.space)
 
     def space(self, evt):
