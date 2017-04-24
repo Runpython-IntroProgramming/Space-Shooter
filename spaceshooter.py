@@ -62,6 +62,8 @@ class SpaceShip(Sprite):
         self.x += vx
         self.y += vy
         self.rotation += self.vr
+        if self.thrust == 0 and self.v > 0:
+            self.v -=0.25
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
@@ -75,15 +77,15 @@ class SpaceShip(Sprite):
         
     def thrustOff(self, event):
         self.thrust = 0
-        
+    
     def turnleft(self, event):
-        self.vr = 0.01
+        self.vr = 0.1
     
     def turnoff(self, event):
         self.vr = 0
         
     def turnright(self, event):
-        self.vr = -0.01
+        self.vr = -0.1
         
     def registerKeys(self, keys):
         commands = ["left", "right", "forward", "fire"]
