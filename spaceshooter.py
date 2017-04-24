@@ -44,8 +44,8 @@ class SpaceShip(Sprite):
         self.vr = 0.01
         self.thrust = 0
         self.thrustframe = 1
-        Spacewar.listenKeyEvent("keydown", "space", self.thrustOn)
-        Spacewar.listenKeyEvent("keyup", "space", self.thrustOff)
+        Spacegame.listenKeyEvent("keydown", "space", self.thrustOn)
+        Spacegame.listenKeyEvent("keyup", "space", self.thrustOff)
         self.fxcenter = self.fycenter = 0.5
 
     def step(self):
@@ -65,24 +65,6 @@ class SpaceShip(Sprite):
         
     def thrustOff(self, event):
         self.thrust = 0
-
-        
-        
-class Vector:
-    
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-        
-    def mag(self):
-        return math.sqrt(self.x*self.x + self.y*self.y)
-    
-    def unit(self):
-        r = self.mag()
-        if r == 0:
-            return Vector(0,0)
-        else:
-            return Vector(self.x/r, self.y/r)
 class Spacewar(App):
     def __init__(self, width, height):
         super().__init__(width, height)
@@ -102,32 +84,7 @@ class Spacewar(App):
             self.ship2.newgame()
 
         
-    def step(self):
-        explosions = self.getSpritesbyClass(ExplosionSmall)
-        for explosion in explosions:
-            explosion.step()
-        explosions = self.getSpritesbyClass(ExplosionBig)
-        for explosion in explosions:
-            explosion.step()
-        if self.state == 'instructions':
-            self.tsprites['space'].visible = True
-            self.tsprites['left'].visible = True
-            self.tsprites['right'].visible = True
-        elif self.state == 'playing':
-            T = time()
-            dT = T-self.Tlast
-            self.Tlast = T
-            self.ship1.step(T, dT)
-            self.ship2.step(T, dT)
-            if self.ship1.dead or self.ship2.dead:
-                self.state = 'gameover'
-        elif self.state == 'gameover':
-            self.tsprites['space'].visible = True
-            if self.ship1.dead and self.ship2.dead:
-                self.tsprites['tie'].visible = True
-            else:
-                self.tsprites['winner'].visible = True
-                self.tsprites['winner'].x = self.width*3/4-50 if self.ship1.dead else self.width/4-50
+    
 
 app = Spacewar(0,0)
 app.run()
