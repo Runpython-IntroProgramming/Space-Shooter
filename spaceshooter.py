@@ -44,7 +44,7 @@ class SpaceShip(Sprite):
         self.vx = 1
         self.vy = 1
         self.vr = 0
-        self.v = 1
+        self.v = 0
         self.thrust = 0
         self.thrustframe = 1
         self.initposition = position
