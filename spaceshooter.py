@@ -44,7 +44,7 @@ class SpaceShip(Sprite):
         self.vx = 1
         self.vy = 1
         self.vr = 0
-        self.v = 5
+        self.v = 1
         self.thrust = 0
         self.thrustframe = 1
         self.initposition = position
@@ -71,7 +71,7 @@ class SpaceShip(Sprite):
             self.setImage(0)
     def thrustOn(self, event):
         self.thrust = 1
-        self.v += self.v + 1
+        self.v += self.v + 0.25
         
     def thrustOff(self, event):
         self.thrust = 0
@@ -108,7 +108,7 @@ class SpaceGame(App):
         super().__init__()
         stars = Stars((0,0))
         stars.scale = self.width/stars.width
-        SpaceShip((100,100))
+        SpaceShip((300,200))
         Sun((self.width/2,self.height/2))
         
     def step(self):
