@@ -8,6 +8,7 @@ Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
 """
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
+from math import sin, cos
 
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
@@ -45,6 +46,7 @@ class SpaceShip(Sprite):
         self.vr = 0
         self.thrust = 0
         self.thrustframe = 1
+        self.initposition = position
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.turnleft)
@@ -78,6 +80,24 @@ class SpaceShip(Sprite):
         
     def turnright(self, event):
         self.vr = -0.01
+        
+    def registerKeys(self, keys):
+        commands = ["left", "right", "forward", "fire"]
+        self.keymap = dict(zip(keys, commands))
+        [self.app.listenKeyEvent("keydown", k, self.controldown) for k in keys]
+        [self.app.listenKeyEvent("keyup", k, self.controlup) for k in keys]
+        
+    def controldown(self, event):
+        if command == "forward":
+                self.thrust = 40.0
+                self.imagex = 1 # start the animated rockets
+                self.setImage(self.imagex)
+    def controlup(self, event):
+        command = self.keymap[event.key]
+        if command == "forward":
+            self.thrust = 0.0
+            self.imagex = 0 # stop the animated rockets
+            self.setImage(self.imagex)
 
 class SpaceGame(App):
     def __init__(self, width, height):
