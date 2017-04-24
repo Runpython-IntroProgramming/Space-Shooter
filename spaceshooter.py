@@ -44,6 +44,7 @@ class SpaceShip(Sprite):
         self.vx = 1
         self.vy = 1
         self.vr = 0
+        self.v = 5
         self.thrust = 0
         self.thrustframe = 1
         self.initposition = position
@@ -56,8 +57,8 @@ class SpaceShip(Sprite):
         self.fxcenter = self.fycenter = 0.5
     
     def step(self):
-        vx = -sin(self.rotation)
-        vy = -cos(self.rotation)
+        vx = -sin(self.rotation) * self.v
+        vy = -cos(self.rotation) * self.v
         self.x += vx
         self.y += vy
         self.rotation += self.vr
@@ -70,6 +71,7 @@ class SpaceShip(Sprite):
             self.setImage(0)
     def thrustOn(self, event):
         self.thrust = 1
+        self.v += self.v + 1
         
     def thrustOff(self, event):
         self.thrust = 0
