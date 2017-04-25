@@ -32,65 +32,12 @@ class Stars(Sprite):
 
     def __init__(self, position):
         super().__init__(Stars.asset, position)
-        
-
-class Ship1(Ship):
-    
-    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
-        Frame(227,0,292-227,125), 4, 'vertical')
-        
-    def __init__(self, app, position, velocity, sun):
-        super().__init__(Ship1.asset, app, position, velocity, sun)
-        self.registerKeys(["a", "d", "w", "space"])
-        
-    def step(self, T, dT):
-        super().step(T, dT)
-        if self.visible:
-            collides = self.collidingWithSprites(Ship2)
-            if len(collides):
-                if collides[0].visible:
-                    collides[0].explode()
-                    self.explode()
-        
-class SpaceShip(Sprite):
-    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
-        Frame(227,0,292-227,125), 4, 'vertical')
-
-    def __init__(self, position):
-        super().__init__(SpaceShip.asset, position)
-        self.vx = 1
-        self.vy = 1
-        self.vr = 0.01
-        self.thrust = 0
-        self.thrustframe = 1
-        Spacegame.listenKeyEvent("keydown", "space", self.thrustOn)
-        Spacegame.listenKeyEvent("keyup", "space", self.thrustOff)
-        self.fxcenter = self.fycenter = 0.5
-
-    def step(self):
-        self.x += self.vx
-        self.y += self.vy
-        self.rotation += self.vr
-        if self.thrust == 1:
-            self.setImage(self.thrustframe)
-            self.thrustframe += 1
-            if self.thrustframe == 4:
-                self.thrustframe = 1
-        else:
-            self.setImage(0)
-
-    def thrustOn(self, event):
-        self.thrust = 1
-        
-    def thrustOff(self, event):
-        self.thrust = 0
 class Spacewar(App):
     def __init__(self, width, height):
         super().__init__(width, height)
         for x in range(self.width//Stars.width + 1):
             for y in range(self.height//Stars.height + 1):
                 Stars((x*Stars.width, y*Stars.height))
-        self.ship1 = Ship1(self, (self.width/2-140,self.height/2), (0,-120), self.sun)
         self.listenKeyEvent('keydown', 'space', self.space)
 
     def space(self, evt):
