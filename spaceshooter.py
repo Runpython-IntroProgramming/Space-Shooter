@@ -65,11 +65,14 @@ class SpaceShip(Sprite):
         if self.thrust == 0 and self.v > 0:
             self.v -= 0.25
         if self.thrust == 1:
-            self.v *= 1.1
             self.setImage(self.thrustframe)
             self.thrustframe += 1
             if self.thrustframe == 4:
                 self.thrustframe = 1
+            if self.v < 15:
+                self.v *= 1.1
+        
+        
         else:
             self.setImage(0)
     def thrustOn(self, event):
