@@ -69,7 +69,7 @@ class Spacewar(App):
             for y in range(self.height//Stars.height + 1):
                 Stars((x*Stars.width, y*Stars.height))
         self.listenKeyEvent('keydown', 'space', self.space)
-        SpaceShip((100,100))
+        SpaceShip((350,250))
 
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
