@@ -32,6 +32,36 @@ class Stars(Sprite):
 
     def __init__(self, position):
         super().__init__(Stars.asset, position)
+class SpaceShip(Sprite):
+    """
+    Animated space ship
+    """
+    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
+        Frame(227,0,292-227,125), 4, 'vertical')
+
+    def __init__(self, position):
+        super().__init__(SpaceShip.asset, position)
+        self.fxcenter = self.fycenter = 0.5
+
+    def step(self):
+        self.x += self.vx
+        self.y += self.vy
+        self.rotation += self.vr
+        if self.thrust == 1:
+            self.setImage(self.thrustframe)
+            self.thrustframe += 1
+            if self.thrustframe == 4:
+                self.thrustframe = 1
+        else:
+            self.setImage(0)
+
+    def thrustOn(self, event):
+        self.thrust = 1
+        
+    def thrustOff(self, event):
+        self.thrust = 0
+
+
 class Spacewar(App):
     def __init__(self, width, height):
         super().__init__(width, height)
@@ -39,6 +69,12 @@ class Spacewar(App):
             for y in range(self.height//Stars.height + 1):
                 Stars((x*Stars.width, y*Stars.height))
         self.listenKeyEvent('keydown', 'space', self.space)
+        SpaceShip((100,100))
+
+    def step(self):
+        for ship in self.getSpritesbyClass(SpaceShip):
+            ship.step()
+
 
     def space(self, evt):
         if self.state in ['instructions', 'gameover']:
@@ -49,6 +85,7 @@ class Spacewar(App):
             evt.consumed = True
             self.ship1.newgame()
             self.ship2.newgame()
+            
 
         
     
