@@ -61,7 +61,12 @@ class SpaceShip(Sprite):
         vy = -cos(self.rotation) * self.v
         self.x += vx
         self.y += vy
+        ki=self.collidingWithSprites(Sun)
         self.rotation += self.vr
+        if length(ki) > 0:
+            self.visible=False
+            self.x = 300
+            self.y = 200
         if self.thrust == 0 and self.v >= 0.1:
             self.v -= 0.1
         if self.thrust == 1 and self.v == 0:
@@ -116,7 +121,7 @@ class SpaceGame(App):
         super().__init__()
         stars = Stars((0,0))
         stars.scale = self.width/stars.width
-        SpaceShip((300,200))
+        self.ss = SpaceShip((300,200))
         Sun((self.width/2,self.height/2))
         
     def step(self):
