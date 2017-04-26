@@ -13,6 +13,21 @@ from math import sin, cos
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
 
+class BigExplosion(Sprite):
+    
+    asset = ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
+    
+    def __init__(self, position):
+        super().__init__(ExplosionBig.asset, position)
+        self.image = 0
+        self.center = (0.5, 0.5)
+        
+    def step(self):
+        self.setImage(self.image//2)  # slow it down
+        self.image = self.image + 1
+        if self.image == 50:
+            self.destroy()
+
 class Stars(Sprite):
 
     asset = ImageAsset("images/starfield.jpg")
@@ -63,10 +78,15 @@ class SpaceShip(Sprite):
         self.y += vy
         ki=self.collidingWithSprites(Sun)
         self.rotation += self.vr
-        if length(ki) > 0:
+        if len(ki) > 0:
+            BigExplosion((self.x,self.y))
             self.visible=False
             self.x = 300
             self.y = 200
+            self.v=0
+            self.vr=0
+            self.thrust=0
+            self.visible=True
         if self.thrust == 0 and self.v >= 0.1:
             self.v -= 0.1
         if self.thrust == 1 and self.v == 0:
