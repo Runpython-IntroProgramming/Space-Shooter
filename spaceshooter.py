@@ -78,22 +78,14 @@ class SpaceShip(Sprite):
         self.y += vy
         ki=self.collidingWithSprites(Sun)
         self.rotation += self.vr
-        if self.x > myapp.width or self.x < 0:
-            self.visible=False
-            self.x = 300
-            self.y = 200
-            self.v=0
-            self.rotation=0
-            self.thrust=0
-            self.visible=True
-        if self.y > myapp.height or self.y < 0:
-            self.visible=False
-            self.x = 300
-            self.y = 200
-            self.v=0
-            self.rotation=0
-            self.thrust=0
-            self.visible=True
+        if self.x > myapp.width:
+            self.x = 0
+        if self.x < 0:
+            self.x = myapp.width
+        if self.y > myapp.height:
+            self.y = 0
+        if self.y < 0:
+            self.y = myapp.height
         if len(ki) > 0:
             BigExplosion((self.x,self.y))
             self.visible=False
