@@ -78,7 +78,7 @@ class SpaceShip(Sprite):
         self.y += vy
         ki=self.collidingWithSprites(Sun)
         self.rotation += self.vr
-        if self.x > myapp.width:
+        if self.x > myapp.width or self.x < 0:
             self.visible=False
             self.x = 300
             self.y = 200
@@ -86,7 +86,7 @@ class SpaceShip(Sprite):
             self.rotation=0
             self.thrust=0
             self.visible=True
-        if self.y > myapp.height:
+        if self.y > myapp.height or self.y < 0:
             self.visible=False
             self.x = 300
             self.y = 200
