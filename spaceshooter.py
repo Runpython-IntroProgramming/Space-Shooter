@@ -18,12 +18,12 @@ class BigExplosion(Sprite):
     asset = ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
     
     def __init__(self, position):
-        super().__init__(ExplosionBig.asset, position)
+        super().__init__(BigExplosion.asset, position)
         self.image = 0
         self.center = (0.5, 0.5)
         
     def step(self):
-        self.setImage(self.image//2)  # slow it down
+        self.setImage(self.image//2) 
         self.image = self.image + 1
         if self.image == 50:
             self.destroy()
@@ -78,13 +78,21 @@ class SpaceShip(Sprite):
         self.y += vy
         ki=self.collidingWithSprites(Sun)
         self.rotation += self.vr
+        if self.x > myapp.width:
+            self.visible=False
+            self.x = 300
+            self.y = 200
+            self.v=0
+            self.rotation=0
+            self.thrust=0
+            self.visible=True
         if len(ki) > 0:
             BigExplosion((self.x,self.y))
             self.visible=False
             self.x = 300
             self.y = 200
             self.v=0
-            self.vr=0
+            self.rotation=0
             self.thrust=0
             self.visible=True
         if self.thrust == 0 and self.v >= 0.1:
@@ -145,6 +153,10 @@ class SpaceGame(App):
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
+        for exp in self.getSpritesbyClass(BigExplosion):
+            exp.step()
+            
+
 
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
