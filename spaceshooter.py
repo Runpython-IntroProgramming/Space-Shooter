@@ -86,6 +86,14 @@ class SpaceShip(Sprite):
             self.rotation=0
             self.thrust=0
             self.visible=True
+        if self.y > myapp.width:
+            self.visible=False
+            self.x = 300
+            self.y = 200
+            self.v=0
+            self.rotation=0
+            self.thrust=0
+            self.visible=True
         if len(ki) > 0:
             BigExplosion((self.x,self.y))
             self.visible=False
