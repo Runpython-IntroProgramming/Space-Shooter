@@ -86,7 +86,7 @@ class SpaceShip(Sprite):
             self.rotation=0
             self.thrust=0
             self.visible=True
-        if self.y > myapp.width:
+        if self.y > myapp.height:
             self.visible=False
             self.x = 300
             self.y = 200
