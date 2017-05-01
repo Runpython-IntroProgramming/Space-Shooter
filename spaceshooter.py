@@ -39,5 +39,6 @@ class Spacewar(App):
             for y in range(self.height//Stars.height + 1):
                 Stars((x*Stars.width, y*Stars.height))
                 self.sun = Sun((self.width/2, self.height/2))
+
 app=Spacewar(0,0)
 app.run()
