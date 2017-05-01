@@ -33,19 +33,15 @@ class Sun(Sprite):
         self.fycenter = 0.5
 
 class Spacewar(App):
-    
-    strings = {'winner': 'WINNER!',
-        'tie': 'TIE!',
-        'space': 'Press SPACE to play.',
-        'left': 'AWD\nSpace to FIRE',
-        'right': 'Arrow Keys\nEnter to FIRE',
-        }
-
     def __init__(self, width, height):
         super().__init__(width, height)
         for x in range(self.width//Stars.width + 1):
             for y in range(self.height//Stars.height + 1):
                 Stars((x*Stars.width, y*Stars.height))
-
+    def __init__(self, width, height):
+        super().__init__(width, height)
+        for x in range(self.width//Stars.width + 1):
+            for y in range(self.height//Sun.height + 1):
+                Sun((x*Sun.width, y*Sun.height))
 app=Spacewar(0,0)
 app.run()
