@@ -1,7 +1,7 @@
 """
 spaceshooter.py
 Author: Daniel Pinigin
-Credit: Tutorial4.py
+Credit: Tutorial4.py, Mr. Dennison, Brendan
 
 Assignment:
 Write and submit a program that implements the spacewar game:
@@ -9,8 +9,8 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 
-SCREEN_WIDTH = 1440
-SCREEN_HEIGHT = 780
+SCREEN_WIDTH = 0
+SCREEN_HEIGHT = 0
 
 class SpaceShip(Sprite):
     """
@@ -59,7 +59,10 @@ class SpaceGame(App):
         black = Color(0, 1)
         noline = LineStyle(0, black)
         asset = ImageAsset("images/starfield.jpg")
-        bg = Sprite(asset,(0,0))
+        #bg = Sprite(asset,(0,0))
+        for x in range(self.width//512 + 1):
+            for y in range(self.height//512 + 1):
+                Sprite(asset,(x*512, y*512))
         SpaceShip((100,100))
         SpaceShip((150,150))
         SpaceShip((200,50))
@@ -70,3 +73,5 @@ class SpaceGame(App):
 
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
+
+
