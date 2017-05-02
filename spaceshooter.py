@@ -21,8 +21,7 @@ class SpaceShip(Sprite):
 
     def __init__(self, position):
         super().__init__(SpaceShip.asset, position)
-        self.vx = 1
-        self.vy = 1
+        
         self.vr = 0.01
         self.thrust = 0
         self.thrustframe = 1
@@ -33,8 +32,6 @@ class SpaceShip(Sprite):
         self.fxcenter = self.fycenter = 0.5
     
     def step(self):
-        self.x += self.vx #Changes the ship's X value
-        self.y += self.vy #Changes the ship's Y value
         self.rotation += self.vr #Makes the ship rotate
         if self.thrust == 1:
             self.setImage(self.thrustframe)
