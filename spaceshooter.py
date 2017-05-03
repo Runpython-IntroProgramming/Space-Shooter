@@ -69,9 +69,9 @@ class SpaceGame(App):
         for x in range(self.width//512 + 1):
             for y in range(self.height//512 + 1):
                 Sprite(asset,(x*512, y*512))
-        SpaceShip((100,100))
-        SpaceShip((150,150))
-        SpaceShip((200,50))
+        SpaceShip((100,500))
+        SpaceShip((100,400))
+        SpaceShip((100,600))
         
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
