@@ -22,6 +22,7 @@ class SpaceShip(Sprite):
     def __init__(self, position):
         super().__init__(SpaceShip.asset, position)
         
+        self.rotation = 4.712
         self.vr = 0.01
         self.thrust = 0
         self.thrustframe = 1
@@ -32,7 +33,6 @@ class SpaceShip(Sprite):
         self.fxcenter = self.fycenter = 0.5
     
     def step(self):
-        self.rotation += self.vr #Makes the ship rotate
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
@@ -44,10 +44,8 @@ class SpaceShip(Sprite):
     def thrustOn(self, event):
         self.thrust = 1
     def wKey(self,event):
-        self.y-=1
         self.x+=1
     def sKey(self,event):
-        self.y+=1
         self.x-=1
     def thrustOff(self, event):
         self.thrust = 0
@@ -75,5 +73,7 @@ class SpaceGame(App):
 
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
+
+
 
 
