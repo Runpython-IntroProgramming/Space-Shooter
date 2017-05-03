@@ -44,9 +44,9 @@ class SpaceShip(Sprite):
     def thrustOn(self, event):
         self.thrust = 1
     def wKey(self,event):
-        self.x+=1
+        self.x+=5
     def sKey(self,event):
-        self.x-=1
+        self.x-=5
     def thrustOff(self, event):
         self.thrust = 0
     
