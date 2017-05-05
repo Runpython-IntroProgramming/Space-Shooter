@@ -40,8 +40,6 @@ class SpaceShip(Sprite):
             self.thrustframe += 1
             if self.thrustframe == 4:
                 self.thrustframe = 1
-            if (self.x > SCREEN_WIDTH):
-                self.x = 0
         else:
             self.setImage(0)
             
@@ -54,6 +52,7 @@ class SpaceShip(Sprite):
         self.y+=5
     def dKey(self,event):
         self.x+=5
+        self.thrust = 1
     def aKey(self,event):
         self.x-=5
     def thrustOff(self, event):
