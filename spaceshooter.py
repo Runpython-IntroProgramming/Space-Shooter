@@ -43,6 +43,8 @@ class SpaceShip(Sprite):
                 self.thrustframe = 1
         else:
             self.setImage(0)
+        if self.collidingWith(self.sun):
+                self.explode()
             
         
     def thrustOn(self, event):
@@ -72,6 +74,16 @@ class SpaceGame(App):
         for x in range(self.width//512 + 1):
             for y in range(self.height//512 + 1):
                 Sprite(asset,(x*512, y*512))
+        if self.collidingWith(self.sun):
+                    self.visible = False
+                    ExplosionSmall(self.position)
+        ships = []
+        ships = self.collidingWithSprites(Ship1)
+        ships.extend(self.collidingWithSprites(Ship2))
+        if len(ships):
+            if not self.firing and ships[0].visible:
+                ships[0].explode()
+                self.visible = False
         SpaceShip((100,500))
         SpaceShip((100,400))
         SpaceShip((100,600))
