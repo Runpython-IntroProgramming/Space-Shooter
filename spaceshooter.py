@@ -52,7 +52,7 @@ class SpaceShip(Sprite):
     def sKey(self,event):
         self.y+=5
     def dKey(self,event):
-        self.x+=5
+        self.x+=7.5
         self.thrust = 1
     def aKey(self,event):
         self.x-=5
