@@ -40,8 +40,11 @@ class SpaceShip(Sprite):
             self.thrustframe += 1
             if self.thrustframe == 4:
                 self.thrustframe = 1
+            if (self.x > SCREEN_WIDTH):
+                self.x = 0
         else:
             self.setImage(0)
+            
         
     def thrustOn(self, event):
         self.thrust = 1
