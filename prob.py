@@ -33,7 +33,7 @@ for i in range(trials):
         ko=1
     if ko == 1:
         for j in range(13):
-            if ppl[j] + ppl[j+1] == 'TT'
+            if ppl[j] + ppl[j+1] == 'TT':
                 failures += 1
                 ko=2
                 break
