@@ -31,13 +31,13 @@ for i in range(trials):
     if ppl[0] == 'T' or ppl[1] == 'T' or ppl[13] == 'T' or ppl[14]=='T':
         failures+=1
         ko=1
-    if ko == 1:
+    if ko == 0:
         for j in range(13):
             if ppl[j] + ppl[j+1] == 'TT':
                 failures += 1
                 ko=2
                 break
-    if ko==2:
+    if ko==0:
         for j in range(12):
             if ppl[j] + ppl[j+1]+ppl[j+2] == 'TST':
                 failures += 1
