@@ -27,9 +27,9 @@ trials = 10
 for i in range(trials):
     shuffle(ppl)
     print(ppl)
-    for j in range(10):
-        if ppl[j] + ppl[j+1] +ppl[j+2] + ppl[j+3]+ppl[j+4] == 'SSTSS' and ppl[0] == 'S' and ppl[1] == 'S' and ppl[13] == 'S' and ppl[14] == 'S':
+    for j in range(9):
+        if ppl[j] + ppl[j+1] == 'TT' or ppl[j] + ppl[j+1]+ppl[j+2] == 'TST' or ppl[0] == 'T' or ppl[1] == 'T' or ppl[13] == 'T' or ppl[14]=='T':
             failures += 1
             break
         
-print(100-((trials-failures)/trials*100),'%')
+print((trials-failures)/trials*100),'%')
