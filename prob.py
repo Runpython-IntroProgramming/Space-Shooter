@@ -2,14 +2,20 @@ from random import randint, shuffle
 
 face = ['K','K','K','K','Q','Q','Q','Q','J','J','J','J']
 
-chromosomes = 0
-trogos = 1000
-for i in range(trogos):
-    shuffle(trees)
-    #print(trees)
+failures = 0
+trials = 100000
+for i in range(trials):
+    shuffle(face)
+    #print(face)
     for j in range(8):
-        if trees[j] == 'B' and trees[j+1] == 'B' and trees[j+2] == 'B'and trees[j+3] == 'B':
-            chromosomes+= 1
+        if face[j] + face[j+1] + face[j+2] + face[j+3] == 'KKKK':
+            failures += 1
+            break
+        if face[j] + face[j+1] + face[j+2] + face[j+3] == 'QQQQ':
+            failures += 1
+            break
+        if face[j] + face[j+1] + face[j+2] + face[j+3] == 'JJJJ':
+            failures += 1
             break
         
-print((trogos+chromosomes)/trogos*100,'%')
+print((trials-failures)/trials*100,'%')
