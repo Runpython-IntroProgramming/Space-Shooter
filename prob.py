@@ -23,12 +23,12 @@ print((trials-failures)/trials*100,'%')"""
 ppl = ['T','T','T','S','S','S','S','S','S','S','S','S','S','S','S']
 
 failures = 0
-trials = 1000
+trials = 10
 for i in range(trials):
     shuffle(ppl)
-    #print(ppl)
-    for j in range(8):
-        if ppl[j] + ppl[j+1] +ppl[j+2] + ppl[j+3]+ppl[j+4] + ppl[j+5] + ppl[j+6] +ppl[j+7] == 'SSTSSTSS':
+    print(ppl)
+    for j in range(10):
+        if ppl[j] + ppl[j+1] +ppl[j+2] + ppl[j+3]+ppl[j+4] == 'SSTSS' and ppl[0] == 'S' and ppl[1] == 'S' and ppl[13] == 'S' and ppl[14] == 'S':
             failures += 1
             break
         
