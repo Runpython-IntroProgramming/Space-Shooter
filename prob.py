@@ -54,7 +54,7 @@ print((trials-failures)/trials*100,'%')"""
 sib = ['A','A','B','B','C','C','D','D','E','E']
 
 pairs = 0
-trials = 1000
+trials = 10
 for i in range(trials):
     shuffle(sib)
     print(sib)
@@ -66,6 +66,8 @@ for i in range(trials):
         if sib[j]+sib[j+1] == 'CC':
             pairs+=1
         if sib[j]+sib[j+1] == 'DD':
+            pairs+=1
+        if sib[j]+sib[j+1] == 'EE':
             pairs+=1
             
 print(pairs/trials)
