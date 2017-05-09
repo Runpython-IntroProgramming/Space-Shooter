@@ -24,23 +24,26 @@ ppl = ['T','T','T','S','S','S','S','S','S','S','S','S','S','S','S']
 
 failures = 0
 trials = 10
-ko=0
 for i in range(trials):
+    ko=0
     shuffle(ppl)
     print(ppl)
     if ppl[0] == 'T' or ppl[1] == 'T' or ppl[13] == 'T' or ppl[14]=='T':
         failures+=1
+        print("i failed this", failures)
         ko=1
     if ko == 0:
         for j in range(13):
             if ppl[j] + ppl[j+1] == 'TT':
                 failures += 1
+                print("i failed this", failures)
                 ko=2
                 break
     if ko==0:
         for j in range(12):
             if ppl[j] + ppl[j+1]+ppl[j+2] == 'TST':
                 failures += 1
+                print("i failed this", failures)
                 break
                 
         
