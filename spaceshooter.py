@@ -36,7 +36,7 @@ class Ship(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
     Frame(227,0,292-227,125), 4, 'vertical')
     def __init__(self, position):
-        super().__init__(Ship.asset, position)  
+        super().__init__(Ship.asset, app, position)  
         
     def __init__(self, app, position):
         super().__init__(Ship.asset, app, position)
@@ -49,7 +49,8 @@ class Spacewar(App):
             for y in range(self.height//Stars.height + 1):
                 Stars((x*Stars.width, y*Stars.height))
                 self.sun = Sun((self.width/2, self.height/2))
-                Ship=(0,0)
+                #self.Ship = Ship(self, (self.width/2-140, self.height/2), (0,-120), self.sun)
+                Ship = (0,0)
 
 app=Spacewar(0,0)
 app.run()
