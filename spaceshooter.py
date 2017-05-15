@@ -92,12 +92,7 @@ class Spacewar(App):
 
 
     def space(self, evt):
-        if self.state in ['instructions', 'gameover']:
-            for t in self.tsprites.values():
-                t.visible = False
-            self.state = 'playing'
-            self.Tlast = time()
-            self.ship2.newgame()
+        self.ship2.newgame()
             
 
         
