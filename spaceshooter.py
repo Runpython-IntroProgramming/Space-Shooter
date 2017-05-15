@@ -97,8 +97,6 @@ class Spacewar(App):
                 t.visible = False
             self.state = 'playing'
             self.Tlast = time()
-            evt.consumed = True
-            self.ship1.newgame()
             self.ship2.newgame()
             
 
