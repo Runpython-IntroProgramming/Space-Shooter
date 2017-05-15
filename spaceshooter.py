@@ -92,7 +92,7 @@ class Spacewar(App):
 
 
     def space(self, evt):
-        self.ship2.newgame()
+        yes
             
 
         
