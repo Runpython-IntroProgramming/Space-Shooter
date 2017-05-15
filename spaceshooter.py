@@ -1,7 +1,7 @@
 """
 spaceshooter.py
 Author: Sam Pych
-Credit: source code for space shooter and tutorial
+Credit: source code for space shooter and tutorial, ggame repository
 
 Assignment:
 Write and submit a program that implements the spacewar game:
@@ -32,10 +32,12 @@ class Stars(Sprite):
 
     def __init__(self, position):
         super().__init__(Stars.asset, position)
+class Sun(Sprite):
+    asset= ImageAsset("images/sun.png",
+        Frame(0,0-0,0
+    
 class SpaceShip(Sprite):
-    """
-    Animated space ship
-    """
+
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(227,0,292-227,125), 4, 'vertical')
 
