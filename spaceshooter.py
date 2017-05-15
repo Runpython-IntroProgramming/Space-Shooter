@@ -124,12 +124,6 @@ class SpaceShip(Sprite):
     def turnright(self, event):
         self.vr = -0.1
         
-    def registerKeys(self, keys):
-        commands = ["left", "right", "forward", "fire"]
-        self.keymap = dict(zip(keys, commands))
-        [self.app.listenKeyEvent("keydown", k, self.controldown) for k in keys]
-        [self.app.listenKeyEvent("keyup", k, self.controlup) for k in keys]
-        
     def controldown(self, event):
         if command == "forward":
                 self.thrust = 40.0
