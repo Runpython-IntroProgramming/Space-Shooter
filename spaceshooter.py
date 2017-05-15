@@ -33,8 +33,13 @@ class Stars(Sprite):
     def __init__(self, position):
         super().__init__(Stars.asset, position)
 class Sun(Sprite):
-    asset= ImageAsset("images/sun.png",
-        Frame(0,0-0,0
+    asset= ImageAsset("images/sun.png")
+    width=100
+    height=100
+    def __init__(self, position):
+        super().__init__(Sun.asset,position)
+        self.fxcenter=.5
+        self.fycenter=.5
     
 class SpaceShip(Sprite):
 
