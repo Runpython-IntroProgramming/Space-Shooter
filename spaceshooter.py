@@ -33,16 +33,43 @@ class Sun(Sprite):
         self.fycenter = 0.5
 
 class Ship(Sprite):
-    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
-    Frame(227,0,292-227,125), 4, 'vertical')
+
+    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
+        Frame(227,0,292-227,125), 4, 'vertical')
+
     def __init__(self, position):
-        super().__init__(Ship.asset, app, position)  
+        super().__init__(Ship.asset, position)
+        self.vx = 1
+        self.vy = 1
+        self.vr = 0.01
+        self.thrust = 0
+        self.thrustframe = 1
+        Spacegame.listenKeyEvent("keydown", "space", self.thrustOn)
+        Spacegame.listenKeyEvent("keyup", "space", self.thrustOff)
+        self.fxcenter = self.fycenter = 0.5
+
+    def step(self):
+        self.x += self.vx
+        self.y += self.vy
+        self.rotation += self.vr
+        if self.thrust == 1:
+            self.setImage(self.thrustframe)
+            self.thrustframe += 1
+            if self.thrustframe == 4:
+                self.thrustframe = 1
+        else:
+            self.setImage(0)
+
+    def thrustOn(self, event):
+        self.thrust = 1
         
-    def __init__(self, app, position):
-        super().__init__(Ship.asset, app, position)
-        self.registerKeys(["a", "d", "w", "space"])
-        
-class Spacewar(App):
+    def thrustOff(self, event):
+        self.thrust = 0
+
+
+
+class Spacegame(App):
+    
     def __init__(self, width, height):
         super().__init__(width, height)
         for x in range(self.width//Stars.width + 1):
@@ -50,7 +77,11 @@ class Spacewar(App):
                 Stars((x*Stars.width, y*Stars.height))
                 self.sun = Sun((self.width/2, self.height/2))
                 #self.Ship = Ship(self, (self.width/2-140, self.height/2), (0,-120), self.sun)
-                Ship = (0,0)
+                Ship((0,0))
 
-app=Spacewar(0,0)
+    def step(self):
+        for ship in self.getSpritesbyClass(Ship):
+            ship.step()
+
+app=Spacegame(0,0)
 app.run()
