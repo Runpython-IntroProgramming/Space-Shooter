@@ -93,7 +93,7 @@ class Spacewar(App):
             ship.step()
 
     def space(self, evt):
-        print('space game')
+        print('William Laycock')
 
 
 
