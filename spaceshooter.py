@@ -84,19 +84,18 @@ class Spacewar(App):
                 Stars((x*Stars.width, y*Stars.height))
                 self.sun=Sun((self.width/2, self.height/2))
         self.listenKeyEvent('keydown', 'space', self.space)
+        self.listenKeyEvent('keydown', 'left', self.space)
+        
         SpaceShip((350,250))
 
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
 
-
     def space(self, evt):
-        yes
-            
+        print('space game')
 
-        
-    
+
 
 app = Spacewar(0,0)
 app.run()
