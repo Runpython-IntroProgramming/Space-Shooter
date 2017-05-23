@@ -68,13 +68,21 @@ class SpaceShip(Sprite):
                 self.thrustframe = 1
         else:
             self.setImage(0)
-
+"""
+Spacewar.listenKeyEvent("keydown", "w", ...
+Spacewar.listenKeyEvent("keydown", "a",
+Spacewar.listenKeyEvent("keydown", "s",
+Spacewar.listenKeyEvent("keydown", "d",
+Spacewar.listenKeyEvent("keyup", "w",
+Spacewar.listenKeyEvent("keyup", "a",
+Spacewar.listenKeyEvent("keyup", "s",
+Spacewar.listenKeyEvent("keyup", "d",
+"""
     def thrustOn(self, event):
         self.thrust = 1
         
     def thrustOff(self, event):
         self.thrust = 0
-
 
 class Spacewar(App):
     def __init__(self, width, height):
