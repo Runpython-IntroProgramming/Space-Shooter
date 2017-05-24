@@ -104,7 +104,3 @@ class SpaceGame(App):
 #Distance formula, If too close, create a explosion sprite using multiple images from the repositories on github
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
-
-
-
-
