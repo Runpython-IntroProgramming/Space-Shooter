@@ -44,13 +44,12 @@ class SpaceShip(Sprite):
             if self.thrustframe == 4:
                 self.thrustframe = 1
                 
-        clist = self.collidingWithSprites(sun)
-        if clist:
-            print("collision!")
-            self.visible = False
+        #clist = self.collidingWithSprites(sun)
+        #if clist:
+        #    print("collision!")
+         #   self.visible = False
             
             
-        
     def thrustOn(self, event):
         self.thrust = 1
     def wKey(self,event):
@@ -60,6 +59,7 @@ class SpaceShip(Sprite):
     def dKey(self,event):
         self.x+=15
         self.thrust = 1
+        print("HUH?")
     def aKey(self,event):
         self.x-=10
     def thrustOff(self, event):
