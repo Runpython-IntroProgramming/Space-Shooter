@@ -16,6 +16,10 @@ class sun(Sprite):
     asset = ImageAsset("images/sun.png")
     width = 60
     height = 60
+    
+    def __init__(self, position):
+        super().__init__(sun.asset, position)
+        
 class SpaceShip(Sprite):
     """
     Animated space ship
