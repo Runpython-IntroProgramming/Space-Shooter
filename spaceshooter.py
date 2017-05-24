@@ -1,7 +1,7 @@
 """
 spaceshooter.py
 Author: Sam Pych
-Credit: source code for space shooter and tutorial, ggame repository
+Credit: source code for space shooter and tutorial, ggame repository, Kyle Postans
 
 Assignment:
 Write and submit a program that implements the spacewar game:
@@ -59,6 +59,12 @@ class SpaceShip(Sprite):
         Spacewar.listenKeyEvent("keydown","a",self.left)
         Spacewar.listenKeyEvent("keydown","s",self.down)
         Spacewar.listenKeyEvent("keydown","d",self.right)
+        Spacewar.listenKeyEvent("keydown","left arrow",self.rotateleft)
+        Spacewar.listenKeyEvent("keydown","right arrow",self.rotateright)
+        Spacewar.listenKeyEvent("keyup","right arrow",self.stopplz)
+        Spacewar.listenKeyEvent("keyup","left arrow",self.stopplz)
+        
+        
         self.fxcenter = self.fycenter = 0.5
 
     def step(self):
@@ -66,6 +72,14 @@ class SpaceShip(Sprite):
         self.y += self.vy
         self.rotation += self.vr
         boom=self.collidingWithSprites(Sun)
+        if self.x >1240:
+            self.x=1239
+        if self.x <-1:
+            self.x=0
+        if self.y >512:
+            self.y=513
+        if self.y <-1:
+            self.y=0
         if len(boom) >0:
             self.visible=False
         if self.thrust == 1:
@@ -77,9 +91,10 @@ class SpaceShip(Sprite):
             self.setImage(0)
     def thrustOn(self, event):
         self.thrust = 1
-        
+    def stopplz(self, event):
+        self.vr=0
     def thrustOff(self, event):
-        self.thrust = 0
+        self.thrust=0
     def up(self, event):
         self.vy -=5
     def down(self, event):
@@ -88,7 +103,10 @@ class SpaceShip(Sprite):
         self.vx -=5
     def right(self, event):
         self.vx +=5
-
+    def rotateleft(self, event):
+        self.vr +=.1
+    def rotateright(self, event):
+        self.vr -=.1
 class Spacewar(App):
     def __init__(self, width, height):
         super().__init__(width, height)
