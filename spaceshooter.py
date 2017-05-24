@@ -20,10 +20,7 @@ class sun(Sprite):
     def __init__(self, position):
         super().__init__(sun.asset, position)
     def step(self):
-        lit = self.collidingWithSprites(SpaceShip)
-        if len(lit) > 0:
-            self.visible = False
-        
+        i
 class SpaceShip(Sprite):
     """
     Animated space ship
@@ -55,7 +52,9 @@ class SpaceShip(Sprite):
             self.thrustframe += 1
             if self.thrustframe == 4:
                 self.thrustframe = 1
-                
+        lit = self.collidingWithSprites(sun)
+        if len(lit) > 0:
+            self.visible = False
         #clist = self.collidingWithSprites(sun)
         #if clist:
         #    print("collision!")
