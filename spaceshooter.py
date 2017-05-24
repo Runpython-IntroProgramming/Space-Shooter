@@ -19,6 +19,9 @@ class sun(Sprite):
     
     def __init__(self, position):
         super().__init__(sun.asset, position)
+        self.collidingWithSprites(SpaceShip)
+        if len(Spaceship) > 0
+            self.visible = False
         
 class SpaceShip(Sprite):
     """
