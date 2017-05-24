@@ -12,6 +12,10 @@ from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Fra
 SCREEN_WIDTH = 0
 SCREEN_HEIGHT = 0
 
+class sun(Sprite):
+    asset = ImageAsset("images/sun.png")
+    width = 60
+    height = 60
 class SpaceShip(Sprite):
     """
     Animated space ship
@@ -85,7 +89,7 @@ class SpaceGame(App):
         SpaceShip((100,500))
         SpaceShip((100,400))
         SpaceShip((100,600))
-        
+        sun((512,512))
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
