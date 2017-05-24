@@ -55,12 +55,19 @@ class SpaceShip(Sprite):
         self.thrustframe = 1
         Spacewar.listenKeyEvent("keydown", "space", self.thrustOn)
         Spacewar.listenKeyEvent("keyup", "space", self.thrustOff)
+        Spacewar.listenKeyEvent("keydown", "w", self.up)
+        Spacewar.listenKeyEvent("keydown","a",self.left)
+        Spacewar.listenKeyEvent("keydown","s",self.down)
+        Spacewar.listenKeyEvent("keydown","d",self.right)
         self.fxcenter = self.fycenter = 0.5
 
     def step(self):
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
+        boom=self.collidingWithSprites(Sun)
+        if len(boom) >0:
+            self.visible=False
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
@@ -68,21 +75,19 @@ class SpaceShip(Sprite):
                 self.thrustframe = 1
         else:
             self.setImage(0)
-"""
-Spacewar.listenKeyEvent("keydown", "w", ...
-Spacewar.listenKeyEvent("keydown", "a",
-Spacewar.listenKeyEvent("keydown", "s",
-Spacewar.listenKeyEvent("keydown", "d",
-Spacewar.listenKeyEvent("keyup", "w",
-Spacewar.listenKeyEvent("keyup", "a",
-Spacewar.listenKeyEvent("keyup", "s",
-Spacewar.listenKeyEvent("keyup", "d",
-"""
     def thrustOn(self, event):
         self.thrust = 1
         
     def thrustOff(self, event):
         self.thrust = 0
+    def up(self, event):
+        self.vy -=5
+    def down(self, event):
+        self.vy +=5
+    def left(self, event):
+        self.vx -=5
+    def right(self, event):
+        self.vx +=5
 
 class Spacewar(App):
     def __init__(self, width, height):
@@ -102,8 +107,19 @@ class Spacewar(App):
 
     def space(self, evt):
         print('printing this for fun')
+        
 
 
 
 app = Spacewar(0,0)
 app.run()
+"""
+Spacewar.listenKeyEvent("keydown", "w", ...
+Spacewar.listenKeyEvent("keydown", "a",
+Spacewar.listenKeyEvent("keydown", "s",
+Spacewar.listenKeyEvent("keydown", "d",
+Spacewar.listenKeyEvent("keyup", "w",
+Spacewar.listenKeyEvent("keyup", "a",
+Spacewar.listenKeyEvent("keyup", "s",
+Spacewar.listenKeyEvent("keyup", "d",
+"""
