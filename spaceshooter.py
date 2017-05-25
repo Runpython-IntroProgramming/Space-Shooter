@@ -96,15 +96,15 @@ class SpaceShip(Sprite):
     def thrustOff(self, event):
         self.thrust=0
     def up(self, event):
-        self.vy -=5
+        self.vy -=2
     def down(self, event):
-        self.vy +=5
+        self.vy +=2
     def left(self, event):
-        self.vx -=5
+        self.vx -=2
     def right(self, event):
-        self.vx +=5
+        self.vx +=2
     def rotateleft(self, event):
-        self.vr +=.1
+        self.vr +=.01
     def rotateright(self, event):
         self.vr -=.1
 class Spacewar(App):
