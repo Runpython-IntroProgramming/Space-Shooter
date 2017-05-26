@@ -1,10 +1,9 @@
-from ggame import App, Sprite, ImageAsset, Frame, RectangleAsset
-from ggame import SoundAsset, Sound, TextAsset, Color, LineStyle
-import math
-from time import time
+ from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 
-SCREEN_WIDTH = 640
-SCREEN_HEIGHT = 480
+ 
+SCREEN_WIDTH = 0
+SCREEN_HEIGHT = 0
+
 
 #background starfield
 class starfield(Sprite):
