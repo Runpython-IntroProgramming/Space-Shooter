@@ -6,8 +6,8 @@
  
  class sun(Sprite):
    asset = ImageAsset("images/sun.png")
-   width = 69
-   height = 70
+   width = 100
+   height = 100
   
    def __init__(self, position):
        super().__init__(sun.asset, position)
@@ -29,5 +29,26 @@
         Frame(0,0,86,125), 4, 'vertical')
 
         
+ 
+ class SpaceGame(App):
+ 
+ 
+ 
+   def __init__(self, width, height):
+       super().__init__(width, height)
+       black = Color(0, 1)
+       noline = LineStyle(0, black)
+       asset = ImageAsset("images/starfield.jpg")
+       for x in range(self.width//512 + 1):
+           for y in range(self.height//512 + 1):
+               Sprite(asset,(x*512, y*512))
+       SpaceShip((50,550))
+       SpaceShip((50,450))
+       SpaceShip((50,650))
+       sun((500,600))
+   def step(self):
+       for ship in self.getSpritesbyClass(SpaceShip):
+           ship.step()
+
  myapp = App()
  myapp.run()
