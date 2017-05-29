@@ -1,4 +1,5 @@
  from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
+ 
  SCREEN_WIDTH = 0
  SCREEN_HEIGHT = 0
 
@@ -14,6 +15,27 @@
    def step(self):
        i
 
+#Ship
+ 
+ class SpaceShip(Sprite):
+ 
+ 
+ 
+   asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
+       Frame(227,0,292-227,125), 4, 'vertical')
+
+
+
+   def __init__(self, position):
+       super().__init__(SpaceShip.asset, position)
+      
+       self.rotation = 4.7
+       self.vr = 0.01
+       self.thrust = 0
+       self.thrustframe = 1
+
+
+
 #background starfield
 
  class starfield(Sprite):
@@ -22,14 +44,7 @@
     height = 512
     def __init__(self,position):
         super().__init__(Stars.asset,position)
-#ship
- class Ship(Sprite):
-    
-    asset = ImageAsset("Space-Shooter/images/four_spaceship_by_albertov_with_thrust.png", 
-        Frame(0,0,86,125), 4, 'vertical')
 
-        
- 
  class SpaceGame(App):
  
  
