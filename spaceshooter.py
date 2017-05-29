@@ -50,6 +50,7 @@
        SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
        SpaceGame.listenKeyEvent("keyup", "d", self.thrustOff)
        SpaceGame.listenKeyEvent("keydown", "up arrow", self.upKey)
+       self.fxcenter = self.fycenter = 0.5
 
 #background starfield
 
