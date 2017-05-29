@@ -42,6 +42,14 @@
        self.thrust = 0
  
        self.thrustframe = 1
+       SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
+       SpaceGame.listenKeyEvent("keydown", "w", self.wKey)
+       SpaceGame.listenKeyEvent("keydown", "s", self.sKey)
+       SpaceGame.listenKeyEvent("keydown", "d", self.dKey)
+       SpaceGame.listenKeyEvent("keydown", "a", self.aKey)
+       SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
+       SpaceGame.listenKeyEvent("keyup", "d", self.thrustOff)
+       SpaceGame.listenKeyEvent("keydown", "up arrow", self.upKey)
 
 #background starfield
 
