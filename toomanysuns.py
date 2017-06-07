@@ -35,7 +35,7 @@ class Sun(Sprite):
     
 class Bounce(Sprite):
     
-    sun=ImageAsset("images/sun.png")
+    sun=ImageAsset("images/fidgetspibber.png")
     
     def __init__(self, position):
         super().__init__(Bounce.sun, position)
@@ -43,6 +43,7 @@ class Bounce(Sprite):
         self.vy=4
         self.vr=5
         self.fxcenter = self.fycenter = 0.5
+        self.scale = 0.1555555555555555555555555
     def step(self):
         self.x += self.vx
         self.y += self.vy
@@ -86,6 +87,8 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keyup", "s", self.StopMovement)
         SpaceGame.listenKeyEvent("keyup", "d", self.StopMovement)
         SpaceGame.listenKeyEvent("keydown", "r", self.Respawn)
+        
+        
        
         
         self.fxcenter = self.fycenter = 0.5
@@ -120,7 +123,7 @@ class SpaceShip(Sprite):
     def Respawn(self, event):
         self.x=1
         self.y=1
-        self.visible=True 
+        self.visible=True
     def thrustOn(self, event):
         self.thrust = 1
     def thrustOff(self, event):
@@ -185,6 +188,17 @@ class SpaceGame(App):
         Bounce((800, 300))
         Bounce((600, 200))
         Bounce((300, 400))
+        Bounce((700, 500))
+        Bounce((100, 300))
+        Bounce((200, 350))
+        Bounce((400, 359))
+        Bounce((900, 100))
+        Bounce((250, 450))
+        Bounce((50, 450))
+        Bounce((550, 550))
+        Bounce((650, 350))
+        Bounce((40, 250))
+        
         
         
         
