@@ -35,7 +35,7 @@ class Sun(Sprite):
     
 class Bounce(Sprite):
     
-    sun=ImageAsset("images/sun.png")
+    sun=ImageAsset("images/fidgetspibber.png")
     
     def __init__(self, position):
         super().__init__(Bounce.sun, position)
@@ -43,6 +43,7 @@ class Bounce(Sprite):
         self.vy=4
         self.vr=5
         self.fxcenter = self.fycenter = 0.5
+        self.scale = 0.1555555555555555555555555
     def step(self):
         self.x += self.vx
         self.y += self.vy
