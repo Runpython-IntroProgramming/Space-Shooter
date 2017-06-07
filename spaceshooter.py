@@ -33,55 +33,72 @@ class Sun(Sprite):
         self.fycenter = 0.5
 
 class Ship(Sprite):
+     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
+         Frame(227,0,292-227,125), 4, 'vertical')
+ 
+     def __init__(self, position):
+         super().__init__(Ship.asset, position)
+         
+         self.rotation = 4.712
+         self.vr = 0.01
+         self.thrust = 0
+         self.thrustframe = 1
+         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
+         SpaceGame.listenKeyEvent("keydown", "w", self.wKey)
+         SpaceGame.listenKeyEvent("keydown", "s", self.sKey)
+         SpaceGame.listenKeyEvent("keydown", "d", self.dKey)
+         SpaceGame.listenKeyEvent("keydown", "a", self.aKey)
+         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
+         SpaceGame.listenKeyEvent("keyup", "d", self.thrustOff)
+         SpaceGame.listenKeyEvent("keydown", "up arrow", self.upKey)
+         SpaceGame.listenKeyEvent("keydown", "down arrow", self.downKey)
+         self.fxcenter = self.fycenter = 0.5
+     
+     def step(self):
+         if self.thrust == 1:
+             self.setImage(self.thrustframe)
+             self.thrustframe += 1
+             if self.thrustframe == 4:
+                 self.thrustframe = 1
+         lit = self.collidingWithSprites(sun)
+         if len(lit) > 0:
+             self.visible = False
 
-    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
-        Frame(227,0,292-227,125), 4, 'vertical')
+     def thrustOn(self, event):
+         self.thrust = 1
+     def wKey(self,event):
+         self.y-=10
+     def sKey(self,event):
+         self.y+=10
+     def dKey(self,event):
+         self.x+=15
+         self.thrust = 1
+         print("HUH?")
+     def aKey(self,event):
+         self.x-=10
+     def thrustOff(self, event):
+         self.thrust = 0
+     def upKey(self, event):
+         self.rotation+=3.14159265/2
+     def downKey(self, event):
+         self.rotation-=3.14159265/2
 
-    def __init__(self, position):
-        super().__init__(Ship.asset, position)
-        self.vx = 1
-        self.vy = 1
-        self.vr = 0.01
-        self.thrust = 0
-        self.thrustframe = 1
-        Spacegame.listenKeyEvent("keydown", "space", self.thrustOn)
-        Spacegame.listenKeyEvent("keyup", "space", self.thrustOff)
-        self.fxcenter = self.fycenter = 0.5
+class SpaceGame(App):
+     def __init__(self, width, height):
+         super().__init__(width, height)
+         black = Color(0, 1)
+         noline = LineStyle(0, black)
+         asset = ImageAsset("images/starfield.jpg")
+         for x in range(self.width//512 + 1):
+             for y in range(self.height//512 + 1):
+                 Sprite(asset,(x*512, y*512))
+         SpaceShip((100,500))
+         SpaceShip((100,400))
+         SpaceShip((100,600))
+         sun((512,512))
+     def step(self):
+         for ship in self.getSpritesbyClass(SpaceShip):
+             ship.step()
 
-    def step(self):
-        self.x += self.vx
-        self.y += self.vy
-        self.rotation += self.vr
-        if self.thrust == 1:
-            self.setImage(self.thrustframe)
-            self.thrustframe += 1
-            if self.thrustframe == 4:
-                self.thrustframe = 1
-        else:
-            self.setImage(0)
-
-    def thrustOn(self, event):
-        self.thrust = 1
-        
-    def thrustOff(self, event):
-        self.thrust = 0
-
-
-
-class Spacegame(App):
-    
-    def __init__(self, width, height):
-        super().__init__(width, height)
-        for x in range(self.width//Stars.width + 1):
-            for y in range(self.height//Stars.height + 1):
-                Stars((x*Stars.width, y*Stars.height))
-                self.sun = Sun((self.width/2, self.height/2))
-                #self.Ship = Ship(self, (self.width/2-140, self.height/2), (0,-120), self.sun)
-                Ship((0,0))
-
-    def step(self):
-        for ship in self.getSpritesbyClass(Ship):
-            ship.step()
-
-app=Spacegame(0,0)
+app=SpaceGame(0,0)
 app.run()
