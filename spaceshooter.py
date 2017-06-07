@@ -101,6 +101,5 @@ class SpaceGame(App):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
 
-#Distance formula, If too close, create a explosion sprite using multiple images from the repositories on github
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
