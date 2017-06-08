@@ -169,11 +169,11 @@ class SpaceShip(Sprite):
  
     def turnleft(self, event):
         self.vr+=.4
- 
+
     def explode(self):
         explosion(self.position)
         self.destroy()
- 
+
 class explosion(Sprite):
     asset = ImageAsset("images/explosion2.png", Frame(0,0,192-0,195), 25, 'horizontal')
     def __init__(self, position):
@@ -185,7 +185,7 @@ class explosion(Sprite):
         self.explosionframe +=1
         if self.explosionframe ==25:
             self.destroy()
-         
+
 class SpaceGame(App):
     """
     Tutorial4 space game example.
@@ -199,15 +199,14 @@ class SpaceGame(App):
         s_asset = ImageAsset("images/sun.png")
         s = Sprite(s_asset, (200,200))
         SpaceShip((100,100),s)
- 
- 
+
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
         for explode in self.getSpritesbyClass(explosion):
             explode.step()
          
- 
+
  
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
