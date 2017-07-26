@@ -5,7 +5,7 @@ object-oriented programming to streamline your code.
 
 ## What to do
 
-Create your own version of this [Spacewar game](http://runpython.com/?user=BrythonServer&repo=Spacewar&name=spacewar.py) 
+Create your own version of this [Spacewar game](https://runpython.org/?user=BrythonServer&repo=Spacewar&name=spacewar.py) 
 using the images and sounds included in this repository.
 
 Your game must include the following:
