@@ -1,12 +1,13 @@
 """
 spaceshooter.py
 Author: Katie Naughton
-Credit: <list sources used, if any>
+Credit: n/a for now
 
 Assignment:
 Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
 """
+from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 class SpaceGame(App):
     def __init__(self):
         super().__init__()
