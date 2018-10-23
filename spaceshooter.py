@@ -39,18 +39,28 @@ Start!
 """
 #Image assets
 class Background(Sprite):
-    asset = ImageAsset("images/starfield.jpg")
+    pngasset = ImageAsset("images/starfield.jpg")
     width = 512
     height = 512
 class Sun(Sprite):
-    asset = ImageAsset("images/sun.png")
+    pngasset = ImageAsset("images/sun.png")
     width = 80
     height = 76
-"""
-class R1(Sprite):
-    
-class R2(Sprite):
-    
 class Bullet(Sprite):
-    
-"""
+    pngasset = ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
+    mp3asset = SoundAsset("sounds/pew1.mp3")
+class R1(Sprite):
+    pngasset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
+        Frame(227,0,292-227,125), 4, 'vertical')
+class R2(Sprite):
+    pngasset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
+    Frame(0,0,86,125), 4, 'vertical')
+class ExplosionSmall(Sprite):
+    pngasset = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
+    mp3asset = SoundAsset("sounds/explosion1.mp3")
+class ExplosionBig(Sprite):
+    pngasset = ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
+    mp3asset = SoundAsset("sounds/explosion2.mp3")
+
+app = SpaceShootOut()
+app.run()
