@@ -54,7 +54,7 @@ class SpaceGame(App):
         SpaceShip((150,150))
         SpaceShip((200,50))
         
-        mn_asset=ImageAsset("images/moon-1859616_960_720.jpg")
+        mn_asset=ImageAsset("images/super-moon.png")
         mn= Sprite(mn_asset, (0, 0))
 
         
