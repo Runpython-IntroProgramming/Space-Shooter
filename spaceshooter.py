@@ -54,6 +54,10 @@ class SpaceGame(App):
         SpaceShip((150,150))
         SpaceShip((200,50))
         
+        mn_asset=ImageAsset("images/moon-1859616_960_720.jpg")
+        mn= Sprite(mn_asset, (100, 100))
+
+        
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
