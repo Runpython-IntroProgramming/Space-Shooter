@@ -11,11 +11,11 @@ from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Fra
 
 class SpaceShip(Sprite):
     
-    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
+    r_asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
     Frame(227,0,65,125), 4, 'vertical')
     
     def __init__(self, position):
-        super().__init__(SpaceShip.asset, position)
+        super().__init__(SpaceShip.r_asset, position)
         self.vx=1
         self.vy=1
         self.vr=0.01
@@ -50,14 +50,22 @@ class SpaceGame(App):
         noline = LineStyle(0, black)
         bg_asset = ImageAsset("images/e36d28c490fe26653e50fbd17025f3ef.jpg")
         bg = Sprite(bg_asset, (0,0))
-        SpaceShip((100,100))
-        SpaceShip((150,150))
-        SpaceShip((200,50))
+        bg.scale=1.4
+        SpaceShip((500,100))
         
+        #moon
         mn_asset=ImageAsset("images/super-moon.png")
         mn= Sprite(mn_asset, (300, 200))
         mn.scale=0.2
-
+        
+      
+        #asteroids
+        coordlist=[(50,0), (500, 350), (300,400), (800, 75)]
+        at_asset=ImageAsset("images/1346943991.png")
+        
+        for coord in coordlist:
+            at=Sprite(at_asset, coord)
+            at.scale=0.1
         
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
