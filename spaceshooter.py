@@ -22,6 +22,21 @@ def step():
         if rocket.x + rocket.width > myapp.width or rocket.x < 0:
             rocket.x -= rocket.direction
             reverse(rocket)
+            
+def rightarrowKey(event):
+    rocket.go = not rocket.go
+
+# Handle the "reverse" key
+def leftarrowKey(event):
+    reverse(rocket)
+
+# Handle the mouse click
+def mouseClick(event):
+    rocket.x = event.x
+    rocket.y = event.y
+myapp.listenKeyEvent('keydown', 'space', rightarrowKey)
+myapp.listenKeyEvent('keydown', 'r', leftarrowKey)
+myapp.listenMouseEvent('click', mouseClick)
     
 '''
 class SpaceShip(Sprite):
