@@ -9,34 +9,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 
-r_asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
-    Frame(227,0,65,125), 4, 'vertical')
-rocket=Sprite(r_asset, (0,0)
-rocket.direction=1
-rocket.go=True
-def reverse (r):
-    r.direction*=-1
-def step():
-    if rocket.go:
-        rocket.x += rocket.direction
-        if rocket.x + rocket.width > myapp.width or rocket.x < 0:
-            rocket.x -= rocket.direction
-            reverse(rocket)
-            
-def rightarrowKey(event):
-    rocket.go = not rocket.go
 
-# Handle the "reverse" key
-def leftarrowKey(event):
-    reverse(rocket)
-
-# Handle the mouse click
-def mouseClick(event):
-    rocket.x = event.x
-    rocket.y = event.y
-myapp.listenKeyEvent('keydown', 'space', rightarrowKey)
-myapp.listenKeyEvent('keydown', 'r', leftarrowKey)
-myapp.listenMouseEvent('click', mouseClick)
     
 '''
 class SpaceShip(Sprite):
@@ -101,7 +74,7 @@ class SpaceGame(App):
         bg_asset = ImageAsset("images/e36d28c490fe26653e50fbd17025f3ef.jpg")
         bg = Sprite(bg_asset, (0,0))
         bg.scale=1.4
-        SpaceShip((400,100))
+        #SpaceShip((400,100))
         Asteroid((500, 100))
         Asteroid((40, 100))
         Asteroid((300, 50))
@@ -121,8 +94,8 @@ class SpaceGame(App):
             #at.scale=0.1
         
     def step(self):
-        for ship in self.getSpritesbyClass(SpaceShip):
-            ship.step()
+        #for ship in self.getSpritesbyClass(SpaceShip):
+        #    ship.step()
         for asteroid in self.getSpritesbyClass(Asteroid):
             asteroid.step()
     
@@ -131,5 +104,37 @@ class SpaceGame(App):
     
 
 myapp = SpaceGame()
+
+r_asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
+    Frame(227,0,65,125), 4, 'vertical')
+rocket=Sprite(r_asset, (0,0))
+rocket.direction=1
+rocket.go=True
+def reverse (r):
+    r.direction*=-1
+def step():
+    if rocket.go:
+        rocket.x += rocket.direction
+        if rocket.x + rocket.width > myapp.width or rocket.x < 0:
+            rocket.x -= rocket.direction
+            reverse(rocket)
+            
+def rightarrowKey(event):
+    print("right")
+    rocket.go = not rocket.go
+
+# Handle the "reverse" key
+def leftarrowKey(event):
+    print("left")
+    reverse(rocket)
+
+# Handle the mouse click
+def mouseClick(event):
+    rocket.x = event.x
+    rocket.y = event.y
+myapp.listenKeyEvent('keydown', 'right arrow', rightarrowKey)
+myapp.listenKeyEvent('keydown', 'left arrow', leftarrowKey)
+myapp.listenMouseEvent('click', mouseClick)
+
 
 myapp.run()
