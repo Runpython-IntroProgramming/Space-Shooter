@@ -52,13 +52,14 @@ class Asteroid(Sprite):
         self.vx=1
         self.vy=1
         self.vr=0.01
+        self.scale=0.2
+        self.fxcenter = self.fycenter = 0.5
         
         
     def step(self):
         self.x+=self.vx
         self.y += self.vy
         self.rotation += self.vr
-
 
     
 class SpaceGame(App):
@@ -69,7 +70,10 @@ class SpaceGame(App):
         bg_asset = ImageAsset("images/e36d28c490fe26653e50fbd17025f3ef.jpg")
         bg = Sprite(bg_asset, (0,0))
         bg.scale=1.4
-        SpaceShip((500,100))
+        SpaceShip((400,100))
+        Asteroid((500, 100))
+        Asteroid((40, 100))
+        Asteroid((300, 50))
         
         #moon
         mn_asset=ImageAsset("images/super-moon.png")
@@ -88,10 +92,10 @@ class SpaceGame(App):
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
+        for asteroid in self.getSpritesbyClass(Asteroid):
+            asteroid.step()
     
-    def step(self):
-        for ship in self.getSpritesbyClass(ASteroid):
-            ship.step()
+    
     
     
 
