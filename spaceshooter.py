@@ -9,6 +9,21 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 
+r_asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
+    Frame(227,0,65,125), 4, 'vertical')
+rocket=Sprite(r_asset, (0,0)
+rocket.direction=1
+rocket.go=True
+def reverse (r):
+    r.direction*=-1
+def step():
+    if rocket.go:
+        rocket.x += rocket.direction
+        if rocket.x + rocket.width > myapp.width or rocket.x < 0:
+            rocket.x -= rocket.direction
+            reverse(rocket)
+    
+'''
 class SpaceShip(Sprite):
     
     r_asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
@@ -42,6 +57,7 @@ class SpaceShip(Sprite):
         
     def thrustOff(self, event):
         self.thrust = 0
+'''
 
 class Asteroid(Sprite):
     
@@ -52,7 +68,7 @@ class Asteroid(Sprite):
         self.vx=1
         self.vy=1
         self.vr=0.01
-        self.scale=0.2
+        self.scale=0.1
         self.fxcenter = self.fycenter = 0.5
         
         
