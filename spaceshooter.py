@@ -42,6 +42,24 @@ class SpaceShip(Sprite):
         
     def thrustOff(self, event):
         self.thrust = 0
+
+class Asteroid(Sprite):
+    
+    a_asset = ImageAsset("images/1346943991.png")
+    
+    def __init__(self, position):
+        super().__init__(Asteroid.a_asset, position)
+        self.vx=1
+        self.vy=1
+        self.vr=0.01
+        
+        
+    def step(self):
+        self.x+=self.vx
+        self.y += self.vy
+        self.rotation += self.vr
+
+
     
 class SpaceGame(App):
     def __init__(self):
@@ -60,15 +78,19 @@ class SpaceGame(App):
         
       
         #asteroids
-        coordlist=[(50,0), (500, 350), (300,400), (800, 75)]
-        at_asset=ImageAsset("images/1346943991.png")
+        #coordlist=[(50,0), (500, 350), (300,400), (800, 75)]
+        #at_asset=ImageAsset("images/1346943991.png")
         
-        for coord in coordlist:
-            at=Sprite(at_asset, coord)
-            at.scale=0.1
+        #for coord in coordlist:
+            #at=Sprite(at_asset, coord)
+            #at.scale=0.1
         
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
+            ship.step()
+    
+    def step(self):
+        for ship in self.getSpritesbyClass(ASteroid):
             ship.step()
     
     
