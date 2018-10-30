@@ -20,7 +20,6 @@ Include these sprites:
     Sun
     Rocket 1
     Rocket 2
-    Bullet Sprite - with noise
     Thruster Sprite - with noise (I think)
     Explosion Sprite - with noise (I think)
 
@@ -36,7 +35,23 @@ Have collisions:
     Basically, make it so that IF a sprite has the same (X, Y) as another sprite, what has been hit explodes.
     
 Start!
+    Structure of code:
+        Code Sprites:
+        Rocket 1
+            Explosions
+            Fake Gravity
+            Movement
+            Collisions
+        Rocket 2
+            Explosions
+            Fake Gravity
+            Movement
+            Collisions
+        Background
+        Sun
+        Code App.Run() stuff
+        Refer to reference if code doesn't work well.
+    
 """
-
 app = SpaceShootOut()
 app.run()
