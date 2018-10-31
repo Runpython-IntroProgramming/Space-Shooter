@@ -30,13 +30,21 @@ class SpaceShip(Sprite):
         self.fxcenter = self.fycenter = 0.5
         
     def rightarrowKey(self, event):
-        self.vx+=1
+        self.vx+=.5
+        pew1_asset = SoundAsset("sounds/pew1.mp3")
+        pew1 = Sound(pew1_asset)
     def leftarrowKey(self, event):
-        self.vx+=-1
+        self.vx+=-.5
+        pew1_asset = SoundAsset("sounds/pew1.mp3")
+        pew1 = Sound(pew1_asset)
     def uparrowKey(self, event):
-        self.vy+=-1
-    def downarrowkey(self, event):
-        self.vy+=1
+        self.vy+=-.5
+        pew1_asset = SoundAsset("sounds/pew1.mp3")
+        pew1 = Sound(pew1_asset)
+    def downarrowKey(self, event):
+        self.vy+=.5
+        pew1_asset = SoundAsset("sounds/pew1.mp3")
+        pew1 = Sound(pew1_asset)
         
         
     def step(self):
@@ -75,7 +83,7 @@ class Asteroid(Sprite):
     def step(self):
         self.x+=self.vx
         self.y += self.vy
-        self.rotation += self.vr
+        #self.rotation += self.vr
 
 #spacegame
 class SpaceGame(App):
@@ -88,7 +96,7 @@ class SpaceGame(App):
         bg.scale=1.4
         SpaceShip((40,100))
         Asteroid((500, 100))
-        Asteroid((100, 100))
+        Asteroid((600, 100))
         Asteroid((300, 50))
         
         #moon
