@@ -9,9 +9,6 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 
-
-    
-
 class SpaceShip(Sprite):
     
     r_asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
@@ -21,52 +18,32 @@ class SpaceShip(Sprite):
         super().__init__(SpaceShip.r_asset, position)
         self.vx=1
         self.vy=1
-        #self.vr=0.01
+        self.vr=0.01
+        SpaceGame.listenKeyEvent("keydown", "right arrow", self.rightarrowKey)
+        SpaceGame.listenKeyEvent('keydown', "left arrow", self.leftarrowKey)
+        SpaceGame.listenKeyEvent('keydown', "up arrow", self.uparrowKey)
+        SpaceGame.listenKeyEvent('keydown', "down arrow", self.downarrowKey)
         self.thrust = 0
         self.thrustframe = 1
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
         self.fxcenter = self.fycenter = 0.5
         
-        '''
-        rocket.direction=1
+    def rightarrowKey(self, event):
+        self.vx+=1
+    def leftarrowKey(self, event):
+        self.vx+=-1
+    def uparrowKey(self, event):
+        self.vy+=-1
+    def downarrowkey(self, event):
+        self.vy+=1
         
-        rocket.go=True
-    def reverse (r):
-        r.direction*=-1
-    def step():
-        if rocket.go:
-            rocket.x += rocket.direction
-            if rocket.x + rocket.width > SpaceGame.width or rocket.x < 0:
-                rocket.x -= rocket.direction
-                reverse(rocket)
-                
-    def rightarrowKey(event):
-        print("right")
-        rocket.go = not rocket.go
-        SpaceGame.listenKeyEvent('keydown', 'right arrow', rightarrowKey)
-    
-    # Handle the "reverse" key
-    def leftarrowKey(event):
-        print("left")
-        reverse(rocket)
-        SpaceGame.listenKeyEvent('keydown', 'left arrow', leftarrowKey)
-    
-    # Handle the mouse click
-
-    def mouseClick(event):
-        rocket.x = event.x
-        rocket.y = event.y
-        SpaceGame.listenMouseEvent('click', mouseClick)
         
-    '''
-    
     def step(self):
-        #if SpaceGame.listenKeyEvent("keydown", "right arrow", rightarrowKey):
         self.x+=self.vx
-        #elif SpaceGame.listenKeyEvent('keydown', "left arrow", leftarrowKey):
         self.y += self.vy
         #self.rotation += self.vr
+        
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
@@ -80,8 +57,8 @@ class SpaceShip(Sprite):
         
     def thrustOff(self, event):
         self.thrust = 0
-
-
+        
+#asteroid
 class Asteroid(Sprite):
     
     a_asset = ImageAsset("images/1346943991.png")
@@ -100,7 +77,7 @@ class Asteroid(Sprite):
         self.y += self.vy
         self.rotation += self.vr
 
-    
+#spacegame
 class SpaceGame(App):
     def __init__(self):
         super().__init__()
@@ -119,15 +96,6 @@ class SpaceGame(App):
         mn= Sprite(mn_asset, (300, 200))
         mn.scale=0.2
         
-      
-        #asteroids
-        #coordlist=[(50,0), (500, 350), (300,400), (800, 75)]
-        #at_asset=ImageAsset("images/1346943991.png")
-        
-        #for coord in coordlist:
-            #at=Sprite(at_asset, coord)
-            #at.scale=0.1
-        
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
            ship.step()
@@ -136,8 +104,5 @@ class SpaceGame(App):
     
 
 myapp = SpaceGame()
-
-
-
 
 myapp.run()
