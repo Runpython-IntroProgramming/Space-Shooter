@@ -7,12 +7,15 @@ Assignment:
 Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
 """
-from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
+from ggame import App, SoundAsset, Sound, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
+
 
 class SpaceShip(Sprite):
     
     r_asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
     Frame(227,0,65,125), 4, 'vertical')
+    
+    pewasset = SoundAsset("sounds/pew1.mp3")
     
     def __init__(self, position):
         super().__init__(SpaceShip.r_asset, position)
@@ -28,23 +31,27 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
         self.fxcenter = self.fycenter = 0.5
+        self.pew=Sound(SpaceShip.pewasset)
+        self.pew.volume=5
+        
         
     def rightarrowKey(self, event):
         self.vx+=.5
-        pew1_asset = SoundAsset("sounds/pew1.mp3")
-        pew1 = Sound(pew1_asset)
+        self.pew.play()
+        
+        
     def leftarrowKey(self, event):
         self.vx+=-.5
-        pew1_asset = SoundAsset("sounds/pew1.mp3")
-        pew1 = Sound(pew1_asset)
+        self.pew.play()
+        
     def uparrowKey(self, event):
         self.vy+=-.5
-        pew1_asset = SoundAsset("sounds/pew1.mp3")
-        pew1 = Sound(pew1_asset)
+        self.pew.play()
+        
     def downarrowKey(self, event):
         self.vy+=.5
-        pew1_asset = SoundAsset("sounds/pew1.mp3")
-        pew1 = Sound(pew1_asset)
+        self.pew.play()
+       
         
         
     def step(self):
