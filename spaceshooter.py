@@ -102,9 +102,9 @@ class SpaceGame(App):
         bg = Sprite(bg_asset, (0,0))
         bg.scale=1.4
         SpaceShip((40,100))
-        Asteroid((500, 100))
-        Asteroid((600, 100))
-        Asteroid((300, 50))
+        Asteroid((100, 100))
+        Asteroid((600, 30))
+        Asteroid((800, 300))
         
         #moon
         mn_asset=ImageAsset("images/super-moon.png")
