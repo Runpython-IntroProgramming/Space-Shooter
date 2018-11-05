@@ -1,7 +1,7 @@
 """
 spaceshooter.py
 Author: Katie Naughton
-Credit: Tutorials
+Credit: Tutorials Code, Spacewar Code
 
 Assignment:
 Write and submit a program that implements the spacewar game:
@@ -100,11 +100,19 @@ class Asteroid(Sprite):
         
 #explosion
 class Explosion(Sprite):
+    
     ex_asset = ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
-    boomasset = SoundAsset("sounds/explosion2.mp3")
+    bm_asset = SoundAsset("sounds/explosion2.mp3")
 
     def __init__(self):
         super().__init__()
+        if self.visible=false
+        self.boom=SOund(boom_asset)
+        self.boom.play()
+    
+    def step(self):
+        if self.image=?:
+            self.destroy()
         
     
         
