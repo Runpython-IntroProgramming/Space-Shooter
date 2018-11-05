@@ -9,7 +9,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 from ggame import App, SoundAsset, Sound, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 
-
+#spaceship
 class SpaceShip(Sprite):
     
     r_asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
@@ -59,6 +59,11 @@ class SpaceShip(Sprite):
         self.x+=self.vx
         self.y += self.vy
         self.rotation += self.vr
+        collision=(self.collidingWithSprites(Asteroid))
+        if collision:
+            print("colliding")
+            self.visible=False
+        
         
         if self.thrust == 1:
             self.setImage(self.thrustframe)
@@ -84,15 +89,25 @@ class Asteroid(Sprite):
         self.vx=1
         self.vy=1
         self.vr=0.01
-        self.scale=0.1
+        self.scale=0.05
         self.fxcenter = self.fycenter = 0.5
         
         
     def step(self):
         self.x+=self.vx
         self.y += self.vy
-        #self.rotation += self.vr
+        self.rotation += self.vr
+        
+#explosion
+class Explosion(Sprite):
+    ex_asset = ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
+    boomasset = SoundAsset("sounds/explosion2.mp3")
 
+    def __init__(self):
+        super().__init__()
+        
+    
+        
 #spacegame
 class SpaceGame(App):
     def __init__(self):
@@ -100,10 +115,12 @@ class SpaceGame(App):
         black = Color(0, 1)
         noline = LineStyle(0, black)
         bg_asset = ImageAsset("images/e36d28c490fe26653e50fbd17025f3ef.jpg")
-        bg = Sprite(bg_asset, (0,0))
+        width=500
+        height=500
+        bg = Sprite(bg_asset)
         bg.scale=1.4
         SpaceShip((40,100))
-        Asteroid((100, 100))
+        Asteroid((400, 100))
         Asteroid((600, 30))
         Asteroid((800, 300))
         
