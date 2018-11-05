@@ -26,11 +26,8 @@ Include these sprites:
 
 Have movement:
     Control the rockets with arrow/WASD keys
-    Make the bullets move in an arbitrary curve
     Make the rockets move, always
-    
 Have collisions:
-    When the bullet enters a certain area around the rocket sprite, make the rocket explode.
     When the rocket enters a certain area around the center, make the rocket explode.
     When the rockets enter a certain area around another rocket, they both explode.
     Basically, make it so that IF a sprite has the same (X, Y) as another sprite, what has been hit explodes.
@@ -48,6 +45,7 @@ class Sun(Sprite):
         self.fxcenter = 0.0
         self.fycenter = -1.0
         self.circularCollisionModel()
+        
 class Rocket1(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
         Frame(227,0,292-227,125), 4, 'vertical')
@@ -97,7 +95,6 @@ class Rocket1(Sprite):
         else:
             self.setImage(0)
         collides = self.collidingWithSprites(Rocket2)
-        collides.extend(self.collidingWithSprites(Bullet))
         if len(collides):
             if collides[0].visible:
                 collides[0].explode()
@@ -117,12 +114,13 @@ class Rocket1(Sprite):
         self.thrust = 0
     def rotateLeft(self, event):
         self.vr = 0.05
-    def lrOff(self, event):
+    def lrOff(self,  event):
         self.vr = 0
     def rotateRight(self, event):
         self.vr = -0.05
-    def rrOff(self, event):
+    def rrOff(self,  event):
         self.vr = 0
+        
 class Rocket2(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(0,0,86,125), 4, 'vertical')
@@ -196,46 +194,7 @@ class Rocket2(Sprite):
         self.vr = -0.05
     def rrOff(self,  event):
         self.vr = 0
-class HealthBar:
-    def __init__(self, indicatorasset, initvalue, position, app):
-        self.sprites = [Sprite(indicatorasset, (0,app.height-75)) for i in range(initvalue)]
-        for s in self.sprites:
-            s.scale = 0.4
-        width = self.sprites[0].width
-        if position == 'left':
-            x = 50
-            step = width+5
-        else:
-            x = app.width - 50 - width
-            step = -width-5
-        for s in self.sprites:
-            s.x = x
-            x += step
-        self.restart()
-    def restart(self):
-        for s in self.sprites:
-            s.visible = True
-        self.count = len(self.sprites)
-    def dead(self):
-        return self.count == 0
-    def killone(self):
-        if self.count > 0:
-            self.count -= 1
-            self.sprites[self.count].visible = False
-class ExplosionBig(Sprite):
-    asset = ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
-    boomasset = SoundAsset("sounds/explosion2.mp3")
-    def __init__(self, position):
-        super().__init__(ExplosionBig.asset, position)
-        self.image = 0
-        self.center = (0.5, 0.5)
-        self.boom = Sound(ExplosionBig.boomasset)
-        self.boom.play()
-    def step(self):
-        self.setImage(self.image//2)
-        self.image += 1
-        if self.image == 50:
-            self.destroy()
+
 class SpaceShootOut(App):
     def __init__(self, width, height):
         super().__init__(width, height)
@@ -258,5 +217,6 @@ class SpaceShootOut(App):
         explosions = self.getSpritesbyClass(ExplosionBig)
         for explosion in explosions:
             explosion.step()
+#Is there something more that I need to do here?
 myapp = SpaceShootOut(SW, SH)
 myapp.run()
