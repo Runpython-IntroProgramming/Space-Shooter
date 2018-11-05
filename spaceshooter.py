@@ -22,6 +22,7 @@ class SpaceShip(Sprite):
         self.vx=1
         self.vy=1
         self.vr=0.01
+        self.scale=.5
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.rightarrowKey)
         SpaceGame.listenKeyEvent('keydown', "left arrow", self.leftarrowKey)
         SpaceGame.listenKeyEvent('keydown', "up arrow", self.uparrowKey)
@@ -57,7 +58,7 @@ class SpaceShip(Sprite):
     def step(self):
         self.x+=self.vx
         self.y += self.vy
-        #self.rotation += self.vr
+        self.rotation += self.vr
         
         if self.thrust == 1:
             self.setImage(self.thrustframe)
