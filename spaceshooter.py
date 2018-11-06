@@ -164,8 +164,8 @@ class Rocket2(Sprite):
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
-            if self.thrustframe == 4:
-                self.thrustframe = 1
+        if self.thrustframe == 4:
+            self.thrustframe = 1
         else:
             self.setImage(0)
         collides = self.collidingWithSprites(Rocket1)
@@ -194,7 +194,6 @@ class Rocket2(Sprite):
         self.vr = -0.05
     def rrOff(self,  event):
         self.vr = 0
-
 class SpaceShootOut(App):
     def __init__(self, width, height):
         super().__init__(width, height)
@@ -209,14 +208,15 @@ class SpaceShootOut(App):
         Rocket1((250,250))
         Rocket2((1000,250))
         Sun((650,350))
-    def step(self):
-        for Rocket in self.getSpritesbyClass(Rocket1):
-            Rocket.step()
-        for Rocket in self.getSpritesbyClass(Rocket2):
-            Rocket.step()
-        explosions = self.getSpritesbyClass(ExplosionBig)
-        for explosion in explosions:
-            explosion.step()
+        def step(self):
+            for Rocket in self.getSpritesbyClass(Rocket1):
+                Rocket.step()
+            for Rocket in self.getSpritesbyClass(Rocket2):
+                Rocket.step()
+            for explosion in self.getSpritesbyClass(ExplosionBig):
+                explosion.step()
+            for sun in self.getSpritesbyClass(Sun):
+                sun.step()
 #Is there something more that I need to do here?
 myapp = SpaceShootOut(SW, SH)
-myapp.run()
+myapp.run(SpaceShootOut)
