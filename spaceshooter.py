@@ -57,13 +57,11 @@ class SpaceShip(Sprite):
         
         
     def step(self):
+        print('hi')
         self.x+=self.vx
         self.y += self.vy
         self.rotation += self.vr
-        print("hi")
-        
-
-    def step(self):
+    
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
@@ -117,6 +115,8 @@ class SpaceGame(App):
         black = Color(0, 1)
         noline = LineStyle(0, black)
         bg_asset = ImageAsset("images/e36d28c490fe26653e50fbd17025f3ef.jpg")
+        width=512
+        length=512
         bg = Sprite(bg_asset, (0,0))
         bg.scale=1.4
         SpaceShip((40,100))
@@ -132,6 +132,7 @@ class SpaceGame(App):
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
            ship.step()
+    
         for asteroid in self.getSpritesbyClass(Asteroid):
             asteroid.step()
         #for explosion in self.getSpritesbyClass(Explosion):
