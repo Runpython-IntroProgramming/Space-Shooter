@@ -90,7 +90,7 @@ class Asteroid(Sprite):
         
         
     def step(self):
-        if self.x>myapp.width or self.x<0:
+        if self.x>(myapp.width-100) or self.x<0:
             self.vx=self.vx*-1
         self.x+=self.vx
         
@@ -105,10 +105,23 @@ class Asteroid(Sprite):
         
 #explosion
 
-#class Explosion(Sprite):
+class Explosion(Sprite):
     
-    #ex_asset = ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
-    #boomasset = SoundAsset("sounds/explosion2.mp3")
+    ex_asset = ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
+    boomasset = SoundAsset("sounds/explosion2.mp3")
+    
+    def __init__(self, position):
+        super().__init__(ExplosionBig.asset, position)
+        self.image = 0
+        self.center = (0.5, 0.5)
+        self.boom = Sound(ExplosionBig.boomasset)
+        self.boom.play()
+        
+    def step(self):
+        self.setImage(self.image//2)  # slow it down
+        self.image = self.image + 1
+        if self.image == 50:
+            self.destroy()
 
     
 
@@ -123,8 +136,8 @@ class SpaceGame(App):
         bg = Sprite(bg_asset, (0,0))
         bg.scale=1.4
         SpaceShip((40,100))
-        Asteroid((400,100))
-        Asteroid((600,30))
+        Asteroid((400,400))
+        Asteroid((50,30))
         Asteroid((800,300))
         
         #moon
@@ -138,8 +151,8 @@ class SpaceGame(App):
     
         for asteroid in self.getSpritesbyClass(Asteroid):
             asteroid.step()
-        #for explosion in self.getSpritesbyClass(Explosion):
-            #explosion.step()
+        for explosion in self.getSpritesbyClass(Explosion):
+            explosion.step()
     
 
 myapp = SpaceGame()
