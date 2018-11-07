@@ -57,7 +57,6 @@ class SpaceShip(Sprite):
         
         
     def step(self):
-        print('hi')
         self.x+=self.vx
         self.y += self.vy
         self.rotation += self.vr
@@ -91,12 +90,18 @@ class Asteroid(Sprite):
         
         
     def step(self):
+        if self.x>myapp.width or self.x<0:
+            self.vx=self.vx*-1
         self.x+=self.vx
+        
+        
+        if self.y>myapp.height or self.y<0:
+            self.vy=self.vy*-1
         self.y += self.vy
+        
         self.rotation += self.vr
         
-        #if self.x>=self.width:
-            #self.x-+self.vx
+        
         
 #explosion
 
@@ -115,8 +120,6 @@ class SpaceGame(App):
         black = Color(0, 1)
         noline = LineStyle(0, black)
         bg_asset = ImageAsset("images/e36d28c490fe26653e50fbd17025f3ef.jpg")
-        width=512
-        length=512
         bg = Sprite(bg_asset, (0,0))
         bg.scale=1.4
         SpaceShip((40,100))
