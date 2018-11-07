@@ -60,17 +60,10 @@ class SpaceShip(Sprite):
         self.x+=self.vx
         self.y += self.vy
         self.rotation += self.vr
-       
+        print("hi")
+        
+
     def step(self):
-        super().step():
-        if self.visible:
-            collision = self.collidingWithSprites(Asteroid)
-            if len(collision):
-                if collision[0].visible:
-                    collision[0].explode()
-                    self.explode()
-        
-        
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
@@ -104,47 +97,32 @@ class Asteroid(Sprite):
         self.y += self.vy
         self.rotation += self.vr
         
+        #if self.x>=self.width:
+            #self.x-+self.vx
+        
 #explosion
-class Explosion(Sprite):
+
+#class Explosion(Sprite):
     
-    ex_asset = ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
-    boomasset = SoundAsset("sounds/explosion2.mp3")
+    #ex_asset = ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
+    #boomasset = SoundAsset("sounds/explosion2.mp3")
 
     
-    def __init__(self, position):
-        super().__init__(Explosion.asset, position)
-        self.image = 0
-        self.center = (0.5, 0.5)
-        self.boom = Sound(Explosion.boomasset)
-        self.boom.play()
-    
-    def step(self):
-        self.setImage(self.image//2)  # slow it down
-        self.image = self.image + 1
-        if self.image == 50:
-            self.destroy()
-    
-        
-    
-    
-        
-    
-        
+
 #spacegame
+
 class SpaceGame(App):
     def __init__(self):
         super().__init__()
         black = Color(0, 1)
         noline = LineStyle(0, black)
         bg_asset = ImageAsset("images/e36d28c490fe26653e50fbd17025f3ef.jpg")
-        width=400
-        height=50
-        bg = Sprite(bg_asset)
+        bg = Sprite(bg_asset, (0,0))
         bg.scale=1.4
         SpaceShip((40,100))
-        Asteroid((400, 100))
-        Asteroid((600, 30))
-        Asteroid((800, 300))
+        Asteroid((400,100))
+        Asteroid((600,30))
+        Asteroid((800,300))
         
         #moon
         mn_asset=ImageAsset("images/super-moon.png")
@@ -156,6 +134,8 @@ class SpaceGame(App):
            ship.step()
         for asteroid in self.getSpritesbyClass(Asteroid):
             asteroid.step()
+        #for explosion in self.getSpritesbyClass(Explosion):
+            #explosion.step()
     
 
 myapp = SpaceGame()
