@@ -14,6 +14,7 @@ class SpaceShip(Sprite):
     
     r_asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
     Frame(227,0,65,125), 4, 'vertical')
+   
     
     pewasset = SoundAsset("sounds/pew1.mp3")
     
@@ -59,10 +60,15 @@ class SpaceShip(Sprite):
         self.x+=self.vx
         self.y += self.vy
         self.rotation += self.vr
-        collision=(self.collidingWithSprites(Asteroid))
-        if collision:
-            print("colliding")
-            self.visible=False
+       
+    def step(self):
+        super().step():
+        if self.visible:
+            collision = self.collidingWithSprites(Asteroid)
+            if len(collision):
+                if collision[0].visible:
+                    collision[0].explode()
+                    self.explode()
         
         
         if self.thrust == 1:
@@ -102,17 +108,25 @@ class Asteroid(Sprite):
 class Explosion(Sprite):
     
     ex_asset = ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
-    bm_asset = SoundAsset("sounds/explosion2.mp3")
+    boomasset = SoundAsset("sounds/explosion2.mp3")
 
-    def __init__(self):
-        super().__init__()
-        if self.visible=false
-        self.boom=SOund(boom_asset)
+    
+    def __init__(self, position):
+        super().__init__(Explosion.asset, position)
+        self.image = 0
+        self.center = (0.5, 0.5)
+        self.boom = Sound(Explosion.boomasset)
         self.boom.play()
     
     def step(self):
-        if self.image=?:
+        self.setImage(self.image//2)  # slow it down
+        self.image = self.image + 1
+        if self.image == 50:
             self.destroy()
+    
+        
+    
+    
         
     
         
@@ -123,8 +137,8 @@ class SpaceGame(App):
         black = Color(0, 1)
         noline = LineStyle(0, black)
         bg_asset = ImageAsset("images/e36d28c490fe26653e50fbd17025f3ef.jpg")
-        width=500
-        height=500
+        width=400
+        height=50
         bg = Sprite(bg_asset)
         bg.scale=1.4
         SpaceShip((40,100))
