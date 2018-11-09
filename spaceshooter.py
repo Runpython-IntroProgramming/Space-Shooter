@@ -149,9 +149,9 @@ class SpaceGame(App):
         bg.scale=1.4
         
         # Game Over 
-        text_asset=TextAsset(width=200, align='center',style='20px Arial', fill=Color(0xff2222,1)
-        text=Sprite(text_asset)
-        text.visble= False
+        self.text=Sprite(TextAsset(width=200, align='center',style='20px Arial', fill=Color(0xff2222,1))
+        
+        self.text.visble= False
         
         #Locations
         SpaceShip((40,100))
