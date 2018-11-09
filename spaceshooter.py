@@ -51,14 +51,14 @@ class Rocket1(Sprite):
         Frame(227,0,292-227,125), 4, 'vertical')
     def __init__(self, position):
         super().__init__(Rocket1.asset, position)
-        self.vr = 1.00
-        self.thrust = 1
-        self.thrustframe = 1
-        self.VX = 1
-        self.VY = 1   
-        self.vx = 1
-        self.vy = 1
-        self.turn = 1
+        self.vr = 0.00
+        self.thrust = 0
+        self.thrustframe = 0
+        self.VX = 0
+        self.VY = 0   
+        self.vx = 0
+        self.vy = 0
+        self.turn = 0
         SpaceShootOut.listenKeyEvent("keydown", "up arrow", self.thrustOn)
         SpaceShootOut.listenKeyEvent("keyup", "up arrow", self.thrustOff)
         SpaceShootOut.listenKeyEvent("keydown", "left arrow", self.rotateLeft)
@@ -125,14 +125,14 @@ class Rocket2(Sprite):
         Frame(0,0,86,125), 4, 'vertical')
     def __init__(self, position):
         super().__init__(Rocket2.asset, position)
-        self.vr = 1.00
-        self.thrust = 1
-        self.thrustframe = 1
-        self.VX = 1
-        self.VY = 1
-        self.vx = 1
-        self.vy = 1
-        self.turn = 1
+        self.vr = 0.00
+        self.thrust = 0
+        self.thrustframe = 0
+        self.VX = 0
+        self.VY = 0
+        self.vx = 0
+        self.vy = 0
+        self.turn = 0
         SpaceShootOut.listenKeyEvent("keydown", "w", self.thrustOn)
         SpaceShootOut.listenKeyEvent("keyup", "w", self.thrustOff)
         SpaceShootOut.listenKeyEvent("keydown", "a", self.rotateLeft)
@@ -208,10 +208,10 @@ class SpaceShootOut(App):
         Rocket2((1000,250))
         Sun((650,350))
         def step(self):
-            for explosion in self.getSpritesbyClass(ExplosionBig):
-                explosion.step()
-            for sun in self.getSpritesbyClass(Sun):
-                sun.step()
+            for rocket in self.getSpritesbyClass(Rocket1):
+                rocket.step()
+            for rocket in self.getSpritesbyClass(Rocket2):
+                rocket.step()
 #Is there something more that I need to do here?
 myapp = SpaceShootOut(SW, SH)
 myapp.run()
