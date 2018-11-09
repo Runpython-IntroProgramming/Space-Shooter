@@ -6,8 +6,12 @@ Credit: Tutorials Code, Spacewar Code
 Assignment:
 Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
+
+TO DO: 
+print game over when rocket disappears or explodes
+rocket explodes when hits asteroids
 """
-from ggame import App, SoundAsset, Sound, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
+from ggame import App, SoundAsset, Sound, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame, TextAsset
 
 #spaceship
 class SpaceShip(Sprite):
@@ -56,8 +60,10 @@ class SpaceShip(Sprite):
         
         
     def step(self):
-        if self.x>(myapp.width-100) or self.x<0:
+        if self.x>(myapp.width-100) or self.x<0 or self.y>(myapp.height-100) or self.y<0:
+            print('disappear')
             self.visible=False
+            myapp.text.visible = True
         else: 
             self.x+=self.vx
             self.y += self.vy
@@ -129,17 +135,30 @@ class Explosion(Sprite):
 #spacegame
 
 class SpaceGame(App):
+    
+    strings={'over': 'GAME OVER :('}
+    
     def __init__(self):
         super().__init__()
+        
+        #background
         black = Color(0, 1)
         noline = LineStyle(0, black)
         bg_asset = ImageAsset("images/e36d28c490fe26653e50fbd17025f3ef.jpg")
         bg = Sprite(bg_asset, (0,0))
         bg.scale=1.4
+        
+        # Game Over 
+        text_asset=TextAsset(width=200, align='center',style='20px Arial', fill=Color(0xff2222,1)
+        text=Sprite(text_asset)
+        text.visble= False
+        
+        #Locations
         SpaceShip((40,100))
         Asteroid((400,400))
         Asteroid((50,30))
         Asteroid((800,300))
+        
         
         #moon
         mn_asset=ImageAsset("images/super-moon.png")
