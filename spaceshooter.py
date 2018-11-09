@@ -15,7 +15,6 @@ class SpaceShip(Sprite):
     r_asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
     Frame(227,0,65,125), 4, 'vertical')
    
-    
     pewasset = SoundAsset("sounds/pew1.mp3")
     
     def __init__(self, position):
@@ -57,9 +56,12 @@ class SpaceShip(Sprite):
         
         
     def step(self):
-        self.x+=self.vx
-        self.y += self.vy
-        self.rotation += self.vr
+        if self.x>(myapp.width-100) or self.x<0:
+            self.visible=False
+        else: 
+            self.x+=self.vx
+            self.y += self.vy
+            self.rotation += self.vr
     
         if self.thrust == 1:
             self.setImage(self.thrustframe)
@@ -100,7 +102,6 @@ class Asteroid(Sprite):
         self.y += self.vy
         
         self.rotation += self.vr
-        
         
         
 #explosion
