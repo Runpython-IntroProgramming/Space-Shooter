@@ -13,6 +13,7 @@ rocket explodes when hits asteroids
 """
 from ggame import App, SoundAsset, Sound, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame, TextAsset
 
+
 #spaceship
 class SpaceShip(Sprite):
     
@@ -136,8 +137,6 @@ class Explosion(Sprite):
 
 class SpaceGame(App):
     
-    strings={'over': 'GAME OVER :('}
-    
     def __init__(self):
         super().__init__()
         
@@ -149,9 +148,10 @@ class SpaceGame(App):
         bg.scale=1.4
         
         # Game Over 
-        self.text=Sprite(TextAsset(width=200, align='center',style='20px Arial', fill=Color(0xff2222,1))
-        
-        self.text.visble= False
+         #self.textsprites = {k:Sprite(TextAsset(text='GAME OVER:(', width=200, align='center',style='20px Arial', fill=Color(0xff2222,1))) 
+            #for k, v in Spacewar.strings.items()}
+        text=Sprite(TextAsset(v="GAME OVER :(", width=200, align='center',style='20px Arial', fill=Color(0xff2222,1))
+        text.visble= False
         
         #Locations
         SpaceShip((40,100))
