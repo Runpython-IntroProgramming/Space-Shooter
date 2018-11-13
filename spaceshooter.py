@@ -62,8 +62,6 @@ class SpaceShip(Sprite):
         
     def step(self):
         if self.x>(myapp.width-100) or self.x<0 or self.y>(myapp.height-100) or self.y<0:
-            print('disappear')
-            self.visible=False
             myapp.text.visible = True
         else: 
             self.x+=self.vx
@@ -150,8 +148,8 @@ class SpaceGame(App):
         # Game Over 
          #self.textsprites = {k:Sprite(TextAsset(text='GAME OVER:(', width=200, align='center',style='20px Arial', fill=Color(0xff2222,1))) 
             #for k, v in Spacewar.strings.items()}
-        text=Sprite(TextAsset(v="GAME OVER :(", width=200, align='center',style='20px Arial', fill=Color(0xff2222,1))
-        text.visble= False
+        self.text=Sprite(TextAsset("GAME OVER :(", width=500, align='center',style='60px Arial', fill=Color(0xff2222,1)), (300,350))
+        self.text.visible= False
         
         #Locations
         SpaceShip((40,100))
