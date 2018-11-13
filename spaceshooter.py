@@ -153,8 +153,6 @@ class SpaceGame(App):
         bg.scale=1.4
         
         # Game Over 
-         #self.textsprites = {k:Sprite(TextAsset(text='GAME OVER:(', width=200, align='center',style='20px Arial', fill=Color(0xff2222,1))) 
-            #for k, v in Spacewar.strings.items()}
         self.text=Sprite(TextAsset("GAME OVER :(", width=500, align='center',style='60px Arial', fill=Color(0xff2222,1)), (300,350))
         self.text.visible= False
         
