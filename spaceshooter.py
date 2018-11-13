@@ -113,14 +113,14 @@ class Asteroid(Sprite):
 
 class Explosion(Sprite):
     
-    ex_asset = ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
+    explosionasset = ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
     boomasset = SoundAsset("sounds/explosion2.mp3")
     
     def __init__(self, position):
-        super().__init__(ExplosionBig.asset, position)
+        super().__init__(Explosion.asset, position)
         self.image = 0
         self.center = (0.5, 0.5)
-        self.boom = Sound(ExplosionBig.boomasset)
+        self.boom = Sound(Explosion.boomasset)
         self.boom.play()
         
     def step(self):
