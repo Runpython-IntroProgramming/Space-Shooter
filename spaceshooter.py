@@ -75,9 +75,12 @@ class SpaceShip(Sprite):
         else:
             self.setImage(0)
           
-        if self.collidingWithSprites(Asteroid):
+        if self.visible and self.collidingWithSprites(Asteroid):
             self.visible=False
+            #print("ready to go boom")
             Explosion(self.position)
+            #print("went boom")
+            myapp.text.visible=True
             
         
     def thrustOn(self, event):
@@ -117,7 +120,7 @@ class Asteroid(Sprite):
 
 class Explosion(Sprite):
     
-    explosionasset = ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
+    asset = ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
     boomasset = SoundAsset("sounds/explosion2.mp3")
     
     def __init__(self, position):
