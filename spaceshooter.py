@@ -109,7 +109,7 @@ class Asteroid(Sprite):
         self.x+=self.vx
         
         
-        if self.y>myapp.height or self.y<0:
+        if self.y>(myapp.height+100) or self.y<0:
             self.vy=self.vy*-1
         self.y += self.vy
         
