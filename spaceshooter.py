@@ -59,7 +59,6 @@ class SpaceShip(Sprite):
         self.pew.play()
        
         
-        
     def step(self):
         if self.x>(myapp.width-100) or self.x<0 or self.y>(myapp.height-100) or self.y<0:
             myapp.text.visible = True
@@ -75,7 +74,12 @@ class SpaceShip(Sprite):
                 self.thrustframe = 1
         else:
             self.setImage(0)
-    
+          
+        if self.collidingWithSprites(Asteroid):
+            self.visible=False
+            Explosion(self.position)
+            
+        
     def thrustOn(self, event):
         self.thrust = 1
         
