@@ -44,8 +44,6 @@ class Sun(Sprite):
         super().__init__(Sun.asset, position)
         self.fxcenter = 0.0
         self.fycenter = -1.0
-        self.circularCollisionModel()
-        
 class Rocket1(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
         Frame(227,0,292-227,125), 4, 'vertical')
@@ -119,7 +117,6 @@ class Rocket1(Sprite):
         self.vr = -0.05
     def rrOff(self,  event):
         self.vr = 0
-        
 class Rocket2(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(0,0,86,125), 4, 'vertical')
@@ -207,8 +204,8 @@ class SpaceShootOut(App):
         bg1 = Sprite(bg_asset, (512,512))
         bg2 = Sprite(bg_asset, (0,512))
         bg3 = Sprite(bg_asset, (512,0))
-        bg4 = Sprite(bg_asset, (1024,512))
-        bg5 = Sprite(bg_asset, (1024,0))
+        bg4 = Sprite(bg_asset, (2048,2048))
+        bg5 = Sprite(bg_asset, (512,0))
         Rocket1((250,250))
         Rocket2((1000,250))
         Sun((650,350))
@@ -222,3 +219,4 @@ class SpaceShootOut(App):
             explosion.step()
 myapp = SpaceShootOut(SW, SH)
 myapp.run()
+#I was looking through my code and other old Pull Requests and found the Explosion thing. I actually forgot that I needed that even though I prepared a little bit for it. I still need more from the Explosion sprite, as well. I also need to get the background to fill the screen better.
