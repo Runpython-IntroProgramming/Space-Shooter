@@ -23,7 +23,7 @@ orange = Color(0xe59e19, 1.0)
 thinline = LineStyle(1, black)
 noline = LineStyle(0, black)
 
-bg_asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
+bg_asset = ImageAsset("images/starfield.jpg",
 bg = Sprite(bg_asset, (0,0))
 
 myapp.run()
