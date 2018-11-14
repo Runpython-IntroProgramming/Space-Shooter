@@ -21,8 +21,9 @@ meadowgreen = Color(0x8ed334, 1.0)
 orange = Color(0xe59e19, 1.0)
 
 thinline = LineStyle(1, black)
+noline = LineStyle(0, black)
 
-bg_asset = RectangleAsset(myapp.width, myapp.height, thinline, black)
+bg_asset = RectangleAsset(myapp.width, myapp.height, noline, black)
 bg = Sprite(bg_asset, (0,0))
 
 myapp.run()
