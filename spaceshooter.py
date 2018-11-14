@@ -26,3 +26,4 @@ white = Color(0xF8F8FF, 1.0)
 violet = Color(0xd147c5, 1.0)
 
 thinline = LineStyle(1, black)
+
