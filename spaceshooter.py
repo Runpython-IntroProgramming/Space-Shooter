@@ -25,7 +25,7 @@ thinline = LineStyle(1, black)
 noline = LineStyle(0, black)
 
 bg_asset = ImageAsset("images/starfield.jpg",
-    Frame(227,0,65,125), 4, 'vertical')
+    Frame(227,0,1000,1250), 4, 'vertical')
 bg = Sprite(bg_asset, (0,0))
 
 myapp.run()
