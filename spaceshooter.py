@@ -193,6 +193,11 @@ class Rocket2(Sprite):
         self.vr = -0.05
     def rrOff(self,  event):
         self.vr = 0
+class ExplosionBig(Sprite):
+    asset = ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
+    boomasset = SoundAsset("sounds/explosion2.mp3")
+    def __init__(self, position):
+        super().__init__(ExplosionBig.asset, position)
 class SpaceShootOut(App):
     def __init__(self, width, height):
         super().__init__(width, height)
@@ -207,11 +212,13 @@ class SpaceShootOut(App):
         Rocket1((250,250))
         Rocket2((1000,250))
         Sun((650,350))
-        def step(self):
-            for rocket in self.getSpritesbyClass(Rocket1):
-                rocket.step()
-            for rocket in self.getSpritesbyClass(Rocket2):
-                rocket.step()
-#Is there something more that I need to do here?
+    def step(self):
+        for Rocket in self.getSpritesbyClass(Rocket1):
+            Rocket.step()
+        for Rocket in self.getSpritesbyClass(Rocket2):
+            Rocket.step()
+        explosions = self.getSpritesbyClass(ExplosionBig)
+        for explosion in explosions:
+            explosion.step()
 myapp = SpaceShootOut(SW, SH)
 myapp.run()
