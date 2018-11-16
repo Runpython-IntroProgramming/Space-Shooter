@@ -1,7 +1,7 @@
 """
 spaceshooter.py
-Author: <your name here>
-Credit: StackOverflow, Python documentation, ggame documentation, tutorials on the project, and example code.
+Author: Joe Richter
+Credit: StackOverflow, Python documentation, ggame documentation, tutorials on the project, pull requests, example code, and Joe Richter.
 
 Assignment:
 Write and submit a program that implements the spacewar game:
@@ -34,8 +34,8 @@ Have collisions:
     
 Start!
 """
-SW = 2160
-SH = 1440
+SW = 1440
+SH = 768
 class Sun(Sprite):
     asset = ImageAsset("images/sun.png")
     width = 80
@@ -191,7 +191,8 @@ class Rocket2(Sprite):
     def rrOff(self,  event):
         self.vr = 0
 class ExplosionBig(Sprite):
-    asset = ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
+    asset = ImageAsset("images/explosion2.png", 
+    Frame(0,0,4800/25,195), 25)
     boomasset = SoundAsset("sounds/explosion2.mp3")
     def __init__(self, position):
         super().__init__(ExplosionBig.asset, position)
@@ -201,11 +202,14 @@ class SpaceShootOut(App):
         black = Color(0, 1)
         bg_asset = ImageAsset("images/starfield.jpg")
         bg = Sprite(bg_asset, (0,0))
-        bg1 = Sprite(bg_asset, (512,512))
-        bg2 = Sprite(bg_asset, (0,512))
-        bg3 = Sprite(bg_asset, (512,0))
-        bg4 = Sprite(bg_asset, (2048,2048))
-        bg5 = Sprite(bg_asset, (512,0))
+        bg1 = Sprite(bg_asset, (128,128))
+        bg2 = Sprite(bg_asset, (0,256))
+        bg3 = Sprite(bg_asset, (256, 256))
+        bg4 = Sprite(bg_asset, (0,512))
+        bg5 = Sprite(bg_asset, (512,512))
+        bg6 = Sprite(bg_asset, (0, 768))
+        bg7 = Sprite(bg_asset, (768, 768))
+        bg8 = Sprite(bg_asset, (0, 1024))
         Rocket1((250,250))
         Rocket2((1000,250))
         Sun((650,350))
@@ -219,4 +223,3 @@ class SpaceShootOut(App):
             explosion.step()
 myapp = SpaceShootOut(SW, SH)
 myapp.run()
-#I was looking through my code and other old Pull Requests and found the Explosion thing. I actually forgot that I needed that even though I prepared a little bit for it. I still need more from the Explosion sprite, as well. I also need to get the background to fill the screen better.
