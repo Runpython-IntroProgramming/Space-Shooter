@@ -10,8 +10,6 @@ https://github.com/HHS-IntroProgramming/Spacewar
 from ggame import App, Color, LineStyle, Sprite, RectangleAsset, CircleAsset, EllipseAsset, PolygonAsset
 from ggame import ImageAsset, Frame, Sound, SoundAsset, TextAsset
 
-myapp = App()
-
 red = Color(0xff0000, 1.0)
 green = Color(0x00ff00, 1.0)
 blue = Color(0x0000ff, 1.0)
@@ -30,7 +28,7 @@ class Background(App):
     bg = Sprite(bg_asset, (0,0))
     def __init__(self):
         super().__init__()
-        
+
 
 myapp = Background()
 
