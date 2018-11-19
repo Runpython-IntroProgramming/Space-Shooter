@@ -1,7 +1,7 @@
 """
 spaceshooter.py
-Author: <your name here>
-Credit: <list sources used, if any>
+Author: Jackson
+Credit: none yet
 
 Assignment:
 Write and submit a program that implements the spacewar game:
@@ -11,8 +11,9 @@ from ggame import App, Color, LineStyle, Sprite, RectangleAsset, CircleAsset, El
 
 # add your code here \/  \/  \/
 from ggame import App, Color, LineStyle, Sprite
-from ggame import RectangleAsset, CircleAsset, EllipseAsset, PolygonAsset
+from ggame import RectangleAsset, CircleAsset, EllipseAsset, PolygonAsset, ImageAsset, SoundAsset
 
+myapp = App()
 
 red = Color(0xff0000, 1.0)
 green = Color(0x00ff00, 1.0)
@@ -27,6 +28,20 @@ violet = Color(0xd147c5, 1.0)
 teal = Color(0x95E8C4, 1.0)
 
 thinline = LineStyle(1, black)
+noline = LineStyle(0, black)
+
+
+class background(App):
+    def __init__(self):
+        super().__init__()
+        bg_asset = ("starfield.jpg", 
+            Frame(227,0,65,125), 4, 'vertical')
+    def __init__(self, position):
+        super().__init__(SpaceShip.asset, position)
+    backg = Sprite(bg_asset, (0, 0))
 
 
 
+#----------------------------------------------------------------------------------#
+myapp = background()
+myapp.run()
