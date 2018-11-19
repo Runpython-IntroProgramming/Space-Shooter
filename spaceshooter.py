@@ -36,14 +36,6 @@ Start!
 """
 SW = 1440
 SH = 768
-class Sun(Sprite):
-    asset = ImageAsset("images/sun.png")
-    width = 80
-    height = 76
-    def __init__(self, position):
-        super().__init__(Sun.asset, position)
-        self.fxcenter = 0.0
-        self.fycenter = -1.0
 class Rocket1(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
         Frame(227,0,292-227,125), 4, 'vertical')
@@ -89,6 +81,13 @@ class Rocket1(Sprite):
             self.thrustframe += 1
             if self.thrustframe == 4:
                 self.thrustframe = 1
+        else:
+            self.setImage(0)
+        collides = self.collidingWithSprites(Sun)
+        if len(collides):
+            if collides[0].visible:
+                collides[0].explode()
+                self.explode()
         else:
             self.setImage(0)
         collides = self.collidingWithSprites(Rocket2)
@@ -164,6 +163,13 @@ class Rocket2(Sprite):
             self.thrustframe = 1
         else:
             self.setImage(0)
+        collides = self.collidingWithSprites(Sun)
+        if len(collides):
+            if collides[0].visible:
+                collides[0].explode()
+                self.explode()
+        else:
+            self.setImage(0)
         collides = self.collidingWithSprites(Rocket1)
         if len(collides):
             if collides[0].visible:
@@ -190,30 +196,84 @@ class Rocket2(Sprite):
         self.vr = -0.05
     def rrOff(self,  event):
         self.vr = 0
+        
+class Sun(Sprite):
+    asset = ImageAsset("images/sun.png",
+    Frame(0,0,4800/25,195), 25)
+    width = 80
+    height = 76
+    def __init__(self, position):
+        super().__init__(Sun.asset, position)
+        self.fxcenter = 0.0
+        self.fycenter = -1.0
+    def step(self):
+        if:
+            self.setImage(0)
+            collides = self.collidingWithSprites(Rocket1)
+            if len(collides):
+                if collides[0].visible:
+                    collides[0].explode()
+                    self.explode()
+        else:
+            self.setImage(0)
+            collides = self.collidingWithSprites(Rocket2)
+            if len(collides):
+                if collides[0].visible:
+                    collides[0].explode()
+                    self.explode()
+    def move(self):
+        def explode(self):
+            self.visible = False
+            ExplosionBig(self.position)
+            
 class ExplosionBig(Sprite):
     asset = ImageAsset("images/explosion2.png", 
     Frame(0,0,4800/25,195), 25)
     boomasset = SoundAsset("sounds/explosion2.mp3")
     def __init__(self, position):
         super().__init__(ExplosionBig.asset, position)
+        self.image = 0
+        self.center = (0.5, 0.5)
+        self.boom = Sound(ExplosionBig.boomasset)
+        self.boom.play()
+    def step(self):
+        self.setImage(self.image//2)
+        self.image += 1
+        if self.image == 50:
+            self.destroy()
+
 class SpaceShootOut(App):
     def __init__(self, width, height):
         super().__init__(width, height)
         black = Color(0, 1)
         bg_asset = ImageAsset("images/starfield.jpg")
-        bg = Sprite(bg_asset, (0,0))
-        bg1 = Sprite(bg_asset, (128,128))
-        bg2 = Sprite(bg_asset, (0,256))
-        bg3 = Sprite(bg_asset, (256, 256))
-        bg4 = Sprite(bg_asset, (0,512))
-        bg5 = Sprite(bg_asset, (512,512))
-        bg6 = Sprite(bg_asset, (0, 768))
-        bg7 = Sprite(bg_asset, (768, 768))
-        bg8 = Sprite(bg_asset, (0, 1024))
-        Rocket1((250,250))
-        Rocket2((1000,250))
-        Sun((650,350))
+        bg = Sprite(bg_asset, (0, 0))
+        bg1 = Sprite(bg_asset, (0, 256))
+        bg2 = Sprite(bg_asset, (0, 512))
+        bg3 = Sprite(bg_asset, (0,768))
+        bg4 = Sprite(bg_asset, (256, 0))
+        bg4 = Sprite(bg_asset, (256,256))
+        bg5 = Sprite(bg_asset, (256, 512))
+        bg6 = Sprite(bg_asset, (256, 768))
+        bg7 = Sprite(bg_asset, (512, 0))
+        bg7 = Sprite(bg_asset, (512, 256))
+        bg8 = Sprite(bg_asset, (512, 512))
+        bg9 = Sprite(bg_asset, (512, 768))
+        bg11 = Sprite(bg_asset, (768, 0))
+        bg10 = Sprite(bg_asset, (768, 256))
+        bg11 = Sprite(bg_asset, (768, 512))
+        bg12 = Sprite(bg_asset, (768,768))
+        bg15 = Sprite(bg_asset, (1024, 0))
+        bg13 = Sprite(bg_asset, (1024,256))
+        bg14 = Sprite(bg_asset, (1024,512))
+        bg15 = Sprite(bg_asset, (1024,768))
+
+        Rocket1((200,250))
+        Rocket2((1240,250))
+        Sun((670,284))
     def step(self):
+        for SunnyBoom in self.getSpritesbyClass(Sun):
+            SunnyBoom.step()
         for Rocket in self.getSpritesbyClass(Rocket1):
             Rocket.step()
         for Rocket in self.getSpritesbyClass(Rocket2):
