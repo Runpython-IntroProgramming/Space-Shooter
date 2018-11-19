@@ -24,6 +24,9 @@ purple = Color(0xBF3EFF, 1.0)
 gold = Color(0xFFD700, 1.0)
 white = Color(0xF8F8FF, 1.0)
 violet = Color(0xd147c5, 1.0)
+teal = Color(0x95E8C4, 1.0)
 
 thinline = LineStyle(1, black)
+
+
 
