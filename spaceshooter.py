@@ -43,7 +43,7 @@ class Rocket1(Sprite):
         super().__init__(Rocket1.asset, position)
         self.vr = 0.00
         self.thrust = 0
-        self.thrustframe = 0
+        self.thrustframe = 1
         self.VX = 0
         self.VY = 0   
         self.vx = 0
@@ -123,7 +123,7 @@ class Rocket2(Sprite):
         super().__init__(Rocket2.asset, position)
         self.vr = 0.00
         self.thrust = 0
-        self.thrustframe = 0
+        self.thrustframe = 1
         self.VX = 0
         self.VY = 0
         self.vx = 0
@@ -198,8 +198,7 @@ class Rocket2(Sprite):
         self.vr = 0
         
 class Sun(Sprite):
-    asset = ImageAsset("images/sun.png",
-    Frame(0,0,4800/25,195), 25)
+    asset = ImageAsset("images/sun.png")
     width = 80
     height = 76
     def __init__(self, position):
