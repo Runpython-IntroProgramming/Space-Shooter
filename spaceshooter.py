@@ -31,4 +31,6 @@ class Background(App):
         Frame(227,0,1000,1250), 4, 'vertical')
         bg = Sprite(bg_asset, (0,0))
 
+myapp = Background()
+
 myapp.run()
