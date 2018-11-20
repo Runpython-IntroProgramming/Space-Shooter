@@ -22,10 +22,14 @@ orange = Color(0xe59e19, 1.0)
 thinline = LineStyle(1, black)
 noline = LineStyle(0, black)
 
-bg_asset = ImageAsset("images/starfield.jpg",
-    Frame(227,0,1000,1250), 4, 'vertical')
-bg = Sprite(bg_asset, (0,0))
+class Background(App):
+    bg_asset = ImageAsset("images/starfield.jpg",
+        Frame(227,0,1000,1250), 4, 'vertical')
+    bg = Sprite(bg_asset, (0,0))
+    def __init__(self):
+        super().__init__()
 
 
+myapp = Background()
 
 myapp.run()
