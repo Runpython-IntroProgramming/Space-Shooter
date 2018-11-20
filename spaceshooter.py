@@ -82,11 +82,11 @@ class Rocket1(Sprite):
             if self.thrustframe == 4:
                 self.thrustframe = 1
         else:
-            self.setImage(0)
+            self.setImage(1)
         collides = self.collidingWithSprites(Sun)
         if len(collides):
-            if collides[0].visible:
-                collides[0].explode()
+            if collides[1].visible:
+                collides[1].explode()
                 self.explode()
         else:
             self.setImage(0)
@@ -162,11 +162,11 @@ class Rocket2(Sprite):
         if self.thrustframe == 4:
             self.thrustframe = 1
         else:
-            self.setImage(0)
+            self.setImage(2)
         collides = self.collidingWithSprites(Sun)
         if len(collides):
-            if collides[0].visible:
-                collides[0].explode()
+            if collides[2].visible:
+                collides[2].explode()
                 self.explode()
         else:
             self.setImage(0)
@@ -207,18 +207,18 @@ class Sun(Sprite):
         self.fycenter = -1.0
     def step(self):
         if:
-            self.setImage(0)
+            self.setImage(1)
             collides = self.collidingWithSprites(Rocket1)
             if len(collides):
-                if collides[0].visible:
-                    collides[0].explode()
+                if collides[1].visible:
+                    collides[1].explode()
                     self.explode()
         else:
-            self.setImage(0)
+            self.setImage(2)
             collides = self.collidingWithSprites(Rocket2)
             if len(collides):
-                if collides[0].visible:
-                    collides[0].explode()
+                if collides[2].visible:
+                    collides[2].explode()
                     self.explode()
     def move(self):
         def explode(self):
