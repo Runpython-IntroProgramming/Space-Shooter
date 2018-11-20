@@ -1,7 +1,7 @@
 """
 spaceshooter.py
 Author: Nathan Subrahmanian
-Credit: N/A
+Credit: https://stackoverflow.com/questions/8696322/why-does-this-attributeerror-in-python-occur
 
 Assignment:
 Write and submit a program that implements the spacewar game:
