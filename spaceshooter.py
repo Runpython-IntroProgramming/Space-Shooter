@@ -1,7 +1,7 @@
 """
 spaceshooter.py
-Author: <your name here>
-Credit: <list sources used, if any>
+Author: Joseph Goff
+Credit: None
 
 Assignment:
 Write and submit a program that implements the spacewar game:
@@ -12,10 +12,34 @@ from ggame import App, ImageAsset, RectangleAsset, Sprite, LineStyle, Frame, Col
 from math import sin, cos
 
 #Screen Dimensions
-width = 640
-height = 480
+width = 700
+height = 500
 
-#Makes Explosions 
+#Making the Stars 
+class Stars(Sprite):
+
+    asset = ImageAsset("images/starfield.jpg")
+    width = 512
+    height = 512
+
+    def __init__(self, position):
+        super().__init__(Stars.asset, position)
+
+#Making the Sun
+class Sun(Sprite):
+    
+    asset = ImageAsset("images/sun.png")
+    width = 80
+    height = 76
+    
+    def __init__(self, position):
+        super().__init__(Sun.asset, position)
+        self.mass = 30*1000
+        self.fxcenter = 0.5
+        self.fycenter = 0.5
+        self.circularCollisionModel()
+
+#Creating Explosions 
 class BigExplosion(Sprite):
     
     asset = ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
@@ -30,29 +54,6 @@ class BigExplosion(Sprite):
         self.image = self.image + 1
         if self.image == 50:
             self.destroy()
-            
-#Image Stars 
-class Stars(Sprite):
-
-    asset = ImageAsset("images/starfield.jpg")
-    width = 512
-    height = 512
-
-    def __init__(self, position):
-        super().__init__(Stars.asset, position)
-
-class Sun(Sprite):
-    
-    asset = ImageAsset("images/sun.png")
-    width = 80
-    height = 76
-    
-    def __init__(self, position):
-        super().__init__(Sun.asset, position)
-        self.mass = 30*1000
-        self.fxcenter = 0.5
-        self.fycenter = 0.5
-        self.circularCollisionModel()
 
 class SpaceShip(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
