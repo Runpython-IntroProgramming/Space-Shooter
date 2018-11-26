@@ -22,7 +22,8 @@ orange = Color(0xe59e19, 1.0)
 thinline = LineStyle(1, black)
 noline = LineStyle(0, black)
 
-
+class Rocket(Sprite):
+    
 
 class SpaceShooter(App):
     def __init__(self):
