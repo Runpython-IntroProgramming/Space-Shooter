@@ -1,7 +1,7 @@
 """
 spaceshooter.py
 Author: Jackson
-Credit: none yet
+Credit: spacewar game
 
 Assignment:
 Write and submit a program that implements the spacewar game:
@@ -31,17 +31,20 @@ thinline = LineStyle(1, black)
 noline = LineStyle(0, black)
 
 
-class background(App):
+class spaceshooter(App):
     def __init__(self):
         super().__init__()
-        bg_asset = ("starfield.jpg", 
-            Frame(227,0,65,125), 4, 'vertical')
-    def __init__(self, position):
-        super().__init__(SpaceShip.asset, position)
-    backg = Sprite(bg_asset, (0, 0))
+        
+    bg_asset = ImageAsset("images/starfield.jpg")
+    bg = Sprite(bg_asset, (0, 0))
+    bg.scale = 2
 
+class rocketship(Sprite):
+    rocketpicture = ImageAsset("images/four_spaceship_by_slbertov_with_thrust.png")
+    Frame(227, 0
+    
 
 
 #----------------------------------------------------------------------------------#
-myapp = background()
+myapp = spaceshooter()
 myapp.run()
