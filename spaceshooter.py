@@ -34,6 +34,8 @@ class SpaceShooter(App):
         bg = Sprite(bg_asset, (0,0))
         bg.scale=2
 
+    SpaceShip((40,100))
+    
 myapp = SpaceShooter()
 
 myapp.run()
