@@ -30,6 +30,9 @@ teal = Color(0x95E8C4, 1.0)
 thinline = LineStyle(1, black)
 noline = LineStyle(0, black)
 
+class rocket(Sprite):
+    rocketpicture = ImageAsset("images/four_spaceship_by_slbertov_with_thrust.png",
+    Frame(227, 0, 65, 125), 4, 'vertical')
 
 class spaceshooter(App):
     def __init__(self):
@@ -39,9 +42,6 @@ class spaceshooter(App):
     bg = Sprite(bg_asset, (0, 0))
     bg.scale = 2
 
-class rocketship(Sprite):
-    rocketpicture = ImageAsset("images/four_spaceship_by_slbertov_with_thrust.png")
-    Frame(227, 0
     
 
 
