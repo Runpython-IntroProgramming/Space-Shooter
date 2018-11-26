@@ -23,7 +23,8 @@ thinline = LineStyle(1, black)
 noline = LineStyle(0, black)
 
 class Rocket(Sprite):
-    
+    rocketpic = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
+    Frame(227,0,65,125), 4, 'vertical')
 
 class SpaceShooter(App):
     def __init__(self):
