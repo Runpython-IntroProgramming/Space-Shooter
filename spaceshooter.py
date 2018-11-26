@@ -25,7 +25,7 @@ noline = LineStyle(0, black)
 class Background(App):
     bg_asset = ImageAsset("images/starfield.jpg",
         Frame(227,0,1000,1250), 4, 'vertical')
-    bg = Sprite(bg_asset, (150,150))
+    bg = Sprite(bg_asset, (0,0))
     def __init__(self):
         super().__init__()
 
