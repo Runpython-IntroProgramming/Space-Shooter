@@ -29,6 +29,15 @@ class Background(App):
     def __init__(self):
         super().__init__()
 
+ def __init__(self):
+        super().__init__()
+        
+        #background
+        black = Color(0, 1)
+        noline = LineStyle(0, black)
+        bg_asset = ImageAsset("images/starfield.jpg")
+        bg = Sprite(bg_asset, (0,0))
+        bg.scale=1.4
 
 myapp = Background()
 
