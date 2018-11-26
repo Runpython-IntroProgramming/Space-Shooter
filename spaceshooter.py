@@ -35,12 +35,12 @@ class Rocket(Sprite):
         self.thrust = 0
         self.thrustframe = 1
         self.fxcenter = self.fycenter = 0.5
-        SpaceGame.listenKeyEvent("keydown", "right arrow", self.rightarrowKey)
-        SpaceGame.listenKeyEvent('keydown', "left arrow", self.leftarrowKey)
-        SpaceGame.listenKeyEvent('keydown', "up arrow", self.uparrowKey)
-        SpaceGame.listenKeyEvent('keydown', "down arrow", self.downarrowKey)
-        SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
-        SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
+        SpaceShooter.listenKeyEvent("keydown", "right arrow", self.rightarrowKey)
+        SpaceShooter.listenKeyEvent('keydown', "left arrow", self.leftarrowKey)
+        SpaceShooter.listenKeyEvent('keydown', "up arrow", self.uparrowKey)
+        SpaceShooter.listenKeyEvent('keydown', "down arrow", self.downarrowKey)
+        SpaceShooter.listenKeyEvent("keydown", "space", self.thrustOn)
+        SpaceShooter.listenKeyEvent("keyup", "space", self.thrustOff)
         
 
 class SpaceShooter(App):
