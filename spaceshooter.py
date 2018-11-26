@@ -22,7 +22,9 @@ orange = Color(0xe59e19, 1.0)
 thinline = LineStyle(1, black)
 noline = LineStyle(0, black)
 
-class Background(App):
+
+
+class SpaceShooter(App):
     def __init__(self):
         super().__init__()
         
@@ -30,6 +32,6 @@ class Background(App):
         bg = Sprite(bg_asset, (0,0))
         bg.scale=2
 
-myapp = Background()
+myapp = SpaceShooter()
 
 myapp.run()
