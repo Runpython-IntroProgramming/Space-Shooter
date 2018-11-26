@@ -8,7 +8,7 @@ Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
 """
 from ggame import App, Color, LineStyle, Sprite, RectangleAsset, CircleAsset, EllipseAsset, PolygonAsset
-from ggame import ImageAsset, Frame, Sound, SoundAsset, TextAsset, Background
+from ggame import ImageAsset, Frame, Sound, SoundAsset, TextAsset
 
 red = Color(0xff0000, 1.0)
 green = Color(0x00ff00, 1.0)
