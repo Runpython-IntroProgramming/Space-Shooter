@@ -21,17 +21,8 @@ orange = Color(0xe59e19, 1.0)
 
 thinline = LineStyle(1, black)
 noline = LineStyle(0, black)
-        
-class SpaceShooter(App):
-    def __init__(self):
-        super().__init__()
-        
-        bg_asset = ImageAsset("images/starfield.jpg")
-        bg = Sprite(bg_asset, (0,0))
-        bg.scale=2
 
-    Rocket((40,100))
-    
+
 
 class Rocket(Sprite):
     rocketpic = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
@@ -65,7 +56,15 @@ class Rocket(Sprite):
     def downarrowKey(self, event):
         self.vy+=.5
         
+class SpaceShooter(App):
+    def __init__(self):
+        super().__init__()
+        
+        bg_asset = ImageAsset("images/starfield.jpg")
+        bg = Sprite(bg_asset, (0,0))
+        bg.scale=2
 
+    Rocket((40,100))
     
 myapp = SpaceShooter()
 
