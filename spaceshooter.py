@@ -25,39 +25,39 @@ noline = LineStyle(0, black)
 
 
 
-class Rocket(Sprite):
-    rocketpic = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
-    Frame(227,0,65,125), 4, 'vertical')
-    
-    def __init__(self, position):
-        super().__init__(Rocket.rocketpic, position)
-        self.vx=1
-        self.vy=1
-        self.vr=0.01
-        self.scale=.5
-        self.thrust = 0
-        self.thrustframe = 1
-        self.fxcenter = self.fycenter = 0.5
-        SpaceShooter.listenKeyEvent("keydown", "right arrow", self.rightarrowKey)
-        SpaceShooter.listenKeyEvent('keydown', "left arrow", self.leftarrowKey)
-        SpaceShooter.listenKeyEvent('keydown', "up arrow", self.uparrowKey)
-        SpaceShooter.listenKeyEvent('keydown', "down arrow", self.downarrowKey)
-        SpaceShooter.listenKeyEvent("keydown", "space", self.thrustOn)
-        SpaceShooter.listenKeyEvent("keyup", "space", self.thrustOff)
-        
-    def rightarrowKey(self, event):
-        self.vx+=.5
-        
-    def leftarrowKey(self, event):
-        self.vx+=-.5
-        
-    def uparrowKey(self, event):
-        self.vy+=-.5
-        
-    def downarrowKey(self, event):
-        self.vy+=.5
-        
 class SpaceShooter(App):
+    class Rocket(Sprite):
+        rocketpic = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
+        Frame(227,0,65,125), 4, 'vertical')
+    
+        def __init__(self, position):
+            super().__init__(Rocket.rocketpic, position)
+            self.vx=1
+            self.vy=1
+            self.vr=0.01
+            self.scale=.5
+            self.thrust = 0
+            self.thrustframe = 1
+            self.fxcenter = self.fycenter = 0.5
+            SpaceShooter.listenKeyEvent("keydown", "right arrow", self.rightarrowKey)
+            SpaceShooter.listenKeyEvent('keydown', "left arrow", self.leftarrowKey)
+            SpaceShooter.listenKeyEvent('keydown', "up arrow", self.uparrowKey)
+            SpaceShooter.listenKeyEvent('keydown', "down arrow", self.downarrowKey)
+            SpaceShooter.listenKeyEvent("keydown", "space", self.thrustOn)
+            SpaceShooter.listenKeyEvent("keyup", "space", self.thrustOff)
+        
+        def rightarrowKey(self, event):
+            self.vx+=.5
+        
+        def leftarrowKey(self, event):
+            self.vx+=-.5
+        
+        def uparrowKey(self, event):
+            self.vy+=-.5
+        
+        def downarrowKey(self, event):
+            self.vy+=.5
+        
     def __init__(self):
         super().__init__()
         
@@ -65,7 +65,7 @@ class SpaceShooter(App):
         bg = Sprite(bg_asset, (0,0))
         bg.scale=2
 
-    Rocket((40,100))
+        Rocket((40,100))
     
 myapp = SpaceShooter()
 
