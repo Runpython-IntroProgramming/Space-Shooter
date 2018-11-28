@@ -38,6 +38,14 @@ class rocket(Sprite):
         super().__init__(rocket.rocketpicture, pos)
     
 
+class bigsun(Sprite):
+    def __init__(self):
+        super().__init__()
+    sun = ImageAsset("images/sun.jpg")
+    
+
+
+
 
 
 class spaceshooter(App):
@@ -46,10 +54,11 @@ class spaceshooter(App):
         bg_asset = ImageAsset("images/starfield.jpg")
         bg = Sprite(bg_asset, (0, 0))
         bg.scale = 2
-        self.rocketship = rocket((50,50))
+        self.rocketship = rocket((500,30))
     
     def step(self):
-        self.rocketship.x += 1
+        self.rocketship.x += 0
+        self.rocketship.y += 0
 
 
 #----------------------------------------------------------------------------------#
