@@ -30,6 +30,7 @@ teal = Color(0x95E8C4, 1.0)
 thinline = LineStyle(1, black)
 noline = LineStyle(0, black)
 
+#rocket ship 
 class rocket(Sprite):
     rocketpicture = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
         Frame(227, 0, 65, 125), 4, 'vertical')
@@ -37,14 +38,6 @@ class rocket(Sprite):
     def __init__(self, pos):
         super().__init__(rocket.rocketpicture, pos)
     
-
-class bigsun(Sprite):
-    def __init__(self):
-        super().__init__()
-    sun = ImageAsset("images/sun.jpg")
-    
-
-
 
 
 
@@ -57,8 +50,8 @@ class spaceshooter(App):
         self.rocketship = rocket((500,30))
     
     def step(self):
-        self.rocketship.x += 0
-        self.rocketship.y += 0
+        self.rocketship.x += 2
+        self.rocketship.y += 2
 
 
 #----------------------------------------------------------------------------------#
