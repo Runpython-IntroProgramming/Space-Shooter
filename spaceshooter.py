@@ -67,11 +67,11 @@ class SpaceShooter(App):
         bg = Sprite(bg_asset, (0,0))
         bg.scale=2
 
-        Rocket((40,100))
+        self.gravity = Rocket((40,100))
         
     def step(self):
-        self.Rocket.x += 2
-        self.Rocket.y += 2
+        self.gravity.x += 2
+        self.gravity.y += 2
     
 myapp = SpaceShooter()
 
