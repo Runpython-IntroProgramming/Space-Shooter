@@ -205,6 +205,25 @@ class Sun(Sprite):
         super().__init__(Sun.asset, position)
         self.fxcenter = 0.0
         self.fycenter = -1.0
+    def step(self):
+        if:
+            self.setImage(1)
+            collides = self.collidingWithSprites(Rocket1)
+            if len(collides):
+                if collides[1].visible:
+                    collides[1].explode()
+                    self.explode()
+        else:
+            self.setImage(2)
+            collides = self.collidingWithSprites(Rocket2)
+            if len(collides):
+                if collides[2].visible:
+                    collides[2].explode()
+                    self.explode()
+    def move(self):
+        def explode(self):
+            self.visible = False
+            ExplosionBig(self.position)
     def move(self):
         def explode(self):
             self.visible = False
