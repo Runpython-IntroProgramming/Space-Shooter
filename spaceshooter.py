@@ -68,6 +68,7 @@ class SpaceShooter(App):
         bg.scale=2
 
         Rocket((40,100))
+        
     def step(self):
         self.Rocket.x += 2
         self.Rocket.y += 2
