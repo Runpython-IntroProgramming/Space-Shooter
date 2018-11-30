@@ -70,8 +70,8 @@ class SpaceShooter(App):
         self.gravity = Rocket((40,100))
         
     def step(self):
-        self.gravity.x += 1
-        self.gravity.y += 1
+        self.gravity.x += 0.5
+        self.gravity.y += 0.5
     
 myapp = SpaceShooter()
 
