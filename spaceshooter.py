@@ -82,11 +82,11 @@ class Rocket1(Sprite):
             if self.thrustframe == 4:
                 self.thrustframe = 1
         else:
-            self.setImage(1)
+            self.setImage(0)
         collides = self.collidingWithSprites(Sun)
         if len(collides):
-            if collides[1].visible:
-                collides[1].explode()
+            if collides[0].visible:
+                collides[0].explode()
                 self.explode()
         else:
             self.setImage(0)
@@ -162,11 +162,11 @@ class Rocket2(Sprite):
         if self.thrustframe == 4:
             self.thrustframe = 1
         else:
-            self.setImage(2)
+            self.setImage(0)
         collides = self.collidingWithSprites(Sun)
         if len(collides):
-            if collides[2].visible:
-                collides[2].explode()
+            if collides[0].visible:
+                collides[0].explode()
                 self.explode()
         else:
             self.setImage(0)
@@ -205,26 +205,7 @@ class Sun(Sprite):
         super().__init__(Sun.asset, position)
         self.fxcenter = 0.0
         self.fycenter = -1.0
-    def step(self):
-        if:
-            self.setImage(1)
-            collides = self.collidingWithSprites(Rocket1)
-            if len(collides):
-                if collides[1].visible:
-                    collides[1].explode()
-                    self.explode()
-        else:
-            self.setImage(2)
-            collides = self.collidingWithSprites(Rocket2)
-            if len(collides):
-                if collides[2].visible:
-                    collides[2].explode()
-                    self.explode()
-    def move(self):
-        def explode(self):
-            self.visible = False
-            ExplosionBig(self.position)
-            
+
 class ExplosionBig(Sprite):
     asset = ImageAsset("images/explosion2.png", 
     Frame(0,0,4800/25,195), 25)
@@ -237,7 +218,7 @@ class ExplosionBig(Sprite):
         self.boom.play()
     def step(self):
         self.setImage(self.image//2)
-        self.image += 1
+        self.image += 2
         if self.image == 50:
             self.destroy()
 
@@ -271,14 +252,12 @@ class SpaceShootOut(App):
         Rocket2((1240,250))
         Sun((670,284))
     def step(self):
-        for SunnyBoom in self.getSpritesbyClass(Sun):
-            SunnyBoom.step()
+        for Sunn in self.getSpritesbyClass(Sun):
+            Sunn.step()
         for Rocket in self.getSpritesbyClass(Rocket1):
             Rocket.step()
         for Rocket in self.getSpritesbyClass(Rocket2):
             Rocket.step()
-        explosions = self.getSpritesbyClass(ExplosionBig)
-        for explosion in explosions:
             explosion.step()
 myapp = SpaceShootOut(SW, SH)
 myapp.run()
