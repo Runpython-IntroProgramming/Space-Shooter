@@ -205,6 +205,10 @@ class Sun(Sprite):
         super().__init__(Sun.asset, position)
         self.fxcenter = 0.0
         self.fycenter = -1.0
+    def move(self):
+        def explode(self):
+            self.visible = False
+            ExplosionBig(self.position)
 
 class ExplosionBig(Sprite):
     asset = ImageAsset("images/explosion2.png", 
@@ -258,6 +262,7 @@ class SpaceShootOut(App):
             Rocket.step()
         for Rocket in self.getSpritesbyClass(Rocket2):
             Rocket.step()
+        for explosion in self.getSpritesbyClass(ExplosionBig):
             explosion.step()
 myapp = SpaceShootOut(SW, SH)
 myapp.run()
