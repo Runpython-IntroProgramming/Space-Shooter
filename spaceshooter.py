@@ -3,6 +3,7 @@ spaceshooter.py
 Author: Nathan Subrahmanian
 Credit: https://stackoverflow.com/questions/8696322/why-does-this-attributeerror-in-python-occur
 https://stackoverflow.com/questions/78799/is-there-a-benefit-to-defining-a-class-inside-another-class-in-python
+Example Space Shooters
 
 Assignment:
 Write and submit a program that implements the spacewar game:
@@ -41,8 +42,7 @@ class Rocket(Sprite):
         SpaceShooter.listenKeyEvent('keydown', "left arrow", self.leftarrowKey)
         SpaceShooter.listenKeyEvent('keydown', "up arrow", self.uparrowKey)
         SpaceShooter.listenKeyEvent('keydown', "down arrow", self.downarrowKey)
-        SpaceShooter.listenKeyEvent("keydown", "space", self.thrustOn)
-        SpaceShooter.listenKeyEvent("keyup", "space", self.thrustOff)
+
         
     def rightarrowKey(self, event):
         self.vx+=.5
