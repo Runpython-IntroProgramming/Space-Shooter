@@ -38,7 +38,8 @@ class rocket(Sprite):
     def __init__(self, pos):
         super().__init__(rocket.rocketpicture, pos)
     
-
+class sun(Sprite):
+    
 
 
 class spaceshooter(App):
@@ -50,8 +51,9 @@ class spaceshooter(App):
         self.rocketship = rocket((500,30))
     
     def step(self):
-        self.rocketship.x += 2
-        self.rocketship.y += 2
+        self.rocketship.x += 0.75
+        self.rocketship.y += 0.75
+    
 
 
 #----------------------------------------------------------------------------------#
