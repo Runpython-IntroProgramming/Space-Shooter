@@ -73,7 +73,19 @@ class Rocket(Sprite):
                 self.thrustframe = 1
         else:
             self.setImage(0)
-
+            
+        
+    def controldown(self, event):
+        if self.visible:
+            command = self.keymap[event.key]
+            if command == "left":
+                self.rrate = Ship.R
+            elif command == "right":
+                self.rrate = -Ship.R
+            elif command == "forward":
+                self.thrust = 40.0
+                self.imagex = 1 # start the animated rockets
+                self.setImage(self.imagex)
             
   
 class SpaceShooter(App):
