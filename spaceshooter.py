@@ -5,6 +5,7 @@ Credit: https://stackoverflow.com/questions/8696322/why-does-this-attributeerror
 https://stackoverflow.com/questions/78799/is-there-a-benefit-to-defining-a-class-inside-another-class-in-python
 Example Space Shooters
 Space Shooters Source Code
+Ggame Tutorial Website
 
 Assignment:
 Write and submit a program that implements the spacewar game:
