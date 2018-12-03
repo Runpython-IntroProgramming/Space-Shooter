@@ -47,18 +47,18 @@ class Sun(Sprite):
     def move(self):
         if:
             self.setImage(0)
-        collides = self.collidingWithSprites(Rocket1)
-            if len(collides):
-                if collides[0].visible:
-                    collides[0].explode()
-                    self.explode()
+            collides = self.collidingWithSprites(Rocket1)
+                if len(collides):
+                    if collides[0].visible:
+                        collides[0].explode()
+                        self.explode()
         else:
             self.setImage(0)
-        collides = self.collidingWithSprites(Rocket2)
-            if len(collides):
-                if collides[0].visible:
-                    collides[0].explode()
-                    self.explode()
+            collides = self.collidingWithSprites(Rocket2)
+                if len(collides):
+                    if collides[0].visible:
+                        collides[0].explode()
+                        self.explode()
 class Rocket1(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
         Frame(227,0,292-227,125), 4, 'vertical')
@@ -106,18 +106,18 @@ class Rocket1(Sprite):
                 self.thrustframe = 1
         if:
             self.setImage(0)
-        collides = self.collidingWithSprites(Sun)
-        if len(collides):
-            if collides[0].visible:
-                collides[0].explode()
-                self.explode()
+            collides = self.collidingWithSprites(Sun)
+            if len(collides):
+                if collides[0].visible:
+                    collides[0].explode()
+                    self.explode()
         else:
             self.setImage(0)
-        collides = self.collidingWithSprites(Rocket2)
-        if len(collides):
-            if collides[0].visible:
-                collides[0].explode()
-                self.explode()
+           collides = self.collidingWithSprites(Rocket2)
+            if len(collides):
+                if collides[0].visible:
+                    collides[0].explode()
+                    self.explode()
     def move(self):
         self.X = math.sin(self.rotation)
         self.Y = math.cos(self.rotation)
@@ -186,18 +186,18 @@ class Rocket2(Sprite):
             self.thrustframe = 1
         if:
             self.setImage(0)
-        collides = self.collidingWithSprites(Sun)
-        if len(collides):
-            if collides[0].visible:
-                collides[0].explode()
-                self.explode()
+            collides = self.collidingWithSprites(Sun)
+            if len(collides):
+                if collides[0].visible:
+                    collides[0].explode()
+                    self.explode()
         else:
             self.setImage(0)
-        collides = self.collidingWithSprites(Rocket2)
-        if len(collides):
-            if collides[0].visible:
-                collides[0].explode()
-                self.explode()
+            collides = self.collidingWithSprites(Rocket2)
+            if len(collides):
+                if collides[0].visible:
+                    collides[0].explode()
+                    self.explode()
     def move(self):
         self.X = math.sin(self.rotation)
         self.Y = math.cos(self.rotation)
