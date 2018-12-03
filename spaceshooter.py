@@ -73,13 +73,7 @@ class Rocket(Sprite):
                 self.thrustframe = 1
         else:
             self.setImage(0)
-          
-        if self.visible and self.collidingWithSprites(Asteroid):
-            self.visible=False
-            #print("ready to go boom")
-            Explosion(self.position)
-            #print("went boom")
-            myapp.text.visible=True
+
             
   
 class SpaceShooter(App):
