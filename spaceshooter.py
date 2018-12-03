@@ -81,7 +81,7 @@ class Rocket(Sprite):
             #print("went boom")
             myapp.text.visible=True
             
-'''        
+  
 class SpaceShooter(App):
   
     def __init__(self):
