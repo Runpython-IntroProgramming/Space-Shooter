@@ -73,7 +73,7 @@ class SpaceShooter(App):
     def step(self):
         self.gravity.x += 0.5
         self.gravity.y += 0.5
-    
+
 myapp = SpaceShooter()
 
 myapp.run()
