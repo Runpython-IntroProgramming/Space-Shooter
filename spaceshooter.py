@@ -3,8 +3,8 @@ spaceshooter.py
 Author: Nathan Subrahmanian
 Credit: https://stackoverflow.com/questions/8696322/why-does-this-attributeerror-in-python-occur
 https://stackoverflow.com/questions/78799/is-there-a-benefit-to-defining-a-class-inside-another-class-in-python
-Example Space Shooter
-Space Shooter Source Code
+Example Space Shooters
+Space Shooters Source Code
 
 Assignment:
 Write and submit a program that implements the spacewar game:
