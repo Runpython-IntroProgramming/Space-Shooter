@@ -74,7 +74,6 @@ class Rocket(Sprite):
         else:
             self.setImage(0)
             
-        
     def controldown(self, event):
         if self.visible:
             command = self.keymap[event.key]
