@@ -57,7 +57,7 @@ class Rocket(Sprite):
     def downarrowKey(self, event):
         self.vy+=.5
 
- '''   def step(self):
+'''   def step(self):
         if self.x>(myapp.width-100) or self.x<0 or self.y>(myapp.height+100) or self.y<0:
             myapp.text.visible = True
         else: 
@@ -80,7 +80,7 @@ class Rocket(Sprite):
             #print("went boom")
             myapp.text.visible=True
             
-    '''        
+'''        
 class SpaceShooter(App):
   
     def __init__(self):
