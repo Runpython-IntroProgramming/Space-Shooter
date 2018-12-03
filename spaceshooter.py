@@ -36,6 +36,29 @@ Start!
 """
 SW = 1440
 SH = 768
+class Sun(Sprite):
+    asset = ImageAsset("images/sun.png")
+    width = 80
+    height = 76
+    def __init__(self, position):
+        super().__init__(Sun.asset, position)
+        self.fxcenter = 0.5
+        self.fycenter = -1.0
+    def move(self):
+        if:
+            self.setImage(0)
+        collides = self.collidingWithSprites(Rocket1)
+            if len(collides):
+                if collides[0].visible:
+                    collides[0].explode()
+                    self.explode()
+        else:
+            self.setImage(0)
+        collides = self.collidingWithSprites(Rocket2)
+            if len(collides):
+                if collides[0].visible:
+                    collides[0].explode()
+                    self.explode()
 class Rocket1(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
         Frame(227,0,292-227,125), 4, 'vertical')
@@ -81,7 +104,7 @@ class Rocket1(Sprite):
             self.thrustframe += 1
             if self.thrustframe == 4:
                 self.thrustframe = 1
-        else:
+        if:
             self.setImage(0)
         collides = self.collidingWithSprites(Sun)
         if len(collides):
@@ -161,7 +184,7 @@ class Rocket2(Sprite):
             self.thrustframe += 1
         if self.thrustframe == 4:
             self.thrustframe = 1
-        else:
+        if:
             self.setImage(0)
         collides = self.collidingWithSprites(Sun)
         if len(collides):
@@ -170,7 +193,7 @@ class Rocket2(Sprite):
                 self.explode()
         else:
             self.setImage(0)
-        collides = self.collidingWithSprites(Rocket1)
+        collides = self.collidingWithSprites(Rocket2)
         if len(collides):
             if collides[0].visible:
                 collides[0].explode()
@@ -196,39 +219,6 @@ class Rocket2(Sprite):
         self.vr = -0.05
     def rrOff(self,  event):
         self.vr = 0
-        
-class Sun(Sprite):
-    asset = ImageAsset("images/sun.png")
-    width = 80
-    height = 76
-    def __init__(self, position):
-        super().__init__(Sun.asset, position)
-        self.fxcenter = 0.0
-        self.fycenter = -1.0
-    def step(self):
-        if:
-            self.setImage(1)
-            collides = self.collidingWithSprites(Rocket1)
-            if len(collides):
-                if collides[1].visible:
-                    collides[1].explode()
-                    self.explode()
-        else:
-            self.setImage(2)
-            collides = self.collidingWithSprites(Rocket2)
-            if len(collides):
-                if collides[2].visible:
-                    collides[2].explode()
-                    self.explode()
-    def move(self):
-        def explode(self):
-            self.visible = False
-            ExplosionBig(self.position)
-    def move(self):
-        def explode(self):
-            self.visible = False
-            ExplosionBig(self.position)
-
 class ExplosionBig(Sprite):
     asset = ImageAsset("images/explosion2.png", 
     Frame(0,0,4800/25,195), 25)
@@ -244,7 +234,6 @@ class ExplosionBig(Sprite):
         self.image += 2
         if self.image == 50:
             self.destroy()
-
 class SpaceShootOut(App):
     def __init__(self, width, height):
         super().__init__(width, height)
