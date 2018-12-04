@@ -46,7 +46,7 @@ class SpaceShooter(App):
         
         self.vx=1
         self.vy=1
-        self.vr=0.5
+        self.vr=0.2
         self.scale=.5
 
         SpaceShooter.listenKeyEvent("keydown", "right arrow", self.rightarrowKey)
