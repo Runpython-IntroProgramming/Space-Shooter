@@ -44,6 +44,20 @@ class Rocket(Sprite):
         SpaceShooter.listenKeyEvent('keydown', "up arrow", self.uparrowKey)
         SpaceShooter.listenKeyEvent('keydown', "down arrow", self.downarrowKey)
         
+                
+    def rightarrowKey(self, event):
+        self.vx+=.5
+        
+    def leftarrowKey(self, event):
+        self.vx+=-.5
+        
+    def uparrowKey(self, event):
+        self.vy+=-.5
+        
+    def downarrowKey(self, event):
+        self.vy+=.5
+
+
     def step(self):
         self.x += self.vx
         self.y += self.vy
