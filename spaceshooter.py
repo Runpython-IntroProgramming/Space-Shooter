@@ -37,8 +37,6 @@ class Rocket(Sprite):
         self.vy=1
         self.vr=0.01
         self.scale=.5
-        self.thrust = 0
-        self.thrustframe = 1
         self.fxcenter = self.fycenter = 0.5
         SpaceShooter.listenKeyEvent("keydown", "right arrow", self.rightarrowKey)
         SpaceShooter.listenKeyEvent('keydown', "left arrow", self.leftarrowKey)
