@@ -42,7 +42,18 @@ class Rocket(Sprite):
         SpaceShooter.listenKeyEvent('keydown', "up arrow", self.uparrowKey)
         SpaceShooter.listenKeyEvent('keydown', "down arrow", self.downarrowKey)
 
+
+  
+class SpaceShooter(App):
+  
+    def __init__(self):
+        super().__init__()
         
+        bg_asset = ImageAsset("images/starfield.jpg")
+        bg = Sprite(bg_asset, (0,0))
+        bg.scale=2
+
+                
     def rightarrowKey(self, event):
         self.vx+=.5
         
@@ -55,15 +66,6 @@ class Rocket(Sprite):
     def downarrowKey(self, event):
         self.vy+=.5
 
-  
-class SpaceShooter(App):
-  
-    def __init__(self):
-        super().__init__()
-        
-        bg_asset = ImageAsset("images/starfield.jpg")
-        bg = Sprite(bg_asset, (0,0))
-        bg.scale=2
 
         SpaceShooter.listenKeyEvent("keydown", "right arrow", rightarrowKey)
         SpaceShooter.listenKeyEvent('keydown', "left arrow", leftarrowKey)
