@@ -49,8 +49,16 @@ class rocket(Sprite):
         super().__init__(rocket.rocketpicture, pos)
         rocket.x = 500
         rocket.y = 250
-        rocket.xv = 0
-        rocket.yv = 0
+        rocket.vx = 0
+        rocket.vx = 0
+        rocket.rv = 0.03
+        self.move = 0
+        self.moveframe = 1
+
+        rocket.listenKeyEvent("keydown", "right arrow", self.rightarrowKey)
+        #rocket.listenKeyEvent('keydown', "left arrow", self.leftarrowKey)
+        #rocket.listenKeyEvent('keydown', "up arrow", self.uparrowKey)
+        #rocket.listenKeyEvent('keydown', "down arrow", self.downarrowKey)
     
     def rightarrow(self, event):
         self.xv += 1
@@ -72,10 +80,10 @@ class rocket(Sprite):
         self.rotation += self.rv
         
         if self.move == 1:
-            self.setImage(self.thrustframe)
-            self.thrustframe += 1
-            if self.thrustframe == 4:
-                self.thrustframe = 1
+            self.setImage(self.moveframe)
+            self.moveframe += 1
+            if self.moveframe == 4:
+                self.moveframe = 1
         else:
             self.setImage(0)
 
