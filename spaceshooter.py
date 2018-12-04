@@ -70,6 +70,7 @@ class Rocket(Sprite):
                 self.thrustframe = 1
         else:
             self.setImage(0)
+            
 class SpaceShooter(App):
   
     def __init__(self):
