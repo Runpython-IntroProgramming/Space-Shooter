@@ -65,7 +65,7 @@ class SpaceShooter(App):
         bg = Sprite(bg_asset, (0,0))
         bg.scale=2
 
-        SpaceShooter.listenKeyEvent("keydown", "right arrow", self.rightarrowKey)
+        SpaceShooter.listenKeyEvent("keydown", "right arrow")
         SpaceShooter.listenKeyEvent('keydown', "left arrow", self.leftarrowKey)
         SpaceShooter.listenKeyEvent('keydown', "up arrow", self.uparrowKey)
         SpaceShooter.listenKeyEvent('keydown', "down arrow", self.downarrowKey)
