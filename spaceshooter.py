@@ -33,7 +33,11 @@ class Rocket(Sprite):
     
     def __init__(self, position):
         super().__init__(Rocket.rocketpic, position)
-       
+    
+    def step(self):
+        self.x += self.vx
+        self.y += self.vy
+        self.rotation += self.vr
 
 class SpaceShooter(App):
   
