@@ -33,12 +33,29 @@ class Rocket(Sprite):
     
     def __init__(self, position):
         super().__init__(Rocket.rocketpic, position)
-    
+        self.vx = 1
+        self.vy = 1
+        self.vr = 0.01
+        self.thrust = 0
+        self.thrustframe = 1
+
+        SpaceShooter.listenKeyEvent("keydown", "right arrow", self.rightarrowKey)
+        SpaceShooter.listenKeyEvent('keydown', "left arrow", self.leftarrowKey)
+        SpaceShooter.listenKeyEvent('keydown', "up arrow", self.uparrowKey)
+        SpaceShooter.listenKeyEvent('keydown', "down arrow", self.downarrowKey)
+        
     def step(self):
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
-
+        # manage thrust animation
+        if self.thrust == 1:
+            self.setImage(self.thrustframe)
+            self.thrustframe += 1
+            if self.thrustframe == 4:
+                self.thrustframe = 1
+        else:
+            self.setImage(0)
 class SpaceShooter(App):
   
     def __init__(self):
@@ -47,35 +64,8 @@ class SpaceShooter(App):
         bg_asset = ImageAsset("images/starfield.jpg")
         bg = Sprite(bg_asset, (0,0))
         bg.scale=2
-        
-        self.vx=1
-        self.vy=1
-        self.vr=0.2
-        self.scale=.5
-        
-    def step(self):
-        for ship in self.getSpritesbyClass(Rocket):
-            ship.step()
 
-        SpaceShooter.listenKeyEvent("keydown", "right arrow", self.rightarrowKey)
-        SpaceShooter.listenKeyEvent('keydown', "left arrow", self.leftarrowKey)
-        SpaceShooter.listenKeyEvent('keydown', "up arrow", self.uparrowKey)
-        SpaceShooter.listenKeyEvent('keydown', "down arrow", self.downarrowKey)
-
-
-    def rightarrowKey(self, event):
-        self.vx+=.5
-        
-    def leftarrowKey(self, event):
-        self.vx+=-.5
-        
-    def uparrowKey(self, event):
-        self.vy+=-.5
-        
-    def downarrowKey(self, event):
-        self.vy+=.5
-
-
+        Rocket((40,100))
         self.gravity = Rocket((40,100))
         
     def step(self):
