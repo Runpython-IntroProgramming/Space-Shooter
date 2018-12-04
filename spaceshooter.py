@@ -66,7 +66,7 @@ class Rocket(Sprite):
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
-            if self.thrustframe == 4:
+            if self.thrustframe == 42:
                 self.thrustframe = 1
         else:
             self.setImage(0)
