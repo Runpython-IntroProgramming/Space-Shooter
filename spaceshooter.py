@@ -80,11 +80,10 @@ class SpaceShooter(App):
         bg.scale=2
 
         self.gravity = Rocket((40,100))
-        
+ 
     def step(self):
-        self.gravity.x += 0.5
-        self.gravity.y += 0.5
-        
+        for ship in self.getSpritesbyClass(Rocket):
+            ship.step()
     
 
 myapp = SpaceShooter()
