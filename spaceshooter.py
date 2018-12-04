@@ -33,10 +33,7 @@ class Rocket(Sprite):
     
     def __init__(self, position):
         super().__init__(Rocket.rocketpic, position)
-        self.vx=1
-        self.vy=1
-        self.vr=0.01
-        self.scale=.5
+       
 
 class SpaceShooter(App):
   
@@ -46,6 +43,11 @@ class SpaceShooter(App):
         bg_asset = ImageAsset("images/starfield.jpg")
         bg = Sprite(bg_asset, (0,0))
         bg.scale=2
+        
+        self.vx=1
+        self.vy=1
+        self.vr=0.01
+        self.scale=.5
 
         SpaceShooter.listenKeyEvent("keydown", "right arrow", self.rightarrowKey)
         SpaceShooter.listenKeyEvent('keydown', "left arrow", self.leftarrowKey)
