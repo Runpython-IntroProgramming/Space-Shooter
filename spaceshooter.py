@@ -52,6 +52,10 @@ class SpaceShooter(App):
         self.vy=1
         self.vr=0.2
         self.scale=.5
+        
+    def step(self):
+        for ship in self.getSpritesbyClass(Rocket):
+            ship.step()
 
         SpaceShooter.listenKeyEvent("keydown", "right arrow", self.rightarrowKey)
         SpaceShooter.listenKeyEvent('keydown', "left arrow", self.leftarrowKey)
