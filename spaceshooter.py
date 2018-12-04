@@ -30,17 +30,54 @@ teal = Color(0x95E8C4, 1.0)
 thinline = LineStyle(1, black)
 noline = LineStyle(0, black)
 
-#rocket ship 
+
+
+class sun(Sprite):
+    asset = ImageAsset("images/sun.png")
+    
+    def __init__(self, position):
+        super().__init__(sun.asset, position)
+        self.mass = 30*1000
+        self.fxcenter = 0.5
+        self.fycenter = 0.5
+
 class rocket(Sprite):
     rocketpicture = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
         Frame(227, 0, 65, 125), 4, 'vertical')
         
     def __init__(self, pos):
         super().__init__(rocket.rocketpicture, pos)
+        rocket.x = 500
+        rocket.y = 250
+        rocket.xv = 0
+        rocket.yv = 0
     
-class sun(Sprite):
+    def rightarrow(self, event):
+        self.xv += 1
     
+    def leftarrowKey(self, event):
+        self.vx -= 1
+        
+    def uparrowKey(self, event):
+        self.vy -= 1
+        
+    def downarrowKey(self, event):
+        self.vy += 1
 
+
+
+    def step(self):
+        self.x += self.xv
+        self.y += self.yv
+        self.rotation += self.rv
+        
+        if self.move == 1:
+            self.setImage(self.thrustframe)
+            self.thrustframe += 1
+            if self.thrustframe == 4:
+                self.thrustframe = 1
+        else:
+            self.setImage(0)
 
 class spaceshooter(App):
     def __init__(self):
@@ -49,10 +86,14 @@ class spaceshooter(App):
         bg = Sprite(bg_asset, (0, 0))
         bg.scale = 2
         self.rocketship = rocket((500,30))
+        self.sun = sun((500,250))
+        #self.listenKeyEvent('keydown', 'right arrow', )
+
     
-    def step(self):
-        self.rocketship.x += 0.75
-        self.rocketship.y += 0.75
+    #def step(self):
+     #   self.rocketship.x += 0.75
+      #  self.rocketship.y += 0.75
+    
     
 
 
