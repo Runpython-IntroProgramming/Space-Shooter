@@ -46,7 +46,7 @@ class Rocket(Sprite):
         
                 
     def rightarrowKey(self, event):
-        self.vx+=0.2
+        self.vx+=.2
         
     def leftarrowKey(self, event):
         self.vx+=-.2
