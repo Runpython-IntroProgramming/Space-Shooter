@@ -34,7 +34,6 @@ class Rocket(Sprite):
     def __init__(self, position):
         super().__init__(Rocket.rocketpic, position)
        
-        self.scale=.5
 
 class SpaceShooter(App):
   
@@ -47,6 +46,8 @@ class SpaceShooter(App):
         
         self.vx=1
         self.vy=1
+        self.vr=0.5
+        self.scale=.5
 
         SpaceShooter.listenKeyEvent("keydown", "right arrow", self.rightarrowKey)
         SpaceShooter.listenKeyEvent('keydown', "left arrow", self.leftarrowKey)
