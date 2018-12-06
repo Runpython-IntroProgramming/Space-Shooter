@@ -92,7 +92,7 @@ class SpaceShooter(App):
         self.gravity = Rocket((500,100))
         
         self.sun = sun((500,250))
-        sun.scale = 0.5
+        sun.scale = 20
 
     def step(self):
         for ship in self.getSpritesbyClass(Rocket):
