@@ -73,6 +73,9 @@ class Rocket(Sprite):
         else:
             self.setImage(0)
             
+    def collidingWith(self, obj):
+        if self is obj:
+            return False
 class sun(Sprite):
     asset = ImageAsset("images/sun.png")
     
@@ -100,10 +103,6 @@ class SpaceShooter(App):
         for ship in self.getSpritesbyClass(Rocket):
             ship.step()
             
- 
-    collidingWith(sun):
-        sun(rocket)
-    
 
 myapp = SpaceShooter()
 
