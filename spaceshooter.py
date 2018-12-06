@@ -88,9 +88,7 @@ class rocket(Sprite):
         collidinglist = self.collidingWithSprites(sun)
     
     
-    def collidingWith(self, obj):
-        if self is obj:
-            return False
+ 
         
             
 
