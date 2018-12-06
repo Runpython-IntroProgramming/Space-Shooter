@@ -103,6 +103,8 @@ class SpaceShooter(App):
     if rocket collidingWith(sun):
         if True:
             destroy(rocket)
+    collidingWith(sun)
+    
 
 myapp = SpaceShooter()
 
