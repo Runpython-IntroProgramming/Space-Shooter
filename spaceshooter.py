@@ -52,38 +52,37 @@ class rocket(Sprite):
         rocket.vx = 0
         rocket.vx = 0
         rocket.rv = 0.03
-        self.move = 0
-        self.moveframe = 1
+        self.thrust = 0
+        self.thrustframe = 1
 
-        rocket.listenKeyEvent("keydown", "right arrow", self.rightarrowKey)
-        #rocket.listenKeyEvent('keydown', "left arrow", self.leftarrowKey)
-        #rocket.listenKeyEvent('keydown', "up arrow", self.uparrowKey)
-        #rocket.listenKeyEvent('keydown', "down arrow", self.downarrowKey)
+        spaceshooter.listenKeyEvent("keydown", "right arrow", self.rightarrowKey)
+        spaceshooter.listenKeyEvent('keydown', "left arrow", self.leftarrowKey)
+        spaceshooter.listenKeyEvent('keydown', "up arrow", self.uparrowKey)
+        spaceshooter.listenKeyEvent('keydown', "down arrow", self.downarrowKey)
     
-    def rightarrow(self, event):
-        self.xv += 1
-    
+    def rightarrowKey(self, event):
+        self.vx+=.2
+        
     def leftarrowKey(self, event):
-        self.vx -= 1
+        self.vx+=-.2
         
     def uparrowKey(self, event):
-        self.vy -= 1
+        self.vy+=-.2
         
     def downarrowKey(self, event):
-        self.vy += 1
-
+        self.vy+=.2
 
 
     def step(self):
-        self.x += self.xv
-        self.y += self.yv
-        self.rotation += self.rv
-        
-        if self.move == 1:
-            self.setImage(self.moveframe)
-            self.moveframe += 1
-            if self.moveframe == 4:
-                self.moveframe = 1
+        self.x += self.vx
+        self.y += self.vy
+        self.rotation += self.vr
+
+        if self.thrust == 5:
+            self.setImage(self.thrustframe)
+            self.thrustframe += 1
+            if self.thrustframe == 4:
+                self.thrustframe = 1
         else:
             self.setImage(0)
 
@@ -95,14 +94,12 @@ class spaceshooter(App):
         bg.scale = 2
         self.rocketship = rocket((500,30))
         self.sun = sun((500,250))
-        #self.listenKeyEvent('keydown', 'right arrow', )
+    
 
-    
-    #def step(self):
-     #   self.rocketship.x += 0.75
-      #  self.rocketship.y += 0.75
-    
-    
+    def step(self):
+        for ship in self.getSpritesbyClass(rocket):
+            ship.step()
+
 
 
 #----------------------------------------------------------------------------------#
