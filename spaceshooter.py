@@ -73,6 +73,32 @@ class Rocket(Sprite):
         else:
             self.setImage(0)
             
+    
+    def collidingWithSprites(self, sclass = None):
+        """
+        Determine if this sprite is colliding with any other sprites
+        of a certain class.
+        
+        :param class sclass: A class identifier that is either :class:`Sprite`
+            or a subclass of it that identifies the class of sprites to check
+            for collisions. If `None` then all objects that are subclassed from
+            the :class:`Sprite` class are checked.
+            
+        :rtype: list
+        
+        :returns: A (potentially empty) list of sprite objects of the given
+            class that are overlapping with this sprite.
+        """
+        if sclass is None:
+            slist = App.spritelist
+        else:
+            slist = App.getSpritesbyClass(sclass)
+        return list(filter(self.collidingWith, slist))        
+            
+            
+            
+            
+            
     '''        
             
     def collidingWith(self, obj):
