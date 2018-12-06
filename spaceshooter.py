@@ -73,6 +73,8 @@ class Rocket(Sprite):
         else:
             self.setImage(0)
             
+    '''        
+            
     def collidingWith(self, obj):
         if self is obj:
             return False
@@ -102,7 +104,7 @@ class Rocket(Sprite):
                     return self.collidingCircleWithPoly(obj, self)
                 else:
                     return self.collidingPolyWithPoly(obj)
-            
+            '''
 class sun(Sprite):
     asset = ImageAsset("images/sun.png")
     
