@@ -95,7 +95,9 @@ class Rocket(Sprite):
             slist = App.getSpritesbyClass(sclass)
         return list(filter(self.collidingWith, slist))        
             
-            
+    def destroy(self):
+        App._remove(self)
+        self.GFX.destroy()
             
             
             
