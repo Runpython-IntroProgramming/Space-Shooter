@@ -71,6 +71,15 @@ class Rocket(Sprite):
         else:
             self.setImage(0)
             
+class sun(Sprite):
+    asset = ImageAsset("images/sun.png")
+    
+    def __init__(self, position):
+        super().__init__(sun.asset, position)
+        self.mass = 30*1000
+        self.fxcenter = 0.5
+        self.fycenter = 0.5            
+
 class SpaceShooter(App):
   
     def __init__(self):
