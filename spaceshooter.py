@@ -48,10 +48,12 @@ class Sun(Sprite):
         self.circularCollisionModel()
 
 #Creating the Spaceship
-class SpaceShip(Sprite):
+class spaceship(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,292-227,125), 4, 'vertical')
+   
+#Moving the spaceship  
     def __init__(self, position):
-        super().__init__(SpaceShip.asset, position)
+        super().__init__(spaceship.asset, position)
         self.vx = 1
         self.vy = 1
         self.vr = 0
@@ -136,11 +138,11 @@ class SpaceGame(App):
         super().__init__()
         stars = Stars((0,0))
         stars.scale = self.width/stars.width
-        self.ss = SpaceShip((300,200))
+        self.ss = spaceship((300,200))
         Sun((self.width/2,self.height/2))
         
     def step(self):
-        for ship in self.getSpritesbyClass(SpaceShip):
+        for ship in self.getSpritesbyClass(spaceship):
             ship.step()
         for exp in self.getSpritesbyClass(explosion):
             exp.step()
