@@ -64,7 +64,7 @@ class Rocket(Sprite):
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
-        collision = self.collideWith(sun)
+        
 
         if self.thrust == 5:
             self.setImage(self.thrustframe)
