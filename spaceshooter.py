@@ -101,7 +101,8 @@ class SpaceShooter(App):
             ship.step()
             
     if rocket collidingWith(sun):
-        
+        if True:
+            destroy(rocket)
 
 myapp = SpaceShooter()
 
