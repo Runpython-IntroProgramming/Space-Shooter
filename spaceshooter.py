@@ -72,7 +72,6 @@ class Rocket(Sprite):
                 self.thrustframe = 1
         else:
             self.setImage(0)
-            collision = self.collideWith(myapp.sun)
 
 class sun(Sprite):
     asset = ImageAsset("images/sun.png")
