@@ -7,6 +7,8 @@ Example Space Shooters
 Space Shooters Source Code
 Ggame Read the Docs Website
 
+https://ggame-dev.readthedocs.io/en/latest/ggameapi.html
+
 Assignment:
 Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
