@@ -72,6 +72,7 @@ class Rocket(Sprite):
                 self.thrustframe = 1
         else:
             self.setImage(0)
+            
 
 class sun(Sprite):
     asset = ImageAsset("images/sun.png")
