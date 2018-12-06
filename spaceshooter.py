@@ -47,8 +47,6 @@ class rocket(Sprite):
         
     def __init__(self, pos):
         super().__init__(rocket.rocketpicture, pos)
-        rocket.x = 500
-        rocket.y = 250
         rocket.vx = 0
         rocket.vy = 0
         rocket.rv = 0.03
