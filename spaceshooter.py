@@ -49,7 +49,7 @@ class rocket(Sprite):
         super().__init__(rocket.rocketpicture, pos)
         self.vx = 1
         self.vy = 1
-        self.rv = 0.03
+        self.vr = .01
         self.thrust = 0
         self.thrustframe = 1
 
@@ -75,14 +75,24 @@ class rocket(Sprite):
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
+        c = self.collidingWith
 
         if self.thrust == 5:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
-            if self.thrustframe == 4:
+            if self.thrustframe == 2:
                 self.thrustframe = 1
         else:
             self.setImage(0)
+        #colliding = self.collidingWith(myapp.sun)
+        collidinglist = self.collidingWithSprites(sun)
+    
+    
+    def collidingWith(self, obj):
+        if self is obj:
+            return False
+        
+            
 
 class spaceshooter(App):
     def __init__(self):
@@ -97,6 +107,9 @@ class spaceshooter(App):
     def step(self):
         for ship in self.getSpritesbyClass(rocket):
             ship.step()
+    
+    
+        
 
 
 
