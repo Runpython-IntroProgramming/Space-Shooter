@@ -76,7 +76,7 @@ class Rocket(Sprite):
     def collidingWith(self, obj):
         if self is obj:
             return False
-                    else:
+        else:
             self._setExtents()
             obj._setExtents()
             # Gross check for overlap will usually rule out a collision
@@ -84,7 +84,7 @@ class Rocket(Sprite):
                 or self.xmax < obj.xmin
                 or self.ymin > obj.ymax
                 or self.ymax < obj.ymin):
-                return False
+                    return False
             # Otherwise, perform a careful overlap determination
             elif type(self.asset) is CircleAsset:
                 if type(obj.asset) is CircleAsset:
