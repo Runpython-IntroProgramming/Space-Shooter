@@ -7,7 +7,6 @@ Assignment:
 Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
 """
-
 from ggame import App, ImageAsset, RectangleAsset, Sprite, LineStyle, Frame, Color
 from math import sin, cos
 
@@ -15,50 +14,42 @@ from math import sin, cos
 width = 700
 height = 500
 
-#Making the Stars 
-class Stars(Sprite):
-
-    asset = ImageAsset("images/starfield.jpg")
-    width = 512
-    height = 512
-
-    def __init__(self, position):
-        super().__init__(Stars.asset, position)
-
-#Making the Sun
-class Sun(Sprite):
-    
-    asset = ImageAsset("images/sun.png")
-    width = 80
-    height = 76
-    
-    def __init__(self, position):
-        super().__init__(Sun.asset, position)
-        self.mass = 30*1000
-        self.fxcenter = 0.5
-        self.fycenter = 0.5
-        self.circularCollisionModel()
-
 #Creating Explosions 
-class BigExplosion(Sprite):
-    
+class explosion(Sprite):
     asset = ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
-    
     def __init__(self, position):
-        super().__init__(BigExplosion.asset, position)
+        super().__init__(explosion.asset, position)
         self.image = 0
         self.center = (0.5, 0.5)
-        
     def step(self):
         self.setImage(self.image // 2) 
         self.image = self.image + 1
         if self.image == 50:
             self.destroy()
 
-class SpaceShip(Sprite):
-    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
-        Frame(227,0,292-227,125), 4, 'vertical')
+#Creating the Stars 
+class Stars(Sprite):
+    asset = ImageAsset("images/starfield.jpg")
+    width = 500
+    height = 500
+    def __init__(self, position):
+        super().__init__(Stars.asset, position)
 
+#Creating the Sun
+class Sun(Sprite):
+    asset = ImageAsset("images/sun.png")
+    width = 70
+    height = 70
+    def __init__(self, position):
+        super().__init__(Sun.asset, position)
+        self.mass = 30000
+        self.fxcenter = 0.5
+        self.fycenter = 0.5
+        self.circularCollisionModel()
+
+#Creating the Spaceship
+class SpaceShip(Sprite):
+    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,292-227,125), 4, 'vertical')
     def __init__(self, position):
         super().__init__(SpaceShip.asset, position)
         self.vx = 1
@@ -75,13 +66,12 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.turnright)
         SpaceGame.listenKeyEvent("keyup", "right arrow", self.turnoff)
         self.fxcenter = self.fycenter = 0.5
-    
     def step(self):
-        vx = -sin(self.rotation) * self.v
-        vy = -cos(self.rotation) * self.v
+        vx = -sin(self.rotation)*self.v
+        vy = -cos(self.rotation)*self.v
         self.x += vx
         self.y += vy
-        ki=self.collidingWithSprites(Sun)
+        boom = self.collidingWithSprites(Sun)
         self.rotation += self.vr
         if self.x > myapp.width:
             self.x = 0
@@ -91,15 +81,15 @@ class SpaceShip(Sprite):
             self.y = 0
         if self.y < 0:
             self.y = myapp.height
-        if len(ki) > 0:
-            BigExplosion((self.x,self.y))
+        if len(boom) > 0:
+            explosion((self.x,self.y))
             self.visible=False
             self.x = 300
             self.y = 200
-            self.v=0
-            self.rotation=0
-            self.thrust=0
-            self.visible=True
+            self.v = 0
+            self.rotation = 0
+            self.thrust = 0
+            self.visible = True
         if self.thrust == 0 and self.v >= 0.1:
             self.v -= 0.1
         if self.thrust == 1 and self.v == 0:
@@ -152,7 +142,7 @@ class SpaceGame(App):
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
-        for exp in self.getSpritesbyClass(BigExplosion):
+        for exp in self.getSpritesbyClass(explosion):
             exp.step()
             
 
