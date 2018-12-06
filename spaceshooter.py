@@ -73,66 +73,7 @@ class Rocket(Sprite):
         else:
             self.setImage(0)
             
-    
-    def collidingWithSprites(self, sclass = None):
-        """
-        Determine if this sprite is colliding with any other sprites
-        of a certain class.
-        
-        :param class sclass: A class identifier that is either :class:`Sprite`
-            or a subclass of it that identifies the class of sprites to check
-            for collisions. If `None` then all objects that are subclassed from
-            the :class:`Sprite` class are checked.
-            
-        :rtype: list
-        
-        :returns: A (potentially empty) list of sprite objects of the given
-            class that are overlapping with this sprite.
-        """
-        if sclass is None:
-            slist = App.spritelist
-        else:
-            slist = App.getSpritesbyClass(sclass)
-        return list(filter(self.collidingWith, slist))        
-            
-    def destroy(self):
-        App._remove(self)
-        self.GFX.destroy()
-            
-            
-            
-    '''        
-            
-    def collidingWith(self, obj):
-        if self is obj:
-            return False
-        else:
-            self._setExtents()
-            obj._setExtents()
-            # Gross check for overlap will usually rule out a collision
-            if (self.xmin > obj.xmax
-                or self.xmax < obj.xmin
-                or self.ymin > obj.ymax
-                or self.ymax < obj.ymin):
-                    return False
-            # Otherwise, perform a careful overlap determination
-            elif type(self.asset) is CircleAsset:
-                if type(obj.asset) is CircleAsset:
-                    # two circles .. check distance between
-                    sx = (self.xmin + self.xmax) / 2
-                    sy = (self.ymin + self.ymax) / 2
-                    ox = (obj.xmin + obj.xmax) / 2
-                    oy = (obj.ymin + obj.ymax) / 2
-                    d = math.sqrt((sx-ox)**2 + (sy-oy)**2)
-                    return d <= self.width/2 + obj.width/2
-                else:
-                    return self.collidingCircleWithPoly(self, obj)
-            else:
-                if type(obj.asset) is CircleAsset:
-                    return self.collidingCircleWithPoly(obj, self)
-                else:
-                    return self.collidingPolyWithPoly(obj)
-            '''
+
 class sun(Sprite):
     asset = ImageAsset("images/sun.png")
     
