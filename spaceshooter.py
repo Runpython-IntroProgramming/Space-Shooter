@@ -1,7 +1,7 @@
 """
 spaceshooter.py
 Author: Joseph Goff
-Credit: None
+Credit: Morgan Gardner
 
 Assignment:
 Write and submit a program that implements the spacewar game:
@@ -107,30 +107,24 @@ class spaceship(Sprite):
             self.setImage(0)
     def thrustOn(self, event):
         self.thrust = 1
-        
     def thrustOff(self, event):
         self.thrust = 0
-    
     def turnleft(self, event):
         self.vr = 0.1
-    
     def turnoff(self, event):
         self.vr = 0
-        
     def turnright(self, event):
         self.vr = -0.1
-        
     def controldown(self, event):
         if command == "forward":
                 self.thrust = 40.0
-                self.imagex = 1 # start the animated rockets
+                self.imagex = 1 
                 self.setImage(self.imagex)
-    
     def controlup(self, event):
         command = self.keymap[event.key]
         if command == "forward":
             self.thrust = 0.0
-            self.imagex = 0 # stop the animated rockets
+            self.imagex = 0 
             self.setImage(self.imagex)
 
 class SpaceGame(App):
@@ -140,14 +134,11 @@ class SpaceGame(App):
         stars.scale = self.width/stars.width
         self.ss = spaceship((300,200))
         Sun((self.width/2,self.height/2))
-        
     def step(self):
         for ship in self.getSpritesbyClass(spaceship):
             ship.step()
         for exp in self.getSpritesbyClass(explosion):
             exp.step()
-            
-
 
 myapp = SpaceGame(width, height)
 myapp.run()
