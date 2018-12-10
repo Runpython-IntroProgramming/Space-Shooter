@@ -84,7 +84,7 @@ class rocket(Sprite):
                 self.thrustframe = 1
         else:
             self.setImage(0)
-        #colliding = self.collidingWith(myapp.sun)
+        colliding = self.collidingWith(myapp.sun)
         collidinglist = self.collidingWithSprites(sun)
     
     
