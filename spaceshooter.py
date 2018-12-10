@@ -49,7 +49,7 @@ class Rocket(Sprite):
                 
     def rightarrowKey(self, event):
         self.vx+=.2
-        print ImageAsset("images/blast.png")
+        print(ImageAsset("images/blast.png"))
         
     def leftarrowKey(self, event):
         self.vx+=-.2
