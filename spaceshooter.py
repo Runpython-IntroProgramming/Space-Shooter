@@ -110,6 +110,8 @@ class SpaceShooter(App):
             def destroy(self):
                 App._remove(self)
                 self.gfx.destroy()
+        else:
+            print("Collision Ain't Workin")
 
 myapp = SpaceShooter()
 
