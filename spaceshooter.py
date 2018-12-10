@@ -99,7 +99,6 @@ class SpaceShooter(App):
         bg = Sprite(bg_asset, (0,0))
         bg.scale=2
         self.rocketship = Rocket((500,100))
-        self.gravity = Rocket((500,100))
         
         self.sun = sun((500,250))
 
