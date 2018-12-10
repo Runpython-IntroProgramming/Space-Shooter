@@ -105,7 +105,7 @@ class SpaceShooter(App):
 
     def step(self):
         if self.rocketship:
-            self.rocketship.step
+            self.rocketship.step()
             if self.rocketship.collidingWith(self.sun):
                 self.rocketship.destroy()
                 self.rocketship = None
