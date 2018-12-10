@@ -74,7 +74,7 @@ class Rocket(Sprite):
                 self.thrustframe = 1
         else:
             self.setImage(0)
-    def collidingWithSprites(self, sclass = None):
+    def collidingWithSprites(sun, sclass = None):
         if sclass is None:
             slist = App.spritelist
         else:
