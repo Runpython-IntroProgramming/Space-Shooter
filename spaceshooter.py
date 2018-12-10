@@ -98,7 +98,7 @@ class SpaceShooter(App):
         bg_asset = ImageAsset("images/starfield.jpg")
         bg = Sprite(bg_asset, (0,0))
         bg.scale=2
-
+        self.rocket = Rocket((500,100))
         self.gravity = Rocket((500,100))
         
         self.sun = sun((500,250))
