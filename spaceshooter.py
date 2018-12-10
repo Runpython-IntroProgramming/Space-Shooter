@@ -49,7 +49,7 @@ class rocket(Sprite):
         super().__init__(rocket.rocketpicture, pos)
         self.vx = 1
         self.vy = 1
-        self.vr = .01
+        self.vr = .008
         self.thrust = 0
         self.thrustframe = 1
 
@@ -59,16 +59,16 @@ class rocket(Sprite):
         spaceshooter.listenKeyEvent('keydown', "down arrow", self.downarrowKey)
     
     def rightarrowKey(self, event):
-        self.vx+=.2
+        self.vx+=0.9
         
     def leftarrowKey(self, event):
-        self.vx+=-.2
+        self.vx+=-0.9
         
     def uparrowKey(self, event):
-        self.vy -= 0.2
+        self.vy -= 0.9
         
     def downarrowKey(self, event):
-        self.vy+=.2
+        self.vy+=.9
 
 
     def step(self):
@@ -84,8 +84,8 @@ class rocket(Sprite):
                 self.thrustframe = 1
         else:
             self.setImage(0)
-        colliding = self.collidingWith(myapp.sun)
-        collidinglist = self.collidingWithSprites(sun)
+        #colliding = self.collidingWith(myapp.sun)
+        #collidinglist = self.collidingWithSprites(sun)
     
     
  
@@ -103,9 +103,12 @@ class spaceshooter(App):
     
 
     def step(self):
-        for ship in self.getSpritesbyClass(rocket):
-            ship.step()
-    
+        if self.rocketship:
+            self.rocketship.step()
+            if self.rocketship.collidingWith(self.sun):
+                self.rocketship.destroy()
+                self.rocketship = None
+
     
         
 
