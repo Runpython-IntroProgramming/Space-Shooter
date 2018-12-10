@@ -108,7 +108,7 @@ class SpaceShooter(App):
         for ship in self.getSpritesbyClass(Rocket):
             ship.step()
         if self.Rocket.collidingWith(self.sun)
-            print("True")
+            print("Rocket is colliding")
             
 
 myapp = SpaceShooter()
