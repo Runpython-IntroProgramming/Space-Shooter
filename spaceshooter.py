@@ -98,7 +98,7 @@ class SpaceShooter(App):
         bg_asset = ImageAsset("images/starfield.jpg")
         bg = Sprite(bg_asset, (0,0))
         bg.scale=2
-        self.rocket = Rocket((500,100))
+        self.rocketship = Rocket((500,100))
         self.gravity = Rocket((500,100))
         
         self.sun = sun((500,250))
@@ -107,7 +107,7 @@ class SpaceShooter(App):
     def step(self):
         for ship in self.getSpritesbyClass(Rocket):
             ship.step()
-        if self.Rocket.collidingWith(self.sun):
+        if self.rocketship.collidingWith(self.sun):
             print("Rocket is colliding")
             
 
