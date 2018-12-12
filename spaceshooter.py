@@ -95,7 +95,7 @@ class Explosion(Sprite):
     explosion = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
     
     def __init__(self, position):
-        super().__init__(ExplosionSmall.asset, position)
+        super().__init__(Explosion.asset, position)
         self.image = 0
         self.center = (0.5, 0.5)
         
