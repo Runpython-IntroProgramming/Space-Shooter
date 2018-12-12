@@ -126,7 +126,7 @@ class SpaceShooter(App):
                 self.rocketship = None
                 
     def step(self):
-        explosions = self.getSpritesbyClass(ExplosionSmall)
+        explosions = self.getSpritesbyClass(Explosion)
         for explosion in explosions:
             explosion.step()
         if self.state == 'instructions':
