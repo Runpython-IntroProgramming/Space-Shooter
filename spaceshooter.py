@@ -100,6 +100,8 @@ class spaceshooter(App):
         bg.scale = 2
         self.rocketship = rocket((500,30))
         self.sun = sun((500,250))
+        
+        explo = ImageAsset("")
     
 
     def step(self):
@@ -108,6 +110,9 @@ class spaceshooter(App):
             if self.rocketship.collidingWith(self.sun):
                 self.rocketship.destroy()
                 self.rocketship = None
+    def explode(self):
+        if self.rocketship = None:
+            
 
     
         
