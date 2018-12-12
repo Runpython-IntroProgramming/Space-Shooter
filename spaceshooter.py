@@ -101,21 +101,32 @@ class spaceshooter(App):
         self.rocketship = rocket((500,30))
         self.sun = sun((500,250))
         
-        explo = ImageAsset("")
+
+class Explos(Sprite):
+    explos = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
     
+    def __init__(self, position):
+        super().__init__(sun.asset, position)
+        self.mass = 30*1000
+        self.fxcenter = 0.5
+        self.fycenter = 0.5
+
 
     def step(self):
         if self.rocketship:
             self.rocketship.step()
             if self.rocketship.collidingWith(self.sun):
                 self.rocketship.destroy()
-                self.rocketship = None
-    def explode(self):
-        if self.rocketship = None:
+                self.rocketship = Explos
+  #  def explode(self):
+      #  if self.rocketship.destroy:
             
 
-    
-        
+
+
+
+
+
 
 
 
