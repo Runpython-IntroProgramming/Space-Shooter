@@ -109,6 +109,9 @@ class SpaceShooter(App):
             if self.rocketship.collidingWith(self.sun):
                 self.rocketship.destroy()
                 self.rocketship = None
+            if self.rocketship = None:
+                explosion = ImageAsset("images/explosion1.png",
+    Frame(227,0,65,125), 4, 'vertical')
 
 myapp = SpaceShooter()
 
