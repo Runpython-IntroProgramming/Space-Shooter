@@ -98,6 +98,12 @@ class Explosion(Sprite):
         super().__init__(ExplosionSmall.asset, position)
         self.image = 0
         self.center = (0.5, 0.5)
+        
+    def step(self):
+        self.setImage(self.image//2)  # slow it down
+        self.image = self.image + 1
+        if self.image == 20:
+            self.destroy()
 
 class SpaceShooter(App):
   
