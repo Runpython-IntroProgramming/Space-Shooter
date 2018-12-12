@@ -129,10 +129,10 @@ class SpaceShooter(App):
         explosions = self.getSpritesbyClass(Explosion)
         for explosion in explosions:
             explosion.step()
-        if self.state == 'instructions':
+    '''    if self.state == 'instructions':
             self.tsprites['space'].visible = True
             self.tsprites['left'].visible = True
-            self.tsprites['right'].visible = True            
+            self.tsprites['right'].visible = True        '''    
 
 myapp = SpaceShooter()
 
