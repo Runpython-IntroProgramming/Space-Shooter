@@ -90,6 +90,15 @@ class sun(Sprite):
         self.fxcenter = 0.5
         self.fycenter = 0.5            
 
+class Explosion(Sprite):
+    
+    explosion = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
+    
+    def __init__(self, position):
+        super().__init__(ExplosionSmall.asset, position)
+        self.image = 0
+        self.center = (0.5, 0.5)
+
 class SpaceShooter(App):
   
     def __init__(self):
@@ -109,9 +118,6 @@ class SpaceShooter(App):
             if self.rocketship.collidingWith(self.sun):
                 self.rocketship.destroy()
                 self.rocketship = None
-    if self.rocketship = None:
-        explosion = ImageAsset("images/explosion1.png",
-    Frame(227,0,65,125), 4, 'vertical')
 
 myapp = SpaceShooter()
 
