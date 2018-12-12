@@ -124,6 +124,15 @@ class SpaceShooter(App):
             if self.rocketship.collidingWith(self.sun):
                 self.rocketship.destroy()
                 self.rocketship = None
+                
+     def step(self):
+        explosions = self.getSpritesbyClass(ExplosionSmall)
+        for explosion in explosions:
+            explosion.step()
+        if self.state == 'instructions':
+            self.tsprites['space'].visible = True
+            self.tsprites['left'].visible = True
+            self.tsprites['right'].visible = True            
 
 myapp = SpaceShooter()
 
