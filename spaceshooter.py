@@ -100,9 +100,9 @@ class Explosion(Sprite):
         self.center = (0.5, 0.5)
         
     def step(self):
-        self.setImage(self.image//2)
+        self.setImage(self.image//3)
         self.image = self.image + 1
-        if self.image == 20:
+        if self.image == 30:
             self.destroy()
         self.nextImage()
 
