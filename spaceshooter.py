@@ -87,8 +87,8 @@ class sun(Sprite):
     def __init__(self, position):
         super().__init__(sun.asset, position)
         self.mass = 30*1000
-        self.fxcenter = 0.5
-        self.fycenter = 0.5         
+        self.fxcenter = -0.5
+        self.fycenter = -0.5         
         
 class Explossmall(Sprite):
     asset = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
