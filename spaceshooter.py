@@ -92,11 +92,11 @@ class rocket(Sprite):
 
 class Explossmall(Sprite):
     asset = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
-    
+    asset.scale = asset*5
     def __init__(self, position):
         super().__init__(Explossmall.asset, position)
         self.image = 0
-        self.center = (0.5, 0.5)
+        self.center = (1, 1)
     
     def step(self):
         self.setImage(self.image//3)  
