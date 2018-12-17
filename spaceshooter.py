@@ -123,7 +123,7 @@ class SpaceShooter(App):
         if self.rocketship:
             self.rocketship.step()
             if self.rocketship.collidingWith(self.sun):
-                explode = Explossmall(self.rocketship.position)
+                explode = Explosion(self.rocketship.position)
                 self.rocketship.destroy()
                 self.rocketship = explode
                 
