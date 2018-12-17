@@ -89,7 +89,7 @@ class sun(Sprite):
         self.mass = 30*1000
         self.fxcenter = 0.5
         self.fycenter = 0.5            
-
+'''
 class Explosion(Sprite):
     
     explosion = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
@@ -125,7 +125,39 @@ class SpaceShooter(App):
                 explode = Explosion(self.rocketship.position)
                 self.rocketship.destroy()
                 self.rocketship = explode
-                
+                '''
+class Explossmall(Sprite):
+    asset = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
+    
+    def __init__(self, position):
+        super().__init__(Explossmall.asset, position)
+        self.image = 0
+        self.center = (0.5, 0.5)
+    
+    def step(self):
+        self.setImage(self.image//3)  
+        self.image = self.image + 1
+        if self.image == 30:
+            self.destroy()
+        self.nextImage()
+
+class spaceshooter(App):
+    def __init__(self):
+        super().__init__()
+        bg_asset = ImageAsset("images/starfield.jpg")
+        bg = Sprite(bg_asset, (0, 0))
+        bg.scale = 2
+        self.rocketship = rocket((500,30))
+        self.sun = sun((500,250))
+    
+    def step(self):
+        if self.rocketship:
+            self.rocketship.step()
+            if self.rocketship.collidingWith(self.sun):
+                explode = Explossmall(self.rocketship.position)
+                self.rocketship.destroy()
+                self.rocketship = explode
+
 
 myapp = SpaceShooter()
 
