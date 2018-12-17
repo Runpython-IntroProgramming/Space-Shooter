@@ -147,7 +147,7 @@ class SpaceShooter(App):
         bg_asset = ImageAsset("images/starfield.jpg")
         bg = Sprite(bg_asset, (0, 0))
         bg.scale = 2
-        self.rocketship = rocket((500,30))
+        self.rocketship = Rocket((500,30))
         self.sun = sun((500,250))
     
     def step(self):
