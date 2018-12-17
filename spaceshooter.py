@@ -141,7 +141,7 @@ class Explossmall(Sprite):
             self.destroy()
         self.nextImage()
 
-class spaceshooter(App):
+class SpaceShooter(App):
     def __init__(self):
         super().__init__()
         bg_asset = ImageAsset("images/starfield.jpg")
