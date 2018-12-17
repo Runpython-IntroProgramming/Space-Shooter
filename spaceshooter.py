@@ -59,23 +59,23 @@ class rocket(Sprite):
         spaceshooter.listenKeyEvent('keydown', "down arrow", self.downarrowKey)
     
     def rightarrowKey(self, event):
-        self.vx+=0.9
+        self.vx+=0.2
         
     def leftarrowKey(self, event):
-        self.vx+=-0.9
+        self.vx+=-0.2
         
     def uparrowKey(self, event):
-        self.vy -= 0.9
+        self.vy -= 0.2
         
     def downarrowKey(self, event):
-        self.vy+=.9
+        self.vy+=.2
 
 
     def step(self):
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
-        c = self.collidingWith
+        #c = self.collidingWith
 
         if self.thrust == 5:
             self.setImage(self.thrustframe)
@@ -105,13 +105,12 @@ class spaceshooter(App):
         if self.rocketship:
             self.rocketship.step()
             if self.rocketship.collidingWith(self.sun):
+                explode = Explossmall(self.rocketship.position)
                 self.rocketship.destroy()
-                self.rocketship = Explos
+                self.rocketship = explode
 
         
-    def step(self):
-        pass
-        
+      
 
 class Explossmall(Sprite):
     asset = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
