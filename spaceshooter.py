@@ -104,6 +104,7 @@ class Explosion(Sprite):
         self.image = self.image + 1
         if self.image == 20:
             self.destroy()
+        self.nextImage()
 
 class SpaceShooter(App):
   
