@@ -107,7 +107,6 @@ class Explosion(Sprite):
         self.nextImage()
 
 class SpaceShooter(App):
-  
     def __init__(self):
         super().__init__()
         
