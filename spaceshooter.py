@@ -38,8 +38,8 @@ class sun(Sprite):
     def __init__(self, position):
         super().__init__(sun.asset, position)
         self.mass = 30*1000
-        self.fxcenter = 0.5
-        self.fycenter = 0.5
+        self.fxcenter = 0
+        self.fycenter = 0
 
 class rocket(Sprite):
     rocketpicture = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
@@ -96,7 +96,7 @@ class Explossmall(Sprite):
     def __init__(self, position):
         super().__init__(Explossmall.asset, position)
         self.image = 0
-        self.center = (0.5, 0.5)
+        self.center = (0, 0)
     
     def step(self):
         self.setImage(self.image//3)  
