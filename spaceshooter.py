@@ -125,11 +125,11 @@ class SpaceShooter(App):
                 self.rocketship.destroy()
                 self.rocketship = None
                 
-    def step(self):
+'''    def step(self):
         explosions = self.getSpritesbyClass(Explosion)
         for explosion in explosions:
             explosion.step()
-            
+            '''
     '''    if self.state == 'instructions':
             self.tsprites['space'].visible = True
             self.tsprites['left'].visible = True
