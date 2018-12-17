@@ -123,8 +123,9 @@ class SpaceShooter(App):
         if self.rocketship:
             self.rocketship.step()
             if self.rocketship.collidingWith(self.sun):
+                explode = Explossmall(self.rocketship.position)
                 self.rocketship.destroy()
-                self.rocketship = None
+                self.rocketship = explode
                 
     '''     def step(self):
                 explosions = self.getSpritesbyClass(Explosion)
