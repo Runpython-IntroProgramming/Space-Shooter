@@ -52,6 +52,7 @@ class rocket(Sprite):
         self.vr = .008
         self.thrust = 0
         self.thrustframe = 1
+        self.center = (0.5, 0.5)
 
         spaceshooter.listenKeyEvent("keydown", "right arrow", self.rightarrowKey)
         spaceshooter.listenKeyEvent('keydown', "left arrow", self.leftarrowKey)
@@ -113,11 +114,13 @@ class spaceshooter(App):
         bg.scale = 2
         self.rocketship = rocket((500,30))
         self.sun = sun((500,250))
+        self.exploding = False
     
     def step(self):
         if self.rocketship:
             self.rocketship.step()
-            if self.rocketship.collidingWith(self.sun):
+            if not self.exploding and self.rocketship.collidingWith(self.sun):
+                self.exploding = True
                 explode = Explossmall(self.rocketship.position)
                 self.rocketship.destroy()
                 self.rocketship = explode
