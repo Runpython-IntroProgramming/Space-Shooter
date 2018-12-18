@@ -113,11 +113,13 @@ class SpaceShooter(App):
         bg.scale = 2
         self.rocketship = Rocket((500,30))
         self.sun = sun((500,250))
+        self.explosion = False
     
     def step(self):
         if self.rocketship:
             self.rocketship.step()
-            if self.rocketship.collidingWith(self.sun):
+            if not self.explosion and self.rocketship.collidingWith(self.sun):
+                self.explosion = True
                 explode = Explossmall(self.rocketship.position)
                 self.rocketship.destroy()
                 self.rocketship = explode
