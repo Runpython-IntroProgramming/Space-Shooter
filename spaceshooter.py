@@ -83,15 +83,11 @@ class Rocket1(Sprite):
             self.setImage(0)
         collides = self.collidingWithSprites(Sun)
         if len(collides):
-            if collides[0].visible:
-                collides[0].explode()
                 self.explode()
         else:
             self.setImage(2)
         collides = self.collidingWithSprites(Rocket2)
         if len(collides):
-            if collides[2].visible:
-                collides[2].explode()
                 self.explode()
     def move(self):
         self.X = math.sin(self.rotation)
@@ -160,19 +156,16 @@ class Rocket2(Sprite):
         if self.thrustframe == 4:
             self.thrustframe = 1
         else:
-            self.setImage(1)
-        collides = self.collidingWithSprites(Rocket1)
-        if len(collides):
-            if collides[1].visible:
-                collides[1].explode()
-                self.explode()
-        else:
             self.setImage(0)
         collides = self.collidingWithSprites(Sun)
         if len(collides):
-            if collides[0].visible:
-                collides[0].explode()
                 self.explode()
+        else:
+            self.setImage(1)
+        collides = self.collidingWithSprites(Rocket1)
+        if len(collides):
+                self.explode()
+
     def move(self):
         self.X = math.sin(self.rotation)
         self.Y = math.cos(self.rotation)
@@ -213,7 +206,7 @@ class Sun(Sprite):
             self.setImage(2)
             collides = self.collidingWithSprites(Rocket2)
             if len(collides):
-                    self.explode()
+                self.explode()
     def explode(self):
         self.visible = False
         ExplosionBig(self.position)
@@ -259,7 +252,6 @@ class SpaceShootOut(App):
         bg13 = Sprite(bg_asset, (1024,256))
         bg14 = Sprite(bg_asset, (1024,512))
         bg15 = Sprite(bg_asset, (1024,768))
-
         Rocket1((200,250))
         Rocket2((1240,250))
         Sun((670,284))
