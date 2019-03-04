@@ -2,12 +2,14 @@
 spaceshooter.py
 Author: emBrileg08
 Credit: Spacewar Source Code
+www.pythoncentral.io for information on random number generation
 
 Assignment:
 Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
 """
 from ggame import App, Sprite, ImageAsset, Frame
+import random
 
 class Background(Sprite):
     def __init__(self,position):
@@ -15,6 +17,12 @@ class Background(Sprite):
         super().__init__(asset,position)
     width=512
     height=512
+
+class Sun(Sprite):
+     def __init__(self,position):
+        asset=ImageAsset("images/sun.png")
+        super().__init__(asset,position)
+    
     
 class Spaceship(Sprite):
     def __init__(self, position):
@@ -24,6 +32,10 @@ class Spaceship(Sprite):
         self.vx=1
         self.vy=1
         self.vr=0.01
+    def step(self):
+        self.x += self.vx
+        self.y += self.vy
+        self.rotation += self.vr
 
 class Spacewar(App):
     def __init__(self):
@@ -37,7 +49,12 @@ class Spacewar(App):
                 a+=Background.height
             a=0
             z+=Background.width
-    Spaceship((100,100))
+        Spaceship((100,100))
+        for x in range(int(input("Set difficulty level:"))):
+            Sun((random.randint(0,self.width),random.randint(0,self.height)))
+    def step(self):
+        for ship in self.getSpritesbyClass(Spaceship):
+            ship.step()
     
 myapp=Spacewar()
 myapp.run()
