@@ -36,6 +36,10 @@ class Spaceship(Sprite):
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
+        self.thrust = 0
+        self.thrustframe = 1
+        Spacewar.listenKeyEvent("keydown", "space", self.thrustOn)
+        Spacewar.listenKeyEvent("keyup", "space", self.thrustOff)
 
 class Spacewar(App):
     def __init__(self):
