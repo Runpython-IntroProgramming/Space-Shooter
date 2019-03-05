@@ -38,8 +38,20 @@ class Spaceship(Sprite):
         self.rotation += self.vr
         self.thrust = 0
         self.thrustframe = 1
-        Spacewar.listenKeyEvent("keydown", "space", self.thrustOn)
-        Spacewar.listenKeyEvent("keyup", "space", self.thrustOff)
+        Spacewar.listenKeyEvent("keydown","space", self.thrustOn)
+        Spacewar.listenKeyEvent("keyup","space", self.thrustOff)
+        print(self.thrust)
+        if self.thrust == 1:
+            self.setImage(self.thrustframe)
+            self.thrustframe += 1
+            if self.thrustframe == 4:
+                self.thrustframe = 1
+        else:
+            self.setImage(0)
+    def thrustOn(self, event):
+        self.thrust = 1
+    def thrustOff(self, event):
+        self.thrust = 0
 
 class Spacewar(App):
     def __init__(self):
@@ -54,7 +66,7 @@ class Spacewar(App):
             a=0
             z+=Background.width
         Spaceship((100,100))
-        for x in range(int(input("Set difficulty level:"))):
+        for x in range(int(input("Set difficulty level, 0-20 "))):
             Sun((random.randint(0,self.width),random.randint(0,self.height)))
     def step(self):
         for ship in self.getSpritesbyClass(Spaceship):
