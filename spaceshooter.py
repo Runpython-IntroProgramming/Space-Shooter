@@ -8,7 +8,7 @@ Assignment:
 Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
 """
-from ggame import App, Sprite, ImageAsset, Frame,
+from ggame import App, Sprite, ImageAsset, Frame
 import random
 
 class Background(Sprite):
@@ -32,15 +32,14 @@ class Spaceship(Sprite):
         self.vx=1
         self.vy=1
         self.vr=0.01
-    def step(self):
-        self.x += self.vx
-        self.y += self.vy
-        self.rotation += self.vr
         self.thrust = 0
         self.thrustframe = 1
         Spacewar.listenKeyEvent("keydown","space", self.thrustOn)
         Spacewar.listenKeyEvent("keyup","space", self.thrustOff)
-        print(self.thrust)
+    def step(self):
+        self.x += self.vx
+        self.y += self.vy
+        self.rotation += self.vr
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
