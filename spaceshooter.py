@@ -10,7 +10,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 from ggame import App, Sprite, ImageAsset, Frame
 import random
-
+# Why doesn't my animation work?
 class Background(Sprite):
     def __init__(self,position):
         asset=ImageAsset("images/starfield.jpg")
@@ -31,27 +31,46 @@ class Spaceship(Sprite):
         super().__init__(asset, position)
         self.vx=1
         self.vy=1
-        self.vr=0.01
+        self.vr=0
         self.thrust = 0
         self.thrustframe = 1
         Spacewar.listenKeyEvent("keydown","space", self.thrustOn)
         Spacewar.listenKeyEvent("keyup","space", self.thrustOff)
+        #Spacewar.listenKeyEvent("keydown", "right arrow", self.
+    def explode(self):
+        self.visible=False
+        explosion(self.position)
+        
     def step(self):
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
+        print(self.thrustframe)
         if self.thrust == 1:
             self.setImage(self.thrustframe)
             self.thrustframe += 1
             if self.thrustframe == 4:
-                self.thrustframe = 1
+                self.thrustframe = 2
             else:
                 self.setImage(0)
-                
+        collision=self.collidingWithSprites(Sun)
+        if collision:
+            self.explode
+            #print("hi")
+    
     def thrustOn(self, event):
         self.thrust = 1
     def thrustOff(self, event):
         self.thrust = 0
+
+class explosion(Sprite):
+    def __init__(self, position):
+        asset=ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
+        super().__init__(asset, position)
+    def step(self):
+        self.image = self.image + 1
+        if self.image == 50:
+            self.destroy()
 
 class Spacewar(App):
     def __init__(self):
