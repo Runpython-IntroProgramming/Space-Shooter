@@ -36,9 +36,11 @@ class Spaceship(Sprite):
         self.thrustframe = 1
         Spacewar.listenKeyEvent("keydown","space", self.thrustOn)
         Spacewar.listenKeyEvent("keyup","space", self.thrustOff)
+        self.visible=True
         
     def step(self):
-        if self.visible<>False:
+        print(self.visible)
+        if self.visible!=False:
             self.x += self.vx
             self.y += self.vy
             self.rotation += self.vr
