@@ -39,7 +39,6 @@ class Spaceship(Sprite):
         self.visible=True
         
     def step(self):
-        print(self.visible)
         if self.visible!=False:
             self.x += self.vx
             self.y += self.vy
@@ -67,9 +66,10 @@ class explosion(Sprite):
         super().__init__(asset, position)
         self.setImage=1
     def step(self):
-        self.setImage = self.setImage + 1
-        if self.setImage == 50:
-            self.destroy()
+        self.setImage(self.expframe)
+        self.expframe += 1
+        if self.expframe == 26:
+            self.destroy
 
 class Spacewar(App):
     def __init__(self):
