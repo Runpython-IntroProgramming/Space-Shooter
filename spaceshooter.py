@@ -38,16 +38,17 @@ class Spaceship(Sprite):
         Spacewar.listenKeyEvent("keyup","space", self.thrustOff)
         
     def step(self):
-        self.x += self.vx
-        self.y += self.vy
-        self.rotation += self.vr
-        if self.thrust == 1:
-            self.setImage(self.thrustframe)
-            self.thrustframe += 1
-            if self.thrustframe == 4:
-                self.thrustframe = 1
-        else:
-            self.setImage(0)
+        if self.visible<>False:
+            self.x += self.vx
+            self.y += self.vy
+            self.rotation += self.vr
+            if self.thrust == 1:
+                self.setImage(self.thrustframe)
+                self.thrustframe += 1
+                if self.thrustframe == 4:
+                    self.thrustframe = 1
+            else:
+                self.setImage(0)
         collision=self.collidingWithSprites(Sun)
         if collision:
             self.visible=False
@@ -62,6 +63,7 @@ class explosion(Sprite):
     def __init__(self, position):
         asset=ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
         super().__init__(asset, position)
+        self.setImage=1
     def step(self):
         self.setImage = self.setImage + 1
         if self.setImage == 50:
