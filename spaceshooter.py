@@ -23,7 +23,7 @@ class Sun(Sprite):
     def __init__(self,position):
         asset=ImageAsset("images/sun.png")
         super().__init__(asset,position)
-        if 25<self.x<275 and 0<self.y<275:
+        if 0<self.x<275 and 0<self.y<275:
             self.destroy()
     def step(self):
         collision=self.collidingWithSprites(Spaceship)
@@ -40,8 +40,7 @@ class Spaceship(Sprite):
     def __init__(self, position):
         asset=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(227,0,65,125), 4, 'vertical')
-        #self.fxcenter=0.5
-        #self.fycenter=1
+        self.fxcenter=self.fycenter=0.5
         super().__init__(asset, position)
         self.thrust = 0
         self.right=0
