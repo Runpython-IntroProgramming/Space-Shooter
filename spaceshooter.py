@@ -23,7 +23,7 @@ class Sun(Sprite):
     def __init__(self,position):
         asset=ImageAsset("images/sun.png")
         super().__init__(asset,position)
-        if 25<self.x<275 and 25<self.y<275:
+        if 25<self.x<275 and 0<self.y<275:
             self.destroy()
     def step(self):
         collision=self.collidingWithSprites(Spaceship)
@@ -40,7 +40,8 @@ class Spaceship(Sprite):
     def __init__(self, position):
         asset=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(227,0,65,125), 4, 'vertical')
-        self.fxcenter = self.fycenter = 0.5
+        #self.fxcenter=0.5
+        #self.fycenter=1
         super().__init__(asset, position)
         self.thrust = 0
         self.right=0
@@ -55,8 +56,8 @@ class Spaceship(Sprite):
         
     def step(self):
         if self.visible!=False:
-            self.x+=math.cos(self.angle)
-            self.y+=math.sin(self.angle)
+            self.x+=-math.cos(math.pi-self.angle)
+            self.y+=-math.sin(math.pi-self.angle)
             if self.thrust == 1:
                 self.setImage(self.thrustframe)
                 self.thrustframe += 1
@@ -65,13 +66,11 @@ class Spaceship(Sprite):
             else:
                 self.setImage(0)
             if self.right==1:
-                self.rotation-=.01
-            while self.right==1:
-                self.angle-=.01
+                self.rotation-=.02
+                self.angle-=.02
             if self.left==1:
-                self.rotation+=.01
-            while self.left==1:
-                self.angle+=.01
+                self.rotation+=.02
+                self.angle+=.02
         if self.visible:
             collision=self.collidingWithSprites(Sun)
             if collision:
@@ -94,6 +93,7 @@ class Spaceship(Sprite):
 class explosion(Sprite):
     def __init__(self, position):
         asset=ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
+        self.fxcenter=self.fycenter=0.5
         super().__init__(asset, position)
         self.expframe=1
     def step(self):
