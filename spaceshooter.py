@@ -10,6 +10,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 from ggame import App, Sprite, ImageAsset, Frame
 import random
+import math
 
 class Background(Sprite):
     def __init__(self,position):
@@ -28,28 +29,34 @@ class Sun(Sprite):
         collision=self.collidingWithSprites(Spaceship)
         if collision:
             self.visible=False
-        
+            
+class Bullet(Sprite):
+    def __init__(self,position): 
+        asset=ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
+        super().__init__(asset,position)
     
     
 class Spaceship(Sprite):
     def __init__(self, position):
         asset=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
-            Frame(227,0,65,125), 4, 'vertical')
+        Frame(227,0,65,125), 4, 'vertical')
+        self.fxcenter = self.fycenter = 0.5
         super().__init__(asset, position)
-        self.vx=1
-        self.vy=1
-        self.vr=0
         self.thrust = 0
+        self.right=0
+        self.left=0
+        self.angle=math.pi/2
         self.thrustframe = 1
         Spacewar.listenKeyEvent("keydown","right arrow", self.rightOn)
         Spacewar.listenKeyEvent("keyup","right arrow", self.rightOff)
+        Spacewar.listenKeyEvent("keydown","left arrow", self.leftOn)
+        Spacewar.listenKeyEvent("keyup","left arrow", self.leftOff)
         self.visible=True
         
     def step(self):
         if self.visible!=False:
-            self.x += self.vx
-            self.y += self.vy
-            self.rotation += self.vr
+            self.x+=math.cos(self.angle)
+            self.y+=math.sin(self.angle)
             if self.thrust == 1:
                 self.setImage(self.thrustframe)
                 self.thrustframe += 1
@@ -58,7 +65,13 @@ class Spaceship(Sprite):
             else:
                 self.setImage(0)
             if self.right==1:
-                self.vr+=.01
+                self.rotation-=.01
+            while self.right==1:
+                self.angle-=.01
+            if self.left==1:
+                self.rotation+=.01
+            while self.left==1:
+                self.angle+=.01
         if self.visible:
             collision=self.collidingWithSprites(Sun)
             if collision:
@@ -71,6 +84,12 @@ class Spaceship(Sprite):
     def rightOff(self, event):
         self.thrust = 0
         self.right=0
+    def leftOn(self, event):
+        self.thrust = 1
+        self.left=1
+    def leftOff(self, event):
+        self.thrust = 0
+        self.left=0
 
 class explosion(Sprite):
     def __init__(self, position):
