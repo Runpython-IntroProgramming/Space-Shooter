@@ -29,19 +29,14 @@ class Sun(Sprite):
         collision=self.collidingWithSprites(Spaceship)
         if collision:
             self.visible=False
-            
-class Bullet(Sprite):
-    def __init__(self,position): 
-        asset=ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
-        super().__init__(asset,position)
     
     
 class Spaceship(Sprite):
     def __init__(self, position):
         asset=ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(227,0,65,125), 4, 'vertical')
-        self.fxcenter=self.fycenter=0.5
         super().__init__(asset, position)
+        self.fxcenter=self.fycenter=0.5
         self.thrust = 0
         self.right=0
         self.left=0
@@ -55,8 +50,10 @@ class Spaceship(Sprite):
         
     def step(self):
         if self.visible!=False:
-            self.x+=-math.cos(math.pi-self.angle)
-            self.y+=-math.sin(math.pi-self.angle)
+            self.vx=-math.cos(math.pi-self.angle)
+            self.vy=-math.sin(math.pi-self.angle)
+            self.x+=self.vx
+            self.y+=self.vy
             if self.thrust == 1:
                 self.setImage(self.thrustframe)
                 self.thrustframe += 1
@@ -89,10 +86,22 @@ class Spaceship(Sprite):
         self.thrust = 0
         self.left=0
 
+class Bullet(Sprite):
+    def __init__(self,position): 
+        asset=ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
+        super().__init__(asset,position)
+        self.bulletframe=0
+    def step(self):
+        self.setImage(self.bulletframe)
+        self.bulletframe += 1
+        if self.bulletframe == 8:
+            self.bulletframe=0
+        self.x+=Spaceship.vx
+        self.y+=Spaceship.vy
+
 class explosion(Sprite):
     def __init__(self, position):
         asset=ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
-        self.fxcenter=self.fycenter=0.5
         super().__init__(asset, position)
         self.expframe=1
     def step(self):
@@ -113,6 +122,7 @@ class Spacewar(App):
                 a+=Background.height
             a=0
             z+=Background.width
+        Bullet((200,200))
         Spaceship((100,100))
         for x in range(int(input("Set difficulty level, 0-20: "))):
             Sun((random.randint(0,self.width),random.randint(0,self.height)))
