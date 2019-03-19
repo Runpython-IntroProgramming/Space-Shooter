@@ -10,7 +10,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 from ggame import App, Sprite, ImageAsset, Frame
 import random
-# Why doesn't my animation work?
+
 class Background(Sprite):
     def __init__(self,position):
         asset=ImageAsset("images/starfield.jpg")
@@ -19,9 +19,16 @@ class Background(Sprite):
     height=512
 
 class Sun(Sprite):
-     def __init__(self,position):
+    def __init__(self,position):
         asset=ImageAsset("images/sun.png")
         super().__init__(asset,position)
+        if 25<self.x<275 and 25<self.y<275:
+            self.destroy()
+    def step(self):
+        collision=self.collidingWithSprites(Spaceship)
+        if collision:
+            self.visible=False
+        
     
     
 class Spaceship(Sprite):
@@ -34,8 +41,8 @@ class Spaceship(Sprite):
         self.vr=0
         self.thrust = 0
         self.thrustframe = 1
-        Spacewar.listenKeyEvent("keydown","space", self.thrustOn)
-        Spacewar.listenKeyEvent("keyup","space", self.thrustOff)
+        Spacewar.listenKeyEvent("keydown","right arrow", self.rightOn)
+        Spacewar.listenKeyEvent("keyup","right arrow", self.rightOff)
         self.visible=True
         
     def step(self):
@@ -50,26 +57,31 @@ class Spaceship(Sprite):
                     self.thrustframe = 1
             else:
                 self.setImage(0)
-        collision=self.collidingWithSprites(Sun)
-        if collision:
-            self.visible=False
-            explosion(self.position)
+            if self.right==1:
+                self.vr+=.01
+        if self.visible:
+            collision=self.collidingWithSprites(Sun)
+            if collision:
+                self.visible=False
+                explosion(self.position)
     
-    def thrustOn(self, event):
+    def rightOn(self, event):
         self.thrust = 1
-    def thrustOff(self, event):
+        self.right=1
+    def rightOff(self, event):
         self.thrust = 0
+        self.right=0
 
 class explosion(Sprite):
     def __init__(self, position):
         asset=ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
         super().__init__(asset, position)
-        self.setImage=1
+        self.expframe=1
     def step(self):
         self.setImage(self.expframe)
         self.expframe += 1
         if self.expframe == 26:
-            self.destroy
+            self.destroy()
 
 class Spacewar(App):
     def __init__(self):
@@ -84,13 +96,15 @@ class Spacewar(App):
             a=0
             z+=Background.width
         Spaceship((100,100))
-        for x in range(int(input("Set difficulty level, 0-20 "))):
+        for x in range(int(input("Set difficulty level, 0-20: "))):
             Sun((random.randint(0,self.width),random.randint(0,self.height)))
     def step(self):
         for ship in self.getSpritesbyClass(Spaceship):
             ship.step()
         for exp in self.getSpritesbyClass(explosion):
             exp.step()
+        for sun in self.getSpritesbyClass(Sun):
+            sun.step()
     
 myapp=Spacewar()
 myapp.run()
