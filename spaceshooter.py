@@ -90,14 +90,10 @@ class Bullet(Sprite):
     def __init__(self,position): 
         asset=ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
         super().__init__(asset,position)
-        self.bulletframe=0
+        self.setImage(0)
     def step(self):
-        self.setImage(self.bulletframe)
-        self.bulletframe += 1
-        if self.bulletframe == 8:
-            self.bulletframe=0
-        self.x+=Spaceship.vx
-        self.y+=Spaceship.vy
+        self.x+=1
+        self.y+=1
 
 class explosion(Sprite):
     def __init__(self, position):
@@ -122,8 +118,8 @@ class Spacewar(App):
                 a+=Background.height
             a=0
             z+=Background.width
-        Bullet((200,200))
         Spaceship((100,100))
+        Bullet((200,200))
         for x in range(int(input("Set difficulty level, 0-20: "))):
             Sun((random.randint(0,self.width),random.randint(0,self.height)))
     def step(self):
@@ -133,6 +129,6 @@ class Spacewar(App):
             exp.step()
         for sun in self.getSpritesbyClass(Sun):
             sun.step()
-    
+            
 myapp=Spacewar()
 myapp.run()
