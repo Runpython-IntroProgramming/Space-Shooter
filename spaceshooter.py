@@ -20,9 +20,19 @@ grey = Color(0x696969, 1.0)
 brick = Color(0xA52A2A, 1.0)
 khaki = Color(0xF0E68C, 1.0)
 
+
 thinline = LineStyle(1, black)
 
 space = RectangleAsset(1500, 1000, thinline, black)
+
+star = PolygonAsset([(0,10), (14,0), (28,10), (22,30), (6, 30)], thinline, yellow)
+
+
+
+
+Sprite(space, (0, 0))
+
+Sprite(star, (200, 200))
 
 myapp = App()
 myapp.width = 1600
