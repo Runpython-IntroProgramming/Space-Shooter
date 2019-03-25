@@ -31,8 +31,8 @@ class Sun(Sprite):
     def __init__(self, position):
         super().__init__(Sun.asset, position, CircleAsset(32))
         self.mass = 30*1000
-        #self.fxcenter = 0.5
-        #self.fycenter = 0.5
+        self.fxcenter = 0.33
+        self.fycenter = 0.44
 
 class Vector:
     
