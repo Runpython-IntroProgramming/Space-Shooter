@@ -15,9 +15,9 @@ from time import time
 
 class Stars(Sprite):
 
-    asset = ImageAsset("images/starfield.jpg")
-    width = 512
-    height = 512
+    asset = ImageAsset("images/clouds.png")
+    width = 950
+    height = 950
 
     def __init__(self, position):
         super().__init__(Stars.asset, position)
