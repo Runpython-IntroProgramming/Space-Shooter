@@ -9,7 +9,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 from ggame import App, RectangleAsset, ImageAsset, SoundAsset
 from ggame import LineStyle, Color, Sprite, Sound
-import math
+import math, random
 from time import time
 class Background(App):
     """
@@ -31,7 +31,7 @@ for i in range (1,100):
             white=Color(0xbbbb00,1)
             starline=LineStyle(2,white)
             star_asset =RectangleAsset(10, 10, starline, white)
-            star = Sprite(star_asset, ((20*i),(10*i)))
+            star = Sprite(star_asset, ((random.randint(0,1000)),(random.randint(0,1000))))
     myapp2 = Stars()
     myapp2.run()
         
