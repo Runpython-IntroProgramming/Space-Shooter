@@ -361,7 +361,7 @@ class Spacewar(App):
             for y in range(self.height//Stars.height + 1):
                 Stars((x*Stars.width, y*Stars.height))
         self.sun = Sun((self.width/2, self.height/2))
-        self.sun.scale=.1 
+       # self.sun.scale=.3 
         self.ship1 = Ship1(self, (self.width/2-140,self.height/2), (0,-120), self.sun)
         self.ship2 = Ship2(self, (self.width/2+140,self.height/2), (0,120), self.sun)
         self.tsprites = {k:Sprite(TextAsset(text=v, width=200, align='center',style='20px Arial', fill=Color(0xff2222,1))) 
