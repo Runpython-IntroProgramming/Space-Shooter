@@ -22,6 +22,7 @@ class Background(App):
             starline=LineStyle(2,white)
             star_asset =RectangleAsset(10, 10, starline, white)
             star = Sprite(star_asset, ((random.randint(0,1000)),(random.randint(0,1000))))
+            SpaceShip((100,100))
 class SpaceShip(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
         Frame(227,0,65,125), 4, 'vertical')
