@@ -10,7 +10,7 @@ from ggame import App, RectangleAsset, ImageAsset, SoundAsset
 from ggame import LineStyle, Color, Sprite, Sound, Frame
 import math, random
 from time import time
-class Background(App):
+class SpaceGame(App):
     def __init__(self):
         super().__init__()
         black = Color(0, 1)
@@ -23,11 +23,34 @@ class Background(App):
             star_asset =RectangleAsset(10, 10, starline, white)
             star = Sprite(star_asset, ((random.randint(0,1000)),(random.randint(0,1000))))
             SpaceShip((100,100))
+    
+    def step(self):
+        for ship in self.getSpritesbyClass(SpaceShip):
+            ship.step()
+
 class SpaceShip(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
         Frame(227,0,65,125), 4, 'vertical')
     def __init__(self, position):
         super().__init__(SpaceShip.asset, position)
-myapp = Background()
+        self.vx = 1
+        self.vy = 1
+        self.vr = 0.01
+        self.thrust = 0
+        self.thrustframe = 1
+        SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
+        SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
+    
+    def step(self):
+        self.x += self.vx
+        self.y += self.vy
+        self.rotation += self.vr
+    def thrustOn(self, event):
+        self.thrust = 1
+        
+    def thrustOff(self, event):
+        self.thrust = 0
+
+myapp = SpaceGame()
 myapp.run()
 
