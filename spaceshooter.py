@@ -32,26 +32,29 @@ class SpaceShip(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png",
         Frame(227,0,65,125), 4, 'vertical')
     def __init__(self, position):
-        super().__init__(SpaceShip.asset, (200,200))
+        super().__init__(SpaceShip.asset, (400,400))
         self.vx = 0
         self.vy = 0
         self.vr = 0.00
         self.thrust = 0
         self.thrustframe = 1
-        SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
-        SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
-        SpaceGame.listenKeyEvent("keydown", "left arrow", self.rotationleftoff)
-        SpaceGame.listenKeyEvent("keyup", "left arrow", self.rotationlefton)
+        SpaceGame.listenKeyEvent("keydown", "up arrow", self.thrustOn)
+        SpaceGame.listenKeyEvent("keyup", "up arrow", self.thrustOff)
+        SpaceGame.listenKeyEvent("keydown", "left arrow", self.rotationlefton)
+        SpaceGame.listenKeyEvent("keyup", "left arrow", self.rotationleftoff)
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.rotationrightoff)
-        SpaceGame.listenKeyEvent("keyup", "right arrow", self.rotationrighton)
+    #SpaceGame.listenKeyEvent("keyup", "right arrow", self.rotationrighton)
         self.fxcenter = self.fycenter = 0.5
     
     def step(self):
         self.x += self.vx
         self.y += self.vy
-        if self.thrust == 1:
-            self.x += 1
-            self.y += 1
+        if self.thrust == 1 and self.rotation != 1:
+            self.x += 0
+            self.y += -1
+        if self.thrust == 1 and self.rotation == 1:
+            self.x += -1
+            self.y += -1
         self.rotation += self.vr
         if self.thrust == 1:
             self.setImage(self.thrustframe)
@@ -65,7 +68,18 @@ class SpaceShip(Sprite):
         
     def thrustOff(self, event):
         self.thrust = 0
-
+    
+    def rotationleftoff(self, event):
+        self.rotation = 0
+    
+    def rotationlefton(self,event):
+        self.rotation = 1
+    
+    def rotationrightoff(self,event):
+        self.rotation = 0
+    
+    def rotationrighton(self,event):
+        self.rotation = 1
 myapp = SpaceGame()
 myapp.run()
 
