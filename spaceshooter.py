@@ -1,7 +1,7 @@
 """
 spaceshooter.py
 Author: miViriaz
-Credit: mr dennison and mr healy
+Credit: spacewar source code, mr dennison and mr healy
 
 Assignment:
 Write and submit a program that implements the spacewar game:
