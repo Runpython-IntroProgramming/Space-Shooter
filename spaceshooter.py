@@ -56,7 +56,7 @@ class Spaceship2(Sprite):
         self.shoot=0
         self.angle=math.pi/2
         self.thrustframe = 1
-        Spacewar.listenKeyEvent("keydown","a", self.rightOn)
+        Spacewar.listenKeyEvent("keydown","a", self.rOn)
         Spacewar.listenKeyEvent("keyup","a", self.rightOff)
         Spacewar.listenKeyEvent("keydown","s", self.leftOn)
         Spacewar.listenKeyEvent("keyup","s", self.leftOff)
