@@ -364,7 +364,7 @@ class Spacewar(App):
         self.sun.scale=.26 
         self.ship1 = Ship1(self, (self.width/2-140,self.height/2), (0,-120), self.sun)
         self.ship2 = Ship2(self, (self.width/2+140,self.height/2), (0,120), self.sun)
-        self.tsprites = {k:Sprite(TextAsset(text=v, width=200, align='center',style='20px Georgia', fill=Color(0xff2222,1))) 
+        self.tsprites = {k:Sprite(TextAsset(text=v, width=200, align='center',style='20px Verdana', fill=Color(0xFF4500,1))) 
             for k, v in Spacewar.strings.items()}
         self.tsprites['winner'].visible = False
         self.tsprites['winner'].y = self.height/2
