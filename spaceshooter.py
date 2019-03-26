@@ -37,6 +37,7 @@ class Sun(Sprite):
         if 0<self.x<275 and 0<self.y<275:
         #ya need something here
         #also if the bullets hit the sun, explode but the sun doesn't explode
+        #also limited number of bullets maybe
             self.destroy()
     def step(self):
         collision=self.collidingWithSprites(Spaceship)
