@@ -17,11 +17,11 @@ class SpaceGame(App):
         noline = LineStyle(0, black)
         bg_asset = RectangleAsset(self.width, self.height, noline, black)
         bg = Sprite(bg_asset, (0,0))
-        for i in range (1,100):
+        for i in range (1,10):
             white=Color(0xbbbb00,1)
             starline=LineStyle(2,white)
             star_asset =RectangleAsset(10, 10, starline, white)
-            star = Sprite(star_asset, ((random.randint(0,1000)),(random.randint(0,1000))))
+            star = Sprite(star_asset, ((random.randint(0,1000)),(random.randint(0,500))))
             SpaceShip((100,100))
     
     def step(self):
@@ -40,6 +40,10 @@ class SpaceShip(Sprite):
         self.thrustframe = 1
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
+        SpaceGame.listenKeyEvent("keydown", "left arrow", self.rotationleftoff)
+        SpaceGame.listenKeyEvent("keyup", "left arrow", self.rotationlefton)
+        SpaceGame.listenKeyEvent("keydown", "right arrow", self.rotationrightoff)
+        SpaceGame.listenKeyEvent("keyup", "right arrow", self.rotationrighton)
         self.fxcenter = self.fycenter = 0.5
     
     def step(self):
