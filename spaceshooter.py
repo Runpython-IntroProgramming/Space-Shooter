@@ -57,7 +57,7 @@ class Spaceship2(Sprite):
         self.shoot=0
         self.angle=math.pi/2
         self.thrustframe = 1
-        Spacewar.listenKeyEvent("keydown","a", self.rOn)
+        Spacewar.listenKeyEvent("keydown","a", self.rightOn)
         Spacewar.listenKeyEvent("keyup","a", self.rightOff)
         Spacewar.listenKeyEvent("keydown","s", self.leftOn)
         Spacewar.listenKeyEvent("keyup","s", self.leftOff)
@@ -79,11 +79,11 @@ class Spaceship2(Sprite):
             else:
                 self.setImage(0)
             if self.right==1:
-                self.rotation-=.02
-                self.angle-=.02
-            if self.left==1:
                 self.rotation+=.02
                 self.angle+=.02
+            if self.left==1:
+                self.rotation-=.02
+                self.angle-=.02
             if self.shoot==1:
                 Bullet((self.x,self.y),2*self.vx,2*self.vy)
         if self.visible:
@@ -199,7 +199,7 @@ class Spacewar(App):
             a=0
             z+=Background.width
         Spaceship((100,100))
-        Spaceship((self.width-100,self.height-100))
+        Spaceship2((self.width-100,self.height-100))
         for x in range(int(input("Set difficulty level, 0-20: "))):
             Sun((random.randint(0,self.width),random.randint(0,self.height)))
     def step(self):
@@ -212,7 +212,7 @@ class Spacewar(App):
         for bullet in self.getSpritesbyClass(Bullet):
             bullet.step()
         for ship2 in self.getSpritesbyClass(Spaceship2):
-            ship2.step
+            ship2.step()
             
 myapp=Spacewar()
 myapp.run()
