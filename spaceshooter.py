@@ -22,11 +22,14 @@ class SpaceGame(App):
             starline=LineStyle(2,white)
             star_asset =RectangleAsset(10, 10, starline, white)
             star = Sprite(star_asset, ((random.randint(0,1000)),(random.randint(0,500))))
-            SpaceShip((100,100))
+        SpaceShip((100,100))
+        asteroid((300,300))
             
 
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
+            ship.step()
+        for ship in self.getSpritesbyClass(asteroid):
             ship.step()
 
 class SpaceShip(Sprite):
@@ -99,12 +102,17 @@ class SpaceShip(Sprite):
         k=1
         
 class asteroid(Sprite):
-    grey=Color(0xbbbb00,1)
+    grey=Color(0xbebebe,1)
     asteroidline=LineStyle(2,grey)
     asteroid_asset =RectangleAsset(10, 10, asteroidline, grey)
-    asteroid = Sprite(asteroid_asset, ((random.randint(0,100)),(random.randint(0,500))))
     def __init__(self, position):
-        super().__init__(asteroid.asset, (400,400))
+        super().__init__(asteroid.asteroid_asset, (400,400))
+        self.vx = 0
+        self.vy = 0
+    def step(self):
+        self.x += self.vx
+        self.y += self.vy
+
 myapp = SpaceGame()
 myapp.run()
 
