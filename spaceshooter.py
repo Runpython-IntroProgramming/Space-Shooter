@@ -30,5 +30,12 @@ class Sun(Sprite):
         super().__init__(Sun.asset, position, CircleAsset(32))
 
 Space((0,0))
+Space((512,0))
+Space((1024,0))
+Space((0,512))
+Space((512,512))
+Space((1024,512))
+Sun((600,340))
+
 myapp = App()
 myapp.run()
