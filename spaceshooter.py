@@ -23,7 +23,8 @@ class SpaceGame(App):
             star_asset =RectangleAsset(10, 10, starline, white)
             star = Sprite(star_asset, ((random.randint(0,1000)),(random.randint(0,500))))
             SpaceShip((100,100))
-    
+            
+
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
@@ -42,19 +43,28 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keyup", "up arrow", self.thrustOff)
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.rotationlefton)
         SpaceGame.listenKeyEvent("keyup", "left arrow", self.rotationleftoff)
-        SpaceGame.listenKeyEvent("keydown", "right arrow", self.rotationrightoff)
-    #SpaceGame.listenKeyEvent("keyup", "right arrow", self.rotationrighton)
+        SpaceGame.listenKeyEvent("keydown", "right arrow", self.rotationrighton)
+        SpaceGame.listenKeyEvent("keyup", "right arrow", self.rotationrightoff)
         self.fxcenter = self.fycenter = 0.5
     
     def step(self):
         self.x += self.vx
         self.y += self.vy
-        if self.thrust == 1 and self.rotation != 1:
+        if self.thrust == 1 and self.rotation ==0 :
             self.x += 0
             self.y += -1
         if self.thrust == 1 and self.rotation == 1:
             self.x += -1
             self.y += -1
+        if self.thrust == 1 and self.rotation ==-1:
+            self.x += 1
+            self.y += -1
+        if self.thrust == 1 and self.rotation ==-2:
+            self.x += 1
+            self.y += 1
+        if self.thrust == 1 and self.rotation ==2:
+            self.x += -1
+            self.y += 1
         self.rotation += self.vr
         if self.thrust == 1:
             self.setImage(self.thrustframe)
@@ -70,16 +80,31 @@ class SpaceShip(Sprite):
         self.thrust = 0
     
     def rotationleftoff(self, event):
-        self.rotation = 0
+        if self.rotation==0:
+            self.rotation = 0
+        elif self.rotation==1:
+            self.rotation = 1
     
     def rotationlefton(self,event):
-        self.rotation = 1
+        self.rotation = self.rotation+1
     
     def rotationrightoff(self,event):
-        self.rotation = 0
+        if self.rotation==0:
+            self.rotation = 0
+        elif self.rotation==1:
+            self.rotation = 1
     
     def rotationrighton(self,event):
-        self.rotation = 1
+        self.rotation = self.rotation-1
+        k=1
+        
+class asteroid(Sprite):
+    grey=Color(0xbbbb00,1)
+    asteroidline=LineStyle(2,grey)
+    asteroid_asset =RectangleAsset(10, 10, asteroidline, grey)
+    asteroid = Sprite(asteroid_asset, ((random.randint(0,100)),(random.randint(0,500))))
+    def __init__(self, position):
+        super().__init__(asteroid.asset, (400,400))
 myapp = SpaceGame()
 myapp.run()
 
