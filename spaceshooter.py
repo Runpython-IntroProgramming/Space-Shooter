@@ -12,16 +12,41 @@ from ggame import App, Sprite, ImageAsset, Frame
 import random
 import math
 
-class Bullet(Sprite):
+class Bullet1(Sprite):
     def __init__(self,position,vx,vy): 
         asset=ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
         super().__init__(asset,position)
         self.setImage(0)
+        self.fxcenter=self.fycenter=0.5
         self.vx=vx
         self.vy=vy
     def step(self):
-        self.x+=self.vx
-        self.y+=self.vy
+        if self.visible!=False:
+            self.x+=self.vx
+            self.y+=self.vy
+            collision=self.collidingWithSprites(Sun)
+            collision2=self.collidingWithSprites(Spaceship2)
+            if collision or collision2:
+                self.visible=False
+                explosion(self.position)
+class Bullet2(Sprite):
+    def __init__(self,position,vx,vy): 
+        asset=ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
+        super().__init__(asset,position)
+        self.setImage(0)
+        self.fxcenter=self.fycenter=0.5
+        self.vx=vx
+        self.vy=vy
+    def step(self):
+        if self.visible!=False:
+            self.x+=self.vx
+            self.y+=self.vy
+            collision=self.collidingWithSprites(Sun)
+            collision2=self.collidingWithSprites(Spaceship)
+            if collision or collision2:
+                self.visible=False
+                explosion(self.position)
+            
 
 class Background(Sprite):
     def __init__(self,position):
@@ -34,10 +59,9 @@ class Sun(Sprite):
     def __init__(self,position):
         asset=ImageAsset("images/sun.png")
         super().__init__(asset,position)
-        if 0<self.x<275 and 0<self.y<275:
-        #ya need something here
-        #also if the bullets hit the sun, explode but the sun doesn't explode
-        #also limited number of bullets maybe
+        if 0<self.x<200 and 0<self.y<200:
+            self.destroy()
+        elif 872<self.x and 350<self.y:
             self.destroy()
     def step(self):
         collision=self.collidingWithSprites(Spaceship)
@@ -85,13 +109,16 @@ class Spaceship2(Sprite):
                 self.rotation-=.02
                 self.angle-=.02
             if self.shoot==1:
-                Bullet((self.x,self.y),2*self.vx,2*self.vy)
+                Bullet2((self.x,self.y),2*self.vx,2*self.vy)
         if self.visible:
             collision=self.collidingWithSprites(Sun)
             collision2=self.collidingWithSprites(Spaceship)
             if collision or collision2:
                 self.visible=False
                 explosion(self.position)
+            collision3=self.collidingWithSprites(Bullet1)
+            if collision3:
+                self.visible=False
     
     def rightOn(self, event):
         self.thrust = 1
@@ -150,13 +177,16 @@ class Spaceship(Sprite):
                 self.rotation+=.02
                 self.angle+=.02
             if self.shoot==1:
-                Bullet((self.x,self.y),2*self.vx,2*self.vy)
+                Bullet1((self.x,self.y),2*self.vx,2*self.vy)
         if self.visible:
             collision=self.collidingWithSprites(Sun)
             collision2=self.collidingWithSprites(Spaceship2)
             if collision or collision2:
                 self.visible=False
                 explosion(self.position)
+            collision3=self.collidingWithSprites(Bullet2)
+            if collision3:
+                self.visible=False
     
     def rightOn(self, event):
         self.thrust = 1
@@ -179,6 +209,7 @@ class explosion(Sprite):
     def __init__(self, position):
         asset=ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
         super().__init__(asset, position)
+        self.fxcenter=self.fycenter=0.5
         self.expframe=1
     def step(self):
         self.setImage(self.expframe)
@@ -198,21 +229,54 @@ class Spacewar(App):
                 a+=Background.height
             a=0
             z+=Background.width
-        Spaceship((100,100))
-        Spaceship2((self.width-100,self.height-100))
+        self.go=1
+        self.sp = Spaceship((100,100))
+        self.sp2 = Spaceship2((self.width-100,self.height-100))
         for x in range(int(input("Set difficulty level, 0-20: "))):
             Sun((random.randint(0,self.width),random.randint(0,self.height)))
-    def step(self):
-        for ship in self.getSpritesbyClass(Spaceship):
-            ship.step()
-        for exp in self.getSpritesbyClass(explosion):
-            exp.step()
-        for sun in self.getSpritesbyClass(Sun):
-            sun.step()
-        for bullet in self.getSpritesbyClass(Bullet):
-            bullet.step()
-        for ship2 in self.getSpritesbyClass(Spaceship2):
-            ship2.step()
+        
+        if self.sp.visible==False:
+            self.go=0
+        elif self.sp.x<-20:
+            self.go=0
+        elif self.sp.x>self.width+20:
+            self.go=0
+        elif self.sp.y<-20:
+            self.go=0
+        elif self.sp.y>self.height+20:
+            self.go=0
+        elif self.sp2.visible==False:
+            self.go=2
+        elif self.sp2.x<-20:
+            self.go=2
+        elif self.sp2.x>self.width+20:
+            self.go=2
+        elif self.sp2.y<-20:
+            self.go=2
+        elif self.sp2.y>self.height+20:
+            self.go=2
+        
+        if self.go==0:
+            print("Player 2 wins! Press Go to try again!")
+        if self.go==2:
+            print("Player 1 wins! Press Go to try agian!")
+        
+        if self.go==1:
+            def step(self):
+                for ship in self.getSpritesbyClass(Spaceship):
+                    ship.step()
+                for exp in self.getSpritesbyClass(explosion):
+                    exp.step()
+                for sun in self.getSpritesbyClass(Sun):
+                    sun.step()
+                for bullet in self.getSpritesbyClass(Bullet1):
+                    bullet.step()
+                for ship2 in self.getSpritesbyClass(Spaceship2):
+                    ship2.step()
+                for bull in self.getSpritesbyClass(Bullet2):
+                    bull.step()
             
+
+
 myapp=Spacewar()
 myapp.run()
