@@ -11,7 +11,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 from ggame import App, Sprite, ImageAsset, Frame
 import random
 import math
-
+print("Directions: Player 1 uses the left and right arrows to move the Spaceship, and the spacebar to fire. Player 2 uses the a and s keys to move the spaceship, and the z key to fire")
 class Bullet1(Sprite):
     def __init__(self,position,vx,vy): 
         asset=ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
