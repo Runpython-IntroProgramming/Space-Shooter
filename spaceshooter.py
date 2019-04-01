@@ -350,7 +350,7 @@ class Spacewar(App):
     
     strings = {'winner': 'WINNER!',
         'tie': 'TIE!',
-        'space': 'Press SPACE to play.',
+        'space': 'Press SPACE to play - Stay away from the sun!!!',
         'left': 'AWD\nSpace to FIRE',
         'right': 'Arrow Keys\nEnter to FIRE',
         }
