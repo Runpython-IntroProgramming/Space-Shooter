@@ -63,10 +63,6 @@ class Sun(Sprite):
             self.destroy()
         elif 872<self.x and 350<self.y:
             self.destroy()
-    def step(self):
-        collision=self.collidingWithSprites(Spaceship)
-        if collision:
-            self.visible=False
     
     
 class Spaceship2(Sprite):
@@ -232,50 +228,49 @@ class Spacewar(App):
         self.go=1
         self.sp = Spaceship((100,100))
         self.sp2 = Spaceship2((self.width-100,self.height-100))
-        for x in range(int(input("Set difficulty level, 0-20: "))):
+        for x in range(int(input("Set difficulty level, 0-10: "))):
             Sun((random.randint(0,self.width),random.randint(0,self.height)))
-        
-        if self.sp.visible==False:
-            self.go=0
-        elif self.sp.x<-20:
-            self.go=0
-        elif self.sp.x>self.width+20:
-            self.go=0
-        elif self.sp.y<-20:
-            self.go=0
-        elif self.sp.y>self.height+20:
-            self.go=0
-        elif self.sp2.visible==False:
-            self.go=2
-        elif self.sp2.x<-20:
-            self.go=2
-        elif self.sp2.x>self.width+20:
-            self.go=2
-        elif self.sp2.y<-20:
-            self.go=2
-        elif self.sp2.y>self.height+20:
-            self.go=2
-        
-        if self.go==0:
-            print("Player 2 wins! Press Go to try again!")
-        if self.go==2:
-            print("Player 1 wins! Press Go to try agian!")
-        
-        if self.go==1:
-            def step(self):
+        self.ste=True
+            
+    def step(self):
+        for exp in self.getSpritesbyClass(explosion):
+            exp.step()
+        for bullet in self.getSpritesbyClass(Bullet1):
+                    bullet.step()
+        for bull in self.getSpritesbyClass(Bullet2):
+                    bull.step()
+        if self.ste==True:
+            if self.sp.visible==False:
+                self.go=0
+            elif self.sp.x<-50:
+                self.go=0
+            elif self.sp.x>self.width+50:
+                self.go=0
+            elif self.sp.y<-50:
+                self.go=0
+            elif self.sp.y>self.height+50:
+                self.go=0
+            elif self.sp2.visible==False:
+                self.go=2
+            elif self.sp2.x<-50:
+                self.go=2
+            elif self.sp2.x>self.width+50:
+                self.go=2
+            elif self.sp2.y<-50:
+                self.go=2
+            elif self.sp2.y>self.height+50:
+                self.go=2
+            if self.go==1:
                 for ship in self.getSpritesbyClass(Spaceship):
                     ship.step()
-                for exp in self.getSpritesbyClass(explosion):
-                    exp.step()
-                for sun in self.getSpritesbyClass(Sun):
-                    sun.step()
-                for bullet in self.getSpritesbyClass(Bullet1):
-                    bullet.step()
                 for ship2 in self.getSpritesbyClass(Spaceship2):
                     ship2.step()
-                for bull in self.getSpritesbyClass(Bullet2):
-                    bull.step()
-            
+            if self.go==0:
+                print("Player 2 wins!")
+                self.ste=False
+            if self.go==2:
+                print("Player 1 wins!")
+                self.ste=False
 
 
 myapp=Spacewar()
