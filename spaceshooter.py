@@ -23,10 +23,13 @@ class SpaceGame(App):
             star_asset =RectangleAsset(10, 10, starline, white)
             star = Sprite(star_asset, ((random.randint(0,1000)),(random.randint(0,500))))
         SpaceShip((100,100))
-        asteroid((random.randint(0,600),random.randint(0,400)))
-        asteroid((random.randint(0,600),random.randint(0,400)))
-        asteroid((random.randint(0,600),random.randint(0,400)))
-        asteroid((random.randint(0,600),random.randint(0,400)))
+        asteroid((random.randint(0,800),random.randint(0,400)))
+        asteroid((random.randint(0,800),random.randint(0,400)))
+        asteroid((random.randint(0,800),random.randint(0,400)))
+        asteroid((random.randint(0,800),random.randint(0,400)))
+        asteroid((random.randint(0,800),random.randint(0,400)))
+        asteroid((random.randint(0,800),random.randint(0,400)))
+        Bullet((500,500))
             
 
     def step(self):
@@ -104,11 +107,51 @@ class SpaceShip(Sprite):
     def rotationrighton(self,event):
         self.rotation = self.rotation-1
         k=1
+class Bullet(Sprite):
+    asset = ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
+    collisionasset = RectangleAsset(4,4)
+    pewasset = SoundAsset("sounds/pew1.mp3")
+    
+    def __init__(self, position):
+        super().__init__(Bullet.asset, Bullet.collisionasset, position)
+        self.visible = False
+        self.firing = False
+        self.time = 0
+        
+    def shoot(self, position, velocity, time):
+        self.position = position
+        self.vx = velocity[0]
+        self.vy = velocity[1]
+        self.time = time
+        self.visible = True
+        self.firing = True
+        self.pew.play()
+
+    def step(self, T, dT):
+        self.time = self.time - dT
+        if self.visible:
+            if self.time <= 0:
+                self.visible = False
+            else:
+                self.nextImage(True)
+                super().step(T, dT)
+                if self.collidingWith(self.sun):
+                    self.visible = False
+                    ExplosionSmall(self.position)
+                else:
+                    ships = self.collidingWithSprites(Ship1)
+                    ships.extend(self.collidingWithSprites(Ship2))
+                    for ship in ships:
+                        if not self.firing and ship.visible:
+                            ship.explode()
+                            self.visible = False
+                    if not ships:
+                        self.firing = False
         
 class asteroid(Sprite):
     grey=Color(0xbebebe,1)
     asteroidline=LineStyle(2,grey)
-    asteroid_asset =RectangleAsset(10, 10, asteroidline, grey)
+    asteroid_asset =RectangleAsset(30, 30, asteroidline, grey)
     def __init__(self, position):
         super().__init__(asteroid.asteroid_asset, position)
         self.vx = 0
@@ -124,7 +167,21 @@ class asteroid(Sprite):
             self.y += 1
     thrust = 1
 
+class ExplosionSmall(Sprite):
+    
+    asset = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
+    
+    def __init__(self, position):
+        super().__init__(ExplosionSmall.asset, position)
+        self.image = 0
+        self.center = (0.5, 0.5)
+    def step(self):
+        self.setImage(self.image//2)  # slow it down
+        self.image = self.image + 1
+        if self.image == 20:
+            self.destroy()
 
 myapp = SpaceGame()
 myapp.run()
+
 
