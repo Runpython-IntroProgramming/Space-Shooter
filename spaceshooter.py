@@ -31,9 +31,16 @@ class Sun(Sprite):
         
 class Ship(Sprite):
 
-    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,292-227,125), 4, 'vertical')
+    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(0,0,86,125), 4, 'vertical')
+    def __init__(self, position):
+        super().__init__(Ship.asset, position)
         
-
+class Alien(Sprite):
+    
+    asset = ImageAsset("alien-in-spaceship-cartoon-sticker-1539712327.219355.png", Frame(0,0,86,125), 4, 'vertical')
+    def __init__(self, position):
+        super().__init__(Alien.asset, position)
+    
 
 Space((0,0))
 Space((512,0))
@@ -45,6 +52,7 @@ Sun((300,150))
 Sun((100, 400))
 Sun((700, 500))
 Ship((200,200))
+Alien((300, 300))
 
 myapp = App()
 myapp.run()
