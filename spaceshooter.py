@@ -28,6 +28,12 @@ class Sun(Sprite):
     
     def __init__(self, position):
         super().__init__(Sun.asset, position, CircleAsset(32))
+        
+class Ship(Sprite):
+
+    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,292-227,125), 4, 'vertical')
+        
+
 
 Space((0,0))
 Space((512,0))
@@ -35,7 +41,10 @@ Space((1024,0))
 Space((0,512))
 Space((512,512))
 Space((1024,512))
-Sun((600,340))
+Sun((300,150))
+Sun((100, 400))
+Sun((700, 500))
+Ship((200,200))
 
 myapp = App()
 myapp.run()
