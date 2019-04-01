@@ -37,7 +37,9 @@ class Ship(Sprite):
         
 class Alien(Sprite):
     
-    asset = ImageAsset("alien-in-spaceship-cartoon-sticker-1539712327.219355.png", Frame(0,0,86,125), 4, 'vertical')
+    width = 148
+    height = 150
+    asset = ImageAsset("alien-in-spaceship-cartoon-sticker-1539712327.219355.png", Frame(0, 0, width, height))
     def __init__(self, position):
         super().__init__(Alien.asset, position)
     
