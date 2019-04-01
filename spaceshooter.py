@@ -26,9 +26,12 @@ class Bullet1(Sprite):
             self.y+=self.vy
             collision=self.collidingWithSprites(Sun)
             collision2=self.collidingWithSprites(Spaceship2)
-            if collision or collision2:
+            if collision:
                 self.visible=False
                 explosion(self.position)
+            if collision2:
+                self.visible=False
+                
 class Bullet2(Sprite):
     def __init__(self,position,vx,vy): 
         asset=ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
@@ -43,9 +46,11 @@ class Bullet2(Sprite):
             self.y+=self.vy
             collision=self.collidingWithSprites(Sun)
             collision2=self.collidingWithSprites(Spaceship)
-            if collision or collision2:
+            if collision:
                 self.visible=False
                 explosion(self.position)
+            if collision2:
+                self.visible=False
             
 
 class Background(Sprite):
@@ -109,12 +114,10 @@ class Spaceship2(Sprite):
         if self.visible:
             collision=self.collidingWithSprites(Sun)
             collision2=self.collidingWithSprites(Spaceship)
-            if collision or collision2:
+            collision3=self.collidingWithSprites(Bullet1)
+            if collision or collision2 or collision3:
                 self.visible=False
                 explosion(self.position)
-            collision3=self.collidingWithSprites(Bullet1)
-            if collision3:
-                self.visible=False
     
     def rightOn(self, event):
         self.thrust = 1
@@ -177,12 +180,10 @@ class Spaceship(Sprite):
         if self.visible:
             collision=self.collidingWithSprites(Sun)
             collision2=self.collidingWithSprites(Spaceship2)
-            if collision or collision2:
+            collision3=self.collidingWithSprites(Bullet2)
+            if collision or collision2 or collision3:
                 self.visible=False
                 explosion(self.position)
-            collision3=self.collidingWithSprites(Bullet2)
-            if collision3:
-                self.visible=False
     
     def rightOn(self, event):
         self.thrust = 1
@@ -242,23 +243,23 @@ class Spacewar(App):
         if self.ste==True:
             if self.sp.visible==False:
                 self.go=0
-            elif self.sp.x<-50:
+            elif self.sp.x<-75:
                 self.go=0
-            elif self.sp.x>self.width+50:
+            elif self.sp.x>self.width+75:
                 self.go=0
-            elif self.sp.y<-50:
+            elif self.sp.y<-75:
                 self.go=0
-            elif self.sp.y>self.height+50:
+            elif self.sp.y>self.height+75:
                 self.go=0
             elif self.sp2.visible==False:
                 self.go=2
-            elif self.sp2.x<-50:
+            elif self.sp2.x<-75:
                 self.go=2
-            elif self.sp2.x>self.width+50:
+            elif self.sp2.x>self.width+75:
                 self.go=2
-            elif self.sp2.y<-50:
+            elif self.sp2.y<-75:
                 self.go=2
-            elif self.sp2.y>self.height+50:
+            elif self.sp2.y>self.height+75:
                 self.go=2
             if self.go==1:
                 for ship in self.getSpritesbyClass(Spaceship):
