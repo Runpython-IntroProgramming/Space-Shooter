@@ -52,7 +52,7 @@ class Vector:
 
 class GravitySprite(Sprite):
     
-    G = 50.0
+    G = 70.0
 
     def __init__(self, asset, collisionasset, position, velocity, sun):
         super().__init__(asset, position, collisionasset)
@@ -62,8 +62,8 @@ class GravitySprite(Sprite):
         self.fxcenter = 0.5
         self.fycenter = 0.5
         self.rrate = 0.0
-        self.thrust = 0.0
-        self.mass = 1.0
+        self.thrust = 7.0
+        self.mass = 20.0
         
     def step(self, T, dT):
         #dt = 0.033
@@ -163,7 +163,7 @@ class Ship(GravitySprite):
 
     R = 2.0
     bullets = 6
-    healthcount = 6
+    healthcount = 4
     reappearasset = SoundAsset("sounds/reappear.mp3")
     
     def __init__(self, asset, app, position, velocity, sun):
