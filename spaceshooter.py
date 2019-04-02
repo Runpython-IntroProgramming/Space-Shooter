@@ -29,13 +29,14 @@ class SpaceGame(App):
         asteroid((random.randint(0,800),random.randint(0,400)))
         asteroid((random.randint(0,800),random.randint(0,400)))
         asteroid((random.randint(0,800),random.randint(0,400)))
-        Bullet((500,500))
             
 
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
         for ship in self.getSpritesbyClass(asteroid):
+            ship.step()
+        for ship in self.getSpritesbyClass(Bullet):
             ship.step()
             
 
@@ -55,6 +56,7 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keyup", "left arrow", self.rotationleftoff)
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.rotationrighton)
         SpaceGame.listenKeyEvent("keyup", "right arrow", self.rotationrightoff)
+        SpaceGame.listenKeyEvent("keydown", "space key",self.shooton)
         self.fxcenter = self.fycenter = 0.5
     
     def step(self):
@@ -107,46 +109,27 @@ class SpaceShip(Sprite):
     def rotationrighton(self,event):
         self.rotation = self.rotation-1
         k=1
+    def shooton(self, event):
+        Bullet(100,100)
 class Bullet(Sprite):
-    asset = ImageAsset("images/blast.png", Frame(0,0,8,8), 8)
-    collisionasset = RectangleAsset(4,4)
-    pewasset = SoundAsset("sounds/pew1.mp3")
-    
+    grey=Color(0xbebebe,1)
+    bulletline=LineStyle(2,grey)
+    bullet_asset =RectangleAsset(4, 4, bulletline, grey)
     def __init__(self, position):
-        super().__init__(Bullet.asset, Bullet.collisionasset, position)
-        self.visible = False
-        self.firing = False
-        self.time = 0
-        
-    def shoot(self, position, velocity, time):
-        self.position = position
-        self.vx = velocity[0]
-        self.vy = velocity[1]
-        self.time = time
-        self.visible = True
-        self.firing = True
-        self.pew.play()
+        super().__init__(bullet.bullet_asset, position)
+        self.vx = 0
+        self.vy = 0
+    def step(self):
+        self.x += self.vx
+        self.y += self.vy
+    def step(self):
+        self.x += self.vx
+        self.y += self.vy
+        if self.thrust == 1:
+            self.x += 0
+            self.y += 1
+    thrust = 1
 
-    def step(self, T, dT):
-        self.time = self.time - dT
-        if self.visible:
-            if self.time <= 0:
-                self.visible = False
-            else:
-                self.nextImage(True)
-                super().step(T, dT)
-                if self.collidingWith(self.sun):
-                    self.visible = False
-                    ExplosionSmall(self.position)
-                else:
-                    ships = self.collidingWithSprites(Ship1)
-                    ships.extend(self.collidingWithSprites(Ship2))
-                    for ship in ships:
-                        if not self.firing and ship.visible:
-                            ship.explode()
-                            self.visible = False
-                    if not ships:
-                        self.firing = False
         
 class asteroid(Sprite):
     grey=Color(0xbebebe,1)
