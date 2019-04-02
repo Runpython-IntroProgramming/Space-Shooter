@@ -120,16 +120,17 @@ class bullet(Sprite):
         super().__init__(bullet.bullet_asset, position)
         self.vx = 0
         self.vy = 0
-    def step(self):
-        self.x += self.vx
-        self.y += self.vy
-    def step(self):
-        self.x += self.vx
-        self.y += self.vy
-        if self.thrust == 2:
-            self.x += 0
-            self.y += 1
         self.thrust = myapp.spaceship.thrust
+    def step(self):
+        self.x += self.vx
+        self.y += self.vy
+    def step(self):
+        self.x += self.vx
+        self.y += self.vy
+        self.thrust = myapp.spaceship.thrust
+        if self.thrust == 1:
+            self.x += 0
+            self.y += -4
 
         
 class asteroid(Sprite):
@@ -140,6 +141,7 @@ class asteroid(Sprite):
         super().__init__(asteroid.asteroid_asset, position)
         self.vx = 0
         self.vy = 0
+        self.thrust=1
     def step(self):
         self.x += self.vx
         self.y += self.vy
@@ -149,7 +151,6 @@ class asteroid(Sprite):
         if self.thrust == 1:
             self.x += 0
             self.y += 1
-    self.thrust==1
 
 
 
