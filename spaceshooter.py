@@ -36,7 +36,7 @@ class SpaceGame(App):
             ship.step()
         for ship in self.getSpritesbyClass(asteroid):
             ship.step()
-        for ship in self.getSpritesbyClass(Bullet):
+        for ship in self.getSpritesbyClass(bullet):
             ship.step()
             
 
@@ -56,7 +56,7 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keyup", "left arrow", self.rotationleftoff)
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.rotationrighton)
         SpaceGame.listenKeyEvent("keyup", "right arrow", self.rotationrightoff)
-        SpaceGame.listenKeyEvent("keydown", "space key",self.shooton)
+        SpaceGame.listenKeyEvent("keydown", "space bar",self.shooton)
         self.fxcenter = self.fycenter = 0.5
     
     def step(self):
@@ -109,9 +109,10 @@ class SpaceShip(Sprite):
     def rotationrighton(self,event):
         self.rotation = self.rotation-1
         k=1
-    def shooton(self, event):
-        Bullet(100,100)
-class Bullet(Sprite):
+    def shooton(self,event):
+        print("Bang")
+        bullet((100,100))
+class bullet(Sprite):
     grey=Color(0xbebebe,1)
     bulletline=LineStyle(2,grey)
     bullet_asset =RectangleAsset(4, 4, bulletline, grey)
