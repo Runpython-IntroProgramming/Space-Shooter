@@ -56,7 +56,7 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keyup", "left arrow", self.rotationleftoff)
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.rotationrighton)
         SpaceGame.listenKeyEvent("keyup", "right arrow", self.rotationrightoff)
-        SpaceGame.listenKeyEvent("keydown", "space bar",self.shooton)
+        SpaceGame.listenKeyEvent("keydown", "space",self.shooton)
         self.fxcenter = self.fycenter = 0.5
     
     def step(self):
@@ -111,7 +111,7 @@ class SpaceShip(Sprite):
         k=1
     def shooton(self,event):
         print("Bang")
-        bullet((100,100))
+        bullet((self.x,self.y))
 class bullet(Sprite):
     grey=Color(0xbebebe,1)
     bulletline=LineStyle(2,grey)
@@ -126,10 +126,10 @@ class bullet(Sprite):
     def step(self):
         self.x += self.vx
         self.y += self.vy
-        if self.thrust == 1:
+        if self.thrust == 2:
             self.x += 0
             self.y += 1
-    thrust = 1
+    thrust = SpaceShip.thrust
 
         
 class asteroid(Sprite):
