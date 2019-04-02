@@ -39,10 +39,19 @@ class Alien(Sprite):
     
     width = 148
     height = 150
-    asset = ImageAsset("alien-in-spaceship-cartoon-sticker-1539712327.219355.png", Frame(0, 0, width, height))
+    asset = ImageAsset("images/alien-in-spaceship-cartoon-sticker-1539712327.219355.png")
     def __init__(self, position):
         super().__init__(Alien.asset, position)
+        self.scale = .5
+
+class Chungus(Sprite):
     
+    width = 148
+    height = 150
+    asset = ImageAsset("images/Chungus.png")
+    def __init__(self, position):
+        super().__init__(Chungus.asset, position)
+        self.scale = .05
 
 Space((0,0))
 Space((512,0))
