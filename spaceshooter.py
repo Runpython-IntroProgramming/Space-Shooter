@@ -64,6 +64,7 @@ Sun((100, 400))
 Sun((700, 500))
 Ship((200,200))
 Alien((300, 300))
+Chungus((750,0))
 
 myapp = App()
 myapp.run()
