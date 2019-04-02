@@ -22,7 +22,7 @@ class SpaceGame(App):
             starline=LineStyle(2,white)
             star_asset =RectangleAsset(10, 10, starline, white)
             star = Sprite(star_asset, ((random.randint(0,1000)),(random.randint(0,500))))
-        SpaceShip((100,100))
+        self.spaceship=SpaceShip((100,100))
         asteroid((random.randint(0,800),random.randint(0,400)))
         asteroid((random.randint(0,800),random.randint(0,400)))
         asteroid((random.randint(0,800),random.randint(0,400)))
@@ -129,7 +129,7 @@ class bullet(Sprite):
         if self.thrust == 2:
             self.x += 0
             self.y += 1
-    thrust = SpaceShip.thrust
+        self.thrust = myapp.spaceship.thrust
 
         
 class asteroid(Sprite):
@@ -149,21 +149,9 @@ class asteroid(Sprite):
         if self.thrust == 1:
             self.x += 0
             self.y += 1
-    thrust = 1
+    self.thrust==1
 
-class ExplosionSmall(Sprite):
-    
-    asset = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
-    
-    def __init__(self, position):
-        super().__init__(ExplosionSmall.asset, position)
-        self.image = 0
-        self.center = (0.5, 0.5)
-    def step(self):
-        self.setImage(self.image//2)  # slow it down
-        self.image = self.image + 1
-        if self.image == 20:
-            self.destroy()
+
 
 myapp = SpaceGame()
 myapp.run()
