@@ -101,7 +101,7 @@ class SpaceShip(Sprite):
     
     def rotationlefton(self,event):
         self.rotation = self.rotation+1
-        b= b+1
+        b= 1
     def rotationrightoff(self,event):
         if self.rotation==0:
             self.rotation = 0
@@ -109,22 +109,21 @@ class SpaceShip(Sprite):
         elif self.rotation==1:
             self.rotation = 1
             b=1
-    
     def rotationrighton(self,event):
         self.rotation = self.rotation-1
         k=1
-        b=b-1
     def shooton(self,event):
         print("Bang")
-        bullet((self.x,self.y))
+        bullet((self.x,self.y),self)
+print(b)
 class bullet(Sprite):
     grey=Color(0xbebebe,1)
     bulletline=LineStyle(2,grey)
     bullet_asset =RectangleAsset(4, 4, bulletline, grey)
-    def __init__(self, position):
+    def __init__(self, position, spaceship):
         super().__init__(bullet.bullet_asset, position)
-        self.vx = 0
-        self.vy = 0
+        self.vx = 1
+        self.vy = 1
         self.thrust = 2
     def step(self):
         self.x += self.vx
@@ -134,8 +133,8 @@ class bullet(Sprite):
         self.y += self.vy
         self.thrust = 2
         if self.thrust == 2:
-            self.x += 1*(math.sin(b))
-            self.y += -4
+            self.x += self.vx
+            self.y += self.vy
 
 class asteroid(Sprite):
     grey=Color(0xbebebe,1)
