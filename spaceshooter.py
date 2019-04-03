@@ -37,21 +37,35 @@ class Ship(Sprite):
         
 class Alien(Sprite):
     
-    width = 148
-    height = 150
     asset = ImageAsset("images/alien-in-spaceship-cartoon-sticker-1539712327.219355.png")
     def __init__(self, position):
         super().__init__(Alien.asset, position)
-        self.scale = .5
+        self.scale = .4
 
 class Chungus(Sprite):
     
-    width = 148
-    height = 150
     asset = ImageAsset("images/Chungus.png")
     def __init__(self, position):
         super().__init__(Chungus.asset, position)
         self.scale = .05
+        
+class Vector:
+    
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        
+    def mag(self):
+        return math.sqrt(self.x*self.x + self.y*self.y)
+    
+    def unit(self):
+        r = self.mag()
+        if r == 0:
+            return Vector(0,0)
+        else:
+            return Vector(self.x/r, self.y/r)
+
+
 
 Space((0,0))
 Space((512,0))
@@ -64,7 +78,7 @@ Sun((100, 400))
 Sun((700, 500))
 Ship((200,200))
 Alien((300, 300))
-Chungus((750,0))
+Chungus((1100,0))
 
 myapp = App()
 myapp.run()
