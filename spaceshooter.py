@@ -6,6 +6,7 @@ Assignment:
 Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
 """
+b=0
 from ggame import App, RectangleAsset, ImageAsset, SoundAsset
 from ggame import LineStyle, Color, Sprite, Sound, Frame
 import math, random
@@ -58,7 +59,6 @@ class SpaceShip(Sprite):
         SpaceGame.listenKeyEvent("keyup", "right arrow", self.rotationrightoff)
         SpaceGame.listenKeyEvent("keydown", "space",self.shooton)
         self.fxcenter = self.fycenter = 0.5
-    
     def step(self):
         self.x += self.vx
         self.y += self.vy
@@ -94,21 +94,26 @@ class SpaceShip(Sprite):
     def rotationleftoff(self, event):
         if self.rotation==0:
             self.rotation = 0
+            b=0
         elif self.rotation==1:
             self.rotation = 1
+            b=1
     
     def rotationlefton(self,event):
         self.rotation = self.rotation+1
-    
+        b= b+1
     def rotationrightoff(self,event):
         if self.rotation==0:
             self.rotation = 0
+            b=0
         elif self.rotation==1:
             self.rotation = 1
+            b=1
     
     def rotationrighton(self,event):
         self.rotation = self.rotation-1
         k=1
+        b=b-1
     def shooton(self,event):
         print("Bang")
         bullet((self.x,self.y))
@@ -120,19 +125,18 @@ class bullet(Sprite):
         super().__init__(bullet.bullet_asset, position)
         self.vx = 0
         self.vy = 0
-        self.thrust = myapp.spaceship.thrust
+        self.thrust = 2
     def step(self):
         self.x += self.vx
         self.y += self.vy
     def step(self):
         self.x += self.vx
         self.y += self.vy
-        self.thrust = myapp.spaceship.thrust
-        if self.thrust == 1:
-            self.x += 0
+        self.thrust = 2
+        if self.thrust == 2:
+            self.x += 1*(math.sin(b))
             self.y += -4
 
-        
 class asteroid(Sprite):
     grey=Color(0xbebebe,1)
     asteroidline=LineStyle(2,grey)
