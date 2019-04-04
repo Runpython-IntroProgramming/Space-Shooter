@@ -122,19 +122,20 @@ class bullet(Sprite):
     bullet_asset =RectangleAsset(4, 4, bulletline, grey)
     def __init__(self, position, spaceship):
         super().__init__(bullet.bullet_asset, position)
-        self.vx = 1
-        self.vy = 1
+        self.vx = 0
+        self.vy = 0
         self.thrust = 2
+        self.spaceship=spaceship
+    def step(self):
+        self.x += 1
+        self.y += 1
     def step(self):
         self.x += self.vx
         self.y += self.vy
-    def step(self):
-        self.x += self.vx
-        self.y += self.vy
-        self.thrust = 2
-        if self.thrust == 2:
-            self.x += self.vx
-            self.y += self.vy
+        self.thrust = 1
+        if self.thrust == 1:
+            self.x += 1*(math.sin(self.spaceship.rotation))
+            self.y += -1*(math.cos(self.spaceship.rotation))
 
 class asteroid(Sprite):
     grey=Color(0xbebebe,1)
