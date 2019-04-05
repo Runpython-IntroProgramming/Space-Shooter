@@ -62,6 +62,7 @@ class SpaceShip(Sprite):
     def step(self):
         self.x += self.vx
         self.y += self.vy
+        """
         if self.thrust == 1 and self.rotation ==0 :
             self.x += 0
             self.y += -1
@@ -77,6 +78,10 @@ class SpaceShip(Sprite):
         if self.thrust == 1 and self.rotation ==2:
             self.x += -1
             self.y += 1
+            """
+        if self.thrust == 1:
+            self.x += -1*(math.sin(self.rotation))
+            self.y += -1*(math.cos(self.rotation))
         self.rotation += self.vr
         if self.thrust == 1:
             self.setImage(self.thrustframe)
@@ -134,7 +139,7 @@ class bullet(Sprite):
         self.y += self.vy
         self.thrust = 1
         if self.thrust == 1:
-            self.x += 1*(math.sin(self.spaceship.rotation))
+            self.x += -1*(math.sin(self.spaceship.rotation))
             self.y += -1*(math.cos(self.spaceship.rotation))
 
 class asteroid(Sprite):
@@ -155,6 +160,20 @@ class asteroid(Sprite):
         if self.thrust == 1:
             self.x += 0
             self.y += 1
+    def explode(self, event):
+        self.visible = False
+        ExplosionSmall(self.position)        
+    def step(self):
+        if self.collidingWithSprites(bullet) and self.visible==True:
+            self.visible=False
+            ExplosionSmall(self.position)
+
+class ExplosionSmall(Sprite):
+    ExplosionSmall_asset = ImageAsset("images/explosion1.png", 
+    Frame(0,0,128,128), 10)
+    def __init__(self, position):
+        super().__init__(ExplosionSmall.ExplosionSmall_asset, position)
+        
 
 
 
