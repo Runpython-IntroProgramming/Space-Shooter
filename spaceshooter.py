@@ -30,9 +30,9 @@ class SpaceShip(Sprite):
         
         # Rotate right/left
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.rotateLeftOn)
-        #SpaceGame.listenKeyEvent("keyup", "left arrow", self.rotateLeftOff)
+        SpaceGame.listenKeyEvent("keyup", "left arrow", self.rotateLeftOff)
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.rotateRightOn)
-        #SpaceGame.listenKeyEvent("keyup", "right arrow", self.rotateRightOff)
+        SpaceGame.listenKeyEvent("keyup", "right arrow", self.rotateRightOff)
         
         # Move right/left
         #SpaceGame.listenKeyEvent("keydown", "a", self.moveLeftOn)
@@ -57,7 +57,7 @@ class SpaceShip(Sprite):
         self.thrust = 0
         
     def rotateLeftOn(self, event):
-        self.vr += 0.05
+        self.vr = 0.05
         
     def rotateLeftOff(self, event):
         self.vr = 0
