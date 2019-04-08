@@ -127,7 +127,10 @@ class SpaceGame(App):
         else:
             background.scale = self.height / background.height
         
-        SpaceShip((100,100))
+        player1 = SpaceShip((100,100))
+        
+        if player1.x > self.width:
+            player1.x = -20
         
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
