@@ -24,12 +24,12 @@ class SpaceGame(App):
             star_asset =RectangleAsset(10, 10, starline, white)
             star = Sprite(star_asset, ((random.randint(0,1000)),(random.randint(0,500))))
         self.spaceship=SpaceShip((100,100))
-        asteroid((random.randint(0,800),random.randint(0,400)))
-        asteroid((random.randint(0,800),random.randint(0,400)))
-        asteroid((random.randint(0,800),random.randint(0,400)))
-        asteroid((random.randint(0,800),random.randint(0,400)))
-        asteroid((random.randint(0,800),random.randint(0,400)))
-        asteroid((random.randint(0,800),random.randint(0,400)))
+        asteroid((random.randint(0,800),random.randint(0,400), spaceship))
+        asteroid((random.randint(0,800),random.randint(0,400), spaceship))
+        asteroid((random.randint(0,800),random.randint(0,400), spaceship))
+        asteroid((random.randint(0,800),random.randint(0,400), spaceship))
+        asteroid((random.randint(0,800),random.randint(0,400), spaceship))
+        asteroid((random.randint(0,800),random.randint(0,400), spaceship))
             
 
     def step(self):
@@ -156,7 +156,7 @@ class asteroid(Sprite):
         self.vx = 0
         self.vy = 1
         self.thrust=1
-        self.spaceship=spaceship
+        self.spaceship=Spaceship
     def step(self):
         self.x += self.vx
         self.y += self.vy
