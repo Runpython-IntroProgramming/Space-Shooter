@@ -119,6 +119,7 @@ class SpaceGame(App):
         #bg = Sprite(bg_asset, (0,0))
         starfield = ImageAsset("images/starfield.jpg")
         background = Sprite(starfield, (0,0))
+        background.scale = 2
         
         SpaceShip((100,100))
         
