@@ -9,6 +9,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
+import math
 
 class SpaceShip(Sprite):
     """
@@ -49,6 +50,7 @@ class SpaceShip(Sprite):
         
     def thrustOn(self, event):
         self.thrust = 1
+        self.vx += 
         
     def thrustOff(self, event):
         self.thrust = 0
