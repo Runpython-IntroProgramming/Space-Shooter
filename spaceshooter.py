@@ -90,6 +90,9 @@ class SpaceShip(Sprite):
                 self.thrustframe = 1
         else:
             self.setImage(0)
+        if self.collidingWithSprites(asteroid) and self.visible==True:
+            self.visible=False
+            ExplosionSmall(self.position)
     def thrustOn(self, event):
         self.thrust = 1
         
@@ -139,41 +142,42 @@ class bullet(Sprite):
         self.y += self.vy
         self.thrust = 1
         if self.thrust == 1:
-            self.x += -1*(math.sin(self.spaceship.rotation))
-            self.y += -1*(math.cos(self.spaceship.rotation))
-
+            self.x += -2*(math.sin(self.spaceship.rotation))
+            self.y += -2*(math.cos(self.spaceship.rotation))
+    def explode(self, event):
+        self.visible = False
+        ExplosionSmall(self.position)        
 class asteroid(Sprite):
     grey=Color(0xbebebe,1)
     asteroidline=LineStyle(2,grey)
     asteroid_asset =RectangleAsset(30, 30, asteroidline, grey)
-    def __init__(self, position):
+    def __init__(self, position, spaceship):
         super().__init__(asteroid.asteroid_asset, position)
         self.vx = 0
-        self.vy = 0
+        self.vy = 1
         self.thrust=1
-    def step(self):
-        self.x += self.vx
-        self.y += self.vy
+        self.spaceship=spaceship
     def step(self):
         self.x += self.vx
         self.y += self.vy
         if self.thrust == 1:
-            self.x += 0
-            self.y += 1
-    def explode(self, event):
-        self.visible = False
-        ExplosionSmall(self.position)        
-    def step(self):
+            self.x += .5*(math.sin(self.spaceship.rotation))
+            self.y += .5*(math.cos(self.spaceship.rotation))
         if self.collidingWithSprites(bullet) and self.visible==True:
             self.visible=False
             ExplosionSmall(self.position)
+    def explode(self, event):
+        self.visible = False
+        ExplosionSmall(self.position)        
 
 class ExplosionSmall(Sprite):
     ExplosionSmall_asset = ImageAsset("images/explosion1.png", 
     Frame(0,0,128,128), 10)
     def __init__(self, position):
         super().__init__(ExplosionSmall.ExplosionSmall_asset, position)
-        
+        self.fxcenter = self.fycenter = 0.5
+    def step(self):    
+        self.setImage(5)
 
 
 
