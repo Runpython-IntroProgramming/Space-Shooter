@@ -57,13 +57,13 @@ class SpaceShip(Sprite):
         self.thrust = 0
         
     def rotateLeftOn(self, event):
-        self.vr += 0.01
+        self.vr += 0.05
         
     def rotateLeftOff(self, event):
         self.vr = 0
         
     def rotateRightOn(self, event):
-        self.vr += -0.01
+        self.vr = -0.05
         
     def rotateRightOff(self, event):
         self.vr = 0
