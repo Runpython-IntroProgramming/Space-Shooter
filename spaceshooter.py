@@ -24,12 +24,14 @@ class SpaceGame(App):
             star_asset =RectangleAsset(10, 10, starline, white)
             star = Sprite(star_asset, ((random.randint(0,1000)),(random.randint(0,500))))
         self.spaceship=SpaceShip((100,100))
-        asteroid((random.randint(0,800),random.randint(0,400), spaceship))
-        asteroid((random.randint(0,800),random.randint(0,400), spaceship))
-        asteroid((random.randint(0,800),random.randint(0,400), spaceship))
-        asteroid((random.randint(0,800),random.randint(0,400), spaceship))
-        asteroid((random.randint(0,800),random.randint(0,400), spaceship))
-        asteroid((random.randint(0,800),random.randint(0,400), spaceship))
+        asteroid((random.randint(0,800),random.randint(0,400)), self.spaceship)
+        asteroid((random.randint(0,800),random.randint(0,400)), self.spaceship)
+        asteroid((random.randint(0,800),random.randint(0,400)), self.spaceship)
+        asteroid((random.randint(0,800),random.randint(0,400)), self.spaceship)
+        asteroid((random.randint(0,800),random.randint(0,400)), self.spaceship)
+        asteroid((random.randint(0,800),random.randint(0,400)), self.spaceship)
+        asteroid((random.randint(0,800),random.randint(0,400)), self.spaceship)
+        asteroid((random.randint(0,800),random.randint(0,400)), self.spaceship)
             
 
     def step(self):
@@ -38,6 +40,8 @@ class SpaceGame(App):
         for ship in self.getSpritesbyClass(asteroid):
             ship.step()
         for ship in self.getSpritesbyClass(bullet):
+            ship.step()
+        for ship in self.getSpritesbyClass(ExplosionSmall):
             ship.step()
             
 
@@ -142,8 +146,9 @@ class bullet(Sprite):
         self.y += self.vy
         self.thrust = 1
         if self.thrust == 1:
-            self.x += -2*(math.sin(self.spaceship.rotation))
-            self.y += -2*(math.cos(self.spaceship.rotation))
+            self.x += -4*(math.sin(self.spaceship.rotation))
+            self.y += -4*(math.cos(self.spaceship.rotation))
+        self.visible=True
     def explode(self, event):
         self.visible = False
         ExplosionSmall(self.position)        
@@ -156,13 +161,13 @@ class asteroid(Sprite):
         self.vx = 0
         self.vy = 1
         self.thrust=1
-        self.spaceship=Spaceship
+        self.spaceship=spaceship
     def step(self):
         self.x += self.vx
         self.y += self.vy
         if self.thrust == 1:
-            self.x += .5*(math.sin(self.spaceship.rotation))
-            self.y += .5*(math.cos(self.spaceship.rotation))
+            self.x += -.5*(math.sin(self.spaceship.rotation))
+            self.y += -.5*(math.cos(self.spaceship.rotation))
         if self.collidingWithSprites(bullet) and self.visible==True:
             self.visible=False
             ExplosionSmall(self.position)
