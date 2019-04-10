@@ -19,8 +19,8 @@ class Bullet(Sprite):
     
     def __init__(self, position, velocity):
         super().__init__(Bullet.asset, position)
-        self.vx = velocity[0]
-        self.vy = velocity[1]
+        self.vx = velocity[0] * 5
+        self.vy = velocity[1] * 5
         self.vr = 0
         
     def step(self):
