@@ -8,8 +8,20 @@ Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
 """
 
-from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
+from ggame import App, RectangleAsset, CircleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 import math
+
+class Bullet(Sprite):
+    
+    red = Color(0xff0000, 1.0)
+    noline = LineStyle(0, red)
+    asset = CircleAsset(5, noline, red)
+    
+    def __init__(self, position, velocity):
+        super().__init__(Bullet.asset, position)
+        self.vx = velocity[0]
+        self.vy = velocity[1]
+        self.vr = 0
 
 class SpaceShip(Sprite):
     """
@@ -25,8 +37,8 @@ class SpaceShip(Sprite):
         
         self.thrust = 0
         self.thrustframe = 1
-        SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
-        SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
+        SpaceGame.listenKeyEvent("keydown", "up arrow", self.thrustOn)
+        SpaceGame.listenKeyEvent("keyup", "up arrow", self.thrustOff)
         
         # Rotate right/left
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.rotateLeftOn)
@@ -132,7 +144,6 @@ class SpaceGame(App):
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
-            
             # Wrap screen
             # Check to see if ship has moved off-screen and correct
             if ship.x > self.width + 50:
