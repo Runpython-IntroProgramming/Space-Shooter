@@ -18,7 +18,7 @@ class Bullet(Sprite):
     asset = CircleAsset(5, noline, red)
     
     def __init__(self, position, direction):
-        super().__init__(Bullet.asset, direction)
+        super().__init__(Bullet.asset, position)
         self.vx = 5 * math.sin(direction)
         self.vy = 5 * math.cos(direction)
         self.vr = 0
