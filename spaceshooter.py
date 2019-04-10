@@ -150,7 +150,7 @@ class SpaceGame(App):
         #else:
         #    starfield_sprite.scale = self.height / starfield_sprite.height
         
-        sun_asset = ImageAsset("images/sun.jpg")
+        sun_asset = ImageAsset("images/sun.png")
         sun_sprite = Sprite(sun_asset, (self.width / 2, self.height / 2))
         
         player1 = SpaceShip((100,100))
