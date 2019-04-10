@@ -134,9 +134,9 @@ class SpaceGame(App):
             ship.step()
             # Check to see if ship has moved off-screen and correct
             if ship.x > self.width + 100:
-                ship.x = 0
-            elif ship.x < 0:
-                ship.x = self.width
+                ship.x = -100
+            elif ship.x < -100:
+                ship.x = self.width + 100
             if ship.y < 0:
                 ship.y = self.height
             elif ship.y > self.height:
