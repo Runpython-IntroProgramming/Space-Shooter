@@ -133,7 +133,7 @@ class SpaceGame(App):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
             # Check to see if ship has moved off-screen and correct
-            if ship.x > self.width:
+            if ship.x > self.width + 100:
                 ship.x = 0
             elif ship.x < 0:
                 ship.x = self.width
