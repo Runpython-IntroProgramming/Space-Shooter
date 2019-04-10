@@ -18,7 +18,7 @@ class Bullet(Sprite):
     asset = CircleAsset(5, noline, red)
     
     def __init__(self, position, direction):
-        super().__init__(Bullet.asset, [position[0] + 50 * math.sin(direction), position[1] - 50 * math.cos(direction)])
+        super().__init__(Bullet.asset, [position[0] - 50 * math.sin(direction), position[1] - 50 * math.cos(direction)])
         self.vx = -5 * math.sin(direction)
         self.vy = -5 * math.cos(direction)
         self.vr = 0
@@ -70,7 +70,7 @@ class SpaceShip(Sprite):
         
     def thrustOn(self, event):
         self.thrust = 1
-        self.vx += (math.sin(self.rotation)) *0.05
+        self.vx += -(math.sin(self.rotation)) *0.05
         self.vy += -(math.cos(self.rotation)) * 0.05
         
     def thrustOff(self, event):
