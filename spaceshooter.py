@@ -190,8 +190,13 @@ class ExplosionSmall(Sprite):
     def __init__(self, position):
         super().__init__(ExplosionSmall.ExplosionSmall_asset, position)
         self.fxcenter = self.fycenter = 0.5
+        self.image=0
     def step(self):    
-        self.setImage(5)
+        self.setImage(self.image)
+        self.image = self.image + 1
+        if self.image == 20:
+            self.destroy()
+        
 
 
 
