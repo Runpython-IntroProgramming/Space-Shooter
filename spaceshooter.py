@@ -18,7 +18,7 @@ class Bullet(Sprite):
     asset = CircleAsset(5, noline, red)
     
     def __init__(self, position, velocity):
-        super().__init__(Bullet.asset, position)
+        super().__init__(Bullet.asset, rotation)
         self.vx = velocity[0] * 5
         self.vy = velocity[1] * 5
         self.vr = 0
@@ -114,7 +114,7 @@ class SpaceShip(Sprite):
         self.vy = 0
         
     def shoot(self, event):
-        Bullet((self.x, self.y), (self.vx, self.vy))
+        Bullet((self.x, self.y), self.rotation)
 
     def step(self):
         self.x += self.vx
