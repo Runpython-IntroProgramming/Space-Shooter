@@ -142,13 +142,13 @@ class SpaceGame(App):
         noline = LineStyle(0, black)
         #bg_asset = RectangleAsset(self.width, self.height, noline, black)
         #bg = Sprite(bg_asset, (0,0))
-        starfield_asset = ImageAsset("images/starfield.jpg")
-        starfield_sprite = Sprite(starfield_asset, (0,0))
+        #starfield_asset = ImageAsset("images/starfield.jpg")
+        #starfield_sprite = Sprite(starfield_asset, (0,0))
         # Scale the sprite according to size of screen
-        if self.width > self.height:
-            starfield_sprite.scale = self.width / starfield_sprite.width
-        else:
-            starfield_sprite.scale = self.height / starfield_sprite.height
+        #if self.width > self.height:
+        #    starfield_sprite.scale = self.width / starfield_sprite.width
+        #else:
+        #    starfield_sprite.scale = self.height / starfield_sprite.height
         
         sun_asset = ImageAsset("images/sun.jpg")
         sun_sprite = Sprite(sun_asset, (self.width / 2, self.height / 2))
