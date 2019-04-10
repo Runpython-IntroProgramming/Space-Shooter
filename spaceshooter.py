@@ -158,9 +158,6 @@ class bullet(Sprite):
             self.x += -4*(math.sin(self.spaceship.rotation))
             self.y += -4*(math.cos(self.spaceship.rotation))
         self.visible=True
-    def explode(self, event):
-        self.visible = False
-        ExplosionSmall(self.position)        
 class asteroid(Sprite):
     grey=Color(0xbebebe,1)
     asteroidline=LineStyle(2,grey)
@@ -177,6 +174,8 @@ class asteroid(Sprite):
         if self.thrust == 1 and self.visible==True:
             self.x += 0
             self.y += -.5
+            if self.y<-400:
+                print("you lose")
         if self.visible==False:
             pass
         if self.collidingWithSprites(bullet) and self.visible==True:
@@ -184,9 +183,6 @@ class asteroid(Sprite):
             ExplosionSmall(self.position)
             self.destroy()
             print("good job")
-    def youlose(self, event):
-        if self.y<-400:
-            print("you lose")
 
 class ExplosionSmall(Sprite):
     ExplosionSmall_asset = ImageAsset("images/explosion1.png", 
