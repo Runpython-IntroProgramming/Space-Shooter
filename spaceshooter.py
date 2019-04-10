@@ -137,10 +137,10 @@ class SpaceGame(App):
                 ship.x = -50
             elif ship.x < -50:
                 ship.x = self.width + 50
-            if ship.y < 0:
-                ship.y = self.height
-            elif ship.y > self.height:
-                ship.y = 0
+            if ship.y < -50:
+                ship.y = self.height + 50
+            elif ship.y > self.height + 50:
+                ship.y = -50
 
 myapp = SpaceGame()
 myapp.run()
