@@ -22,6 +22,10 @@ class Bullet(Sprite):
         self.vx = velocity[0]
         self.vy = velocity[1]
         self.vr = 0
+        
+    def step(self):
+        self.x += self.vx
+        self.y += self.vy
 
 class SpaceShip(Sprite):
     """
@@ -39,6 +43,9 @@ class SpaceShip(Sprite):
         self.thrustframe = 1
         SpaceGame.listenKeyEvent("keydown", "up arrow", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "up arrow", self.thrustOff)
+        
+        # Shoot
+        SpaceGame.listenKeyEvent("keydown", "space", self.shoot)
         
         # Rotate right/left
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.rotateLeftOn)
@@ -105,6 +112,9 @@ class SpaceShip(Sprite):
         
     def moveDownOff(self, event):
         self.vy = 0
+        
+    def shoot(self, event):
+        Bullet((self.x, self.y), (self.vx, self.vy))
 
     def step(self):
         self.x += self.vx
