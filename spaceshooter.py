@@ -164,6 +164,9 @@ class SpaceGame(App):
                 ship.y = self.height + 50
             elif ship.y > self.height + 50:
                 ship.y = -50
+                
+        for bullet in self.getSpritesbyClass(Bullet):
+            bullet.step()
 
 myapp = SpaceGame()
 myapp.run()
