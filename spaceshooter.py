@@ -143,7 +143,7 @@ class SpaceGame(App):
         #bg_asset = RectangleAsset(self.width, self.height, noline, black)
         #bg = Sprite(bg_asset, (0,0))
         starfield_asset = ImageAsset("images/starfield.jpg")
-        starfield_sprite = Sprite(starfield, (0,0))
+        starfield_sprite = Sprite(starfield_asset, (0,0))
         
         sun_asset = ImageAsset("images/sun.jpg")
         sun_sprite
