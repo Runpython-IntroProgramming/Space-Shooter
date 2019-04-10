@@ -24,22 +24,23 @@ class SpaceGame(App):
             star_asset =RectangleAsset(10, 10, starline, white)
             star = Sprite(star_asset, ((random.randint(0,1000)),(random.randint(0,500))))
         self.spaceship=SpaceShip((100,100))
-        asteroid((random.randint(0,800),random.randint(0,200)), self.spaceship)
-        asteroid((random.randint(0,800),random.randint(0,200)), self.spaceship)
-        asteroid((random.randint(0,800),random.randint(0,200)), self.spaceship)
-        asteroid((random.randint(0,800),random.randint(0,200)), self.spaceship)
-        asteroid((random.randint(0,800),random.randint(0,200)), self.spaceship)
-        asteroid((random.randint(0,800),random.randint(0,200)), self.spaceship)
-        asteroid((random.randint(0,800),random.randint(0,200)), self.spaceship)
-        asteroid((random.randint(0,800),random.randint(0,200)), self.spaceship)
-        asteroid((random.randint(0,800),random.randint(0,200)), self.spaceship)
-        asteroid((random.randint(0,800),random.randint(0,200)), self.spaceship)
-        asteroid((random.randint(0,800),random.randint(0,200)), self.spaceship)
-        asteroid((random.randint(0,800),random.randint(0,200)), self.spaceship)
-        asteroid((random.randint(0,800),random.randint(0,200)), self.spaceship)
-        asteroid((random.randint(0,800),random.randint(0,200)), self.spaceship)
-        asteroid((random.randint(0,800),random.randint(0,200)), self.spaceship)
-        asteroid((random.randint(0,800),random.randint(0,200)), self.spaceship)
+        asteroid((random.randint(400,800),random.randint(0,200)), self.spaceship)
+        asteroid((random.randint(400,800),random.randint(0,200)), self.spaceship)
+        asteroid((random.randint(400,800),random.randint(0,200)), self.spaceship)
+        asteroid((random.randint(400,800),random.randint(0,200)), self.spaceship)
+        asteroid((random.randint(400,800),random.randint(0,200)), self.spaceship)
+        asteroid((random.randint(400,800),random.randint(0,200)), self.spaceship)
+        asteroid((random.randint(400,800),random.randint(0,200)), self.spaceship)
+        asteroid((random.randint(400,800),random.randint(0,200)), self.spaceship)
+        asteroid((random.randint(0,400),random.randint(0,200)), self.spaceship)
+        asteroid((random.randint(0,400),random.randint(0,200)), self.spaceship)
+        asteroid((random.randint(0,400),random.randint(0,200)), self.spaceship)
+        asteroid((random.randint(0,400),random.randint(0,200)), self.spaceship)
+        asteroid((random.randint(0,400),random.randint(0,200)), self.spaceship)
+        asteroid((random.randint(0,400),random.randint(0,200)), self.spaceship)
+        asteroid((random.randint(0,400),random.randint(0,200)), self.spaceship)
+        asteroid((random.randint(0,400),random.randint(0,200)), self.spaceship)
+        
             
 
     def step(self):
@@ -174,17 +175,18 @@ class asteroid(Sprite):
         self.x += self.vx
         self.y += self.vy
         if self.thrust == 1 and self.visible==True:
-            self.x += -.5
+            self.x += 0
             self.y += -.5
         if self.visible==False:
-            print(k)
             pass
         if self.collidingWithSprites(bullet) and self.visible==True:
             self.visible=False
             ExplosionSmall(self.position)
-    def explode(self, event):
-        self.visible = False
-        ExplosionSmall(self.position)        
+            self.destroy()
+            print("good job")
+    def youlose(self, event):
+        if self.y<-400:
+            print("you lose")
 
 class ExplosionSmall(Sprite):
     ExplosionSmall_asset = ImageAsset("images/explosion1.png", 
