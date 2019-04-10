@@ -22,6 +22,7 @@ class Bullet(Sprite):
         self.vx = 5 * math.sin(direction)
         self.vy = 5 * math.cos(direction)
         self.vr = 0
+        self.fxcenter = self.fycenter = 0.5
         
     def step(self):
         self.x += self.vx
