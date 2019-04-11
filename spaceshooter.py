@@ -53,6 +53,7 @@ class SpaceShip(Sprite):
         self.vy = 0
         self.vr = 0.00
         
+        # Spaceship thrust on/off
         self.thrust = 0
         self.thrustframe = 1
         SpaceGame.listenKeyEvent("keydown", "up arrow", self.thrustOn)
@@ -63,21 +64,7 @@ class SpaceShip(Sprite):
         
         # Rotate right/left
         SpaceGame.listenKeyEvent("keydown", "left arrow", self.rotateLeftOn)
-        #SpaceGame.listenKeyEvent("keyup", "left arrow", self.rotateLeftOff)
         SpaceGame.listenKeyEvent("keydown", "right arrow", self.rotateRightOn)
-        #SpaceGame.listenKeyEvent("keyup", "right arrow", self.rotateRightOff)
-        
-        # Move right/left
-        #SpaceGame.listenKeyEvent("keydown", "a", self.moveLeftOn)
-        #SpaceGame.listenKeyEvent("keyup", "a", self.moveLeftOff)
-        #SpaceGame.listenKeyEvent("keydown", "d", self.moveRightOn)
-        #SpaceGame.listenKeyEvent("keyup", "d", self.moveRightOff)
-        
-        # Move up/down
-        #SpaceGame.listenKeyEvent("keydown", "w", self.moveUpOn)
-        #SpaceGame.listenKeyEvent("keyup", "w", self.moveUpOff)
-        #SpaceGame.listenKeyEvent("keydown", "s", self.moveDownOn)
-        #SpaceGame.listenKeyEvent("keyup", "s", self.moveDownOff)
         
         self.fxcenter = self.fycenter = 0.45
         
@@ -93,39 +80,12 @@ class SpaceShip(Sprite):
         if self.vr < 0.1:
             self.vr += 0.01
         
-    def rotateLeftOff(self, event):
-        self.vr = 0
-        
     def rotateRightOn(self, event):
         if self.vr > -0.1:
             self.vr += -0.01
         
     def rotateRightOff(self, event):
         self.vr = 0
-        
-    def moveLeftOn(self, event):
-        self.vx += -1
-    
-    def moveLeftOff(self, event):
-        self.vx = 0
-        
-    def moveRightOn(self, event):
-        self.vx += 1
-        
-    def moveRightOff(self, event):
-        self.vx = 0
-        
-    def moveUpOn(self, event):
-        self.vy += -1
-        
-    def moveUpOff(self, event):
-        self.vy = 0
-        
-    def moveDownOn(self, event):
-        self.vy += 1
-        
-    def moveDownOff(self, event):
-        self.vy = 0
         
     def shoot(self, event):
         Bullet((self.x, self.y), self.rotation)
