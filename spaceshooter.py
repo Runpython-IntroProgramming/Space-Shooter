@@ -106,6 +106,7 @@ class SpaceShip(Sprite):
         if self.collidingWithSprites(asteroid) and self.visible==True:
             self.visible=False
             ExplosionSmall(self.position)
+            print('you lose')
     def thrustOn(self, event):
         self.thrust = 1
         
@@ -165,7 +166,7 @@ class asteroid(Sprite):
     def __init__(self, position, spaceship):
         super().__init__(asteroid.asteroid_asset, position)
         self.vx = 0
-        self.vy = 1
+        self.vy = 0
         self.thrust=1
         self.spaceship=spaceship
     def step(self):
@@ -173,8 +174,8 @@ class asteroid(Sprite):
         self.y += self.vy
         if self.thrust == 1 and self.visible==True:
             self.x += 0
-            self.y += -.5
-            if self.y<-400:
+            self.y += 1
+            if self.y>600:
                 print("you lose")
         if self.visible==False:
             pass
