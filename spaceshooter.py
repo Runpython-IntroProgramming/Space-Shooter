@@ -17,7 +17,7 @@ class Bullet(Sprite):
     noline = LineStyle(0, red)
     # Red bullets (boring)
     #asset = CircleAsset(5, noline, red)
-    asset = ImageAsset("images/blast.png", Frame(0,8,64,8), 8, 'horizontal')
+    asset = ImageAsset("images/blast.png", Frame(0,8,8,64), 8, 'horizontal')
     
     #asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,65,125), 4, 'vertical')
     
