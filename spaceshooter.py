@@ -16,7 +16,7 @@ class Bullet(Sprite):
     red = Color(0xff0000, 1.0)
     noline = LineStyle(0, red)
     #asset = CircleAsset(5, noline, red)
-    asset = ImageAsset("images/blast.png", frame(8,0,64,8), 8, 'horizontal')
+    asset = ImageAsset("images/blast.png", Frame(8,0,64,8), 8, 'horizontal')
     
     def __init__(self, position, direction):
         super().__init__(Bullet.asset, [position[0] - 50 * math.sin(direction), position[1] - 50 * math.cos(direction)])
