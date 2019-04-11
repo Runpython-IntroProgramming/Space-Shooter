@@ -97,7 +97,7 @@ class SpaceShip(Sprite):
         
         # Randomly execute events
         thrust = randomint(0,1)
-        if thrust = 0:
+        if thrust == 0:
             self.thrustOff()
         else:
             self.thrustOn()
