@@ -16,10 +16,10 @@ class Bullet(Sprite):
     red = Color(0xff0000, 1.0)
     noline = LineStyle(0, red)
     # Red bullets (boring)
-    asset = CircleAsset(5, noline, red)
+    #asset = CircleAsset(5, noline, red)
     
     # How to get this frame working?
-    #asset = ImageAsset("images/blast.png", Frame(0,0,64,8), 8, 'horizontal')
+    asset = ImageAsset("images/blast.png", Frame(0,0,8,8), 8, 'horizontal')
     
     #asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,65,125), 4, 'vertical')
     
@@ -36,7 +36,7 @@ class Bullet(Sprite):
         self.y += self.vy
         
         # manage bullet animation
-        #self.setImage(self.bulletphase%7)
+        self.setImage(self.bulletphase%7)
         self.bulletphase += 1
         
         
