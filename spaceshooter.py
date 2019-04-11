@@ -16,7 +16,7 @@ class Bullet(Sprite):
     red = Color(0xff0000, 1.0)
     noline = LineStyle(0, red)
     #asset = CircleAsset(5, noline, red)
-    asset = ImageAsset("images/blast.png")
+    asset = ImageAsset("images/blast.png", frame(8,0,64,8), 8, 'horizontal')
     
     def __init__(self, position, direction):
         super().__init__(Bullet.asset, [position[0] - 50 * math.sin(direction), position[1] - 50 * math.cos(direction)])
@@ -24,10 +24,17 @@ class Bullet(Sprite):
         self.vy = -5 * math.cos(direction)
         self.vr = 0
         self.fxcenter = self.fycenter = 0.5
+        self.phase = 0
         
     def step(self):
         self.x += self.vx
         self.y += self.vy
+        
+        # manage bullet animation
+        self.setImage(self.phase%7)
+        self.phase += 1
+        
+        
 
 class SpaceShip(Sprite):
     """
