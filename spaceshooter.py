@@ -10,6 +10,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 
 from ggame import App, RectangleAsset, CircleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
 import math
+import random
 
 class Bullet(Sprite):
     
@@ -38,9 +39,8 @@ class Bullet(Sprite):
         # manage bullet animation
         self.setImage(self.bulletphase%7)
         self.bulletphase += 1
-        
-        
 
+# General SpaceShip Class        
 class SpaceShip(Sprite):
     """
     Animated space ship
@@ -56,15 +56,15 @@ class SpaceShip(Sprite):
         # Spaceship thrust on/off
         self.thrust = 0
         self.thrustframe = 1
-        SpaceGame.listenKeyEvent("keydown", "up arrow", self.thrustOn)
-        SpaceGame.listenKeyEvent("keyup", "up arrow", self.thrustOff)
-        
-        # Shoot
-        SpaceGame.listenKeyEvent("keydown", "space", self.shoot)
+        #SpaceGame.listenKeyEvent("keydown", "up arrow", self.thrustOn)
+        #SpaceGame.listenKeyEvent("keyup", "up arrow", self.thrustOff)
         
         # Rotate right/left
-        SpaceGame.listenKeyEvent("keydown", "left arrow", self.rotateLeftOn)
-        SpaceGame.listenKeyEvent("keydown", "right arrow", self.rotateRightOn)
+        #SpaceGame.listenKeyEvent("keydown", "left arrow", self.rotateLeftOn)
+        #SpaceGame.listenKeyEvent("keydown", "right arrow", self.rotateRightOn)
+        
+        # Shoot
+        #SpaceGame.listenKeyEvent("keydown", "space", self.shoot)
         
         self.fxcenter = self.fycenter = 0.45
         
@@ -95,6 +95,13 @@ class SpaceShip(Sprite):
         self.y += self.vy
         self.rotation += self.vr
         
+        # Randomly execute events
+        thrust = randomint(0,1)
+        if thrust = 0:
+            self.thrustOff()
+        else:
+            self.thrustOn()
+        
         # manage thrust animation
         if self.thrust == 1:
             self.setImage(self.thrustframe)
@@ -103,6 +110,13 @@ class SpaceShip(Sprite):
                 self.thrustframe = 1
         else:
             self.setImage(0)
+
+# Player SpaceShip            
+#class Player(SpaceShip):
+    
+    
+# Enemy SpaceShip
+    
 
 class SpaceGame(App):
     """
