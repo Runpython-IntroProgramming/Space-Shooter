@@ -31,8 +31,8 @@ class Bullet(Sprite):
         self.y += self.vy
         
         # manage bullet animation
-        self.setImage(self.bulletphase%7)
-        self.bulletphase += 1
+        #self.setImage(self.bulletphase%7)
+        #self.bulletphase += 1
         
         
 
