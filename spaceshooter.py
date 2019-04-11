@@ -96,11 +96,7 @@ class SpaceShip(Sprite):
         self.rotation += self.vr
         
         # Randomly execute events
-        thrust = random.randint(0,1)
-        if thrust == 0:
-            self.thrustOff()
-        else:
-            self.thrustOn()
+        self.thrust = random.randint(0,1)
         
         # manage thrust animation
         if self.thrust == 1:
