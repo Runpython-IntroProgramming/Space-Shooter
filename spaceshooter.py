@@ -19,6 +19,7 @@ class Bullet(Sprite):
     #asset = CircleAsset(5, noline, red)
     asset = ImageAsset("images/blast.png", Frame(0,0,64,8), 8, 'horizontal')
     
+    # How to get this frame working?
     #asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,65,125), 4, 'vertical')
     
     def __init__(self, position, direction):
@@ -34,8 +35,8 @@ class Bullet(Sprite):
         self.y += self.vy
         
         # manage bullet animation
-        #self.setImage(self.bulletphase%7)
-        #self.bulletphase += 1
+        self.setImage(self.bulletphase%7)
+        self.bulletphase += 1
         
         
 
