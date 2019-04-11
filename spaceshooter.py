@@ -24,15 +24,15 @@ class Bullet(Sprite):
         self.vy = -5 * math.cos(direction)
         self.vr = 0
         self.fxcenter = self.fycenter = 0.5
-        self.phase = 0
+        self.bulletphase = 0
         
     def step(self):
         self.x += self.vx
         self.y += self.vy
         
         # manage bullet animation
-        self.setImage(self.phase%7)
-        self.phase += 1
+        self.setImage(self.bulletphase%7)
+        self.bulletphase += 1
         
         
 
