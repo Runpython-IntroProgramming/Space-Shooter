@@ -56,15 +56,15 @@ class SpaceShip(Sprite):
         # Spaceship thrust on/off
         self.thrust = 0
         self.thrustframe = 1
-        #SpaceGame.listenKeyEvent("keydown", "up arrow", self.thrustOn)
-        #SpaceGame.listenKeyEvent("keyup", "up arrow", self.thrustOff)
+        SpaceGame.listenKeyEvent("keydown", "up arrow", self.thrustOn)
+        SpaceGame.listenKeyEvent("keyup", "up arrow", self.thrustOff)
         
         # Rotate right/left
-        #SpaceGame.listenKeyEvent("keydown", "left arrow", self.rotateLeftOn)
-        #SpaceGame.listenKeyEvent("keydown", "right arrow", self.rotateRightOn)
+        SpaceGame.listenKeyEvent("keydown", "left arrow", self.rotateLeftOn)
+        SpaceGame.listenKeyEvent("keydown", "right arrow", self.rotateRightOn)
         
         # Shoot
-        #SpaceGame.listenKeyEvent("keydown", "space", self.shoot)
+        SpaceGame.listenKeyEvent("keydown", "space", self.shoot)
         
         self.fxcenter = self.fycenter = 0.45
         
@@ -96,7 +96,7 @@ class SpaceShip(Sprite):
         self.rotation += self.vr
         
         # Randomly execute events
-        self.thrust = random.randint(0,1)
+        #self.thrust = random.randint(0,1)
         
         # manage thrust animation
         if self.thrust == 1:
