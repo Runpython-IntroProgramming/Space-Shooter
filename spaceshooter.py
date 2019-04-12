@@ -12,6 +12,8 @@ from ggame import App, RectangleAsset, CircleAsset, ImageAsset, Sprite, LineStyl
 import math
 import random
 
+speed_limit = 10
+
 class Bullet(Sprite):
     
     red = Color(0xff0000, 1.0)
@@ -26,8 +28,8 @@ class Bullet(Sprite):
     
     def __init__(self, position, direction):
         super().__init__(Bullet.asset, [position[0] - 50 * math.sin(direction), position[1] - 50 * math.cos(direction)])
-        self.vx = -25 * math.sin(direction)
-        self.vy = -25 * math.cos(direction)
+        self.vx = -2.5 * speed_limit * math.sin(direction)
+        self.vy = -2.5 * speed_limit * math.cos(direction)
         self.vr = 0
         self.fxcenter = self.fycenter = 0.5
         self.bulletphase = 0
@@ -70,8 +72,8 @@ class SpaceShip(Sprite):
         
     def thrustOn(self, event):
         self.thrust = 1
-        speed_limit = (self.vx**2+ self.vy**2)**0.5
-        if speed_limit < 5:
+        speed = (self.vx**2+ self.vy**2)**0.5
+        if speed < speed_limit:
             self.vx += -(math.sin(self.rotation)) *0.05
             self.vy += -(math.cos(self.rotation)) * 0.05
         
