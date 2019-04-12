@@ -149,6 +149,20 @@ class Player(SpaceShip):
         
     def shoot(self, event):
         Bullet((self.x, self.y), self.rotation)
+        
+    def step(self):
+        self.x += self.vx
+        self.y += self.vy
+        self.rotation += self.vr
+        
+        # manage thrust animation
+        if self.thrust == 1:
+            self.setImage(self.thrustframe)
+            self.thrustframe += 1
+            if self.thrustframe == 4:
+                self.thrustframe = 1
+        else:
+            self.setImage(0)
     
     
 # Enemy SpaceShip
