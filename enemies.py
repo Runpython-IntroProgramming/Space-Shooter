@@ -67,6 +67,67 @@ class SpaceShip(Sprite):
         
         self.fxcenter = self.fycenter = 0.45
         
+    def thrustOn(self):
+        self.thrust = 1
+        self.vx += -(math.sin(self.rotation)) *0.05
+        self.vy += -(math.cos(self.rotation)) * 0.05
+        
+    def thrustOff(self):
+        self.thrust = 0
+        
+    def rotateLeftOn(self):
+        if self.vr < 0.1:
+            self.vr += 0.01
+        
+    def rotateRightOn(self):
+        if self.vr > -0.1:
+            self.vr += -0.01
+        
+    def rotateRightOff(self):
+        self.vr = 0
+        
+    def shoot(self):
+        Bullet((self.x, self.y), self.rotation)
+
+    def step(self):
+        self.x += self.vx
+        self.y += self.vy
+        self.rotation += self.vr
+        
+        # manage thrust animation
+        if self.thrust == 1:
+            self.setImage(self.thrustframe)
+            self.thrustframe += 1
+            if self.thrustframe == 4:
+                self.thrustframe = 1
+        else:
+            self.setImage(0)
+
+# Player SpaceShip            
+class Player(SpaceShip):
+    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,65,125), 4, 'vertical')
+    
+    def __init(self):
+        super().__init__(Player.asset, position)
+        self.vx = 0
+        self.vy = 0
+        self.vr = 0.00
+        
+        # Spaceship thrust on/off
+        self.thrust = 0
+        self.thrustframe = 1
+        SpaceGame.listenKeyEvent("keydown", "up arrow", self.thrustOn)
+        SpaceGame.listenKeyEvent("keyup", "up arrow", self.thrustOff)
+        
+        # Rotate right/left
+        SpaceGame.listenKeyEvent("keydown", "left arrow", self.rotateLeftOn)
+        SpaceGame.listenKeyEvent("keydown", "right arrow", self.rotateRightOn)
+        
+        # Shoot
+        SpaceGame.listenKeyEvent("keydown", "space", self.shoot)
+        
+        self.fxcenter = self.fycenter = 0.45
+        
     def thrustOn(self, event):
         self.thrust = 1
         self.vx += -(math.sin(self.rotation)) *0.05
@@ -88,30 +149,10 @@ class SpaceShip(Sprite):
         
     def shoot(self, event):
         Bullet((self.x, self.y), self.rotation)
-
-    def step(self):
-        self.x += self.vx
-        self.y += self.vy
-        self.rotation += self.vr
-        
-        # Randomly execute events
-        #self.thrust = random.randint(0,1)
-        
-        # manage thrust animation
-        if self.thrust == 1:
-            self.setImage(self.thrustframe)
-            self.thrustframe += 1
-            if self.thrustframe == 4:
-                self.thrustframe = 1
-        else:
-            self.setImage(0)
-
-# Player SpaceShip            
-#class Player(SpaceShip):
     
     
 # Enemy SpaceShip
-    
+# random.randint(0,1)
 
 class SpaceGame(App):
     """
@@ -135,7 +176,8 @@ class SpaceGame(App):
         sun_asset = ImageAsset("images/sun.png")
         sun_sprite = Sprite(sun_asset, (self.width / 2, self.height / 2))
         
-        player1 = SpaceShip((100,100))
+        player1 = Player((100,100))
+        #enemy1 = Enemy((600,600))
         
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
