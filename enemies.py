@@ -53,28 +53,6 @@ class SpaceShip(Sprite):
         self.vr = 0.00
         
         self.fxcenter = self.fycenter = 0.45
-        
-    def thrustOn(self):
-        self.thrust = 1
-        self.vx += -(math.sin(self.rotation)) *0.05
-        self.vy += -(math.cos(self.rotation)) * 0.05
-        
-    def thrustOff(self):
-        self.thrust = 0
-        
-    def rotateLeftOn(self):
-        if self.vr < 0.1:
-            self.vr += 0.01
-        
-    def rotateRightOn(self):
-        if self.vr > -0.1:
-            self.vr += -0.01
-        
-    def rotateRightOff(self):
-        self.vr = 0
-        
-    def shoot(self):
-        Bullet((self.x, self.y), self.rotation)
 
     def step(self):
         self.x += self.vx
