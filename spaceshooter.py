@@ -45,7 +45,7 @@ class SpaceShip(Sprite):
     """
     Animated space ship
     """
-    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(0,0,65,125), 4, 'vertical')
+    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227-65,0,65,125), 4, 'vertical')
 
     def __init__(self, position):
         super().__init__(SpaceShip.asset, position)
