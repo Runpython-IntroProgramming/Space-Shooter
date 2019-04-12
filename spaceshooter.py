@@ -72,10 +72,16 @@ class SpaceShip(Sprite):
         
     def thrustOn(self, event):
         self.thrust = 1
+        deltavx = -(math.sin(self.rotation)) *0.05
+        deltavy = -(math.cos(self.rotation)) * 0.05
+        self.vx += deltavx
+        self.vy += deltavy
         speed = (self.vx**2+ self.vy**2)**0.5
-        if speed < speed_limit:
-            self.vx += -(math.sin(self.rotation)) *0.05
-            self.vy += -(math.cos(self.rotation)) * 0.05
+        if speed > speed_limit:
+            self.vx += -deltavx
+            self.vy += -deltavy
+            
+            
         
     def thrustOff(self, event):
         self.thrust = 0
