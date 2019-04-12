@@ -26,8 +26,8 @@ class Bullet(Sprite):
     
     def __init__(self, position, direction):
         super().__init__(Bullet.asset, [position[0] - 50 * math.sin(direction), position[1] - 50 * math.cos(direction)])
-        self.vx = -5 * math.sin(direction)
-        self.vy = -5 * math.cos(direction)
+        self.vx = -10 * math.sin(direction)
+        self.vy = -10 * math.cos(direction)
         self.vr = 0
         self.fxcenter = self.fycenter = 0.5
         self.bulletphase = 0
@@ -71,7 +71,7 @@ class SpaceShip(Sprite):
     def thrustOn(self, event):
         self.thrust = 1
         speed_limit = (self.vx**2+ self.vy**2)**0.5
-        if speed_limit < 25:
+        if speed_limit < 5:
             self.vx += -(math.sin(self.rotation)) *0.05
             self.vy += -(math.cos(self.rotation)) * 0.05
         
