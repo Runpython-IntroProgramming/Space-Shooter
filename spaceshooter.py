@@ -144,7 +144,7 @@ class SpaceGame(App):
         sun_asset = ImageAsset("images/sun.png")
         sun_sprite = Sprite(sun_asset, (self.width / 2, self.height / 2))
         
-        player1 = SpaceShip((600,300))
+        player1 = SpaceShip((800,300))
         #enemy1 = Enemy(300,300
         
     def step(self):
