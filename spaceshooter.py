@@ -115,7 +115,7 @@ class PlayerShip(Sprite):
         else:
             self.setImage(0)
     
-# Enemy SpaceShip
+# Enemy Ship
 class EnemyShip(Sprite):
     """
     Animated space ship
