@@ -163,7 +163,7 @@ class EnemyShip(Sprite):
         Bullet((self.x, self.y), self.rotation)
 
     def step(self):
-        if random.randit(0,1) == 1:
+        if random.randint(0,1) == 1:
             if self.thrust == 1:
                 self.thurstOff
             else:
