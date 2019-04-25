@@ -50,7 +50,7 @@ class PlayerShip(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227-65,0,65,125), 4, 'vertical')
 
     def __init__(self, position):
-        super().__init__(SpaceShip.asset, position)
+        super().__init__(PlayerShip.asset, position)
         self.vx = 0
         self.vy = 0
         self.vr = 0.00
@@ -123,7 +123,7 @@ class EnemyShip(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,65,125), 4, 'vertical')
 
     def __init__(self, position):
-        super().__init__(SpaceShip.asset, position)
+        super().__init__(EnemyShip.asset, position)
         self.vx = 0
         self.vy = 0
         self.vr = 0.00
