@@ -121,6 +121,7 @@ class EnemyShip(Sprite):
     Animated space ship
     """
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,65,125), 4, 'vertical')
+    count = 0
 
     def __init__(self, position):
         super().__init__(EnemyShip.asset, position)
@@ -133,7 +134,7 @@ class EnemyShip(Sprite):
         self.thrustframe = 1
         self.fxcenter = self.fycenter = 0.45
         
-    def thrustOn(self, event):
+    def thrustOn(self):
         self.thrust = 1
         deltavx = -(math.sin(self.rotation)) *0.05
         deltavy = -(math.cos(self.rotation)) * 0.05
@@ -144,30 +145,33 @@ class EnemyShip(Sprite):
             self.vx += -deltavx
             self.vy += -deltavy
         
-    def thrustOff(self, event):
+    def thrustOff(self):
         self.thrust = 0
         
-    def rotateLeftOn(self, event):
+    def rotateLeftOn(self):
         if self.vr < 0.05:
             self.vr += 0.01
         
-    def rotateRightOn(self, event):
+    def rotateRightOn(self):
         if self.vr > -0.05:
             self.vr += -0.01
         
-    def rotateRightOff(self, event):
+    def rotateRightOff(self):
         self.vr = 0
         
-    def shoot(self, event):
+    def shoot(self):
         Bullet((self.x, self.y), self.rotation)
 
     def step(self):
+        if random.randit(0,1) == 1:
+            if self.thrust = 1:
+                self.thurstOff
+            else:
+                self.thustOn
+        
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
-        
-        # Randomly execute events
-        #self.thrust = random.randint(0,1)
         
         # manage thrust animation
         if self.thrust == 1:
