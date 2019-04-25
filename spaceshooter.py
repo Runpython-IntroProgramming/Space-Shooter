@@ -130,7 +130,7 @@ class EnemyShip(Sprite):
         self.vr = 0.00
         
         # Spaceship thrust on/off
-        self.thrust = 1
+        self.thrust = 0
         self.thrustframe = 1
         self.fxcenter = self.fycenter = 0.45
         
