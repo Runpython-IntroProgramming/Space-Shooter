@@ -126,7 +126,7 @@ class EnemyShip(Sprite):
     def __init__(self, position):
         super().__init__(EnemyShip.asset, position)
         self.vx = 0
-        self.vy = 0
+        self.vy = -1
         self.vr = 0.00
         
         # Spaceship thrust on/off
@@ -163,9 +163,8 @@ class EnemyShip(Sprite):
         Bullet((self.x, self.y), self.rotation)
 
     def step(self):
-        if random.randint(0,1) == 1:
-            self.shoot
-        
+        #if random.randint(0,1) == 1:
+
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
