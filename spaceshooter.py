@@ -15,16 +15,8 @@ import random
 speed_limit = 10
 
 class Bullet(Sprite):
-    
-    red = Color(0xff0000, 1.0)
-    noline = LineStyle(0, red)
-    # Red bullets (boring)
-    #asset = CircleAsset(5, noline, red)
-    
-    # How to get this frame working?
     asset = ImageAsset("images/blast.png", Frame(0,0,8,8), 8, 'horizontal')
     
-    #asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,65,125), 4, 'vertical')
     
     def __init__(self, position, direction):
         super().__init__(Bullet.asset, [position[0] - 50 * math.sin(direction), position[1] - 50 * math.cos(direction)])
@@ -121,11 +113,12 @@ class EnemyShip(Sprite):
     Animated space ship
     """
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,65,125), 4, 'vertical')
-    count = 0
+    explosion = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10, 'horizontal')
+    explosion_count = 0
 
     def __init__(self, position):
         super().__init__(EnemyShip.asset, position)
-        self.vx = 1
+        self.vx = 0
         self.vy = 0
         self.vr = 0.00
         
@@ -161,14 +154,17 @@ class EnemyShip(Sprite):
         
     def shoot(self):
         Bullet((self.x, self.y), self.rotation)
-
-    def step(self):
-        #if random.randint(0,1) == 1:
+        
+    def collisions(self):
+        if collidingWithSprites == True:
+            self.destroy()
             
 
+    def step(self):
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
+        self.collisions()
         
         # manage thrust animation
         if self.thrust == 1:
