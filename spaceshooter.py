@@ -157,7 +157,7 @@ class EnemyShip(Sprite):
         
     def collisions(self):
         if self.collidingWithSprites():
-            self.destroy()
+            #self.destroy()
             
 
     def step(self):
