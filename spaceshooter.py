@@ -164,7 +164,7 @@ class EnemyShip(Sprite):
 
     def step(self):
         if random.randit(0,1) == 1:
-            if self.thrust = 1:
+            if self.thrust == 1:
                 self.thurstOff
             else:
                 self.thustOn
