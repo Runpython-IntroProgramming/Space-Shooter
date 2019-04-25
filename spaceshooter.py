@@ -159,6 +159,7 @@ class EnemyShip(Sprite):
         if self.collidingWithSprites():
             #self.destroy()
             
+            
 
     def step(self):
         self.x += self.vx
