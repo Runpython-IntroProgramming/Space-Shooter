@@ -156,8 +156,8 @@ class EnemyShip(Sprite):
         Bullet((self.x, self.y), self.rotation)
         
     def collisions(self):
-        if len(self.collidingWithSprites()) != 0:
-            self.destroy()
+        #if len(self.collidingWithSprites()) != 0:
+            #self.destroy()
             
 
     def step(self):
