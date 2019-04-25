@@ -204,7 +204,20 @@ class SpaceGame(App):
         enemy1 = EnemyShip((800,200))
         
     def step(self):
-        for ship in self.getSpritesbyClass(SpaceShip):
+        for ship in self.getSpritesbyClass(PlayerShip):
+            ship.step()
+            # Wrap screen
+            # Check to see if ship has moved off-screen and correct
+            if ship.x > self.width + 50:
+                ship.x = -50
+            elif ship.x < -50:
+                ship.x = self.width + 50
+            if ship.y < -50:
+                ship.y = self.height + 50
+            elif ship.y > self.height + 50:
+                ship.y = -50
+        
+        for ship in self.getSpritesbyClass(EnemyShip):
             ship.step()
             # Wrap screen
             # Check to see if ship has moved off-screen and correct
