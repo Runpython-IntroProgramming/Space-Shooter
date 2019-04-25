@@ -155,8 +155,8 @@ class EnemyShip(Sprite):
     def shoot(self):
         Bullet((self.x, self.y), self.rotation)
         
-    def collisions(self):
-        if self.collidingWithSprites():
+    #def collisions(self):
+        #if self.collidingWithSprites():
             #self.destroy()
             
             
