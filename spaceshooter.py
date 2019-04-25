@@ -43,7 +43,7 @@ class Bullet(Sprite):
         self.bulletphase += 1
 
 # General SpaceShip Class        
-class SpaceShip(Sprite):
+class PlayerShip(Sprite):
     """
     Animated space ship
     """
@@ -114,13 +114,69 @@ class SpaceShip(Sprite):
                 self.thrustframe = 1
         else:
             self.setImage(0)
-
-# Player SpaceShip            
-#class Player(SpaceShip):
-    
     
 # Enemy SpaceShip
-    
+class EnemyShip(Sprite):
+    """
+    Animated space ship
+    """
+    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,65,125), 4, 'vertical')
+
+    def __init__(self, position):
+        super().__init__(SpaceShip.asset, position)
+        self.vx = 0
+        self.vy = 0
+        self.vr = 0.00
+        
+        # Spaceship thrust on/off
+        self.thrust = 0
+        self.thrustframe = 1
+        self.fxcenter = self.fycenter = 0.45
+        
+    def thrustOn(self, event):
+        self.thrust = 1
+        deltavx = -(math.sin(self.rotation)) *0.05
+        deltavy = -(math.cos(self.rotation)) * 0.05
+        self.vx += deltavx
+        self.vy += deltavy
+        speed = (self.vx**2+ self.vy**2)**0.5
+        if speed > speed_limit:
+            self.vx += -deltavx
+            self.vy += -deltavy
+        
+    def thrustOff(self, event):
+        self.thrust = 0
+        
+    def rotateLeftOn(self, event):
+        if self.vr < 0.05:
+            self.vr += 0.01
+        
+    def rotateRightOn(self, event):
+        if self.vr > -0.05:
+            self.vr += -0.01
+        
+    def rotateRightOff(self, event):
+        self.vr = 0
+        
+    def shoot(self, event):
+        Bullet((self.x, self.y), self.rotation)
+
+    def step(self):
+        self.x += self.vx
+        self.y += self.vy
+        self.rotation += self.vr
+        
+        # Randomly execute events
+        #self.thrust = random.randint(0,1)
+        
+        # manage thrust animation
+        if self.thrust == 1:
+            self.setImage(self.thrustframe)
+            self.thrustframe += 1
+            if self.thrustframe == 4:
+                self.thrustframe = 1
+        else:
+            self.setImage(0)    
 
 class SpaceGame(App):
     """
@@ -144,8 +200,8 @@ class SpaceGame(App):
         sun_asset = ImageAsset("images/sun.png")
         sun_sprite = Sprite(sun_asset, (self.width / 2, self.height / 2))
         
-        player1 = SpaceShip((800,300))
-        #enemy1 = Enemy(300,300
+        player1 = PlayerShip((100,100))
+        enemy1 = EnemyShip(800,200)
         
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
