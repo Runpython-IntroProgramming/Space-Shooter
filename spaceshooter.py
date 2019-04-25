@@ -156,7 +156,7 @@ class EnemyShip(Sprite):
         Bullet((self.x, self.y), self.rotation)
         
     def collisions(self):
-        if len(self.collidingWithSprites()) != 0:
+        if self.collidingWithSprites():
             self.destroy()
             
 
@@ -164,7 +164,7 @@ class EnemyShip(Sprite):
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
-        #self.collisions()
+        self.collisions()
         
         # manage thrust animation
         if self.thrust == 1:
