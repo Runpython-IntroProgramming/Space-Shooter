@@ -164,10 +164,7 @@ class EnemyShip(Sprite):
 
     def step(self):
         if random.randint(0,1) == 1:
-            if self.thrust == 1:
-                self.thrustOff
-            else:
-                self.thrustOn
+            self.shoot
         
         self.x += self.vx
         self.y += self.vy
