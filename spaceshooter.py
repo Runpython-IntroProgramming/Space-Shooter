@@ -201,7 +201,7 @@ class SpaceGame(App):
         sun_sprite = Sprite(sun_asset, (self.width / 2, self.height / 2))
         
         player1 = PlayerShip((100,100))
-        enemy1 = EnemyShip(800,200)
+        enemy1 = EnemyShip((800,200))
         
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
