@@ -136,7 +136,7 @@ class EnemyShip(Sprite):
         
     def thrustOn(self):
         self.thrust = 1
-        deltavx = -(math.sin(self.rotation)) *0.05
+        deltavx = -(math.sin(self.rotation)) * 0.05
         deltavy = -(math.cos(self.rotation)) * 0.05
         self.vx += deltavx
         self.vy += deltavy
@@ -208,8 +208,8 @@ class SpaceGame(App):
         enemy1 = EnemyShip((800,200))
         
     def step(self):
-        for player in self.getSpritesbyClass(PlayerShip):
-            player.step()
+        for ship in self.getSpritesbyClass(PlayerShip):
+            ship.step()
             # Wrap screen
             # Check to see if ship has moved off-screen and correct
             if ship.x > self.width + 50:
@@ -221,8 +221,8 @@ class SpaceGame(App):
             elif ship.y > self.height + 50:
                 ship.y = -50
         
-        for enemy in self.getSpritesbyClass(EnemyShip):
-            enemy.step()
+        for ship in self.getSpritesbyClass(EnemyShip):
+            ship.step()
             # Wrap screen
             # Check to see if ship has moved off-screen and correct
             if ship.x > self.width + 50:
