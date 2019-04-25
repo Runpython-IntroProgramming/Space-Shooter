@@ -126,7 +126,7 @@ class EnemyShip(Sprite):
     def __init__(self, position):
         super().__init__(EnemyShip.asset, position)
         self.vx = 0
-        self.vy = 0
+        self.vy = 1
         self.vr = 0.00
         
         # Spaceship thrust on/off
