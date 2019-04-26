@@ -129,7 +129,7 @@ class PlayerShip(Sprite):
             Explosion((self.x, self.y))
             self.destroy()
             [Explosion((x.x, x.y)) for x in self.collisions]
-            [x.destroy() for x in self.collisions]
+            #[x.destroy() for x in self.collisions]
 
     def step(self):
         self.x += self.vx
@@ -239,11 +239,11 @@ class SpaceGame(App):
         else:
             starfield_sprite.scale = self.height / starfield_sprite.height
         
-        sun_asset = ImageAsset("images/sun.png")
-        sun_sprite = Sprite(sun_asset, (self.width / 2, self.height / 2))
+        #sun_asset = ImageAsset("images/sun.png")
+        #sun_sprite = Sprite(sun_asset, (self.width / 2, self.height / 2))
         
         player1 = PlayerShip((100,100))
-        enemy1 = EnemyShip((800,200))
+        EnemyShip((800,200))
         
     def step(self):
         for ship in self.getSpritesbyClass(PlayerShip):
@@ -274,6 +274,7 @@ class SpaceGame(App):
                 ship.y = self.height + 50
             elif ship.y > self.height + 50:
                 ship.y = -50
+            
             # Check to see if ship has collided with anything
             ship.collision()
                 
