@@ -26,6 +26,14 @@ class Bullet(Sprite):
         self.fxcenter = self.fycenter = 0.5
         self.bulletphase = 0
         
+    def collisions(self):
+        if self.collidingWithSprites(PlayerShip):
+            self.destroy()
+        if self.collidingWithSprites(EnemyShip):
+            self.destroy()
+        if self.collidingWithSprites(Bullet):
+            self.destroy()
+        
     def step(self):
         self.x += self.vx
         self.y += self.vy
@@ -91,7 +99,11 @@ class PlayerShip(Sprite):
         Bullet((self.x, self.y), self.rotation)
         
     def collisions(self):
-        if self.collidingWithSprites():
+        if self.collidingWithSprites(PlayerShip):
+            self.destroy()
+        if self.collidingWithSprites(EnemyShip):
+            self.destroy()
+        if self.collidingWithSprites(Bullet):
             self.destroy()
 
     def step(self):
@@ -160,7 +172,11 @@ class EnemyShip(Sprite):
         Bullet((self.x, self.y), self.rotation)
         
     def collisions(self):
-        if self.collidingWithSprites():
+        if self.collidingWithSprites(PlayerShip):
+            self.destroy()
+        if self.collidingWithSprites(EnemyShip):
+            self.destroy()
+        if self.collidingWithSprites(Bullet):
             self.destroy()
             
     def step(self):
