@@ -17,7 +17,6 @@ speed_limit = 10
 class Bullet(Sprite):
     asset = ImageAsset("images/blast.png", Frame(0,0,8,8), 8, 'horizontal')
     
-    
     def __init__(self, position, direction):
         super().__init__(Bullet.asset, [position[0] - 50 * math.sin(direction), position[1] - 50 * math.cos(direction)])
         self.vx = -2.5 * speed_limit * math.sin(direction)
