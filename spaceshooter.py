@@ -281,7 +281,9 @@ class SpaceGame(App):
             bullet.step()
             if bullet.x < -10 or bullet.x > self.width + 10 or bullet.y < -10 or bullet.y > self.height + 10:
                 bullet.destroy()
-            #bullet.collisions()
+                
+        for explosion in self.getSpritesbyClass(Explosion):
+            explosion.step()
 
 myapp = SpaceGame()
 myapp.run()
