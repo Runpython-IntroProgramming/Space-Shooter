@@ -25,6 +25,8 @@ class Explosion(Sprite):
         # Manage explosion animation
         self.setImage(self.count%10)
         self.count += 1
+        if self.count = 10:
+            self.destroy()
 
 class Bullet(Sprite):
     asset = ImageAsset("images/blast.png", Frame(0,0,8,8), 8, 'horizontal')
