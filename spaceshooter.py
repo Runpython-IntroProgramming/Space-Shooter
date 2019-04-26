@@ -136,11 +136,11 @@ class EnemyShip(Sprite):
         self.vx = 0
         self.vy = 0
         self.vr = 0.00
+        self.fxcenter = self.fycenter = 0.45
         
         # Spaceship thrust on/off
         self.thrust = 0
         self.thrustframe = 1
-        self.fxcenter = self.fycenter = 0.45
         
     def thrustOn(self):
         self.thrust = 1
@@ -253,6 +253,7 @@ class SpaceGame(App):
             bullet.step()
             if bullet.x < -10 or bullet.x > self.width + 10 or bullet.y < -10 or bullet.y > self.height + 10:
                 bullet.destroy()
+            bullet.collisions()
 
 myapp = SpaceGame()
 myapp.run()
