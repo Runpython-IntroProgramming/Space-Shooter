@@ -89,6 +89,10 @@ class PlayerShip(Sprite):
         
     def shoot(self, event):
         Bullet((self.x, self.y), self.rotation)
+        
+    def collisions(self):
+        if self.collidingWithSprites():
+            self.destroy()
 
     def step(self):
         self.x += self.vx
@@ -155,17 +159,14 @@ class EnemyShip(Sprite):
     def shoot(self):
         Bullet((self.x, self.y), self.rotation)
         
-    #def collisions(self):
-        #if self.collidingWithSprites():
-            #self.destroy()
+    def collisions(self):
+        if self.collidingWithSprites():
+            self.destroy()
             
-            
-
     def step(self):
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
-        #self.collisions()
         
         # manage thrust animation
         if self.thrust == 1:
@@ -214,6 +215,9 @@ class SpaceGame(App):
                 ship.y = self.height + 50
             elif ship.y > self.height + 50:
                 ship.y = -50
+            # Check to see if ship has collided with anything
+            ship.collisions()
+            
         
         for ship in self.getSpritesbyClass(EnemyShip):
             ship.step()
@@ -227,6 +231,8 @@ class SpaceGame(App):
                 ship.y = self.height + 50
             elif ship.y > self.height + 50:
                 ship.y = -50
+            # Check to see if ship has collided with anything
+            ship.collisions()
                 
         for bullet in self.getSpritesbyClass(Bullet):
             bullet.step()
