@@ -46,6 +46,7 @@ class Bullet(Sprite):
         [self.collisions.append(x) for x in self.collidingWithSprites(Bullet)]
         if collisions:
             self.destroy()
+            [Explosion((x.x, x.y)) for x in self.collisions]
             [x.destroy() for x in self.collisions]
         
     def step(self):
@@ -121,6 +122,7 @@ class PlayerShip(Sprite):
         if self.collisions:
             Explosion((self.x, self.y))
             self.destroy()
+            [Explosion((x.x, x.y)) for x in self.collisions]
             [x.destroy() for x in self.collisions]
 
     def step(self):
