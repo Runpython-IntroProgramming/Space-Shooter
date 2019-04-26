@@ -129,7 +129,7 @@ class PlayerShip(Sprite):
             Explosion((self.x, self.y))
             self.destroy()
             [Explosion((x.x, x.y)) for x in self.collisions]
-            #[x.destroy() for x in self.collisions]
+            [x.destroy() for x in self.collisions]
 
     def step(self):
         self.x += self.vx
