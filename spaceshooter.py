@@ -30,7 +30,7 @@ class Explosion(Sprite):
         else:
             self.setImage(self.countdown%10)
             self.countdown -= 1
-            if self.countdown == 0
+            if self.countdown == 0:
                 self.destroy()
 
 class Bullet(Sprite):
