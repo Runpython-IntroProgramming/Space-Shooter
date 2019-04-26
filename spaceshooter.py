@@ -17,7 +17,7 @@ speed_limit = 10
 class Explosion(Sprite):
     asset = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10, 'horizontal')
     
-    def __init(self, position):
+    def __init__(self, position):
         super().__init__(Explosion.asset, position)
         self.count = 0
         
