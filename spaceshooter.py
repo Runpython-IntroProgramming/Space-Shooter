@@ -38,20 +38,15 @@ class Bullet(Sprite):
         self.vr = 0
         self.fxcenter = self.fycenter = 0.5
         self.bulletphase = 0
+        self.collisions = []
         
-    def collisions(self):
-        playercollision = self.collidingWithSprites(PlayerShip)
-        if playercollision:
+    def collision(self):
+        collisions.append(self.collidingWithSprites(PlayerShip))
+        collisions.append(self.collidingWithSprites(EnemyShip))
+        collisions.append(self.collidingWithSprites(Bullet))
+        if collisions:
             self.destroy()
-            [x.destroy() for x in playercollision]
-        enemycollision = self.collidingWithSprites(EnemyShip)
-        if enemycollision:
-            self.destroy()
-            [x.destroy() for x in enemycollision]
-        bulletcollision = self.collidingWithSprites(Bullet)
-        if self.collidingWithSprites(Bullet):
-            self.destroy()
-            [x.destroy() for x in bulletcollision]
+            [x.destroy() for x in collisions]
         
     def step(self):
         self.x += self.vx
@@ -73,6 +68,8 @@ class PlayerShip(Sprite):
         self.vx = 0
         self.vy = 0
         self.vr = 0.00
+        
+        self.collisions = []
         
         # Spaceship thrust on/off
         self.thrust = 0
@@ -117,19 +114,14 @@ class PlayerShip(Sprite):
     def shoot(self, event):
         Bullet((self.x, self.y), self.rotation)
         
-    def collisions(self):
-        playercollision = self.collidingWithSprites(PlayerShip)
-        if playercollision:
+    def collision(self):
+        collisions.append(self.collidingWithSprites(PlayerShip))
+        collisions.append(self.collidingWithSprites(EnemyShip))
+        collisions.append(self.collidingWithSprites(Bullet))
+        if collisions:
+            Explosion((self.x, self.y))
             self.destroy()
-            [x.destroy() for x in playercollision]
-        enemycollision = self.collidingWithSprites(EnemyShip)
-        if enemycollision:
-            self.destroy()
-            [x.destroy() for x in enemycollision]
-        bulletcollision = self.collidingWithSprites(Bullet)
-        if self.collidingWithSprites(Bullet):
-            self.destroy()
-            [x.destroy() for x in bulletcollision]
+            [x.destroy() for x in collisions]
 
     def step(self):
         self.x += self.vx
