@@ -162,6 +162,8 @@ class EnemyShip(Sprite):
         self.vr = 0.00
         self.fxcenter = self.fycenter = 0.45
         
+        self.collisions = []
+        
         # Spaceship thrust on/off
         self.thrust = 0
         self.thrustframe = 1
@@ -195,21 +197,13 @@ class EnemyShip(Sprite):
         Bullet((self.x, self.y), self.rotation)
         
     def collisions(self):
-        playercollision = self.collidingWithSprites(PlayerShip)
-        if playercollision:
+        collisions.append(playercollision = self.collidingWithSprites(PlayerShip))
+        collisions.append(enemycollision = self.collidingWithSprites(EnemyShip))
+        collisions.append(bulletcollision = self.collidingWithSprites(Bullet))
+        if collisions:
             Explosion((self.x, self.y))
             self.destroy()
-            [x.destroy() for x in playercollision]
-        enemycollision = self.collidingWithSprites(EnemyShip)
-        if enemycollision:
-            Explosion((self.x, self.y))
-            self.destroy()
-            [x.destroy() for x in enemycollision]
-        bulletcollision = self.collidingWithSprites(Bullet)
-        if self.collidingWithSprites(Bullet):
-            Explosion((self.x, self.y))
-            self.destroy()
-            [x.destroy() for x in bulletcollision]
+            [x.destroy() for x in collisions]
             
     def step(self):
         self.x += self.vx
