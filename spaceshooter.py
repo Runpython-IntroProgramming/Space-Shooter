@@ -14,6 +14,18 @@ import random
 
 speed_limit = 10
 
+class Explosion(Sprite):
+    asset = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10, 'horizontal')
+    
+    def __init(self, position):
+        super().__init__(Explosion.asset, position)
+        self.count = 0
+        
+    def step(self):
+        # Manage explosion animation
+        self.setImage(self.count%10)
+        self.count += 1
+
 class Bullet(Sprite):
     asset = ImageAsset("images/blast.png", Frame(0,0,8,8), 8, 'horizontal')
     
@@ -140,8 +152,6 @@ class EnemyShip(Sprite):
     Animated space ship
     """
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,65,125), 4, 'vertical')
-    explosion = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10, 'horizontal')
-    explosion_count = 0
 
     def __init__(self, position):
         super().__init__(EnemyShip.asset, position, CircleAsset(32.5))
