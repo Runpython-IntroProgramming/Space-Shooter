@@ -41,12 +41,12 @@ class Bullet(Sprite):
         self.collisions = []
         
     def collision(self):
-        collisions.append(self.collidingWithSprites(PlayerShip))
-        collisions.append(self.collidingWithSprites(EnemyShip))
-        collisions.append(self.collidingWithSprites(Bullet))
+        self.collisions.append(self.collidingWithSprites(PlayerShip))
+        self.collisions.append(self.collidingWithSprites(EnemyShip))
+        self.collisions.append(self.collidingWithSprites(Bullet))
         if collisions:
             self.destroy()
-            [x.destroy() for x in collisions]
+            [x.destroy() for x in self.collisions]
         
     def step(self):
         self.x += self.vx
@@ -115,13 +115,13 @@ class PlayerShip(Sprite):
         Bullet((self.x, self.y), self.rotation)
         
     def collision(self):
-        collisions.append(self.collidingWithSprites(PlayerShip))
-        collisions.append(self.collidingWithSprites(EnemyShip))
-        collisions.append(self.collidingWithSprites(Bullet))
-        if collisions:
+        self.collisions.append(self.collidingWithSprites(PlayerShip))
+        self.collisions.append(self.collidingWithSprites(EnemyShip))
+        self.collisions.append(self.collidingWithSprites(Bullet))
+        if self.collisions:
             Explosion((self.x, self.y))
             self.destroy()
-            [x.destroy() for x in collisions]
+            [x.destroy() for x in self.collisions]
 
     def step(self):
         self.x += self.vx
@@ -189,13 +189,13 @@ class EnemyShip(Sprite):
         Bullet((self.x, self.y), self.rotation)
         
     def collision(self):
-        collisions.append(self.collidingWithSprites(PlayerShip))
-        collisions.append(self.collidingWithSprites(EnemyShip))
-        collisions.append(self.collidingWithSprites(Bullet))
+        self.collisions.append(self.collidingWithSprites(PlayerShip))
+        self.collisions.append(self.collidingWithSprites(EnemyShip))
+        self.collisions.append(self.collidingWithSprites(Bullet))
         if collisions:
             Explosion((self.x, self.y))
             self.destroy()
-            [x.destroy() for x in collisions]
+            [x.destroy() for x in self.collisions]
             
     def step(self):
         self.x += self.vx
