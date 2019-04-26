@@ -18,7 +18,7 @@ class Bullet(Sprite):
     asset = ImageAsset("images/blast.png", Frame(0,0,8,8), 8, 'horizontal')
     
     def __init__(self, position, direction):
-        super().__init__(Bullet.asset, [position[0] - 60 * math.sin(direction), position[1] - 60 * math.cos(direction)])
+        super().__init__(Bullet.asset, [position[0] - 40 * math.sin(direction), position[1] - 40 * math.cos(direction)])
         self.vx = -2.5 * speed_limit * math.sin(direction)
         self.vy = -2.5 * speed_limit * math.cos(direction)
         self.vr = 0
@@ -49,7 +49,7 @@ class PlayerShip(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227-65,0,65,125), 4, 'vertical')
 
     def __init__(self, position):
-        super().__init__(PlayerShip.asset, position, CircleAsset(50))
+        super().__init__(PlayerShip.asset, position, CircleAsset(32.5))
         self.vx = 0
         self.vy = 0
         self.vr = 0.00
@@ -132,7 +132,7 @@ class EnemyShip(Sprite):
     explosion_count = 0
 
     def __init__(self, position):
-        super().__init__(EnemyShip.asset, position, CircleAsset(50))
+        super().__init__(EnemyShip.asset, position, CircleAsset(32.5))
         self.vx = 0
         self.vy = 0
         self.vr = 0.00
