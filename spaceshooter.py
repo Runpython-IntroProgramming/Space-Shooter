@@ -43,7 +43,7 @@ class Bullet(Sprite):
     def collision(self):
         [self.collisions.append(x) for x in self.collidingWithSprites(PlayerShip)]
         [self.collisions.append(x) for x in self.collidingWithSprites(EnemyShip)]
-        [self.collisions.append(x for x in self.collidingWithSprites(Bullet)]
+        [self.collisions.append(x) for x in self.collidingWithSprites(Bullet)]
         if collisions:
             self.destroy()
             [x.destroy() for x in self.collisions]
