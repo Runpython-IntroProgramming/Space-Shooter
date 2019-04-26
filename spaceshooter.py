@@ -165,7 +165,7 @@ class EnemyShip(Sprite):
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
-        self.collisions()
+        #self.collisions()
         
         # manage thrust animation
         if self.thrust == 1:
