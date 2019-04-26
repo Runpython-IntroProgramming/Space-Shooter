@@ -19,6 +19,7 @@ class Explosion(Sprite):
     
     def __init__(self, position):
         super().__init__(Explosion.asset, position)
+        self.fxcenter = self.fycenter = 0.5
         self.countup = 0
         self.countdown = 10
         
