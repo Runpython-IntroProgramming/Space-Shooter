@@ -19,14 +19,19 @@ class Explosion(Sprite):
     
     def __init__(self, position):
         super().__init__(Explosion.asset, position)
-        self.count = 0
+        self.countup = 0
+        self.countdown = 10
         
     def step(self):
         # Manage explosion animation
-        self.setImage(self.count%10)
-        self.count += 1
-        if self.count == 10:
-            self.destroy()
+        if self.countup < 10:
+            self.setImage(self.countup%10)
+            self.countup += 1
+        else:
+            self.setImage(self.countdown%10)
+            self.countdown -= 1
+            if self.countdown == 0
+                self.destroy()
 
 class Bullet(Sprite):
     asset = ImageAsset("images/blast.png", Frame(0,0,8,8), 8, 'horizontal')
