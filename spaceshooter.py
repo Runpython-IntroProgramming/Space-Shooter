@@ -196,7 +196,7 @@ class EnemyShip(Sprite):
     def shoot(self):
         Bullet((self.x, self.y), self.rotation)
         
-    def collisions(self):
+    def collision(self):
         collisions.append(self.collidingWithSprites(PlayerShip))
         collisions.append(self.collidingWithSprites(EnemyShip))
         collisions.append(self.collidingWithSprites(Bullet))
