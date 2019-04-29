@@ -38,7 +38,7 @@ class SpaceShip(Sprite):
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
-        if self.x == 300 and self.y == 300:
+        if self.x == 400 and self.y == 400:
             self.destroy()
         # manage thrust animation
         if self.thrust == 1:
@@ -100,7 +100,7 @@ class SpaceGame(App):
         # Background
         black = Color(0, 1)
         noline = LineStyle(0, black)
-        bg_asset = RectangleAsset(self.width, self.height, noline, black)
+        bg_asset = ImageAsset("images/starfield.jpg")
         bg = Sprite(bg_asset, (0,0))
         SpaceShip((100,100))
         SpaceShip2((400, 400))
