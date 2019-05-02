@@ -214,16 +214,16 @@ class EnemyShip(Sprite):
         # Randomly move
         if self.count%100 == 0:
             if random.randint(0,1) == 1:
-                self.thrustOn
+                self.thrustOn()
                 print("Thurst On")
             if random.randint(0,1) == 1:
-                self.thrustOff
+                self.thrustOff()
                 print("Thurst Off")
             if random.randint(0,1) == 1:
-                self.rotateRightOn
+                self.rotateRightOn()
                 print("Rotate Right")
             if random.randint(0,1) == 1:
-                self.rotateLeftOn
+                self.rotateLeftOn()
                 print("Rotate Left")
         self.count += 1
         
