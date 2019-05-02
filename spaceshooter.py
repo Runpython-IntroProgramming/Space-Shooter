@@ -224,7 +224,8 @@ class EnemyShip(Sprite):
                 print("Rotate Right")
             if random.randint(0,1) == 1:
                 self.rotateLeftOn()
-                print("Rotate Left")
+            if random.randint(0,1) == 1:
+                self.shoot()
         self.count += 1
         
         self.x += self.vx
