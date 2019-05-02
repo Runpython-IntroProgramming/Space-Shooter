@@ -215,7 +215,7 @@ class EnemyShip(Sprite):
         if self.count%100 == 0:
             if random.randint(0,1) == 1:
                 self.thrustOn
-            else:
+            if random.randint(0,1) == 1:
                 self.thrustOff
             if random.randint(0,1) == 1:
                 self.rotateRightOn
