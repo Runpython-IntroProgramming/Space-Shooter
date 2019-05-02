@@ -270,8 +270,8 @@ class SpaceGame(App):
         self.safex = self.width/2
         self.safey = self.height/2
         while abs(self.safex - self.player1.x) < 50 and abs(self.safey - self.player1.y) < 50:
-            safex = random.randint(0,self.width)
-            safey = random.randint(0,self.height)
+            self.safex = random.randint(0,self.width)
+            self.safey = random.randint(0,self.height)
         
     def step(self):
         for ship in self.getSpritesbyClass(PlayerShip):
