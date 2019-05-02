@@ -205,6 +205,9 @@ class EnemyShip(Sprite):
             self.destroy()
             [Explosion((x.x, x.y)) for x in self.collisions]
             [x.destroy() for x in self.collisions]
+            self.collisions = True
+        else:
+            self.collisions = False
             
     def step(self):
         self.x += self.vx
@@ -259,7 +262,8 @@ class SpaceGame(App):
             elif ship.y > self.height + 50:
                 ship.y = -50
             # Check to see if ship has collided with anything
-            ship.collision()
+            if ship.collision():
+                EnemyShip(random.randint(0,self.width),randomint(0,self.height))
             
         
         for ship in self.getSpritesbyClass(EnemyShip):
