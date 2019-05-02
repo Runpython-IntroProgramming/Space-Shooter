@@ -264,7 +264,7 @@ class SpaceGame(App):
         self.safex = 0
         self.safey = 0
         self.safeRespawn()
-        EnemyShip((safex,safey))
+        EnemyShip((self.safex,self.safey))
         
     def safeRespawn(self):
         safex = random.randint(0,self.width)
