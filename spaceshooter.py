@@ -205,9 +205,7 @@ class EnemyShip(Sprite):
             self.destroy()
             [Explosion((x.x, x.y)) for x in self.collisions]
             [x.destroy() for x in self.collisions]
-            self.collisions = True
-        else:
-            self.collisions = False
+        return self.collisions
             
     def step(self):
         self.x += self.vx
