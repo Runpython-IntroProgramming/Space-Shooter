@@ -269,7 +269,7 @@ class SpaceGame(App):
     def safeRespawn(self):
         safex = random.randint(0,self.width)
         safey = random.randint(0,self.height)
-        while abs(safex - self.player1.x) < 50 and abs(safey - self.player1.y) < 50:
+        while abs(self.safex - self.player1.x) < 50 and abs(self.safey - self.player1.y) < 50:
             safex = random.randint(0,self.width)
             safey = random.randint(0,self.height)
         
