@@ -260,8 +260,7 @@ class SpaceGame(App):
             elif ship.y > self.height + 50:
                 ship.y = -50
             # Check to see if ship has collided with anything
-            if ship.collision():
-                EnemyShip(random.randint(0,self.width),randomint(0,self.height))
+            ship.collision()
             
         
         for ship in self.getSpritesbyClass(EnemyShip):
@@ -278,7 +277,8 @@ class SpaceGame(App):
                 ship.y = -50
             
             # Check to see if ship has collided with anything
-            ship.collision()
+            if ship.collision():
+                EnemyShip(random.randint(0,self.width),randomint(0,self.height))
                 
         for bullet in self.getSpritesbyClass(Bullet):
             bullet.step()
