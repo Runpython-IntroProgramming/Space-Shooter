@@ -164,6 +164,7 @@ class EnemyShip(Sprite):
         
         # Counter used for random movements
         self.count = 0
+        self.difficulty = 50
         
         self.collisions = []
         
@@ -212,7 +213,7 @@ class EnemyShip(Sprite):
             
     def step(self):
         # Randomly move
-        if self.count%40 == 0:
+        if self.count%self.difficulty == 0:
             if random.randint(0,1) == 1:
                 self.thrustOn()
             if random.randint(0,1) == 1:
