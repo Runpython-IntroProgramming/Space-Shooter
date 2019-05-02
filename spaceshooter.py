@@ -208,6 +208,16 @@ class EnemyShip(Sprite):
         return self.collisions
             
     def step(self):
+        # Randomly move
+        if random.randint(0,1) == 1:
+            self.thrustOn
+        else:
+            self.thrustOff
+        if random.randint(0,1) == 1:
+            self.rotateRightOn
+        if random.randint(0,1) == 1:
+            self.rotateLeftOn
+        
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
@@ -261,7 +271,6 @@ class SpaceGame(App):
                 ship.y = -50
             # Check to see if ship has collided with anything
             ship.collision()
-            
         
         for ship in self.getSpritesbyClass(EnemyShip):
             ship.step()
