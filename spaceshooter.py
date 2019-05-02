@@ -213,13 +213,13 @@ class EnemyShip(Sprite):
     def step(self):
         # Randomly move
         if self.count%100 == 0:
-            if random.randint(0,2) == 1:
+            if random.randint(0,1) == 1:
                 self.thrustOn
-            if random.randint(0,2) == 1:
+            if random.randint(0,1) == 1:
                 self.thrustOff
-            if random.randint(0,2) == 1:
+            if random.randint(0,1) == 1:
                 self.rotateRightOn
-            if random.randint(0,2) == 1:
+            if random.randint(0,1) == 1:
                 self.rotateLeftOn
         self.count += 1
         
