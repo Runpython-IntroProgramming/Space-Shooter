@@ -162,6 +162,9 @@ class EnemyShip(Sprite):
         self.vr = 0.00
         self.fxcenter = self.fycenter = 0.45
         
+        # Counter used for random movements
+        self.count = 0
+        
         self.collisions = []
         
         # Spaceship thrust on/off
@@ -209,14 +212,16 @@ class EnemyShip(Sprite):
             
     def step(self):
         # Randomly move
-        if random.randint(0,1) == 1:
-            self.thrustOn
-        else:
-            self.thrustOff
-        if random.randint(0,1) == 1:
-            self.rotateRightOn
-        if random.randint(0,1) == 1:
-            self.rotateLeftOn
+        if self.count%10 == 0:
+            if random.randint(0,1) == 1:
+                self.thrustOn
+            else:
+                self.thrustOff
+            if random.randint(0,1) == 1:
+                self.rotateRightOn
+            if random.randint(0,1) == 1:
+                self.rotateLeftOn
+        self.count += 1
         
         self.x += self.vx
         self.y += self.vy
