@@ -215,13 +215,10 @@ class EnemyShip(Sprite):
         if self.count%50 == 0:
             if random.randint(0,1) == 1:
                 self.thrustOn()
-                print("Thurst On")
             if random.randint(0,1) == 1:
                 self.thrustOff()
-                print("Thurst Off")
             if random.randint(0,1) == 1:
                 self.rotateRightOn()
-                print("Rotate Right")
             if random.randint(0,1) == 1:
                 self.rotateLeftOn()
             if random.randint(0,1) == 1:
