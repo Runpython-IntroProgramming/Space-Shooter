@@ -261,6 +261,8 @@ class SpaceGame(App):
         # Start Player1 in center of screen
         self.player1 = PlayerShip((self.width/2,self.height/2))
         # Start enemy ship @ random location on screen
+        self.safex = 0
+        self.safey = 0
         self.safeRespawn()
         EnemyShip((safex,safey))
         
