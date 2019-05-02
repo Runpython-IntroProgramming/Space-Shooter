@@ -258,7 +258,9 @@ class SpaceGame(App):
         #sun_asset = ImageAsset("images/sun.png")
         #sun_sprite = Sprite(sun_asset, (self.width / 2, self.height / 2))
         
+        # Start Player1 in center of screen
         player1 = PlayerShip((self.width/2,self.height/2))
+        # Start enemy ship @ random location on screen
         EnemyShip((random.randint(0,self.width),random.randint(0,self.height)))
         
     def step(self):
