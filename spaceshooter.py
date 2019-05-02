@@ -212,7 +212,7 @@ class EnemyShip(Sprite):
             
     def step(self):
         # Randomly move
-        if self.count%100 == 0:
+        if self.count%50 == 0:
             if random.randint(0,1) == 1:
                 self.thrustOn()
                 print("Thurst On")
