@@ -267,8 +267,8 @@ class SpaceGame(App):
         EnemyShip((self.safex,self.safey))
         
     def safeRespawn(self):
-        safex = random.randint(0,self.width)
-        safey = random.randint(0,self.height)
+        self.safex = random.randint(0,self.width)
+        self.safey = random.randint(0,self.height)
         while abs(self.safex - self.player1.x) < 50 and abs(self.safey - self.player1.y) < 50:
             safex = random.randint(0,self.width)
             safey = random.randint(0,self.height)
