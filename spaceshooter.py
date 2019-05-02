@@ -259,7 +259,7 @@ class SpaceGame(App):
         #sun_sprite = Sprite(sun_asset, (self.width / 2, self.height / 2))
         
         # Start Player1 in center of screen
-        player1 = PlayerShip((self.width/2,self.height/2))
+        self.player1 = PlayerShip((self.width/2,self.height/2))
         # Start enemy ship @ random location on screen
         self.safeRespawn()
         EnemyShip((safex,safey))
@@ -267,7 +267,7 @@ class SpaceGame(App):
     def safeRespawn(self):
         safex = random.randint(0,self.width)
         safey = random.randint(0,self.height)
-        while abs(safex - player1.x) < 50 and abs(safey - player1.y) < 50:
+        while abs(safex - self.player1.x) < 50 and abs(safey - self.player1.y) < 50:
             safex = random.randint(0,self.width)
             safey = random.randint(0,self.height)
         
