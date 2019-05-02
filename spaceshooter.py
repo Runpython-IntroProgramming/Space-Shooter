@@ -261,14 +261,14 @@ class SpaceGame(App):
         # Start Player1 in center of screen
         self.player1 = PlayerShip((self.width/2,self.height/2))
         # Start enemy ship @ random location on screen
-        self.safex = 0
-        self.safey = 0
+        self.safex
+        self.safey
         self.safeRespawn()
         EnemyShip((self.safex,self.safey))
         
     def safeRespawn(self):
-        self.safex = self.width/2
-        self.safey = self.height/2
+        self.safex = random.randint(0,self.width)
+        self.safey = random.randint(0,self.height)
         while abs(self.safex - self.player1.x) < 50 and abs(self.safey - self.player1.y) < 50:
             self.safex = random.randint(0,self.width)
             self.safey = random.randint(0,self.height)
