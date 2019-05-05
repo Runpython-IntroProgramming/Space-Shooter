@@ -308,6 +308,7 @@ class SpaceGame(App):
             # Check to see if ship has collided with anything
             if ship.collision():
                 EnemyShip((random.randint(0,self.width),random.randint(0,self.height)))
+                EnemyShip((random.randint(0,self.width),random.randint(0,self.height)))
                 
         for bullet in self.getSpritesbyClass(Bullet):
             bullet.step()
