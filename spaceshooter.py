@@ -164,7 +164,7 @@ class EnemyShip(Sprite):
         
         # Counter used for random movements
         self.count = 0
-        self.difficulty = 50
+        self.difficulty = 25
         
         self.collisions = []
         
