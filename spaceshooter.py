@@ -224,10 +224,10 @@ class EnemyShip(Sprite):
                 self.thrustOn()
             if random.randint(0,1) == 1:
                 self.thrustOff()
-            if random.randint(0,1) == 1:
-                self.rotateRightOn()
-            if random.randint(0,1) == 1:
-                self.rotateLeftOn()
+            #if random.randint(0,1) == 1:
+                #self.rotateRightOn()
+            #if random.randint(0,1) == 1:
+                #self.rotateLeftOn()
             if random.randint(0,1) == 1:
                 self.shoot()
         self.count += 1
@@ -321,10 +321,8 @@ class SpaceGame(App):
                 # Increases frequency of enemy movements
                 if self.challenge > 10:
                     self.challenge -= 5
+                # Spawns new enemy ship    
                 EnemyShip((random.randint(0,self.width),random.randint(0,self.height)), self.challenge)
-                # Spawns multiple enemy ships each time one is killed.  Still need to work out the bugs...
-                #if random.randint(0,1) == 1:
-                    #EnemyShip((random.randint(0,self.width),random.randint(0,self.height)))
                 
         for bullet in self.getSpritesbyClass(Bullet):
             bullet.step()
