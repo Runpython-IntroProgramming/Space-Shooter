@@ -222,7 +222,7 @@ class EnemyShip(Sprite):
         self.playerdirection = math.atan2(self.playerx - self.x, self.playery - self.y) + math.pi
         
     def turnTowardsPlayer(self):
-        if self.rotation > player.direction:
+        if self.rotation > self.playerdirection:
             self.rotateRightOn()
         else:
             self.rotateLeftOn()
