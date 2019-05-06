@@ -231,10 +231,10 @@ class EnemyShip(Sprite):
             #if random.randint(0,1) == 1:
                 #self.thrustOff()
             # Make random turns
-            #if random.randint(0,1) == 1:
-                #self.rotateRightOn()
-            #if random.randint(0,1) == 1:
-                #self.rotateLeftOn()
+            if random.randint(0,1) == 1:
+                self.rotateRightOn()
+            if random.randint(0,1) == 1:
+                self.rotateLeftOn()
             # Turn towards player
             #if random.randint(0,1) == 1:
                 #self.turnTowardsPlayer()
@@ -242,7 +242,7 @@ class EnemyShip(Sprite):
                 #self.shoot()
         self.count += 1
         
-        print(self.playerdirection)
+        print(self.rotation)
         
         self.x += self.vx
         self.y += self.vy
