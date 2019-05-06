@@ -214,17 +214,12 @@ class EnemyShip(Sprite):
             [x.destroy() for x in self.collisions]
         return self.collisions
         
-    def turnTowardsPlayer(self, playerx, playery):
-        self.playerdirection = math.acos((self.x*playerx + self.y*playery)/(((self.x**2+self.y**2)**0.5)*((playerx**2+playery**2)**0.5)))
-        print(self.playerdirection)
-        print(self.rotation)
-        #if self.playerdirection > 0:
-            #self.rotateLeftOn()
-        #elif self.playerdirection < 0:
+    #def turnTowardsPlayer(self, playerx, playery):
+        
         
             
     def step(self):
-        # Randomly move
+        # Randomly move & shoot
         if self.count%self.difficulty == 0:
             if random.randint(0,1) == 1:
                 self.thrustOn()
@@ -309,7 +304,7 @@ class SpaceGame(App):
             ship.collision()
         
         for ship in self.getSpritesbyClass(EnemyShip):
-            ship.turnTowardsPlayer(self.player1.x, self.player1.y)
+            #ship.turnTowardsPlayer(self.player1.x, self.player1.y)
             ship.step()
             # Wrap screen
             # Check to see if ship has moved off-screen and correct
