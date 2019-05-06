@@ -155,7 +155,7 @@ class EnemyShip(Sprite):
     """
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,65,125), 4, 'vertical')
 
-    def __init__(self, position):
+    def __init__(self, position, challenge):
         super().__init__(EnemyShip.asset, position, CircleAsset(32.5))
         self.vx = 0
         self.vy = 0
@@ -164,7 +164,7 @@ class EnemyShip(Sprite):
         
         # Counter used for random movements
         self.count = 0
-        self.difficulty = 25
+        self.difficulty = challenge
         
         self.collisions = []
         
@@ -269,7 +269,11 @@ class SpaceGame(App):
         self.safex = 0
         self.safey = 0
         self.safeRespawn()
-        EnemyShip((self.safex,self.safey))
+        # Sets difficulty level of enemy ship (frequency of which it makes movements)
+        self.challenge = 100
+        EnemyShip((self.safex,self.safey), self.challenge)
+        
+
         
     def safeRespawn(self):
         self.safex = random.randint(0,self.width)
@@ -309,7 +313,11 @@ class SpaceGame(App):
             
             # Check to see if ship has collided with anything
             if ship.collision():
-                EnemyShip((random.randint(0,self.width),random.randint(0,self.height)))
+                # Increases frequency of enemy movements
+                if self.challenge > 10:
+                    self.challenge -= 5
+                EnemyShip((random.randint(0,self.width),random.randint(0,self.height)), self.challenge)
+                # Spawns multiple enemy ships each time one is killed.  Still need to work out the bugs...
                 #if random.randint(0,1) == 1:
                     #EnemyShip((random.randint(0,self.width),random.randint(0,self.height)))
                 
