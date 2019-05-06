@@ -219,26 +219,26 @@ class EnemyShip(Sprite):
     def findPlayer(self, playerx, playery):
         self.playerx = playerx
         self.playery = playery
-        self.playerdirection = math.atan2(self.y - self.playery, self.x - self.playerx)
+        self.playerdirection = math.atan2(self.y - self.playery, self.x - self.playerx) + pi
         
     #def turnTowardsPlayer(self):
-        
+
             
     def step(self):
         # Randomly move & shoot
-        #if self.count%self.difficulty == 0:
-            #if random.randint(0,1) == 1:
-                #self.thrustOn()
-            #if random.randint(0,1) == 1:
-                #self.thrustOff()
+        if self.count%self.difficulty == 0:
+            if random.randint(0,1) == 1:
+                self.thrustOn()
+            if random.randint(0,1) == 1:
+                self.thrustOff()
             # Make random turns
             #if random.randint(0,1) == 1:
                 #self.rotateRightOn()
             #if random.randint(0,1) == 1:
                 #self.rotateLeftOn()
             # Turn towards player
-            #if random.randint(0,1) == 1:
-                #self.turnTowardsPlayer()
+            if random.randint(0,1) == 1:
+                self.turnTowardsPlayer()
             #if random.randint(0,1) == 1:
                 #self.shoot()
         self.count += 1
@@ -246,8 +246,6 @@ class EnemyShip(Sprite):
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
-        
-        print(self.playerdirection)
         
         # manage thrust animation
         if self.thrust == 1:
