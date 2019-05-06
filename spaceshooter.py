@@ -222,7 +222,7 @@ class EnemyShip(Sprite):
         
     def turnTowardsPlayer(self):
         self.playerdirection = math.atan2(self.y - self.playery, self.x - self.playerx)
-        print(self.direction)
+        print(self.playerdirection)
             
     def step(self):
         # Randomly move & shoot
