@@ -217,6 +217,7 @@ class EnemyShip(Sprite):
     def turnTowardsPlayer(self, playerx, playery):
         self.playerdirection = math.acos((self.x*playerx + self.y*playery)/(((self.x**2+self.y**2)**0.5)*((playerx**2+playery**2)**0.5)))
         print(self.playerdirection)
+        print(self.rotation)
         #if self.playerdirection > 0:
             #self.rotateLeftOn()
         #elif self.playerdirection < 0:
