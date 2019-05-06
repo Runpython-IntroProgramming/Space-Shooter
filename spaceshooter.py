@@ -246,8 +246,6 @@ class EnemyShip(Sprite):
                 #self.shoot()
         self.count += 1
         
-        print(self.rotation)
-        
         self.x += self.vx
         self.y += self.vy
         self.rotation += self.vr
