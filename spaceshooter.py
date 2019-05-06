@@ -220,8 +220,9 @@ class EnemyShip(Sprite):
         self.playerx = playerx
         self.playery = playery
         
-    #def turnTowardsPlayer():
-        
+    def turnTowardsPlayer():
+        self.playerdirection = atan2(self.y - self.playery, self.x - self.playerx)
+        print(self.direction)
             
     def step(self):
         # Randomly move & shoot
@@ -230,10 +231,14 @@ class EnemyShip(Sprite):
                 self.thrustOn()
             if random.randint(0,1) == 1:
                 self.thrustOff()
+            # Make random turns
             #if random.randint(0,1) == 1:
                 #self.rotateRightOn()
             #if random.randint(0,1) == 1:
                 #self.rotateLeftOn()
+            # Turn towards player
+            if random.randint(0,1) == 1:
+                self.turnTowardsPlayer()
             if random.randint(0,1) == 1:
                 self.shoot()
         self.count += 1
