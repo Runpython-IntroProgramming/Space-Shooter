@@ -288,7 +288,7 @@ class SpaceGame(App):
         self.safey = 0
         self.safeRespawn()
         # Sets difficulty level of enemy ship (frequency of which it makes movements)
-        self.challenge = 100
+        self.challenge = 10
         EnemyShip((self.safex,self.safey), self.challenge)
         
 
