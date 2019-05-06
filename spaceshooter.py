@@ -219,7 +219,7 @@ class EnemyShip(Sprite):
     def findPlayer(self, playerx, playery):
         self.playerx = playerx
         self.playery = playery
-        self.playerdirection = math.atan2(self.playerx - self.x, self.playery - self.y) + pi
+        self.playerdirection = math.atan2(self.playerx - self.x, self.playery - self.y) + math.pi
         
     #def turnTowardsPlayer(self):
             
