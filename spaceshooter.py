@@ -220,7 +220,7 @@ class EnemyShip(Sprite):
         self.playerx = playerx
         self.playery = playery
         
-    def turnTowardsPlayer():
+    def turnTowardsPlayer(self):
         self.playerdirection = atan2(self.y - self.playery, self.x - self.playerx)
         print(self.direction)
             
