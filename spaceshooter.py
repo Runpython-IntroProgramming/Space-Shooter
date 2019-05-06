@@ -212,7 +212,8 @@ class EnemyShip(Sprite):
             [x.destroy() for x in self.collisions]
         return self.collisions
         
-    #def turnTowardsPlayer(self, (
+    def turnTowardsPlayer(self, playerx, playery):
+        #if 
             
     def step(self):
         # Randomly move
@@ -221,10 +222,10 @@ class EnemyShip(Sprite):
                 self.thrustOn()
             if random.randint(0,1) == 1:
                 self.thrustOff()
-            if random.randint(0,1) == 1:
-                self.rotateRightOn()
-            if random.randint(0,1) == 1:
-                self.rotateLeftOn()
+            #if random.randint(0,1) == 1:
+                #self.rotateRightOn()
+            #if random.randint(0,1) == 1:
+                #self.rotateLeftOn()
             if random.randint(0,1) == 1:
                 self.shoot()
         self.count += 1
