@@ -220,10 +220,10 @@ class EnemyShip(Sprite):
                 self.thrustOn()
             if random.randint(0,1) == 1:
                 self.thrustOff()
-            #if random.randint(0,1) == 1:
-                #self.rotateRightOn()
-            #if random.randint(0,1) == 1:
-                #self.rotateLeftOn()
+            if random.randint(0,1) == 1:
+                self.rotateRightOn()
+            if random.randint(0,1) == 1:
+                self.rotateLeftOn()
             if random.randint(0,1) == 1:
                 self.shoot()
         self.count += 1
@@ -310,8 +310,8 @@ class SpaceGame(App):
             # Check to see if ship has collided with anything
             if ship.collision():
                 EnemyShip((random.randint(0,self.width),random.randint(0,self.height)))
-                if random.randint(0,1) == 1:
-                    EnemyShip((random.randint(0,self.width),random.randint(0,self.height)))
+                #if random.randint(0,1) == 1:
+                    #EnemyShip((random.randint(0,self.width),random.randint(0,self.height)))
                 
         for bullet in self.getSpritesbyClass(Bullet):
             bullet.step()
