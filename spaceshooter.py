@@ -221,7 +221,11 @@ class EnemyShip(Sprite):
         self.playery = playery
         self.playerdirection = math.atan2(self.playerx - self.x, self.playery - self.y) + math.pi
         
-    #def turnTowardsPlayer(self):
+    def turnTowardsPlayer(self):
+        if self.direction > player.direction:
+            self.rotateRightOn()
+        else:
+            self.rotateLeftOn()
             
     def step(self):
         # Randomly move & shoot
@@ -231,13 +235,13 @@ class EnemyShip(Sprite):
             #if random.randint(0,1) == 1:
                 #self.thrustOff()
             # Make random turns
-            if random.randint(0,1) == 1:
-                self.rotateRightOn()
-            if random.randint(0,1) == 1:
-                self.rotateLeftOn()
-            # Turn towards player
             #if random.randint(0,1) == 1:
-                #self.turnTowardsPlayer()
+                #self.rotateRightOn()
+            #if random.randint(0,1) == 1:
+                #self.rotateLeftOn()
+            # Turn towards player
+            if random.randint(0,1) == 1:
+                self.turnTowardsPlayer()
             #if random.randint(0,1) == 1:
                 #self.shoot()
         self.count += 1
