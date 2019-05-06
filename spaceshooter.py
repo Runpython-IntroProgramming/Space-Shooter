@@ -161,6 +161,7 @@ class EnemyShip(Sprite):
         self.vy = 0
         self.vr = 0.00
         self.fxcenter = self.fycenter = 0.45
+        self.rotation = 1
         
         # Counter used for random movements
         self.count = 0
@@ -214,6 +215,7 @@ class EnemyShip(Sprite):
         
     def turnTowardsPlayer(self, playerx, playery):
         #if 
+        
             
     def step(self):
         # Randomly move
