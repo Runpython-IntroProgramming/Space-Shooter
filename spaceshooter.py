@@ -213,7 +213,7 @@ class EnemyShip(Sprite):
             [x.destroy() for x in self.collisions]
         return self.collisions
         
-    def turnTowardsPlayer(self, playerx, playery):
+    #def turnTowardsPlayer(self, playerx, playery):
         #if 
         
             
