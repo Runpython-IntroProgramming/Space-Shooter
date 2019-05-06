@@ -161,7 +161,6 @@ class EnemyShip(Sprite):
         self.vy = 0
         self.vr = 0.00
         self.fxcenter = self.fycenter = 0.45
-        self.rotation = math.pi
         
         # Counter used for random movements
         self.count = 0
@@ -169,6 +168,8 @@ class EnemyShip(Sprite):
         print(self.difficulty)
         
         self.collisions = []
+        
+        self.playerdirection = 0
         
         # Spaceship thrust on/off
         self.thrust = 0
@@ -213,8 +214,11 @@ class EnemyShip(Sprite):
             [x.destroy() for x in self.collisions]
         return self.collisions
         
-    #def turnTowardsPlayer(self, playerx, playery):
-        #if 
+    def turnTowardsPlayer(self, playerx, playery):
+        print(self.playerdirection = math.acos((self.x*playerx + self.y*playery)/(((self.x**2+self.y**2)**0.5)*((playerx**2+playery**2)**0.5))))
+        #if self.playerdirection > 0:
+            #self.rotateLeftOn()
+        #elif self.playerdirection < 0:
         
             
     def step(self):
@@ -303,6 +307,7 @@ class SpaceGame(App):
             ship.collision()
         
         for ship in self.getSpritesbyClass(EnemyShip):
+            ship.turnTowardPlayer(self.player1.x, self.player1.y)
             ship.step()
             # Wrap screen
             # Check to see if ship has moved off-screen and correct
