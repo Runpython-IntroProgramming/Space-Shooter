@@ -307,7 +307,7 @@ class SpaceGame(App):
             ship.collision()
         
         for ship in self.getSpritesbyClass(EnemyShip):
-            ship.turnTowardPlayer(self.player1.x, self.player1.y)
+            ship.turnTowardsPlayer(self.player1.x, self.player1.y)
             ship.step()
             # Wrap screen
             # Check to see if ship has moved off-screen and correct
