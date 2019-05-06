@@ -221,7 +221,7 @@ class EnemyShip(Sprite):
         self.playery = playery
         
     def turnTowardsPlayer(self):
-        self.playerdirection = atan2(self.y - self.playery, self.x - self.playerx)
+        self.playerdirection = math.atan2(self.y - self.playery, self.x - self.playerx)
         print(self.direction)
             
     def step(self):
