@@ -165,6 +165,7 @@ class EnemyShip(Sprite):
         # Counter used for random movements
         self.count = 0
         self.difficulty = challenge
+        print(self.difficulty)
         
         self.collisions = []
         
@@ -316,7 +317,6 @@ class SpaceGame(App):
                 # Increases frequency of enemy movements
                 if self.challenge > 10:
                     self.challenge -= 5
-                    print(self.challenge)
                 EnemyShip((random.randint(0,self.width),random.randint(0,self.height)), self.challenge)
                 # Spawns multiple enemy ships each time one is killed.  Still need to work out the bugs...
                 #if random.randint(0,1) == 1:
