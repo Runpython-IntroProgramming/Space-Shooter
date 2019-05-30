@@ -35,20 +35,20 @@ class SpaceShip(Sprite):
         self.pew.volume=5
         
         
-    def rightarrowKey(self, event):
+    def rightKey(self, event):
         self.x+=.5
         self.pew.play()
         
         
-    def leftarrowKey(self, event):
+    def leftKey(self, event):
         self.x+=-.5
         self.pew.play()
         
-    def uparrowKey(self, event):
+    def upKey(self, event):
         self.y+=-.5
         self.pew.play()
         
-    def downarrowKey(self, event):
+    def downKey(self, event):
         self.y+=.5
         self.pew.play()
        
