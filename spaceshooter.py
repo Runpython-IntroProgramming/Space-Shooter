@@ -114,10 +114,10 @@ class Explosion(Sprite):
     sound = SoundAsset("sounds/explosion2.mp3")
     
     def __init__(self, position):
-        super().__init__(Explosion.asset, position)
+        super().__init__(Explosion.image, position)
         self.image = 0
         self.center = (0.5, 0.5)
-        self.boom = Sound(Explosion.boomasset)
+        self.boom = Sound(Explosion.sound)
         self.boom.play()
         
     def step(self):
@@ -143,7 +143,7 @@ class SpaceGame(App):
         back.scale=1.4
         
       
-        self.text=Sprite(TextAsset("GAME OVER", width=500, align='center',style='60px Arial', fill=Color(0xff2222,1)), (300,350))
+        self.text=Sprite(TextAsset("Game Over", width=700, align='center',style='70px Arial', fill=Color(0xff2222,1)), (300,350))
         self.text.visible= False
         
       
