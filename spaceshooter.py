@@ -1,7 +1,7 @@
 """
 spaceshooter.py
-Author: maBottnn14
-Credit: Andrew, Chris Lee 
+Author: Andrew
+Credit: Matt, Source Code 
 
 Assignment:
 Write and submit a program that implements the spacewar game:
@@ -11,8 +11,9 @@ from ggame import App, Sprite, ImageAsset, Frame, CircleAsset
 from ggame import SoundAsset, Color, LineStyle
 import math
 from time import time
-SCREEN_WIDTH = 1250
-SCREEN_HEIGHT = 700
+
+width = 1250
+height = 700
 
 myapp = App()
 
@@ -127,7 +128,7 @@ class chungus(Sprite):
         self.scale = 0.35
 
 
-myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
+myapp = SpaceGame(width, height)
 myapp.run()
 
 
