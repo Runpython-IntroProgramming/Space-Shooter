@@ -118,6 +118,7 @@ class SpaceGame(App):
         self.keymap= dict(zip(keys, commands))
         [self.app.listenKeyEvent("keydown", k, self.controldown) for k in keys]
         [self.app.listenKeyEvent("keyup", k, self.controlup) for k in keys]
+    
 
 
 class chungus(Sprite):
