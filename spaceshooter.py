@@ -1,84 +1,133 @@
 """
 spaceshooter.py
-Author: Andrew 
-Credit: Matt
+Author: maBottnn14
+Credit: Andrew, Chris Lee 
 
 Assignment:
 Write and submit a program that implements the spacewar game:
 https://github.com/HHS-IntroProgramming/Spacewar
 """
-
-from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame, CircleAsset
-from ggame import SoundAsset, Sound, TextAsset, Color
+from ggame import App, Sprite, ImageAsset, Frame, CircleAsset
+from ggame import SoundAsset, Color, LineStyle
 import math
 from time import time
-
-class Space(Sprite):
-    asset = ImageAsset("images/starfield.jpg")
-    width = 512
-    height = 512
-    def __init__(self, position):
-        super().__init__(Space.asset, position)
-        
-class Sun(Sprite):
-    
-    width = 80
-    height = 76
-    asset = ImageAsset("images/sun.png", Frame(0, 0, width, height))
-    
-    def __init__(self, position):
-        super().__init__(Sun.asset, position, CircleAsset(32))
-        
-class Ship(Sprite):
-
-    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(0,0,86,125), 4, 'vertical')
-    def __init__(self, position):
-        super().__init__(Ship.asset, position)
-        
-class Alien(Sprite):
-    
-    asset = ImageAsset("images/alien-in-spaceship-cartoon-sticker-1539712327.219355.png")
-    def __init__(self, position):
-        super().__init__(Alien.asset, position)
-        self.scale = .4
-
-class Chungus(Sprite):
-    
-    asset = ImageAsset("images/Chungus.png")
-    def __init__(self, position):
-        super().__init__(Chungus.asset, position)
-        self.scale = .05
-        
-class Vector:
-    
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-        
-    def mag(self):
-        return math.sqrt(self.x*self.x + self.y*self.y)
-    
-    def unit(self):
-        r = self.mag()
-        if r == 0:
-            return Vector(0,0)
-        else:
-            return Vector(self.x/r, self.y/r)
-
-
-
-Space((0,0))
-Space((512,0))
-Space((1024,0))
-Space((0,512))
-Space((512,512))
-Space((1024,512))
-Sun((300,150))
-Sun((100, 400))
-Sun((700, 500))
-Ship((200,200))
-Alien((300, 300))
-Chungus((1100,0))
+SCREEN_WIDTH = 1250
+SCREEN_HEIGHT = 700
 
 myapp = App()
+
+class SpaceShip(Sprite):
+ 
+    asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
+        Frame(227,0,292-227,125), 4, 'vertical')
+
+    def __init__(self, position):
+        super().__init__(SpaceShip.asset, position)
+        self.vx = 0.1
+        self.vy = 0.1
+        self.vr = 0.01
+        self.thrust = 0.5
+        self.thrustframe = 1
+        SpaceGame.listenKeyEvent("keydown", "up arrow", self.thrustOn)
+        SpaceGame.listenKeyEvent("keyup", "up arrow", self.thrustOff)
+        SpaceGame.listenKeyEvent("keydown", "left arrow", self.right)
+        SpaceGame.listenKeyEvent("keyup", "left arrow", self.stop)
+        SpaceGame.listenKeyEvent("keydown", "right arrow", self.left)
+        SpaceGame.listenKeyEvent("keyup", "right arrow", self.stop)
+        self.fxcenter = self.fycenter = 0.5
+
+    def step(self):
+        self.x += self.vx
+        self.y += self.vy
+        self.rotation += self.vr
+        if self.thrust == 1:
+            self.setImage(self.thrustframe)
+            self.thrustframe += 0.8
+            self.vx += 0.03*math.cos(self.rotation+1/2*math.pi)
+            self.vy += 0.03*math.sin(self.rotation-1/2*math.pi)
+            if self.thrustframe == 4:
+                self.thrustframe = 1
+            else:
+                self.setImage(0)
+        colision = self.collidingWithSprites(chungus)
+        if colision:
+            self.explode(self)
+
+    def thrustOn(self, event):
+        self.thrust = 1
+
+    def thrustOff(self, event):
+        self.thrust = 0
+
+    def up(self, event):
+        self.vy=1 
+    def down(self, event):
+        self.vy=-1
+    def right(self, event):
+        self.vr = .1
+    def left(self, event):
+        self.vr = -.1
+    def stop(self, event):
+        self.vr=0
+
+    def explode(self, event):
+        self.visible = False
+        self.vx=0
+        self.vy=0
+        explosionn(self.position)
+        
+        
+class explosionn(Sprite):
+    
+    asset = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
+   
+    def __init__(self, position):
+        super().__init__(explosionn.asset, position)
+        self.image = 0
+        self.center = (0.5, 0.5)
+        
+        
+    def step(self):
+        self.setImage(self.image//2)
+        self.image = self.image + 1
+        if self.image == 10:
+            self.destroy()
+    
+class SpaceGame(App):
+    
+    def __init__(self, width, height):
+        super().__init__(width, height)
+        asset = ImageAsset("images/starfield.jpg")
+        Sprite(asset,(0,0))
+        Sprite(asset,(512,0))
+        Sprite(asset,(0, 512))
+        Sprite(asset,(512, 512)) 
+        Sprite(asset,(1024, 512))
+        Sprite(asset,(1024, 0))
+        SpaceShip((100,100))
+        chungus((300,200))
+    def step(self):
+        for ship in self.getSpritesbyClass(SpaceShip):
+            ship.step()
+        for explosion in self.getSpritesbyClass(explosionn):
+            explosion.step()
+
+    def register(self, keys):
+        commands= ["left", "right", "forward"]
+        self.keymap= dict(zip(keys, commands))
+        [self.app.listenKeyEvent("keydown", k, self.controldown) for k in keys]
+        [self.app.listenKeyEvent("keyup", k, self.controlup) for k in keys]
+
+
+class chungus(Sprite):
+    asset = ImageAsset("images/98a.png")
+    
+    def __init__(self, position):
+        super().__init__(chungus.asset, position)
+        self.scale = 0.35
+
+
+myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
+
+
