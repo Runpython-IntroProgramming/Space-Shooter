@@ -9,6 +9,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 from ggame import App, Sprite, ImageAsset, Frame, CircleAsset
 from ggame import SoundAsset, Color, LineStyle
+from math import sin, cos
 import math
 from time import time
 
@@ -21,7 +22,101 @@ class SpaceShip(Sprite):
  
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", 
         Frame(227,0,292-227,125), 4, 'vertical')
+    
+    def __init__(self, position):
+        super().__init__(SpaceShip.asset, position)
+        self.vx = 0.1
+        self.vy = 0.1
+        self.vr = 0.01
+        self.v = 0
+        self.thrust = 0.5
+        self.thrustframe = 1
+        SpaceGame.listenKeyEvent("keydown", "up arrow", self.thruston)
+        SpaceGame.listenKeyEvent("keyup", "up arrow", self.thrustoff)
+        SpaceGame.listenKeyEvent("keydown", "left arrow", self.turnleft)
+        SpaceGame.listenKeyEvent("keyup", "left arrow", self.turnoff)
+        SpaceGame.listenKeyEvent("keydown", "right arrow", self.turnright)
+        SpaceGame.listenKeyEvent("keyup", "right arrow", self.turnoff)
+        self.fxcenter = self.fycenter = 0.5
+    def step(self):
+        vx = -sin(self.rotation)*self.v
+        vy = -cos(self.rotation)*self.v
+        self.x += vx
+        self.y += vy
+        boom = self.collidingWithSprites(chungus)
+        self.rotation += self.vr
+    
+        '''
+        if self.x > myapp.width:
+            self.x = 0
+        if self.x < 0:
+            self.x = myapp.width
+        if self.y > myapp.height:
+            self.y = 0
+        if self.y < 0:
+            self.y = myapp.height
+        '''
+        colision = self.collidingWithSprites(chungus)
+        if colision:
+            self.explode(self)
+            self.visible = False
+            self.x = 300
+            self.y = 200
+            self.v = 0
+            self.rotation = 0
+            self.thrust = 0
+        '''
+        if len(boom) > 0:
+            explode((self.x,self.y))
+            self.visible=False
+            self.x = 300
+            self.y = 200
+            self.v = 0
+            self.rotation = 0
+            self.thrust = 0
+            self.visible = True
+        '''
+        if self.thrust == 0 and self.v >= 0.1:
+            self.v -= 0.1
+        if self.thrust == 1 and self.v == 0:
+            self.v = 1
+        if self.thrust == 1:
+            self.setImage(self.thrustframe)
+            self.thrustframe += 1
+            if self.thrustframe == 4:
+                self.thrustframe = 1
+            if self.v < 12:
+                self.v *= 1.1
+        else:
+            self.setImage(0)
+    def thruston(self, event):
+        self.thrust = 1
+    def thrustoff(self, event):
+        self.thrust = 0
+    def turnleft(self, event):
+        self.vr = 0.1
+    def turnoff(self, event):
+        self.vr = 0
+    def turnright(self, event):
+        self.vr = -0.1
+    def controldown(self, event):
+        if command == "forward":
+                self.thrust = 40.0
+                self.imagex = 1 
+                self.setImage(self.imagex)
+    def controlup(self, event):
+        command = self.keymap[event.key]
+        if command == "forward":
+            self.thrust = 0.0
+            self.imagex = 0 
+            self.setImage(self.imagex)
+    def explode(self, event):
+        self.visible = False
+        self.vx=0
+        self.vy=0
+        explosionn(self.position)
 
+'''
     def __init__(self, position):
         super().__init__(SpaceShip.asset, position)
         self.vx = 0.1
@@ -77,7 +172,8 @@ class SpaceShip(Sprite):
         self.vy=0
         explosionn(self.position)
         
-        
+'''
+
 class explosionn(Sprite):
     
     asset = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
