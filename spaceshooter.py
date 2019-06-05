@@ -48,10 +48,9 @@ class SpaceShip(Sprite):
             if self.thrustframe == 4:
                 self.thrustframe = 1
             else:
-                self.setImage(0)
-        lol=self.collidingWithSprites(monster)
-        if lol:
-            self.explode(self)
+                lol=self.collidingWithSprites(monster)
+                if lol:
+                    self.explode(self)
 
     def thrustOn(self, event):
         self.thrust = 1
@@ -108,7 +107,6 @@ class SpaceGame(App):
         monster((500,300))
         monster((1000,100))
         monster((200,100))
-        goal((200,200))
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
             ship.step()
@@ -130,17 +128,6 @@ class monster(Sprite):
     def __init__(self, position):
         super().__init__(monster.op, position)
         self.scale = 0.35
-
-class goal(Sprite):
-    hellob = ImageAsset("images/SoccerGoal.png")
-    width = 50
-    height = 50
-    
-    def __init__(self, position):
-        super().__init__(goal.hellob, position)
-        self.scale = 0.5
-
-
 myapp = SpaceGame(SCREEN_WIDTH, SCREEN_HEIGHT)
 myapp.run()
 
