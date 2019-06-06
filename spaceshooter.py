@@ -43,9 +43,7 @@ class SpaceShip(Sprite):
         vy = -cos(self.rotation)*self.v
         self.x += vx
         self.y += vy
-        boom = self.collidingWithSprites(chungus)
         self.rotation += self.vr
-        
         colision = self.collidingWithSprites(chungus)
         if colision:
             self.explode(self)
