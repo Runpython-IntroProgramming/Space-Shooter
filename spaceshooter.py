@@ -35,20 +35,20 @@ class SpaceShip(Sprite):
         self.pew.volume=5
         
         
-    def rightKey(self, event):
+    def rightarrowKey(self, event):
         self.x+=.5
         self.pew.play()
         
         
-    def leftKey(self, event):
+    def leftarrowKey(self, event):
         self.x+=-.5
         self.pew.play()
         
-    def upKey(self, event):
+    def uparrowKey(self, event):
         self.y+=-.5
         self.pew.play()
         
-    def downKey(self, event):
+    def downarrowKey(self, event):
         self.y+=.5
         self.pew.play()
        
@@ -81,9 +81,30 @@ class SpaceShip(Sprite):
     def thrustOff(self, event):
         self.thrust = 0
         
+
+
+class Explosion(Sprite):
+    
+    image = ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
+    sound = SoundAsset("sounds/explosion2.mp3")
+    
+    def __init__(self, position):
+        super().__init__(Explosion.image, position)
+        self.image = 0
+        self.center = (0.5, 0.5)
+        self.boom = Sound(Explosion.sound)
+        self.boom.play()
+        
+    def step(self):
+        self.setImage(self.image//2) 
+        self.image = self.image + 1
+        if self.image == 50:
+            self.destroy()
+
 class Asteroid(Sprite):
     
     asteroid_asset = ImageAsset("images/1346943991.png")
+    
     
     def __init__(self, position):
         super().__init__(Asteroid.asteroid_asset, position)
@@ -106,30 +127,6 @@ class Asteroid(Sprite):
         
         self.rotation += self.v
         
-        
-
-class Explosion(Sprite):
-    
-    image = ImageAsset("images/explosion2.png", Frame(0,0,4800/25,195), 25)
-    sound = SoundAsset("sounds/explosion2.mp3")
-    
-    def __init__(self, position):
-        super().__init__(Explosion.image, position)
-        self.image = 0
-        self.center = (0.5, 0.5)
-        self.boom = Sound(Explosion.sound)
-        self.boom.play()
-        
-    def step(self):
-        self.setImage(self.image//2) 
-        self.image = self.image + 1
-        if self.image == 50:
-            self.destroy()
-
-    
-
-
-
 class SpaceGame(App):
     
     def __init__(self):
@@ -167,7 +164,6 @@ class SpaceGame(App):
         for explosion in self.getSpritesbyClass(Explosion):
             explosion.step()
     
-
 myapp = SpaceGame()
 
 myapp.run()
