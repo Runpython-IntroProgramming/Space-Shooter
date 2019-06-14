@@ -9,7 +9,7 @@ https://github.com/HHS-IntroProgramming/Spacewar
 """
 from ggame import App, Sprite, ImageAsset, Frame, CircleAsset
 from ggame import SoundAsset, Sound, TextAsset, Color
-import math
+from math import sin, cos
 from time import time
 
 width = 700
@@ -121,11 +121,7 @@ class SpaceGame(App):
         stars.scale = self.width/stars.width
         self.ss = spaceship((300,200))
         Sun((self.width/2,self.height/2))
-    def step(self):
-        for ship in self.getSpritesbyClass(spaceship):
-            ship.step()
-        for exp in self.getSpritesbyClass(explosion):
-            exp.step()
+
 
 myapp = SpaceGame(width, height)
 myapp.run()
