@@ -45,7 +45,7 @@ class spaceship(Sprite):
         self.vy = 1
         self.vr = 0
         self.v = 0
-        self.thrust = 0
+        self.thrust = 0.5
         self.thrustframe = 1
         self.initposition = position
         SpaceGame.listenKeyEvent("keydown", "space", self.thruston)
@@ -70,7 +70,7 @@ class spaceship(Sprite):
             self.y = 0
         if self.y < 0:
             self.y = myapp.height
-        if len(boom) > 0:
+        if boom:
             explosion((self.x,self.y))
             self.visible=False
             self.x = 300
@@ -114,13 +114,47 @@ class spaceship(Sprite):
             self.imagex = 0 
             self.setImage(self.imagex)
 
+class explosionn(Sprite):
+    
+    asset = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
+   
+    def __init__(self, position):
+        super().__init__(explosionn.asset, position)
+        self.image = 0
+        self.center = (0.5, 0.5)
+        
+        
+    def step(self):
+        self.setImage(self.image//2)
+        self.image = self.image + 1
+        if self.image == 10:
+            self.destroy()
+
 class SpaceGame(App):
+    
     def __init__(self, width, height):
-        super().__init__()
-        stars = Stars((0,0))
-        stars.scale = self.width/stars.width
-        self.ss = spaceship((300,200))
-        Sun((self.width/2,self.height/2))
+        super().__init__(width, height)
+        asset = ImageAsset("images/starfield.jpg")
+        Sprite(asset,(0,0))
+        Sprite(asset,(512,0))
+        Sprite(asset,(0, 512))
+        Sprite(asset,(512, 512)) 
+        Sprite(asset,(1024, 512))
+        Sprite(asset,(1024, 0))
+        spaceship((100,100))
+        Sun((300,200))
+    def step(self):
+        for ship in self.getSpritesbyClass(spaceship):
+            ship.step()
+        for explosion in self.getSpritesbyClass(explosionn):
+            explosion.step()
+
+    def register(self, keys):
+        commands= ["left", "right", "forward"]
+        self.keymap= dict(zip(keys, commands))
+        [self.app.listenKeyEvent("keydown", k, self.controldown) for k in keys]
+        [self.app.listenKeyEvent("keyup", k, self.controlup) for k in keys]
+
 
 
 myapp = SpaceGame(width, height)
