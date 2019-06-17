@@ -35,6 +35,22 @@ class Sun(Sprite):
         self.mass = 30*1000
         self.fxcenter = 0.5
         self.fycenter = 0.5
+        
+class explosionn(Sprite):
+    
+    asset = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
+   
+    def __init__(self, position):
+        super().__init__(explosionn.asset, position)
+        self.image = 0
+        self.center = (0.5, 0.5)
+        
+        
+    def step(self):
+        self.setImage(self.image//2)
+        self.image = self.image + 1
+        if self.image == 10:
+            self.destroy()
 
 class spaceship(Sprite):
     asset = ImageAsset("images/four_spaceship_by_albertov_with_thrust.png", Frame(227,0,292-227,125), 4, 'vertical')
@@ -71,7 +87,7 @@ class spaceship(Sprite):
         if self.y < 0:
             self.y = myapp.height
         if boom:
-            explosion((self.x,self.y))
+            explosionn((self.x,self.y))
             self.visible=False
             self.x = 300
             self.y = 200
@@ -114,21 +130,7 @@ class spaceship(Sprite):
             self.imagex = 0 
             self.setImage(self.imagex)
 
-class explosionn(Sprite):
-    
-    asset = ImageAsset("images/explosion1.png", Frame(0,0,128,128), 10)
-   
-    def __init__(self, position):
-        super().__init__(explosionn.asset, position)
-        self.image = 0
-        self.center = (0.5, 0.5)
-        
-        
-    def step(self):
-        self.setImage(self.image//2)
-        self.image = self.image + 1
-        if self.image == 10:
-            self.destroy()
+
 
 class SpaceGame(App):
     
