@@ -8,4 +8,4 @@ script: bash ./test.sh
 env:
   global:
   - TESTMODULE: spaceshooter.py
-  - GH_REPO: github.com/HHS-IntroProgramming/tests.git
+  - GH_REPO: github.com/Runpython-IntroProgramming/tests.git
